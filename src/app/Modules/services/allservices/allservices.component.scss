@@ -1,0 +1,47 @@
+.service{
+    h2{
+        font-weight: 700;
+        font-size: 48px;
+        color: #475156;
+    }
+    .item{
+        height: 435px;
+        h3{
+            font-weight: 700;
+            font-size: 28px;
+            color: #1C1F35;
+        }
+        p{
+            font-weight: 400;
+            font-size: 16px;
+            color: #666C89;
+        }
+        button{
+            width: 200px;
+            height: 56px;
+            background-color: #4584C5;
+            color: #FFFFFF;
+            font-weight: 400;
+            font-size: 20px;
+        }
+        img{
+            height: 240px;
+        }
+    }
+    .main-color{
+        color: #191C1F;
+    }
+}
+@media (max-width: 768px) {
+    .service {
+      padding: 0px !important;
+      padding-bottom: 30px !important;
+      .row {
+        flex-direction: column-reverse !important;
+        margin-top: 10px;
+      }
+      h3{
+        font-size: 18px !important;
+      }
+    }
+  }

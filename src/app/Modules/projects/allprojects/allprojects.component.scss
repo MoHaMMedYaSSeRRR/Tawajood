@@ -1,0 +1,50 @@
+.projects {
+  h2 {
+    font-weight: 700;
+    font-size: 36px;
+    color: #1c1f35;
+  }
+  li {
+    margin: 0 7px;
+    a {
+      font-weight: 400;
+      font-size: 16px;
+      color: #15181b;
+    }
+  }
+  span {
+    font-weight: 700;
+    font-size: 16px;
+    color: #4584c5;
+  }
+  .item-img {
+    height: 420px;
+    border-radius: 4px;
+    background-color: #F4F4F480;
+  }
+  img {
+    width: 171px;
+    max-height: 370px;
+  }
+  .active {
+    padding: 10px;
+    background-color: #4584C5;
+    border-radius: 2px;
+    color: #ffffff !important;
+  }
+}
+@media (max-width: 767px) {
+  .d-flex{
+    flex-direction: column-reverse;
+  }
+  ul{
+    flex-direction: row !important;
+  }
+  .item-img{
+    height: 300px !important;
+  }
+  img{
+    max-height: 270px !important;
+  }
+  
+}

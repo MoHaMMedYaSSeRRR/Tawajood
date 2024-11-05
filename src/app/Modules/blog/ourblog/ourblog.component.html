@@ -1,0 +1,120 @@
+<section class="blogs my-md-4 my-3">
+  <div class="w-75 mx-auto">
+    <h2  [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'" *ngIf="!isInComponent">
+      {{'blog'| translate}}
+    </h2>
+    <div *ngIf="isInComponent" class="d-flex justify-content-between align-items-center">
+      <div class="input_wrapper">
+        <select id="filter" [ngClass]="currentLang === 'ar' ? 'rtl' : 'ltr'">
+          <option value="asc">الأحدث</option>
+          <option value="desc">الاقدم</option>
+          <i class="fa fa-arrow-down"></i>
+        </select>
+        <label class="mx-2" for="filter">:الترتيب</label>
+      </div>
+      <ul
+        class="list-unstyled d-flex justify-content-center align-items-center"
+      >
+        <li *ngFor="let item of blogs">
+          <a
+            routerLink="/s"
+            routerLinkActive="active"
+            class="text-decoration-none"
+          >
+            {{ item.name }}
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/"
+            routerLinkActive="active"
+            class="text-decoration-none"
+          >
+            {{ "all" | translate }}
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="(!isMobile)" class="row mt-3 w-100 mx-auto">
+      <div *ngFor="let item of allBlogs" class="col-md-4">
+        <div class="item">
+          <div class="item-image position-relative">
+            <span class="marketing position-absolute">
+              {{item.topic.name}}
+            </span>
+            <img
+              [src]="item.image"
+              class="w-100"
+              alt="blogPhot"
+            />
+          </div>
+          <div
+            [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+            class="item-content mt-2"
+          >
+            <span>
+              {{item.created_at |date}}
+              <i
+                [ngClass]="currentLang === 'ar' ? 'ms-2' : 'me-2'"
+                class="fa-regular fa-calendar"
+              ></i>
+            </span>
+            <h5 class="mt-2">{{item.title |cuttext:10}}</h5>
+            <p class="mt-1">
+              في عصر التحول الرقمي المتسارع، أصبح تحسين محركات البحث (SEO) له
+              دور بارز في نجاح الأعمال عبر الإنترنت. يعتبر تحسين SEO من
+              الاستراتيجيات الأساسية
+            </p>
+            <button  [ngClass]="currentLang === 'ar' ? 'me-auto' : 'ms-auto'">
+              {{ "read_more" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isMobile&&!isInComponent" class="row mt-3 d-md-none d-block w-100 mx-auto">
+      <div  class="mt-2  w-100 mx-auto">
+        <owl-carousel-o [options]="customOptions">
+          <ng-container *ngFor="let item of allBlogs">
+            <ng-template carouselSlide>
+              <div class="item me-2">
+                <div class="item-image position-relative">
+                  <span class="marketing position-absolute">
+                    {{item.topic.name}}
+                  </span>
+                  <img
+                    [src]="item.image"
+                    class="w-100"
+                    alt="blogPhot"
+                  />
+                </div>
+                <div
+                  [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+                  class="item-content mt-2"
+                >
+                  <span>
+                    {{item.created_at |date}}
+                    <i
+                      [ngClass]="currentLang === 'ar' ? 'ms-2' : 'me-2'"
+                      class="fa-regular fa-calendar"
+                    ></i>
+                  </span>
+                  <h5 class="mt-2">{{item.title |cuttext:10}}</h5>
+                  <p class="mt-1">
+                    في عصر التحول الرقمي المتسارع، أصبح تحسين محركات البحث (SEO) له
+                    دور بارز في نجاح الأعمال عبر الإنترنت. يعتبر تحسين SEO من
+                    الاستراتيجيات الأساسية
+                  </p>
+                  <button  [ngClass]="currentLang === 'ar' ? 'me-auto' : 'ms-auto'">
+                    {{ "read_more" | translate }}
+                  </button>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+      
+        </owl-carousel-o>
+      </div>
+    </div>
+  </div>
+</section>

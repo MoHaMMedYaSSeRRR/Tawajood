@@ -1,0 +1,36 @@
+.solutions{
+    h2{
+        font-weight: 700;
+        font-size: 48px;
+        color: #475156;
+    }
+    span{
+        font-weight: 700;
+        font-size: 16px;
+        color: #4584C5;
+    }
+    h4{
+        font-weight: 700;
+        font-size: 28px;
+        color: #1C1F35;
+    }
+    img{
+        height: 420px;
+    }
+    .main-color{
+        color: #191C1F;
+    }
+}
+@media (max-width: 768px) {
+    .solutions {
+      padding: 0px !important;
+      padding-bottom: 30px !important;
+      .row {
+        flex-direction: column-reverse !important;
+        margin-top: 10px;
+      }
+      img{
+        height: 220px;
+      }
+    }
+  }

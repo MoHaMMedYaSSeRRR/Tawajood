@@ -1,0 +1,33 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { ProjectsRoutingModule } from './projects-routing.module';
+import { HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { AllprojectsComponent } from './allprojects/allprojects.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+
+
+@NgModule({
+  declarations: [
+    AllprojectsComponent
+  ],
+  imports: [
+    CommonModule,
+    CarouselModule,
+    ProjectsRoutingModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'ar', 
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => new TranslateHttpLoader(http),
+        deps: [HttpClient],
+      },
+    }),
+  ],
+  exports: [
+    AllprojectsComponent
+  ]
+})
+export class ProjectsModule { }

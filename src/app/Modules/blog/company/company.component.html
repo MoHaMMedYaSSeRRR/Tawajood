@@ -1,0 +1,24 @@
+<section class="company my-md-4 my-3">
+    <div class="w-75 mx-auto">
+        <h2       [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+        >{{'partner'|translate}}</h2>
+        <div class="row position-relative mt-2 w-100 mx-auto">
+            <owl-carousel-o [options]="customOptions" #owlCarousel>
+              <ng-template carouselSlide *ngFor="let image of companyImages">
+                <div class="item">
+                  <img [src]="image" alt="companyPhoto">
+                </div>
+              </ng-template>
+            </owl-carousel-o>
+          
+            <!-- Navigation Arrows -->
+            <span *ngIf="companyImages.length > 8" (click)="goPrev()" class="custom-nav prev">
+              <i class="fa fa-arrow-left"></i>
+            </span>
+            <span *ngIf="companyImages.length > 8" (click)="goNext()" class="custom-nav next">
+              <i class="fa fa-arrow-right"></i>
+            </span>
+          </div>
+          
+    </div>
+</section>
