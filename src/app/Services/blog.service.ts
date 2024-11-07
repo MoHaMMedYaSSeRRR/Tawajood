@@ -11,9 +11,9 @@ export class BlogService {
     private _HttpClient: HttpClient
   ) { }
  getBlogTopic():Observable<any>{
-  return this._HttpClient.get('https://companywebsite.tawajood.com/api/get_topics_blog');
+  return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/get_topics_blog');
   }
   getAllBlog():Observable<any>{
-    return this._HttpClient.get('https://companywebsite.tawajood.com/api/our_blog');
+    return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/our_blog');
   }
 }

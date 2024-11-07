@@ -159,14 +159,12 @@
   </div>
 </section>
 
-<section class="numbers p-md-5 p-3">
+<section class="numbers p-md-5 p-3" #numbersSection>
   <div class="w-75 mx-auto">
     <div class="row w-100 mx-auto justify-content-between">
       <div class="col-md-3">
-        <div
-          class="item d-flex flex-column justify-content-center align-items-center"
-        >
-          <h3><span>8</span> <span class="ms-2">+</span></h3>
+        <div class="item d-flex flex-column justify-content-center align-items-center">
+          <h3><span>{{ yearsExperience }}</span> <span class="ms-2">+</span></h3>
           <h4>{{ "years_of_experience" | translate }}</h4>
         </div>
       </div>
@@ -174,10 +172,8 @@
         <div class="line"></div>
       </div>
       <div class="col-md-3">
-        <div
-          class="item d-flex flex-column justify-content-center align-items-center"
-        >
-          <h3><span>100</span> <span class="ms-2">+</span></h3>
+        <div class="item d-flex flex-column justify-content-center align-items-center">
+          <h3><span>{{ happyClients }}</span> <span class="ms-2">+</span></h3>
           <h4>{{ "happy_clients" | translate }}</h4>
         </div>
       </div>
@@ -185,16 +181,15 @@
         <div class="line ms-md-3"></div>
       </div>
       <div class="col-md-3">
-        <div
-          class="item d-flex flex-column justify-content-center align-items-center"
-        >
-          <h3><span>1000</span> <span class="ms-2">+</span></h3>
+        <div class="item d-flex flex-column justify-content-center align-items-center">
+          <h3><span>{{ completedProjects }}</span> <span class="ms-2">+</span></h3>
           <h4>{{ "completed_projects" | translate }}</h4>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 
 <section class="my-3 my-md-5">
   <app-allservices></app-allservices>

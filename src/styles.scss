@@ -29,3 +29,9 @@
     font-size: 30px !important;
   }
 }
+@media (max-width:768px) {
+  body{
+  padding: 5px !important;
+  overflow-x: hidden;
+}
+}

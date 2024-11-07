@@ -6,6 +6,7 @@ import { AllsolutionsComponent } from './allsolutions/allsolutions.component';
 import { HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
   imports: [
     CommonModule,
     SolutionsRoutingModule,
+    CarouselModule,
     TranslateModule.forRoot({
       defaultLanguage: 'ar', 
       loader: {

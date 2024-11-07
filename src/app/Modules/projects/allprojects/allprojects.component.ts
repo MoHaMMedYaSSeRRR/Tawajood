@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Project } from 'src/app/interfaces/project';
+import { changelangService } from 'src/app/Services/changelang.service';
 import { ProjectsService } from 'src/app/Services/projects.service';
+import { ServicesService } from 'src/app/Services/services.service';
 
 @Component({
   selector: 'app-allprojects',
@@ -15,8 +18,13 @@ export class AllprojectsComponent {
 
   mobileApp:Project[]=[];
   websites:Project[] = [];
+  currentLang!: string;
   constructor( private router: Router , 
-    private _ProjectsService:ProjectsService
+    private _ProjectsService:ProjectsService ,
+    private cdr: ChangeDetectorRef , 
+  private changelangService: changelangService ,
+  private _translate:TranslateService,
+  private _ServicesService:ServicesService
   ){
    
   }
@@ -27,7 +35,12 @@ export class AllprojectsComponent {
   }
   ngOnInit(): void {
     this.isMobile=window.innerWidth<=768;
-
+    this.changelangService.currentLang$.subscribe((lang) => {
+      this._translate.use(lang);
+      this.currentLang = lang;
+      this.customOptions.rtl = (lang === 'ar');
+      this.cdr.detectChanges(); 
+    });
     this.checkRoute();
     this._ProjectsService.getMobileProjects().subscribe({
       next: (projects) => {
@@ -48,23 +61,22 @@ export class AllprojectsComponent {
     
   }
   customOptions: OwlOptions = {
-    loop: false,
+    loop: false, 
     mouseDrag: true,
     autoplay: true,
     autoplayTimeout: 5000,
-    autoplaySpeed:1200,
+    autoplaySpeed: 1200,
     smartSpeed: 200,
-    center: true,
     touchDrag: true,
-    pullDrag: false,
+    pullDrag: true,
     dots: false,
     navSpeed: 1200,
     navText: ['', ''],
     responsive: {
       0: {
-        items: 1.2
+        items: 1
       }
     },
     nav: true
-  }
+  };
 }

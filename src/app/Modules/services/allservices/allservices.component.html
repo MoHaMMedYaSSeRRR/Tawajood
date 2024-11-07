@@ -2,14 +2,14 @@
   <div class="w-75 mx-auto">
     <h2
       *ngIf="isInComponent"
-      class="my-2"
+      class="my-2 px-2"
       [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
     >
       {{ "services" | translate }}
     </h2>
     <h2
       *ngIf="!isInComponent"
-      class="my-2 main-color"
+      class="my-2 main-color px-2"
       [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
     >
       {{ "services" | translate }}

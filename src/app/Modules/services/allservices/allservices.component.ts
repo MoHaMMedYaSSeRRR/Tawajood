@@ -27,6 +27,8 @@ ngOnInit(): void {
   this.changelangService.currentLang$.subscribe((lang) => {
     this._translate.use(lang);
     this.currentLang = lang;
+    this.customOptions.rtl = (lang === 'ar');
+
     this.cdr.detectChanges(); 
   });
   this.checkRoute();
@@ -38,26 +40,26 @@ ngOnInit(): void {
   
 }
 customOptions: OwlOptions = {
-  loop: false,
+  loop: false, 
   mouseDrag: true,
   autoplay: true,
   autoplayTimeout: 5000,
-  autoplaySpeed:1200,
+  autoplaySpeed: 1200,
   smartSpeed: 200,
-  center: true,
   touchDrag: true,
-  pullDrag: false,
+  pullDrag: true,
   dots: false,
-  rtl:true,
   navSpeed: 1200,
   navText: ['', ''],
   responsive: {
     0: {
-      items: 1.2
+      items: 1
     }
   },
   nav: true
-}
+};
+
+
 onLanguageChange() {
   this.cdr.detectChanges();
 }

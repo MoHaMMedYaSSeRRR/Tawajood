@@ -9,6 +9,6 @@ export class ServicesService {
 
   constructor(private _HttpClient:HttpClient) { }
   getServices():Observable<any> {
-    return this._HttpClient.get('https://companywebsite.tawajood.com/api/services');
+    return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/services');
   }
 }

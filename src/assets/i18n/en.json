@@ -41,5 +41,13 @@
   "design_title": "Best Design",
   "design_content": "We offer innovative and custom designs that meet your unique needs and attract customers.",
   "quality_title": "Highest Quality",
-  "quality_content": "We are committed to providing the highest quality standards in all our services, from design to execution."
+  "quality_content": "We are committed to providing the highest quality standards in all our services, from design to execution.",
+  "solution": {
+    "ecommerce": "E-commerce Store",
+    "uber_clone": "App like Uber and Careem"
+  },
+  "team": "Our Team",
+  "company_name": "Innovative Solutions and App Development",
+  "meta_description": "Enjoy integrated software solutions from TAWAJAD. We provide web and app development services, along with logo and visual identity design. Choose your partner today.",
+  "meta_keywords": "Software Solutions, Software Development, Website Design, Technical Consulting, Innovative Solutions, Technology, Business Success, Business Growth"
 }

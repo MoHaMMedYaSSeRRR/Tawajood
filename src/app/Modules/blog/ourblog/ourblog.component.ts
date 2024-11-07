@@ -37,9 +37,8 @@ export class OurblogComponent {
     this.changelangService.currentLang$.subscribe((lang) => {
       this._translate.use(lang);
       this.currentLang = lang;
-      this.customOptions = {
-        ...this.customOptions,
-        rtl: lang === 'en'      };
+      this.customOptions.rtl = (lang === 'ar');
+
       this.cdr.detectChanges();
     });
     this._BlogService.getAllBlog().subscribe({
@@ -60,15 +59,14 @@ export class OurblogComponent {
   }
 
   customOptions: OwlOptions = {
-    loop: true,
+    loop: false, 
     mouseDrag: true,
     autoplay: true,
     autoplayTimeout: 5000,
-    autoplaySpeed:1200,
+    autoplaySpeed: 1200,
     smartSpeed: 200,
-    center: true,
     touchDrag: true,
-    pullDrag: false,
+    pullDrag: true,
     dots: false,
     navSpeed: 1200,
     navText: ['', ''],
@@ -78,5 +76,5 @@ export class OurblogComponent {
       }
     },
     nav: true
-  }
+  };
 }

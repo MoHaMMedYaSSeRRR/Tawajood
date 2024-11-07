@@ -1,8 +1,13 @@
 .blogs{
     h2{
         font-weight: 700;
-        font-size: 48px;
+        font-size: 38px;
         color: #15181B;
+    }
+    span{
+        font-weight: 700;
+        font-size: 16px;
+        color: #4584c5;
     }
     ul{
         li{
@@ -98,5 +103,7 @@
     .row{
         padding: 0 !important;
         margin: auto !important;
+    }.in{
+        flex-direction: row !important;
     }
 }

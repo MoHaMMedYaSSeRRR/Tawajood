@@ -1,8 +1,11 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Service } from 'src/app/interfaces/service';
 import { changelangService } from 'src/app/Services/changelang.service';
+import { ServicesService } from 'src/app/Services/services.service';
 
 @Component({
   selector: 'app-contact',
@@ -13,6 +16,11 @@ export class ContactComponent {
   currentLang: any;
   selectedCountryCode = '+20'; // Default to Egypt
   showDropdown = false;
+  allServices:Service[]= [];
+  selectedService: Service | null = null;
+  showCodeDropdown = true;
+  phoneNumber = '';
+
 
   countries = [
     { code: '1', flag: '🇺🇸', name: 'United States' },
@@ -119,7 +127,8 @@ export class ContactComponent {
   constructor(
     private changelangService: changelangService,
     private _translate: TranslateService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private _ServicesService:ServicesService,
   ) {}
   ngOnInit(): void {
     this.changelangService.currentLang$.subscribe((lang) => {
@@ -127,6 +136,12 @@ export class ContactComponent {
       this.currentLang = lang;
       this.cdr.detectChanges();
     });
+    this._ServicesService.getServices().subscribe({
+      next:(res)=>{
+        this.allServices = res.data.services;
+        console.log(this.allServices)
+      }
+    })
   }
   onLanguageChange() {
     this.cdr.detectChanges();
@@ -144,12 +159,32 @@ export class ContactComponent {
       // Process form data here
     }
   }
-  toggleDropdown() {
-    this.showDropdown = !this.showDropdown;
-  }
+  
 
-  selectCountry(country: any) {
-    this.selectedCountryCode = country.code;
-    this.showDropdown = false;
-  }
+toggleDropdown() {
+  this.showDropdown = !this.showDropdown;
+  
+}
+
+selectService(service: Service) {
+  this.selectedService = service;
+  this.contactForm.controls['service'].setValue(service.name);
+  this.showDropdown = false;
+}
+selectCountry(country: any) {
+  this.selectedCountryCode = `+${country.code}`;
+  this.showCodeDropdown = false;
+  this.phoneNumber = ''; 
+}
+
+toggleCodeDropdown() {
+  console.log(this.showCodeDropdown)
+  this.showCodeDropdown = !this.showCodeDropdown;
+}
+
+onPhoneChange(event: any) {
+  const phoneValue = event.target.value;
+  this.contactForm.controls['phone'].setValue(phoneValue.replace(this.selectedCountryCode, '').trim());
+}
+
 }
