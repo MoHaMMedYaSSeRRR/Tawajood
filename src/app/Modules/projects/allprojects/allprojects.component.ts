@@ -10,36 +10,35 @@ import { ServicesService } from 'src/app/Services/services.service';
 @Component({
   selector: 'app-allprojects',
   templateUrl: './allprojects.component.html',
-  styleUrls: ['./allprojects.component.scss']
+  styleUrls: ['./allprojects.component.scss'],
 })
 export class AllprojectsComponent {
-  isInComponent:boolean = false;
-  isMobile=false;
+  isInComponent: boolean = false;
+  isMobile = false;
 
-  mobileApp:Project[]=[];
-  websites:Project[] = [];
+  mobileApp: Project[] = [];
+  websites: Project[] = [];
   currentLang!: string;
-  constructor( private router: Router , 
-    private _ProjectsService:ProjectsService ,
-    private cdr: ChangeDetectorRef , 
-  private changelangService: changelangService ,
-  private _translate:TranslateService,
-  private _ServicesService:ServicesService
-  ){
-   
-  }
+  constructor(
+    private router: Router,
+    private _ProjectsService: ProjectsService,
+    private cdr: ChangeDetectorRef,
+    private changelangService: changelangService,
+    private _translate: TranslateService,
+    private _ServicesService: ServicesService
+  ) {}
   checkRoute(): void {
     this.router.events.subscribe(() => {
       this.isInComponent = this.router.url === '/projects';
-   });
+    });
   }
   ngOnInit(): void {
-    this.isMobile=window.innerWidth<=768;
+    this.isMobile = window.innerWidth <= 768;
     this.changelangService.currentLang$.subscribe((lang) => {
       this._translate.use(lang);
       this.currentLang = lang;
-      this.customOptions.rtl = (lang === 'ar');
-      this.cdr.detectChanges(); 
+      this.customOptions.rtl = lang === 'ar';
+      this.cdr.detectChanges();
     });
     this.checkRoute();
     this._ProjectsService.getMobileProjects().subscribe({
@@ -48,7 +47,7 @@ export class AllprojectsComponent {
       },
       error: (error) => {
         console.log(error);
-      }
+      },
     });
     this._ProjectsService.getWebProjects().subscribe({
       next: (projects) => {
@@ -56,12 +55,11 @@ export class AllprojectsComponent {
       },
       error: (error) => {
         console.log(error);
-      }
-    })
-    
+      },
+    });
   }
   customOptions: OwlOptions = {
-    loop: false, 
+    loop: false,
     mouseDrag: true,
     autoplay: true,
     autoplayTimeout: 5000,
@@ -69,14 +67,15 @@ export class AllprojectsComponent {
     smartSpeed: 200,
     touchDrag: true,
     pullDrag: true,
-    dots: false,
+    dots: true, // Enable dots navigation
+    dotsData: true,
     navSpeed: 1200,
     navText: ['', ''],
     responsive: {
       0: {
-        items: 1
-      }
+        items: 1,
+      },
     },
-    nav: true
+    nav: false,
   };
 }

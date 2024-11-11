@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
@@ -14,6 +14,7 @@ import { ServicesService } from 'src/app/Services/services.service';
 export class AllservicesComponent {
 currentLang: any;
 isInComponent:boolean = false;
+@Input() index! :number ;
 
 constructor(private cdr: ChangeDetectorRef , 
   private changelangService: changelangService ,
@@ -35,6 +36,8 @@ ngOnInit(): void {
   this._ServicesService.getServices().subscribe(
     (res) => { 
      this.services =res.data.services;
+     console.log(this.services)
+     this.services= (this.index === 6) ? this.services.slice(0, 6) : this.services;
     }
   );
   
@@ -48,15 +51,14 @@ customOptions: OwlOptions = {
   smartSpeed: 200,
   touchDrag: true,
   pullDrag: true,
-  dots: false,
-  navSpeed: 1200,
+  dots: true,
+  dotsData: true,   navSpeed: 1200,
   navText: ['', ''],
   responsive: {
     0: {
       items: 1
     }
   },
-  nav: true
 };
 
 
@@ -67,5 +69,26 @@ checkRoute(): void {
   this.router.events.subscribe(() => {
     this.isInComponent = this.router.url === '/allservices';
  });
+}
+navigateBasedOnId(id: number) {
+  switch (id) {
+    case 1:
+      this.router.navigate(['/service-details']);
+      break;
+    case 3:
+      this.router.navigate(['/marketingservice']);
+      break;
+    case 6:
+      this.router.navigate(['/domainservice']);
+      break;
+    case 4:
+      this.router.navigate(['/soulutionsservices']);
+      break;
+    case 5:
+      window.open('https://wa.me/01024848723', '_blank');
+      break;
+    default:
+      console.warn('No route defined for this ID');
+  }
 }
 }

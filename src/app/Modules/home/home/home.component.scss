@@ -20,11 +20,12 @@
     text-align: end;
   }
   @media (max-width: 768px) {
+      height: 50vh !important;
     .w-75 {
       width: 100% !important;
     }
     h2 ,h4 {
-      font-size: 30px;
+      font-size: 20px;
       width: 100%;
       text-align: center;
     }

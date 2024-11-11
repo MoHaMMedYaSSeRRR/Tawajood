@@ -67,14 +67,14 @@ export class OurblogComponent {
     smartSpeed: 200,
     touchDrag: true,
     pullDrag: true,
-    dots: false,
-    navSpeed: 1200,
+    dots: true,           // Enable dots navigation
+    dotsData: true,     navSpeed: 1200,
     navText: ['', ''],
     responsive: {
       0: {
         items: 1
       }
     },
-    nav: true
+    nav: false
   };
 }

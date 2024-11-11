@@ -1,7 +1,7 @@
 <section class="footer p-md-5 p-2">
   <div class="w-75 mx-auto">
     <div class="row align-items-start justify-content-between">
-      <div  class="col-md-3 col-6 order-md-1 order-4">
+      <div  class="col-md-3 col-12 order-md-1 order-4 ">
           <div [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"  class="contact">
             <h4 class="mb-md-4 mb-2">
               {{"contact_us" |translate}}
@@ -15,7 +15,7 @@
                   01024848723 
                 </p>
               </div>
-              <div class="icon my-auto mx-2 d-flex justify-content-center align-items-center">
+              <div class="icon2 my-auto mx-2 d-flex justify-content-center align-items-center">
                 <img src="../../../../assets/images/phone.png" class="w-100" alt="">
               </div>
             </div>
@@ -29,12 +29,12 @@
                   info@tawajood.com 
                 </p>
               </div>
-              <div class="icon my-auto pe-2  d-flex justify-content-center align-items-center">
-                <img src="../../../../assets/images/tabler_mail-filled.png" class="w-100" alt="">
+              <div class="icon1 my-auto pe-2  d-flex justify-content-center align-items-center">
+                <img src="../../../../assets/images/tabler_mail-filled.png" class="" alt="">
               </div>
             </div>
 
-            <ul class="list-unstyled d-flex justify-content-center align-items-center">
+            <ul class="list-unstyled d-flex justify-content-end align-items-center">
               <li class="mx-2">
                 <a target="_blank" href="https://www.tiktok.com/@tawajood?_t=8n26pzQEDlV&_r=1"><img src="../../../../assets/images/tiktok.png" alt="tiktok" />
              </a> </li>
@@ -65,7 +65,7 @@
             </ul>
           </div>
       </div>
-      <div *ngIf="services" [ngClass]="currentLang === 'ar' ? 'justify-content-end' : 'justify-content-start'" class="col-md-2 col-6 order-3 d-flex">
+      <div *ngIf="services" [ngClass]="currentLang === 'ar' ? 'justify-content-end' : 'justify-content-start'" class="col-md-2 d-md-block d-none col-6 order-3 d-flex">
         <div class="service">
           <h4 [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"  class="mb-md-4 md-2">
             {{"services" | translate}}
@@ -79,35 +79,41 @@
           </ul>
         </div>
       </div>
-      <div [ngClass]="currentLang === 'ar' ? 'justify-content-end' : 'justify-content-start'" class="col-md-2 col-6 order-2 d-flex">
+      <div [ngClass]="currentLang === 'ar' ? 'justify-content-end' : 'justify-content-start'" class="col-md-2 col-12 order-2 d-flex">
         <div class="service">
           <h4 [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"  class="mb-md-4 md-2">
             {{"links" | translate}}
           </h4>
           <ul [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"  class="list-unstyled">
-              <li  class="mb-3">
+              <li  class="mb-3 d-md-block d-none">
                 <a routerLink="/home" class="text-decoration-none">{{ 'home' | translate }}</a>
               </li>
-              <li  class="mb-3">
+              <li  class="mb-3 d-md-block d-none">
                 <a routerLink="/" class="text-decoration-none">{{ 'aboutUs' | translate }}</a>
               </li>
               <li  class="mb-3">
                 <a routerLink="/allservices" class="text-decoration-none">{{ 'services' | translate }}</a>
               </li>
-              <li  class="mb-3">
+              <li  class="mb-3 d-md-block d-none">
                 <a routerLink="/solutions" class="text-decoration-none">{{ 'solutions' | translate }}</a>
               </li>
               <li  class="mb-3">
                 <a routerLink="/projects" class="text-decoration-none">{{ 'projects' | translate }}</a>
               </li>
-              <li  class="mb-3">
+              <li  class="mb-3 d-md-block d-none">
                 <a routerLink="/ourblog" class="text-decoration-none">{{ 'blog' | translate }}</a>
               </li>
-              <li  class="mb-3">
-                <a routerLink="/" class="text-decoration-none">{{ 'careers' | translate }}</a>
+              <li  class="mb-3 d-md-block d-none">
+                <a routerLink="/" class="text-decoration-none">{{ 'employment' | translate }}</a>
               </li>
-              <li  class="mb-3">
+              <li  class="mb-3 d-md-block d-none">
                 <a routerLink="/" class="text-decoration-none">{{ 'contactUs' | translate }}</a>
+              </li>
+              <li  class="mb-3 d-md-none d-block">
+                <a routerLink="/" class="text-decoration-none">{{ 'web_development' | translate }}</a>
+              </li>
+              <li  class="mb-3 d-md-none d-block">
+                <a routerLink="/" class="text-decoration-none">{{ 'mobile_app_development' | translate }}</a>
               </li>
             
            

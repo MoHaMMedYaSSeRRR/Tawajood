@@ -8,26 +8,42 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { DetailsComponent } from './details/details.component';
+import { TechnologyComponent } from './technology/technology.component';
+import { ProjectsModule } from "../projects/projects.module";
+import { QuestionsComponent } from './questions/questions.component';
+import { ServicesoloutionsComponent } from './servicesoloutions/servicesoloutions.component';
+import { ProjectlifeComponent } from './projectlife/projectlife.component';
+import { DomainserviceComponent } from './domainservice/domainservice.component';
+import { MarketingserviceComponent } from './marketingservice/marketingservice.component';
 
 
 @NgModule({
   declarations: [
     AllservicesComponent,
-    CuttextPipe
+    CuttextPipe,
+    DetailsComponent,
+    TechnologyComponent,
+    QuestionsComponent,
+    ServicesoloutionsComponent,
+    ProjectlifeComponent,
+    DomainserviceComponent,
+    MarketingserviceComponent
     ],
   imports: [
     CommonModule,
     ServicesRoutingModule,
     CarouselModule,
     TranslateModule.forRoot({
-      defaultLanguage: 'ar', 
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (http: HttpClient) => new TranslateHttpLoader(http),
-        deps: [HttpClient],
-      },
+        defaultLanguage: 'ar',
+        loader: {
+            provide: TranslateLoader,
+            useFactory: (http: HttpClient) => new TranslateHttpLoader(http),
+            deps: [HttpClient],
+        },
     }),
-  ],
+    ProjectsModule
+],
   exports: [AllservicesComponent ,
     CuttextPipe
 

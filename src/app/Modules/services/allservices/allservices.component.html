@@ -14,10 +14,9 @@
     >
       {{ "services" | translate }}
     </h2>
-    <div *ngIf="!isMobile" class="row gy-5 w-100 mx-auto">
+    <div *ngIf="!isMobile || isInComponent" class="row gy-5 w-100 mx-auto justify-content-end">
       <div *ngFor="let item of services; let i = index" class="col-md-4">
         <div
-          *ngIf="i < services.length - 1"
           class="item"
           [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
         >
@@ -31,8 +30,10 @@
 
           <div class="item-content mt-2">
             <h3>{{ item.name | cuttext : 3 }}</h3>
-            <p class="mt-2">{{ item.content | cuttext : 20 }}</p>
-            <button class="border-0">{{ "read_more" | translate }}</button>
+            <p class="mt-2 limit-text">...{{ item.content | cuttext : 20 }}</p>
+            <button class="border-0" (click)="navigateBasedOnId(item.id)">
+              {{ "read_more" | translate }}
+            </button>
           </div>
         </div>
       </div>
@@ -91,7 +92,7 @@
       <div class="mt-2 w-100 mx-auto">
         <owl-carousel-o [options]="customOptions">
           <ng-container *ngFor="let item of services; let i = index">
-            <ng-template *ngIf="i < services.length - 1" carouselSlide>
+            <ng-template carouselSlide>
               <div
                 class="item p-1"
                 [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
@@ -107,7 +108,7 @@
                 <div class="item-content mt-2">
                   <h3>{{ item.name | cuttext : 3 }}</h3>
                   <p class="mt-2">{{ item.content | cuttext : 15 }}</p>
-                  <button class="border-0">
+                  <button (click)="navigateBasedOnId(item.id)" class="border-0">
                     {{ "read_more" | translate }}
                   </button>
                 </div>

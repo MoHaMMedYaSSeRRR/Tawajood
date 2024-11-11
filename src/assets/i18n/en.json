@@ -49,5 +49,17 @@
   "team": "Our Team",
   "company_name": "Innovative Solutions and App Development",
   "meta_description": "Enjoy integrated software solutions from TAWAJAD. We provide web and app development services, along with logo and visual identity design. Choose your partner today.",
-  "meta_keywords": "Software Solutions, Software Development, Website Design, Technical Consulting, Innovative Solutions, Technology, Business Success, Business Growth"
+  "meta_keywords": "Software Solutions, Software Development, Website Design, Technical Consulting, Innovative Solutions, Technology, Business Success, Business Growth",
+  "tech":"Technology",
+  "asked":"Asked Questions About Design and Develop Apps",
+  "supportMessage": "Can't find your answer? Ask for support.",
+  "whyWeAreTheBest": "Why We Are the Best",
+  "subject": "Subject",
+  "requestServiceNow": "Request Service Now",
+  "domainBookingPrompt": "book a domain for your website",
+  "web_development": "Web Development Services",
+  "mobile_app_development": "Mobile App Development"
+
+
+
 }

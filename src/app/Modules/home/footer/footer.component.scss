@@ -10,7 +10,11 @@
     color: #ffffff;
   }
   .contact {
-    .icon {
+    .icon1 {
+      width: 34px;
+      height: 34px;
+    }
+    .icon2{
       width: 24px;
       height: 24px;
     }
@@ -38,8 +42,9 @@
   }
   .row{
     justify-content: end !important;
-    ul li {
-      margin: 5px !important;
+    .icon1 , .icon2{
+      padding: 0 !important;
+      margin: 0  !important;
     }
     .logo img{
       width: 75% !important;
