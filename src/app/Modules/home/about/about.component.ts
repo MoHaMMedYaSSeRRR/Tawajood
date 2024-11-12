@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { About } from 'src/app/interfaces/about';
@@ -25,10 +26,14 @@ export class AboutComponent {
     private cdr: ChangeDetectorRef,
     private changelangService: changelangService,
     private _translate: TranslateService,
-    private _HomeService: HomeService
+    private meta: Meta, private titleService: Title,
+    private _HomeService: HomeService,
+    private translate: TranslateService
+
   ) {}
 
   ngOnInit(): void {
+    this.setMetaTags();
     this.changelangService.currentLang$.subscribe((lang) => {
       this._translate.use(lang);
       this.currentLang = lang;
@@ -44,6 +49,16 @@ export class AboutComponent {
       }
     })
   }
+  setMetaTags(): void {
+    this.translate.get(['aboutTitle', 'aboutDescription', 'aboutKeyword']).subscribe(translations => {
+      this.titleService.setTitle(translations['aboutTitle']);
+
+      this.meta.updateTag({ name: 'description', content: translations['aboutDescription'] });
+
+      this.meta.updateTag({ name: 'keywords', content: translations['aboutKeyword'] });
+    });
+  }
+  
   ngAfterViewInit() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {

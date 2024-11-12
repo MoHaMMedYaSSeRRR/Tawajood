@@ -31,7 +31,7 @@
   "contact_us": "Contact Us",
   "links": "Links",
   "call_us": "Call Us",
-  "why_choose":"Why Choose Us",
+  "why_choose": "Why Choose Us",
   "projects_title": "Proven Track Record",
   "projects_content": "We have successfully completed over 100 projects in more than 10 countries, reflecting our expertise and quality of service.",
   "security_title": "Security",
@@ -50,16 +50,28 @@
   "company_name": "Innovative Solutions and App Development",
   "meta_description": "Enjoy integrated software solutions from TAWAJAD. We provide web and app development services, along with logo and visual identity design. Choose your partner today.",
   "meta_keywords": "Software Solutions, Software Development, Website Design, Technical Consulting, Innovative Solutions, Technology, Business Success, Business Growth",
-  "tech":"Technology",
-  "asked":"Asked Questions About Design and Develop Apps",
+  "tech": "Technology",
+  "asked": "Asked Questions About Design and Develop Apps",
   "supportMessage": "Can't find your answer? Ask for support.",
   "whyWeAreTheBest": "Why We Are the Best",
   "subject": "Subject",
   "requestServiceNow": "Request Service Now",
   "domainBookingPrompt": "book a domain for your website",
   "web_development": "Web Development Services",
-  "mobile_app_development": "Mobile App Development"
+  "mobile_app_development": "Mobile App Development",
+  "request_preview": "Request Preview",
+  "request_previous_work": "Request Previous Work",
+  "app_overview": "General Specifications of the Application",
+  "app_screens": " App Screens",
+  "related_works": "related Works",
+  "about_name": "Start Your Digital Solution with the Leading Software Solutions company",
+  "about_header": "Tawajood is a specialized company offering comprehensive software solutions. We have successfully delivered website and app development services to over 500 clients across Egypt, Saudi Arabia, Jordan, Iraq, Kuwait, Sweden, Sudan, Norway, Algeria, Libya, and Qatar.With us , you’re on the right path toward digital transformation.",
+  "operation": "Project Life Cycle",
 
-
+  "aboutDescription": "Enjoy the highest quality app and website design with us. With experience serving over 500 clients worldwide, contact us and benefit from our advanced services that meet your needs.",
+  "aboutTitle": "The Best Software Development and Web/App Design Company",
+  "aboutKeyword": "Software company, web development company, best app development company, programming companies in Saudi Arabia, app design company, programming companies in Egypt"
+,"browseWebsite":"Browse the website",
+"appSpecifications": "General Specifications of the App"
 
 }

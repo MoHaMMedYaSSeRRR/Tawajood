@@ -9,19 +9,19 @@
     </div>
     <div *ngIf="!isMobile" class="row gy-4  w-100 mx-auto">
         <div class="col-md-4">
-          <div class="item text-center">
+          <div role="button" routerLink="/solutionDetails" class="item text-center">
             <img src="../../../../assets/images/solutions-3.jfif" class="w-100" alt="">
             <h4>{{ 'solution.ecommerce' | translate }}</h4>
           </div>
         </div>
         <div class="col-md-4">
-          <div class="item text-center">
+          <div role="button" routerLink="/solutionDetails" class="item text-center">
             <img src="../../../../assets/images/solutions-2.jfif" class="w-100" alt="">
             <h4>{{ 'solution.uber_clone' | translate }}</h4>
           </div>
         </div>
         <div class="col-md-4">
-          <div class="item text-center">
+          <div role="button" routerLink="/solutionDetails" class="item text-center">
             <img src="../../../../assets/images/solutions-1.jfif" class="w-100" alt="">
             <h4>{{ 'solution.uber_clone' | translate }}</h4>
           </div>
@@ -30,19 +30,19 @@
       
     <div *ngIf="isInComponent" class="row gy-4 mt-2 w-100 mx-auto">
         <div class="col-md-4">
-            <div class="item text-center">
+            <div role="button" routerLink="/solutionDetails" class="item text-center">
                 <img src="../../../../assets/images/solutions-1.jfif" class="w-100" alt="">
                 <h4>تصميم وتنفيذ المواقع</h4>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="item text-center">
+            <div role="button" routerLink="/solutionDetails" class="item text-center">
                 <img src="../../../../assets/images/solutions-1.jfif" class="w-100" alt="">
                 <h4>تصميم وتنفيذ المواقع</h4>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="item text-center">
+            <div role="button" routerLink="/solutionDetails" class="item text-center">
                 <img src="../../../../assets/images/solutions-1.jfif" class="w-100" alt="">
                 <h4>تصميم وتنفيذ المواقع</h4>
             </div>
@@ -51,20 +51,20 @@
     <div *ngIf="isMobile && !isInComponent"  class="row gx-4 mt-2 w-100 mx-auto">
       <owl-carousel-o [options]="customOptions">
         <ng-template carouselSlide>
-          <div class="item text-center">
+          <div role="button" routerLink="/solutionDetails" class="item text-center">
             <img src="../../../../assets/images/solutions-3.jfif" class="w-100" alt="">
             <h4>{{ 'solution.ecommerce' | translate }}</h4>
           </div>
            
         </ng-template>  
         <ng-template carouselSlide>
-          <div class="item text-center">
+          <div role="button" routerLink="/solutionDetails" class="item text-center">
             <img src="../../../../assets/images/solutions-2.jfif" class="w-100" alt="">
             <h4>{{ 'solution.uber_clone' | translate }}</h4>
           </div>
         </ng-template>
         <ng-template carouselSlide>
-          <div class="item text-center">
+          <div role="button" routerLink="/solutionDetails" class="item text-center">
             <img src="../../../../assets/images/solutions-1.jfif" class="w-100" alt="">
             <h4>{{ 'solution.uber_clone' | translate }}</h4>
           </div>          

@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Service } from 'src/app/interfaces/service';
 import { changelangService } from 'src/app/Services/changelang.service';
+import { ServicesService } from 'src/app/Services/services.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,13 +12,15 @@ import { changelangService } from 'src/app/Services/changelang.service';
 })
 export class NavbarComponent {
   @Output() languageChanged = new EventEmitter<void>();
-
+  isDropdownVisible = false;
   isNavOpen:boolean = false;
   scrollY: number = 0;
   currentLang: string = 'ar'; 
-
+  services:Service[]=[];
   constructor( private _TranslateService:changelangService ,
-    private _translae:TranslateService
+    private _translae:TranslateService ,
+    private _ServicesService:ServicesService,
+    private router:Router
   ){
     this._TranslateService.currentLang$.subscribe(lang => {
       this.currentLang = lang;
@@ -24,6 +29,11 @@ export class NavbarComponent {
       this.languageChanged.emit();
 
     });
+    this._ServicesService.getServices().subscribe({
+      next:(res)=>{
+        this.services = res.data.services;
+      }
+    })
   }
 
   ngOnInit(): void {
@@ -79,5 +89,26 @@ export class NavbarComponent {
   private updateLayoutDirection(): void {
     const direction = this.currentLang === 'ar' ? 'ltr' : 'rtl';
     document.body.style.direction = direction;
+  }
+  navigateBasedOnId(id: number) {
+    switch (id) {
+      case 1:
+        this.router.navigate(['/service-details']);
+        break;
+      case 3:
+        this.router.navigate(['/marketingservice']);
+        break;
+      case 6:
+        this.router.navigate(['/domainservice']);
+        break;
+      case 4:
+        this.router.navigate(['/soulutionsservices']);
+        break;
+      case 5:
+        window.open('https://wa.me/01024848723', '_blank');
+        break;
+      default:
+        console.warn('No route defined for this ID');
+    }
   }
 }

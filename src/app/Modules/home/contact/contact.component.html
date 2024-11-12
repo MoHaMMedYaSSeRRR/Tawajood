@@ -50,6 +50,7 @@
                 </span>
                 <ul *ngIf="showDropdown" class="dropdown-menu show w-100">
                   <li
+                  [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
                     *ngFor="let service of allServices"
                     (click)="selectService(service)"
                     class="dropdown-item"

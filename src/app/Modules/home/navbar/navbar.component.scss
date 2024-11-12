@@ -172,4 +172,42 @@
         transform: translateX(0) !important;
       }
 }
+.navbar li{
+  /* Make sure the dropdown is positioned properly */
+.navbar li {
+  position: relative; /* Needed for positioning the dropdown */
+}
+
+.dropdown-menu {
+  display: none; /* Initially hidden */
+  position: absolute;
+  top: 100%; /* Place it below the parent element */
+  left: -70px;
+  background-color: white;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  min-width: 150px;
+  z-index: 1000;
+}
+
+/* Show dropdown when parent <li> is hovered */
+.dropdown:hover .dropdown-menu {
+  display: block; /* Show on hover */
+}
+
+/* Style the items inside the dropdown */
+.dropdown-item {
+  padding: 10px 15px;
+  color: #333;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f1f1;
+}
+
+}
 

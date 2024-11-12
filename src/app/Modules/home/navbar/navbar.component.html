@@ -248,15 +248,23 @@
               {{ 'solutions' | translate }}
             </a>
           </li>
-          <li>
-            <a
-              routerLink="/allservices"
-              routerLinkActive="active"
-              class="text-decoration-none"
-            >
-              {{ 'services' | translate }}
-            </a>
-          </li>
+          <li class="dropdown"
+    (mouseover)="isDropdownVisible = true"
+    (mouseout)="isDropdownVisible = false">
+  <a routerLink="/allservices" routerLinkActive="active" class="text-decoration-none">
+    {{ 'services' | translate }}
+  </a>
+  <ul class="dropdown-menu" [ngStyle]="{ 'display': isDropdownVisible ? 'block' : 'none' }">
+    <li routerLink="/allservices" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">
+      <a  class="dropdown-item">{{ 'all' | translate }}</a>
+    </li>
+    <li *ngFor="let item of services" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">
+      <a (click)="navigateBasedOnId(item.id)" routerLink="/service1" class="dropdown-item">{{ item.name }}</a>
+    </li>
+  </ul>
+</li>
+
+          
           <li>
             <a
               routerLink="/about"

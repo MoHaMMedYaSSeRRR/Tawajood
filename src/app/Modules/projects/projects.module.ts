@@ -7,11 +7,15 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AllprojectsComponent } from './allprojects/allprojects.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { MobileDetailsComponent } from './mobile-details/mobile-details.component';
+import { WepDetailsComponent } from './wep-details/wep-details.component';
 
 
 @NgModule({
   declarations: [
-    AllprojectsComponent
+    AllprojectsComponent,
+    MobileDetailsComponent,
+    WepDetailsComponent
   ],
   imports: [
     CommonModule,

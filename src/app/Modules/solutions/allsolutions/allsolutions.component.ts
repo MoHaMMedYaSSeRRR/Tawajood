@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
@@ -12,6 +12,7 @@ import { ServicesService } from 'src/app/Services/services.service';
 })
 export class AllsolutionsComponent {
   currentLang: any;
+  @Input() index! :number ;
 
   isInComponent:boolean = false;
   isMobile:boolean = false;

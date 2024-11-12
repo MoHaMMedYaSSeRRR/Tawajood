@@ -1,0 +1,124 @@
+<section class="mobile my-md-5 my-3">
+  <div class="w-75 mx-auto">
+    <div class="row w-100 mx-auto align-items-center justify-content-between">
+      <div class="col-md-6">
+        <div class="item-img">
+          <img src="../../../../assets/images/Group 1157571736.png" alt="" />
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div
+          class="item"
+          [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+        >
+          <h2 class="mb-3">موقع</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur. Massa pharetra tellus
+            dignissim varius leo. Erat sem aenean a sit ornare et eleifend nunc.
+            Cursus tempor facilisi Lorem ipsum dolor sit amet consectetur. Massa
+            pharetra tellus dignissim varius leo. Erat sem aenean a sit ornare
+            et eleifend nunc. Cursus tempor facilisi tortor dignissim pulvinar.
+            Ac elit venenatis egestas lectus.tortor dignissim pulvinar. Ac elit
+            venenatis egestas lectus.
+          </p>
+          <button class="border-0">
+            {{ "browseWebsite" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="my-md-5 my-3">
+      <div
+        class="global-details py-2"
+        [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+      >
+        <h3>
+          {{ "appSpecifications" | translate }}
+        </h3>
+        <div class="row g-3 mt-4 w-100 mx-auto">
+          <div *ngFor="let item of [1, 2, 3, 4, 5, 6]" class="col-md-4">
+            <div class="item d-flex align-items-start">
+              <div [ngClass]="currentLang === 'ar' ? 'me-3' : 'ms-3'">
+                <h4>واجهة مستخدم حديثة</h4>
+                <p class="mt-2">
+                  لوحة تحكم سهلة الاستخدام لإدارة تطبيق مثل أوبر وكريم بكفاءة
+                </p>
+              </div>
+              <span>
+                <i class="fa-solid fa-check"></i>
+              </span>
+            </div>
+          </div>
+
+          <button class="border-0 mt-3">احصل على عرض سعر</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="my-md-5 my-3">
+      <div class="screen-app pt-3">
+        <h3
+          class="mb-2"
+          [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+        >
+          {{ "app_screens" | translate }}
+        </h3>
+        <div class="row position-relative mt-3 w-100 mx-auto">
+          <owl-carousel-o [options]="customOptions" #owlCarousel>
+            <ng-template carouselSlide>
+              <div class="item">
+                <img
+                  src="../../../../assets/images/screen-1.png"
+                  class="mx-auto"
+                  alt="screenphoto"
+                />
+              </div>
+            </ng-template>
+            <ng-template carouselSlide>
+              <div class="item">
+                <img
+                  src="../../../../assets/images/screen-2.png"
+                  class="mx-auto"
+                  alt="screenphoto"
+                />
+              </div>
+            </ng-template>
+            <ng-template carouselSlide>
+              <div class="item">
+                <img
+                  src="../../../../assets/images/screen-1.png"
+                  class="mx-auto"
+                  alt="screenphoto"
+                />
+              </div>
+            </ng-template>
+            <ng-template carouselSlide>
+              <div class="item">
+                <img
+                  src="../../../../assets/images/screen-2.png"
+                  class="mx-auto"
+                  alt="screenphoto"
+                />
+              </div>
+            </ng-template>
+          </owl-carousel-o>
+
+          <span (click)="goPrev()" class="custom-nav prev">
+            <i class="fa fa-arrow-left"></i>
+          </span>
+          <span *ngIf="isMobile" (click)="goNext()" class="custom-nav next">
+            <i class="fa fa-arrow-right"></i>
+          </span>
+          <span *ngIf="!isMobile" (click)="goNext()" class="custom-nav next">
+            <span>
+              <i class="fa fa-arrow-right"></i>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="my-md-5 my-3">
+  <app-allprojects></app-allprojects>
+</section>

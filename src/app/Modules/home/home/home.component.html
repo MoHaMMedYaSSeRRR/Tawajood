@@ -50,9 +50,9 @@
             [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
             class="about-content"
           >
-            <h3>{{ about[0]?.name }}</h3>
+            <h3>{{"about_name" | translate }}</h3>
             <p class="mt-2">
-              {{ about[0]?.content }}
+              {{"about_header"| translate}}
             </p>
             <!-- <p>
               شركة تواجد هي شركة متخصصة في تقديم الحلول البرمجية قدمنا الكثير من

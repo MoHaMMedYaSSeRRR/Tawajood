@@ -36,8 +36,11 @@
       <span role="button" routerLink="/projects" *ngIf="!isInComponent">
         {{ "view_all" | translate }}
       </span>
-      <h2>
+      <h2 *ngIf="url == '/projects' ||url == '/home' ">
         {{ "our_works" | translate }}
+      </h2>
+      <h2 class="px-0" *ngIf="(url !== '/projects') && (url !== '/home')">
+        {{ "related_works" | translate }}
       </h2>
     </div>
     <div *ngIf="isInComponent" class="row gx-4 mt-2 w-100 mx-auto">

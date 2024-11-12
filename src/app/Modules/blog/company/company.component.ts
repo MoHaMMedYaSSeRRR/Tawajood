@@ -23,7 +23,7 @@ export class CompanyComponent {
     '../../../../assets/images/company-1.png',
   ];
   customOptions: OwlOptions = {
-    loop: false,
+    loop: true,
     rtl: false,
     mouseDrag: true,
     touchDrag: true,

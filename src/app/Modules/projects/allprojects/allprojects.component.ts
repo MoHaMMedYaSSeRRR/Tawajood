@@ -15,7 +15,7 @@ import { ServicesService } from 'src/app/Services/services.service';
 export class AllprojectsComponent {
   isInComponent: boolean = false;
   isMobile = false;
-
+  url:string = '';
   mobileApp: Project[] = [];
   websites: Project[] = [];
   currentLang!: string;
@@ -30,6 +30,7 @@ export class AllprojectsComponent {
   checkRoute(): void {
     this.router.events.subscribe(() => {
       this.isInComponent = this.router.url === '/projects';
+      this.url = this.router.url;
     });
   }
   ngOnInit(): void {
