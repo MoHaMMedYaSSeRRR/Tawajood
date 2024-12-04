@@ -20,6 +20,7 @@ export class ContactComponent {
   selectedService: Service | null = null;
   showCodeDropdown = true;
   phoneNumber = '';
+  isInComponent: boolean = false;
 
 
   countries = [
@@ -129,6 +130,8 @@ export class ContactComponent {
     private _translate: TranslateService,
     private cdr: ChangeDetectorRef,
     private _ServicesService:ServicesService,
+    private router: Router
+
   ) {}
   ngOnInit(): void {
     this.changelangService.currentLang$.subscribe((lang) => {
@@ -142,6 +145,12 @@ export class ContactComponent {
         console.log(this.allServices)
       }
     })
+    this.checkRoute();
+  }
+  checkRoute(): void {
+    this.router.events.subscribe(() => {
+      this.isInComponent = this.router.url === '/contact';
+    });
   }
   onLanguageChange() {
     this.cdr.detectChanges();

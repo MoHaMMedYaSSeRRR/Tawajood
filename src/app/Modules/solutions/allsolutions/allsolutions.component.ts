@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { changelangService } from 'src/app/Services/changelang.service';
 import { ServicesService } from 'src/app/Services/services.service';
+import { SoloutionsService } from 'src/app/Services/soloutions.service';
 
 @Component({
   selector: 'app-allsolutions',
@@ -20,7 +21,7 @@ export class AllsolutionsComponent {
     private cdr: ChangeDetectorRef , 
   private changelangService: changelangService ,
   private _translate:TranslateService,
-  private _ServicesService:ServicesService
+  private _SoloutionsService:SoloutionsService
   ){
   }
   checkRoute(): void {
@@ -29,6 +30,7 @@ export class AllsolutionsComponent {
       this.isInComponent = this.router.url === '/solutions';
    });
   }
+  solutions:any;
   ngOnInit(): void {
     this.checkRoute();
     this.changelangService.currentLang$.subscribe((lang) => {
@@ -38,7 +40,15 @@ export class AllsolutionsComponent {
   
       this.cdr.detectChanges(); 
     });
-    
+    this._SoloutionsService.getSoloutions().subscribe({
+      next: (res) => {
+        this.solutions = res.data.solutions;
+        console.log(res);
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
   }
   customOptions: OwlOptions = {
     loop: false, 

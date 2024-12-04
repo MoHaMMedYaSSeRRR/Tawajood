@@ -1,5 +1,4 @@
 .contact {
-  background-color: #f2f4f5;
   input,
   textarea {
     background-color: transparent;
@@ -121,4 +120,18 @@
   font-weight: 500;
   font-size: 14px;
   color:#2B2B2B;
+}
+.bg{
+  background-color: #f2f4f5;
+}
+
+.map{
+  h3{
+    font-weight: 700;
+    font-size: 36px;
+    color: #191C1F;
+  }
+  .location{
+    height: 400px;
+  }
 }

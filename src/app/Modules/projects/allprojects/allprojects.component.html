@@ -1,14 +1,17 @@
 <section class="projects my-md-4 my-3">
   <div class="w-75 mx-auto">
-    <div [ngClass]="{'flex-row': !isInComponent}" class="d-flex justify-content-between align-items-center px-3">
+    <div
+      [ngClass]="{ 'flex-row': !isInComponent }"
+      class="d-flex justify-content-between align-items-center px-3"
+    >
       <ul
         *ngIf="isInComponent"
         class="list-unstyled d-flex justify-content-center align-items-center"
       >
         <li>
           <a
-            routerLink="/projects/latest"
-            routerLinkActive="active"
+            (click)="filterProjects(2)"
+            [class.active]="selectedFilter === 2"
             class="text-decoration-none"
           >
             {{ "mobile_apps" | translate }}
@@ -16,8 +19,8 @@
         </li>
         <li>
           <a
-            routerLink="/projects/featured"
-            routerLinkActive="active"
+            (click)="filterProjects(1)"
+            [class.active]="selectedFilter === 1"
             class="text-decoration-none"
           >
             {{ "websites" | translate }}
@@ -25,38 +28,37 @@
         </li>
         <li>
           <a
-            routerLink="/projects"
-            routerLinkActive="active"
+            (click)="filterProjects(null)"
+            [class.active]="selectedFilter === null"
             class="text-decoration-none"
           >
             {{ "all" | translate }}
           </a>
         </li>
       </ul>
+
       <span role="button" routerLink="/projects" *ngIf="!isInComponent">
         {{ "view_all" | translate }}
       </span>
-      <h2 *ngIf="url == '/projects' ||url == '/home' ">
+      <h2 *ngIf="url == '/projects' || url == '/home'">
         {{ "our_works" | translate }}
       </h2>
-      <h2 class="px-0" *ngIf="(url !== '/projects') && (url !== '/home')">
+      <h2 class="px-0" *ngIf="url !== '/projects' && url !== '/home'">
         {{ "related_works" | translate }}
       </h2>
     </div>
-    <div *ngIf="isInComponent" class="row gx-4 mt-2 w-100 mx-auto">
-      <div class="col-md-4">
+    <div *ngIf="isInComponent" class="row g-2 gx-4 mt-2 w-100 mx-auto">
+      <div *ngFor="let item of displayedProjects" class="col-md-4">
         <div class="item text-center">
           <div
             class="item-img w-100 d-flex justify-content-center align-items-center"
           >
-            <img src="../../../../assets/images/projects-1.png" alt="" />
+            <img routerLink="/mobile" [src]="item.home_screen" alt="" />
           </div>
-          <h4>
-            {{ "website"|translate }}
-          </h4>
+          <h4 routerLink="/mobile">{{ item.name }}</h4>
         </div>
       </div>
-      <div class="col-md-4">
+      <!-- <div class="col-md-4">
         <div class="item text-center">
           <div
             class="item-img w-100 d-flex justify-content-center align-items-center"
@@ -79,9 +81,12 @@
             {{ "website"|translate }}
           </h4>
         </div>
-      </div>
+      </div> -->
     </div>
-    <div *ngIf="!isMobile"  class="row gx-4 mt-2 w-100 mx-auto">
+    <div
+      *ngIf="!isMobile && !isInComponent"
+      class="row gx-4 mt-2 w-100 mx-auto"
+    >
       <div class="col-md-4">
         <div class="item text-center">
           <div
@@ -90,7 +95,7 @@
             <img [src]="mobileApp[0].home_screen" alt="" />
           </div>
           <h4>
-            {{mobileApp[0].name}}
+            {{ mobileApp[0].name }}
             <!-- {{ "application" | translate }} -->
           </h4>
         </div>
@@ -103,7 +108,7 @@
             <img [src]="mobileApp[2].home_screen" alt="" />
           </div>
           <h4>
-            {{mobileApp[2].name}}
+            {{ mobileApp[2].name }}
             <!-- {{ "application" | translate  }} -->
           </h4>
         </div>
@@ -116,13 +121,13 @@
             <img [src]="websites[0].home_screen" alt="" />
           </div>
           <h4>
-            {{websites[0].name}}
+            {{ websites[0].name }}
             <!-- {{ "website" | translate  }} -->
           </h4>
         </div>
       </div>
     </div>
-    <div *ngIf="isMobile && !isInComponent"  class="row gx-4 mt-2 w-100 mx-auto">
+    <div *ngIf="isMobile && !isInComponent" class="row gx-4 mt-2 w-100 mx-auto">
       <owl-carousel-o [options]="customOptions">
         <ng-template carouselSlide>
           <div class="item text-center">
@@ -132,11 +137,11 @@
               <img [src]="mobileApp[0].home_screen" alt="" />
             </div>
             <h4 class="mt-2">
-              {{mobileApp[0].name}}
+              {{ mobileApp[0].name }}
               <!-- {{ "application" | translate }} -->
             </h4>
           </div>
-        </ng-template>  
+        </ng-template>
         <ng-template carouselSlide>
           <div class="item text-center">
             <div
@@ -145,7 +150,7 @@
               <img [src]="mobileApp[2].home_screen" alt="" />
             </div>
             <h4 class="mt-2">
-              {{mobileApp[2].name}}
+              {{ mobileApp[2].name }}
               <!-- {{ "application" | translate  }} -->
             </h4>
           </div>
@@ -158,7 +163,7 @@
               <img [src]="websites[0].home_screen" alt="" />
             </div>
             <h4 class="mt-2">
-              {{websites[0].name}}
+              {{ websites[0].name }}
               <!-- {{ "website" | translate  }} -->
             </h4>
           </div>

@@ -18,7 +18,11 @@ export class AllprojectsComponent {
   url:string = '';
   mobileApp: Project[] = [];
   websites: Project[] = [];
+  allProjects: Project[] = [];
+  displayedProjects: Project[] = [];
   currentLang!: string;
+  selectedFilter: number | null = null; // Tracks the active filter
+
   constructor(
     private router: Router,
     private _ProjectsService: ProjectsService,
@@ -42,22 +46,8 @@ export class AllprojectsComponent {
       this.cdr.detectChanges();
     });
     this.checkRoute();
-    this._ProjectsService.getMobileProjects().subscribe({
-      next: (projects) => {
-        this.mobileApp = projects.data.data;
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
-    this._ProjectsService.getWebProjects().subscribe({
-      next: (projects) => {
-        this.websites = projects.data.data;
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+    this.fetchProjects();
+
   }
   customOptions: OwlOptions = {
     loop: false,
@@ -79,4 +69,47 @@ export class AllprojectsComponent {
     },
     nav: false,
   };
+ 
+
+  fetchProjects(): void {
+    this._ProjectsService.getMobileProjects().subscribe({
+      next: (projects) => {
+        this.mobileApp = projects.data.data;
+        this.combineAndRandomizeProjects();
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
+
+    this._ProjectsService.getWebProjects().subscribe({
+      next: (projects) => {
+        this.websites = projects.data.data;
+        this.combineAndRandomizeProjects();
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
+  }
+
+  combineAndRandomizeProjects(): void {
+    // Combine and randomize projects
+    this.allProjects = [...this.mobileApp, ...this.websites].sort(
+      () => Math.random() - 0.5
+    );
+    this.displayedProjects = [...this.allProjects];
+  }
+
+  filterProjects(type: number | null): void {
+    this.selectedFilter = type; // Update the active filter
+
+    if (type === null) {
+      this.displayedProjects = [...this.allProjects];
+    } else {
+      this.displayedProjects = this.allProjects.filter(
+        (project) => project.type === type
+      );
+    }
+  }
 }

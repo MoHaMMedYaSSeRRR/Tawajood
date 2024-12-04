@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
 import { changelangService } from 'src/app/Services/changelang.service';
+import { ProjectsService } from 'src/app/Services/projects.service';
 
 @Component({
   selector: 'app-mobile-details',
@@ -16,7 +17,7 @@ export class MobileDetailsComponent {
   isMobile = false;
 
   constructor(
-    private Router: Router,
+    private _ProjectsService: ProjectsService,
     private changelangService: changelangService,
     private _translate: TranslateService,
     private cdr: ChangeDetectorRef

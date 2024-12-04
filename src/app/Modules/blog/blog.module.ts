@@ -9,13 +9,14 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { CompanyComponent } from './company/company.component';
-import { CuttextPipe } from 'src/app/pipes/cuttext.pipe';
+import { BlogdetailsComponent } from './blogdetails/blogdetails.component';
 
 
 @NgModule({
   declarations: [
     OurblogComponent,
     CompanyComponent,
+    BlogdetailsComponent
   ],
   imports: [
     CommonModule,

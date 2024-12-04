@@ -7,7 +7,7 @@
       <h2 *ngIf="isInComponent">{{"featured_solutions"|translate}} </h2>
 
     </div>
-    <div *ngIf="!isMobile" class="row gy-4  w-100 mx-auto">
+    <div *ngIf="!isMobile && !isInComponent" class="row gy-4  w-100 mx-auto">
         <div class="col-md-4">
           <div role="button" routerLink="/solutionDetails" class="item text-center">
             <img src="../../../../assets/images/solutions-3.jfif" class="w-100" alt="">
@@ -28,8 +28,14 @@
         </div>
       </div>
       
-    <div *ngIf="isInComponent" class="row gy-4 mt-2 w-100 mx-auto">
-        <div class="col-md-4">
+    <div *ngIf="isInComponent && solutions.length > 0" class="row gy-4 mt-2 w-100 mx-auto justify-content-end" >
+        <div *ngFor="let item of solutions" class="col-md-4">
+            <div role="button" routerLink="/solutionDetails" class="item text-center">
+                <img [src]="item.home_screen" class="w-100" alt="">
+                <h4>{{item.name}}</h4>
+            </div>
+        </div>
+        <!-- <div class="col-md-4">
             <div role="button" routerLink="/solutionDetails" class="item text-center">
                 <img src="../../../../assets/images/solutions-1.jfif" class="w-100" alt="">
                 <h4>تصميم وتنفيذ المواقع</h4>
@@ -40,13 +46,7 @@
                 <img src="../../../../assets/images/solutions-1.jfif" class="w-100" alt="">
                 <h4>تصميم وتنفيذ المواقع</h4>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div role="button" routerLink="/solutionDetails" class="item text-center">
-                <img src="../../../../assets/images/solutions-1.jfif" class="w-100" alt="">
-                <h4>تصميم وتنفيذ المواقع</h4>
-            </div>
-        </div>
+        </div> -->
     </div>
     <div *ngIf="isMobile && !isInComponent"  class="row gx-4 mt-2 w-100 mx-auto">
       <owl-carousel-o [options]="customOptions">

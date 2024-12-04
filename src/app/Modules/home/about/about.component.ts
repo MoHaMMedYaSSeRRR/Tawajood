@@ -1,4 +1,9 @@
-import { ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
@@ -9,27 +14,26 @@ import { HomeService } from 'src/app/Services/home.service';
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss']
+  styleUrls: ['./about.component.scss'],
 })
 export class AboutComponent {
   @ViewChild('numbersSection') numbersSection!: ElementRef;
- 
-  
+
   currentLang!: string;
   about: About[] = [];
- yearsExperience = 0;
- happyClients = 0;
- completedProjects = 0;
+  yearsExperience = 0;
+  happyClients = 0;
+  completedProjects = 0;
   allTeam: any[] = [];
 
   constructor(
     private cdr: ChangeDetectorRef,
     private changelangService: changelangService,
     private _translate: TranslateService,
-    private meta: Meta, private titleService: Title,
+    private meta: Meta,
+    private titleService: Title,
     private _HomeService: HomeService,
     private translate: TranslateService
-
   ) {}
 
   ngOnInit(): void {
@@ -40,33 +44,53 @@ export class AboutComponent {
       this.cdr.detectChanges();
     });
     this._HomeService.getAbout().subscribe((res: any) => {
-      this.about = res.data.Setting;
+      this.about = res.data.Setting.map((item: any) => ({
+        ...item,
+        content: item.content ? this.stripHtml(item.content) : '', // Safely handle null/undefined
+      }));
     });
     this._HomeService.getTeam().subscribe({
-      next:(res)=>{
-        this.allTeam=res.data;
+      next: (res) => {
+        this.allTeam = res.data;
         this.splitTeams();
-      }
-    })
-  }
-  setMetaTags(): void {
-    this.translate.get(['aboutTitle', 'aboutDescription', 'aboutKeyword']).subscribe(translations => {
-      this.titleService.setTitle(translations['aboutTitle']);
-
-      this.meta.updateTag({ name: 'description', content: translations['aboutDescription'] });
-
-      this.meta.updateTag({ name: 'keywords', content: translations['aboutKeyword'] });
+      },
     });
   }
-  
+  stripHtml(html: string): string {
+    if (!html) {
+      return '';
+    }
+    return html
+      .replace(/<\/?[^>]+(>|$)/g, '') // Remove HTML tags
+      .replace(/&nbsp;/g, ' ')        // Replace non-breaking spaces with regular spaces
+      .trim();                        // Remove extra whitespace
+  }
+  setMetaTags(): void {
+    this.translate
+      .get(['aboutTitle', 'aboutDescription', 'aboutKeyword'])
+      .subscribe((translations) => {
+        this.titleService.setTitle(translations['aboutTitle']);
+
+        this.meta.updateTag({
+          name: 'description',
+          content: translations['aboutDescription'],
+        });
+
+        this.meta.updateTag({
+          name: 'keywords',
+          content: translations['aboutKeyword'],
+        });
+      });
+  }
+
   ngAfterViewInit() {
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           this.startCounter('yearsExperience', 8);
           this.startCounter('happyClients', 100);
           this.startCounter('completedProjects', 1000);
-          observer.unobserve(entry.target); 
+          observer.unobserve(entry.target);
         }
       });
     });
@@ -88,7 +112,10 @@ export class AboutComponent {
     }
   }
 
-  startCounter(property: 'yearsExperience' | 'happyClients' | 'completedProjects', target: number) {
+  startCounter(
+    property: 'yearsExperience' | 'happyClients' | 'completedProjects',
+    target: number
+  ) {
     let current = 0;
     const step = Math.ceil(target / 100);
     const interval = setInterval(() => {
@@ -119,7 +146,7 @@ export class AboutComponent {
     loop: false,
     mouseDrag: true,
     touchDrag: true,
-    rtl:true,
+    rtl: true,
     pullDrag: true,
     dots: false,
     navSpeed: 700,
@@ -128,20 +155,20 @@ export class AboutComponent {
     margin: 10,
     responsive: {
       0: {
-        items: 1
+        items: 1,
       },
       576: {
-        items: 1
+        items: 1,
       },
       768: {
-        items: 2
+        items: 2,
       },
       992: {
-        items: 4
-      }
+        items: 4,
+      },
     },
-    nav: false,  // Disable navigation arrows here
-    slideBy: 1,  // Slide one item at a time
+    nav: false, // Disable navigation arrows here
+    slideBy: 1, // Slide one item at a time
     responsiveRefreshRate: 100,
   };
   goNext() {

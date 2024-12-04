@@ -1,6 +1,12 @@
-<section class="contact mt-md-4 mt-3 p-md-5 py-3">
+<section
+  [ngClass]="{ bg: !isInComponent }"
+  class="contact mt-md-4 mt-3 p-md-5 py-3"
+>
   <div class="w-75 mx-auto">
-    <h2  class="my-2 px-3" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">
+    <h2
+      class="my-2 px-3"
+      [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+    >
       {{ "contact_us" | translate }}
     </h2>
     <div class="row mt-2 p-0 m-0 w-100 mx-auto justify-content-between">
@@ -46,11 +52,16 @@
                   [ngClass]="currentLang === 'ar' ? 'icon-left' : 'icon-right'"
                   (click)="toggleDropdown()"
                 >
-                  <i class="fa" [ngClass]="showDropdown ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                  <i
+                    class="fa"
+                    [ngClass]="
+                      showDropdown ? 'fa-chevron-up' : 'fa-chevron-down'
+                    "
+                  ></i>
                 </span>
                 <ul *ngIf="showDropdown" class="dropdown-menu show w-100">
                   <li
-                  [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+                    [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
                     *ngFor="let service of allServices"
                     (click)="selectService(service)"
                     class="dropdown-item"
@@ -59,7 +70,6 @@
                   </li>
                 </ul>
               </div>
-              
 
               <div class="col-md-6">
                 <input
@@ -69,8 +79,7 @@
                   class="form-control"
                   id="phone"
                   required
-                />             
-              
+                />
               </div>
               <div class="col-12">
                 <textarea
@@ -91,7 +100,7 @@
           </form>
         </div>
       </div>
-      <div  class="col-md-4 d-md-block d-none">
+      <div class="col-md-4 d-md-block d-none">
         <div
           [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
           class="contact mt-3"
@@ -149,35 +158,69 @@
             class="list-unstyled d-flex mt-4 justify-content-center align-items-center"
           >
             <li class="mx-2">
-              <a target="_blank" href="https://www.tiktok.com/@tawajood?_t=8n26pzQEDlV&_r=1"><img src="../../../../assets/images/tiktok.png" alt="tiktok" />
-           </a> </li>
+              <a
+                target="_blank"
+                href="https://www.tiktok.com/@tawajood?_t=8n26pzQEDlV&_r=1"
+                ><img src="../../../../assets/images/tiktok.png" alt="tiktok" />
+              </a>
+            </li>
             <li class="mx-2">
-              <a target="_blank" href="https://wa.me/201024848723"><img
-                src="../../../../assets/images/logos_whatsapp-icon.png"
-                alt="whatsapp"
-              />
-           </a> </li>
+              <a target="_blank" href="https://wa.me/201024848723"
+                ><img
+                  src="../../../../assets/images/logos_whatsapp-icon.png"
+                  alt="whatsapp"
+                />
+              </a>
+            </li>
             <li class="mx-2">
-              <a target="_blank" href="https://www.facebook.com/tawajood?mibextid=LQQJ4d"><img
-                src="../../../../assets/images/facebook.png"
-                alt="facebook"
-              />
-           </a> </li>
+              <a
+                target="_blank"
+                href="https://www.facebook.com/tawajood?mibextid=LQQJ4d"
+                ><img
+                  src="../../../../assets/images/facebook.png"
+                  alt="facebook"
+                />
+              </a>
+            </li>
             <li class="mx-2">
-              <a target="_blank" href="https://www.instagram.com/tawajoodco?igsh=MWxna2xqazBvZzQyaw=="><img
-                src="../../../../assets/images/instagram.png"
-                alt="instagram"
-              />
-           </a> </li>
+              <a
+                target="_blank"
+                href="https://www.instagram.com/tawajoodco?igsh=MWxna2xqazBvZzQyaw=="
+                ><img
+                  src="../../../../assets/images/instagram.png"
+                  alt="instagram"
+                />
+              </a>
+            </li>
             <li class="mx-2">
-              <a target="_blank" href="https://www.linkedin.com/company/tawajood/"><img
-                src="../../../../assets/images/linkedin.png"
-                alt="linkedin"
-              />
-           </a> </li>
+              <a
+                target="_blank"
+                href="https://www.linkedin.com/company/tawajood/"
+                ><img
+                  src="../../../../assets/images/linkedin.png"
+                  alt="linkedin"
+                />
+              </a>
+            </li>
           </ul>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="map w-75 mx-auto">
+    <h3 class="mb-3" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">{{"location"|translate}}</h3>
+    <div class="location w-100">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.4969615211176!2d31.281977!3d29.965144799999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145839172791ade1%3A0x5e80e31d7d551ad8!2z2LTYsdmD2Kkg2KrZiNin2KzYryDZhNio2LHZhdis2Kkg2KfZhNmF2YjYp9mC2Lkg2YjYp9mE2KrYt9io2YrZgtin2Ko!5e0!3m2!1sar!2seg!4v1733290115353!5m2!1sar!2seg"
+        width="100%"
+        height="400"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
     </div>
   </div>
 </section>
