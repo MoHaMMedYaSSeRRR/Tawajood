@@ -7,11 +7,13 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { JobdettailsComponent } from './jobdettails/jobdettails.component';
+import { CuttextPipe } from 'src/app/pipes/cuttext.pipe';
 
 @NgModule({
   declarations: [
     HirringComponent,
-    JobdettailsComponent
+    JobdettailsComponent,
+    CuttextPipe
   ],
   imports: [
     CommonModule,

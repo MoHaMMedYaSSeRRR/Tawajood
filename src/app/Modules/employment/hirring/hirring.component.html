@@ -13,22 +13,20 @@
           [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
         >
           <div class="item-image">
-            <img
-              [src]="item.image"
-              class="w-100"
-              alt="hire-img"
-            />
+            <img [src]="item.image" class="w-100" alt="hire-img" />
           </div>
           <div class="item-content">
-            <h3 class="my-2">{{item.jobTitleName}}</h3>
+            <h3 class="my-2">{{ item.job_title_name | cuttext:2 }}</h3>
             <p>
               نحن متخصصون في برمجة وتصميم المواقع الإلكترونية باستخدام أحدث
               التقنيات
             </p>
             <button
-            [routerLink]="['/jobdetails',item.id]"
+              [routerLink]="['/jobdetails', item.id]"
               class="bilingual-btn"
-              [ngStyle]="{ 'flex-direction': currentLang=='ar' ? 'row' : 'row-reverse' }"
+              [ngStyle]="{
+                'flex-direction': currentLang == 'ar' ? 'row' : 'row-reverse'
+              }"
             >
               <span>{{ "arrow" | translate }}</span>
               <span>{{ "submit_now" | translate }}</span>

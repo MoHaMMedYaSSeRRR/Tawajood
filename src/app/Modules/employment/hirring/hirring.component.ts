@@ -32,6 +32,7 @@ export class HirringComponent {
     });
       this._HirringService.getGobs().subscribe({
         next: (res) => {
+          console.log(res);
           this.jobs = res.data.data.map((job: any) => {
             // Extract the first paragraph
             const match = job.content.match(/<p[^>]*>(.*?)<\/p>/);

@@ -1,6 +1,6 @@
 export interface Job {
     id: number;
-    jobTitleName: string;
+    job_title_name: string;
     content: string; 
     createdAt: string; 
     endTime: string;  
