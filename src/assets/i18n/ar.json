@@ -73,6 +73,8 @@
 "browseWebsite": "تصفح الموقع",
 "appSpecifications": "المواصفات العامة للتطبيق",
 "location":"الموقع",
-"about_us":"من نحن"
+"about_us":"من نحن",
+ "submit_now": "قدم الآن",
+  "arrow": "←"
 
 }

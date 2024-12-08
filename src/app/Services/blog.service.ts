@@ -16,4 +16,9 @@ export class BlogService {
   getAllBlog():Observable<any>{
     return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/our_blog');
   }
+  getBlogById(id:any):Observable<any>{
+    return this._HttpClient.post(`https://newcompanywebsite.tawajood.com/api/blog_by_id`,{
+      blog_id:id
+    })
+  }
 }

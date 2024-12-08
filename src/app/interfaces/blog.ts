@@ -11,4 +11,7 @@ export interface Blog {
       id: number;
       name: string;
     };
+    image_one:string;
+    image_two:string;
+    image_three:string;
 }

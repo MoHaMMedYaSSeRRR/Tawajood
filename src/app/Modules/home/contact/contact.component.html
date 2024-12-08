@@ -208,7 +208,7 @@
     </div>
   </div>
 </section>
-<section>
+<section *ngIf="isInComponent">
   <div class="map w-75 mx-auto">
     <h3 class="mb-3" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">{{"location"|translate}}</h3>
     <div class="location w-100">

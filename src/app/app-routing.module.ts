@@ -7,6 +7,7 @@ const routes: Routes = [
   {path:'' ,loadChildren: ()=>import('./Modules/solutions/solutions.module').then(m=>m.SolutionsModule)},
   {path:'' ,loadChildren: ()=>import('./Modules/projects/projects.module').then(m=>m.ProjectsModule)},
   {path:'' ,loadChildren: ()=>import('./Modules/blog/blog.module').then(m=>m.BlogModule)},
+  {path:'' ,loadChildren: ()=>import('./Modules/employment/employment.module').then(m=>m.EmploymentModule)},
 
 
 ];
