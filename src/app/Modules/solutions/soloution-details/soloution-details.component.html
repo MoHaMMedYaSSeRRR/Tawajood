@@ -5,7 +5,7 @@
     >
       <div class="col-md-5">
         <div class="item-image">
-          <img src="../../../../assets/images/solutiondetails.jfif" class="w-100" alt="" />
+          <img [src]="soloution.home_screen" class="w-100" alt="" />
         </div>
       </div>
       <div class="col-md-5">
@@ -13,19 +13,22 @@
           class="content"
           [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
         >
-          <h2 class="mb-4">تطبيق مثل اوبر وكريم</h2>
+          <h2 class="mb-4">{{soloution.name}}</h2>
           <p>
-            نحن في تواجد نقدم حلول برمجية مبتكرة مشابهة لتطبيقات النقل مثل أوبر
-            وكريم فنفتخر بخبرتنا الكبيرة بتقديم مشاريع ناجحة في مجال تطوير
-            تطبيقات توصيل الركاب للأندرويد والأيفون
+           {{soloution.content}}
           </p>
           <div class="buttons d-flex justify-content-end align-items-center">
-            <button class="btn-2 mx-2">
-              {{ "request_previous_work" | translate }}
-            </button>
-            <button class="btn-1  border-0">
-              {{ "request_preview" | translate }}
-            </button>
+            <a href="https://wa.me/201024848723" target="_blank">
+              <button class="btn-2 mx-2">
+                {{ "request_previous_work" | translate }}
+              </button>
+            </a>
+            <a href="https://wa.me/201024848723" target="_blank">
+              <button class="btn-1 border-0">
+                {{ "request_preview" | translate }}
+              </button>
+            </a>
+            
           </div>
         </div>
       </div>
@@ -36,22 +39,23 @@
             <h3>
                 {{ "app_overview" | translate }}
             </h3>
-            <div class="row g-3 mt-4 w-100 mx-auto">
-                <div *ngFor="let item of [1,2,3,4,5,6]" class="col-md-4">
-                    <div class="item  d-flex align-items-start">
-                        <div [ngClass]="currentLang === 'ar' ? 'me-3' : 'ms-3'">
-                            <h4>
-                                واجهة مستخدم حديثة
-                            </h4>
-                            <p class="mt-2">
-                                لوحة تحكم سهلة الاستخدام لإدارة تطبيق مثل أوبر وكريم بكفاءة
-                            </p>
-                        </div>
-                        <span>
-                            <i class="fa-solid fa-check"></i>
-                        </span>  
-                    </div>
+            <div class="row g-3 mt-4 w-100 mx-auto justify-content-end">
+              <div *ngFor="let spec of specificationList" class="col-md-4">
+                <div class="item d-flex align-items-start">
+                  <div [ngClass]="currentLang === 'ar' ? 'me-3' : 'ms-3'">
+                    <h4>
+                      {{ spec.title }}
+                    </h4>
+                    <p class="mt-2">
+                      {{ spec.description }}
+                    </p>
+                  </div>
+                  <span>
+                    <i class="fa-solid fa-check"></i>
+                  </span>
                 </div>
+              </div>
+              
             </div>
         </div>
     </div>
@@ -63,6 +67,19 @@
             </h3>
             <div class="row position-relative mt-3 w-100 mx-auto">
                 <owl-carousel-o [options]="customOptions" #owlCarousel>
+               <ng-container *ngFor="let item of soloution.images">
+                <ng-template carouselSlide >
+                  <div class="item">
+                    <img [src]="item.image" class=" mx-auto" alt="screenphoto">
+                  </div>
+                </ng-template>
+               </ng-container>
+               
+                  <!-- <ng-template carouselSlide >
+                    <div class="item">
+                      <img src="../../../../assets/images/screen-2.png" class=" mx-auto" alt="screenphoto">
+                    </div>
+                  </ng-template>
                   <ng-template carouselSlide >
                     <div class="item">
                       <img src="../../../../assets/images/screen-1.png" class=" mx-auto" alt="screenphoto">
@@ -72,26 +89,16 @@
                     <div class="item">
                       <img src="../../../../assets/images/screen-2.png" class=" mx-auto" alt="screenphoto">
                     </div>
-                  </ng-template>
-                  <ng-template carouselSlide >
-                    <div class="item">
-                      <img src="../../../../assets/images/screen-1.png" class=" mx-auto" alt="screenphoto">
-                    </div>
-                  </ng-template>
-                  <ng-template carouselSlide >
-                    <div class="item">
-                      <img src="../../../../assets/images/screen-2.png" class=" mx-auto" alt="screenphoto">
-                    </div>
-                  </ng-template>
+                  </ng-template> -->
                 </owl-carousel-o>
               
-                <span  (click)="goPrev()" class="custom-nav prev">
+                <span   *ngIf="soloution.images.length>3" (click)="goPrev()" class="custom-nav prev">
                   <i class="fa fa-arrow-left"></i>
                 </span>
-                <span *ngIf="isMobile" (click)="goNext()" class="custom-nav next">
+                <span  *ngIf="isMobile " (click)="goNext()" class="custom-nav next">
                   <i class="fa fa-arrow-right"></i>
                 </span>
-                <span *ngIf="!isMobile" (click)="goNext()" class="custom-nav next">
+                <span  *ngIf="!isMobile && soloution.images.length>3 " (click)="goNext()" class="custom-nav next">
                     <span>
                         <i class="fa fa-arrow-right"></i>
                     </span>

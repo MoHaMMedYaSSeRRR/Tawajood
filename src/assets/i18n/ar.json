@@ -75,6 +75,14 @@
 "location":"الموقع",
 "about_us":"من نحن",
  "submit_now": "قدم الآن",
-  "arrow": "←"
+  "arrow": "←",
+  "experience": "سنوات الخبرة",
+  "github": "رابط جيت هاب",
+  "linkedin": "رابط لينكد إن",
+  "salary": "الراتب المتوقع",
+  "notice_period": "فترة الاشعار",
+  "about_you": "أخبرنا عن نفسك",
+  "get_quote": "احصل على عرض سعر"
+
 
 }

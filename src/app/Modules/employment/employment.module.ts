@@ -8,15 +8,18 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { JobdettailsComponent } from './jobdettails/jobdettails.component';
 import { CuttextPipe } from 'src/app/pipes/cuttext.pipe';
+import { ApplyjobComponent } from './applyjob/applyjob.component';
+import { ServicesModule } from '../services/services.module';
 
 @NgModule({
   declarations: [
     HirringComponent,
     JobdettailsComponent,
-    CuttextPipe
+    ApplyjobComponent
   ],
   imports: [
     CommonModule,
+    ServicesModule,
     EmploymentRoutingModule,
      TranslateModule.forRoot({
       defaultLanguage: 'ar',

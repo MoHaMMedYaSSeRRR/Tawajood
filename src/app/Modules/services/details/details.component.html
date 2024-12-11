@@ -3,11 +3,7 @@
     <div class="row w-100 mx-auto justify-content-between align-items-center">
       <div class="col-md-6">
         <div class="item-img">
-          <img
-            src="../../../../assets/images/details1.jfif"
-            class="w-100"
-            alt=""
-          />
+          <img [src]="service.image" class="w-100" alt="" />
         </div>
       </div>
       <div class="col-md-6 pe-3">
@@ -15,36 +11,36 @@
           class="item"
           [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
         >
-          <h2 class="mb-2">تصميم وبرمجة المواقع</h2>
+          <h2 class="mb-2">{{ service.name }}</h2>
           <p>
-            تواجد هي شركة رائدة في تصميم المواقع وتطويرها في مصر، حيث نقوم
-            بإنشاء مواقع إلكترونية عالية الجودة وإبداعية للشركات والأعمال. كما
-            نقدم حلول برمجية متكاملة تُعزز من تجربة المستخدم وتجمع بين إبداع
-            UI/UX والتكنولوجيا المتقدمة لتحقيق نجاح أعمالك."
+            {{ service.content }}
           </p>
-          <button class="border-0">اطلب الخدمه الان</button>
+          <a href="https://wa.me/201024848723" target="_blank">
+            <button class="border-0">
+              {{ "requestServiceNow" | translate }}
+            </button></a
+          >
         </div>
       </div>
     </div>
 
     <div class="why my-md-5 my-3">
-      <h3 class="text-center mt-4">{{'whyWeAreTheBest' | translate}}</h3>
-      <div class="row g-3 mt-4 w-100 mx-auto justify-content-between">
-        <div class="col-md-4">
+      <h3 class="text-center mt-4">{{ "whyWeAreTheBest" | translate }}</h3>
+      <div class="row g-3 mt-4 w-100 mx-auto justify-content-end">
+        <div *ngFor="let item of whyus" class="col-md-4">
           <div class="item text-center">
             <div class="item-icon">
-              <img src="../../../../assets/images/why-1.png" alt="" />
+              <img [src]="item.icon" alt="" />
             </div>
             <div class="item-content">
-              <h4 class="my-2">دعم على مدار الساعة</h4>
+              <h4 class="my-2">{{ item.title }}</h4>
               <p>
-                فريق الدعم لدينا متاح دائمًا لمساعدتك في أي مسألة تتعلق بأداء
-                وأمان المواقع الإلكترونية والتطبيقات بعد إطلاقها.
+                {{ item.content }}
               </p>
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
           <div class="item text-center">
             <div class="item-icon">
               <img src="../../../../assets/images/why-2.png" alt="" />
@@ -115,11 +111,13 @@
               </p>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
-      <button class="border-0 mt-3 mx-auto d-block">
-اطلب الخدمه الان    
-      </button>
+      <a href="https://wa.me/201024848723" target="_blank">
+        <button class="border-0 mt-3 mx-auto d-block">
+          {{ "requestServiceNow" | translate }}
+        </button>
+      </a>
     </div>
   </div>
 </section>
@@ -127,11 +125,9 @@
   <app-technology></app-technology>
 </section>
 
-
 <section class="my-md-5 my-3">
-  <app-questions></app-questions>
+  <app-questions [id]="id"></app-questions>
 </section>
-
 
 <section class="my-md-5 my-3">
   <app-allprojects></app-allprojects>

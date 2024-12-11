@@ -1,31 +1,40 @@
 <section class="blogs my-md-4 my-3">
   <div class="w-75 mx-auto">
-   
-    <div *ngIf="!isInComponent" class="d-flex justify-content-between in align-items-center px-3">
+    <div
+      *ngIf="!isInComponent"
+      class="d-flex justify-content-between in align-items-center px-3"
+    >
       <span role="button" routerLink="/projects" *ngIf="!isInComponent">
         {{ "view_all" | translate }}
       </span>
-      <h2 [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'" >
-        {{'blog'| translate}}
+      <h2 [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">
+        {{ "blog" | translate }}
       </h2>
-      
     </div>
-    <div *ngIf="isInComponent" class="d-flex justify-content-between align-items-center">
+    <div
+      *ngIf="isInComponent"
+      class="d-flex justify-content-between align-items-center"
+    >
       <div class="input_wrapper">
-        <select id="filter" [ngClass]="currentLang === 'ar' ? 'rtl' : 'ltr'">
-          <option value="asc">الأحدث</option>
-          <option value="desc">الاقدم</option>
-          <i class="fa fa-arrow-down"></i>
-        </select>
-        <label class="mx-2" for="filter">:الترتيب</label>
+        <select
+        id="filter"
+        [ngClass]="currentLang === 'ar' ? 'rtl' : 'ltr'"
+        (change)="sortBlogs($event)"
+      >
+        <option value="asc">الأحدث</option>
+        <option value="desc">الاقدم</option>
+      </select>
+      <label class="mx-2" for="filter">:الترتيب</label>
+      
       </div>
       <ul
         class="list-unstyled d-flex justify-content-center align-items-center"
       >
         <li *ngFor="let item of blogs">
           <a
-            routerLink="/s"
-            routerLinkActive="active"
+            role="button"
+            (click)="filterByTopic(item.id)"
+            [class.active]="currentTopicId === item.id"
             class="text-decoration-none"
           >
             {{ item.name }}
@@ -33,8 +42,9 @@
         </li>
         <li>
           <a
-            routerLink="/"
-            routerLinkActive="active"
+            role="button"
+            (click)="filterByTopic(null)"
+            [class.active]="currentTopicId === null"
             class="text-decoration-none"
           >
             {{ "all" | translate }}
@@ -42,84 +52,119 @@
         </li>
       </ul>
     </div>
-    <div *ngIf="(!isMobile)" class="row mt-2 w-100 mx-auto">
-      <div *ngFor="let item of allBlogs" class="col-md-4">
+    <div *ngIf="!isMobile && isInComponent" class="row mt-2 w-100 mx-auto justify-content-end">
+      <div *ngFor="let item of filteredBlogs" class="col-md-4">
         <div class="item">
           <div class="item-image position-relative">
             <span class="marketing position-absolute">
-              {{item.topic.name}}
+              {{ item.topic.name }}
             </span>
-            <img
-              [src]="item.image"
-              class="w-100"
-              alt="blogPhot"
-            />
+            <img [src]="item.image" class="w-100" alt="blogPhot" />
           </div>
           <div
             [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
             class="item-content mt-2"
           >
             <span>
-              {{item.created_at |date}}
+              {{ item.created_at | date }}
               <i
                 [ngClass]="currentLang === 'ar' ? 'ms-2' : 'me-2'"
                 class="fa-regular fa-calendar"
               ></i>
             </span>
-            <h5 class="mt-2">{{item.title |cuttext:10}}</h5>
+            <h5 class="mt-2">{{ item.title | cuttext : 10 }}</h5>
             <p class="mt-1">
               في عصر التحول الرقمي المتسارع، أصبح تحسين محركات البحث (SEO) له
               دور بارز في نجاح الأعمال عبر الإنترنت. يعتبر تحسين SEO من
               الاستراتيجيات الأساسية
             </p>
-            <button [routerLink]="['/blogdetails',item.id]"  [ngClass]="currentLang === 'ar' ? 'me-auto' : 'ms-auto'">
+            <button
+              [routerLink]="['/blogdetails', item.id]"
+              [ngClass]="currentLang === 'ar' ? 'me-auto' : 'ms-auto'"
+            >
               {{ "read_more" | translate }}
             </button>
           </div>
         </div>
       </div>
     </div>
-    <div *ngIf="isMobile&&!isInComponent" class="row mt-2 d-md-none d-block w-100 mx-auto">
-      <div  class="mt-2  w-100 mx-auto">
+    <div *ngIf="!isMobile && !isInComponent" class="row mt-2 w-100 mx-auto justify-content-end">
+      <div *ngFor="let item of filteredBlogs.slice(0,3)" class="col-md-4">
+        <div class="item">
+          <div class="item-image position-relative">
+            <span class="marketing position-absolute">
+              {{ item.topic.name }}
+            </span>
+            <img [src]="item.image" class="w-100" alt="blogPhot" />
+          </div>
+          <div
+            [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+            class="item-content mt-2"
+          >
+            <span>
+              {{ item.created_at | date }}
+              <i
+                [ngClass]="currentLang === 'ar' ? 'ms-2' : 'me-2'"
+                class="fa-regular fa-calendar"
+              ></i>
+            </span>
+            <h5 class="mt-2">{{ item.title | cuttext : 10 }}</h5>
+            <p class="mt-1">
+              في عصر التحول الرقمي المتسارع، أصبح تحسين محركات البحث (SEO) له
+              دور بارز في نجاح الأعمال عبر الإنترنت. يعتبر تحسين SEO من
+              الاستراتيجيات الأساسية
+            </p>
+            <button
+              [routerLink]="['/blogdetails', item.id]"
+              [ngClass]="currentLang === 'ar' ? 'me-auto' : 'ms-auto'"
+            >
+              {{ "read_more" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      *ngIf="isMobile && !isInComponent"
+      class="row mt-2 d-md-none d-block w-100 mx-auto"
+    >
+      <div class="mt-2 w-100 mx-auto">
         <owl-carousel-o [options]="customOptions">
-          <ng-container *ngFor="let item of allBlogs">
+          <ng-container *ngFor="let item of allBlogs.slice(0,3)">
             <ng-template carouselSlide>
               <div class="item me-2">
                 <div class="item-image position-relative">
                   <span class="marketing position-absolute">
-                    {{item.topic.name}}
+                    {{ item.topic.name }}
                   </span>
-                  <img
-                    [src]="item.image"
-                    class="w-100"
-                    alt="blogPhot"
-                  />
+                  <img [src]="item.image" class="w-100" alt="blogPhot" />
                 </div>
                 <div
                   [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
                   class="item-content mt-2"
                 >
                   <span>
-                    {{item.created_at |date}}
+                    {{ item.created_at | date }}
                     <i
                       [ngClass]="currentLang === 'ar' ? 'ms-2' : 'me-2'"
                       class="fa-regular fa-calendar"
                     ></i>
                   </span>
-                  <h5 class="mt-2">{{item.title |cuttext:10}}</h5>
+                  <h5 class="mt-2">{{ item.title | cuttext : 10 }}</h5>
                   <p class="mt-1">
-                    في عصر التحول الرقمي المتسارع، أصبح تحسين محركات البحث (SEO) له
-                    دور بارز في نجاح الأعمال عبر الإنترنت. يعتبر تحسين SEO من
+                    في عصر التحول الرقمي المتسارع، أصبح تحسين محركات البحث (SEO)
+                    له دور بارز في نجاح الأعمال عبر الإنترنت. يعتبر تحسين SEO من
                     الاستراتيجيات الأساسية
                   </p>
-                  <button  [ngClass]="currentLang === 'ar' ? 'me-auto' : 'ms-auto'">
+                  <button
+                    [ngClass]="currentLang === 'ar' ? 'me-auto' : 'ms-auto'"
+                  >
                     {{ "read_more" | translate }}
                   </button>
                 </div>
               </div>
             </ng-template>
           </ng-container>
-      
         </owl-carousel-o>
       </div>
     </div>

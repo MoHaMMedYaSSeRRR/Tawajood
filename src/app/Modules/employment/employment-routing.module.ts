@@ -4,10 +4,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { JobdettailsComponent } from './jobdettails/jobdettails.component';
+import { ApplyjobComponent } from './applyjob/applyjob.component';
 const routes: Routes = [
   {path: '', redirectTo: 'hirring', pathMatch: 'full'},
   {path: 'hirring', component:HirringComponent},
-  {path: 'jobdetails/:id', component:JobdettailsComponent}
+  {path: 'jobdetails/:id', component:JobdettailsComponent},
+  {path: 'applytojob/:id', component:ApplyjobComponent},
 
 ];
 

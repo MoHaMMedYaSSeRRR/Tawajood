@@ -2,7 +2,7 @@
   <div class="w-75 mx-auto">
     <div
       [ngClass]="{ 'flex-row': !isInComponent }"
-      class="d-flex justify-content-between align-items-center px-3"
+      class="d-flex justify-content-between align-items-center w-100 px-3"
     >
       <ul
         *ngIf="isInComponent"
@@ -43,7 +43,7 @@
       <h2 *ngIf="url == '/projects' || url == '/home'">
         {{ "our_works" | translate }}
       </h2>
-      <h2 class="px-0" *ngIf="url !== '/projects' && url !== '/home'">
+      <h2 class="px-0 text-end" *ngIf="url !== '/projects' && url !== '/home'">
         {{ "related_works" | translate }}
       </h2>
     </div>
@@ -53,9 +53,9 @@
           <div
             class="item-img w-100 d-flex justify-content-center align-items-center"
           >
-            <img routerLink="/mobile" [src]="item.home_screen" alt="" />
+            <img [routerLink]="['/mobile',item.id]" [src]="item.home_screen" alt="" />
           </div>
-          <h4 routerLink="/mobile">{{ item.name }}</h4>
+          <h4 [routerLink]="['/mobile',item.id]">{{ item.name }}</h4>
         </div>
       </div>
       <!-- <div class="col-md-4">

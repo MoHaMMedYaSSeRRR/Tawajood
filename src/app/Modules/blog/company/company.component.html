@@ -4,9 +4,9 @@
         >{{'partners'|translate}}</h2>
         <div class="row position-relative mt-2 w-100 mx-auto">
             <owl-carousel-o [options]="customOptions" #owlCarousel>
-              <ng-template carouselSlide *ngFor="let image of companyImages">
+              <ng-template carouselSlide *ngFor="let item of partner">
                 <div class="item">
-                  <img [src]="image" alt="companyPhoto">
+                  <img [src]="item.icon" alt="companyPhoto">
                 </div>
               </ng-template>
             </owl-carousel-o>

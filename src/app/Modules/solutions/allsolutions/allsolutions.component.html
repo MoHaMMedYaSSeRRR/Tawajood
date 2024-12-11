@@ -7,7 +7,7 @@
       <h2 *ngIf="isInComponent">{{"featured_solutions"|translate}} </h2>
 
     </div>
-    <div *ngIf="!isMobile && !isInComponent" class="row gy-4  w-100 mx-auto">
+    <!-- <div *ngIf="!isMobile && !isInComponent" class="row gy-4  w-100 mx-auto">
         <div class="col-md-4">
           <div role="button" routerLink="/solutionDetails" class="item text-center">
             <img src="../../../../assets/images/solutions-3.jfif" class="w-100" alt="">
@@ -26,11 +26,18 @@
             <h4>{{ 'solution.uber_clone' | translate }}</h4>
           </div>
         </div>
-      </div>
-      
+      </div> -->
+      <div *ngIf="!isInComponent && !isMobile && solutions.length > 0" class="row gy-4 mt-2 w-100 mx-auto justify-content-end" >
+        <div *ngFor="let item of solutions.slice(0,3)" class="col-md-4">
+            <div role="button" [routerLink]="['/solutionDetails' , item.id]" class="item text-center">
+                <img [src]="item.home_screen" class="w-100" alt="">
+                <h4>{{item.name}}</h4>
+            </div>
+        </div>
+    </div>
     <div *ngIf="isInComponent && solutions.length > 0" class="row gy-4 mt-2 w-100 mx-auto justify-content-end" >
         <div *ngFor="let item of solutions" class="col-md-4">
-            <div role="button" routerLink="/solutionDetails" class="item text-center">
+            <div role="button" [routerLink]="['/solutionDetails' , item.id]" class="item text-center">
                 <img [src]="item.home_screen" class="w-100" alt="">
                 <h4>{{item.name}}</h4>
             </div>
@@ -50,14 +57,17 @@
     </div>
     <div *ngIf="isMobile && !isInComponent"  class="row gx-4 mt-2 w-100 mx-auto">
       <owl-carousel-o [options]="customOptions">
+      <ng-container *ngFor="let item of solutions">
         <ng-template carouselSlide>
-          <div role="button" routerLink="/solutionDetails" class="item text-center">
-            <img src="../../../../assets/images/solutions-3.jfif" class="w-100" alt="">
-            <h4>{{ 'solution.ecommerce' | translate }}</h4>
-          </div>
+          <div role="button" [routerLink]="['/solutionDetails' , item.id]" class="item text-center">
+            <img [src]="item.home_screen" class="w-100" alt="">
+            <h4>{{item.name}}</h4>
+        </div>  
            
         </ng-template>  
-        <ng-template carouselSlide>
+      </ng-container>
+      
+        <!-- <ng-template carouselSlide>
           <div role="button" routerLink="/solutionDetails" class="item text-center">
             <img src="../../../../assets/images/solutions-2.jfif" class="w-100" alt="">
             <h4>{{ 'solution.uber_clone' | translate }}</h4>
@@ -68,7 +78,7 @@
             <img src="../../../../assets/images/solutions-1.jfif" class="w-100" alt="">
             <h4>{{ 'solution.uber_clone' | translate }}</h4>
           </div>          
-        </ng-template>
+        </ng-template> -->
       </owl-carousel-o>
     </div>
   </div>

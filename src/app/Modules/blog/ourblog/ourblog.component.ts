@@ -16,7 +16,10 @@ export class OurblogComponent {
   allBlogs: Blog[] = [];
   currentLang: any;
   isInComponent: boolean = false;
-  isMobile=false;
+  isMobile = false;
+  filteredBlogs: Blog[] = []; // Filtered blogs based on sorting or topics
+  currentTopicId: number | null = null;
+
   constructor(
     private _BlogService: BlogService,
     private cdr: ChangeDetectorRef,
@@ -25,7 +28,7 @@ export class OurblogComponent {
     private router: Router
   ) {}
   ngOnInit(): void {
-    this.isMobile=window.innerWidth<=768;
+    this.isMobile = window.innerWidth <= 768;
     this._BlogService.getBlogTopic().subscribe({
       next: (res) => {
         this.blogs = res.data.topics;
@@ -37,18 +40,42 @@ export class OurblogComponent {
     this.changelangService.currentLang$.subscribe((lang) => {
       this._translate.use(lang);
       this.currentLang = lang;
-      this.customOptions.rtl = (lang === 'ar');
+      this.customOptions.rtl = lang === 'ar';
 
       this.cdr.detectChanges();
     });
     this._BlogService.getAllBlog().subscribe({
       next: (res) => {
-        this.allBlogs = res.data.blogs.slice(0,3);
-      }
-    })
+        this.allBlogs = res.data.blogs;
+        this.filteredBlogs = [...this.allBlogs];
+        console.log(res)
+      },
+    });
     this.checkRoute();
   }
+  sortBlogs(event: Event): void {
+    const target = event.target as HTMLSelectElement;
+    const sortOrder = target.value;
 
+    console.log('Sort order selected:', sortOrder); // Debug log
+    console.log('Before sorting:', this.filteredBlogs); // Debug log
+
+    this.filteredBlogs = [...this.filteredBlogs].sort((a, b) => {
+      const dateA = new Date(a.created_at).getTime();
+      const dateB = new Date(b.created_at).getTime();
+      return sortOrder === 'asc' ? dateB - dateA : dateA - dateB;
+    });
+
+    console.log('After sorting:', this.filteredBlogs); // Debug log
+    this.cdr.detectChanges();
+  }
+
+  filterByTopic(topicId: number | null): void {
+    this.currentTopicId = topicId;
+    this.filteredBlogs = topicId
+      ? this.allBlogs.filter((blog) => blog.topic_id === topicId)
+      : [...this.allBlogs];
+  }
   onLanguageChange() {
     this.cdr.detectChanges();
   }
@@ -59,7 +86,7 @@ export class OurblogComponent {
   }
 
   customOptions: OwlOptions = {
-    loop: false, 
+    loop: false,
     mouseDrag: true,
     autoplay: true,
     autoplayTimeout: 5000,
@@ -67,14 +94,15 @@ export class OurblogComponent {
     smartSpeed: 200,
     touchDrag: true,
     pullDrag: true,
-    dots: true,           // Enable dots navigation
-    dotsData: true,     navSpeed: 1200,
+    dots: true, // Enable dots navigation
+    dotsData: true,
+    navSpeed: 1200,
     navText: ['', ''],
     responsive: {
       0: {
-        items: 1
-      }
+        items: 1,
+      },
     },
-    nav: false
+    nav: false,
   };
 }

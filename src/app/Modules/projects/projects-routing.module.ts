@@ -6,7 +6,7 @@ import { AllprojectsComponent } from './allprojects/allprojects.component';
 const routes: Routes = [
   { path: '', redirectTo: 'projects', pathMatch: 'full' },
   { path: 'projects', component: AllprojectsComponent },
-  { path: 'mobile', component: MobileDetailsComponent },
+  { path: 'mobile/:id', component: MobileDetailsComponent },
 
 ];
 

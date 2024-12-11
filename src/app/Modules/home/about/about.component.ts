@@ -25,7 +25,8 @@ export class AboutComponent {
   happyClients = 0;
   completedProjects = 0;
   allTeam: any[] = [];
-
+  contactUs:any;
+ 
   constructor(
     private cdr: ChangeDetectorRef,
     private changelangService: changelangService,
@@ -54,6 +55,9 @@ export class AboutComponent {
         this.allTeam = res.data;
         this.splitTeams();
       },
+    });
+    this._HomeService.getContactUs().subscribe((res: any) => {
+      this.contactUs = res.data.contact_us;
     });
   }
   stripHtml(html: string): string {
@@ -87,9 +91,9 @@ export class AboutComponent {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          this.startCounter('yearsExperience', 8);
-          this.startCounter('happyClients', 100);
-          this.startCounter('completedProjects', 1000);
+          this.startCounter('yearsExperience', this.contactUs.years_of_experience);
+          this.startCounter('happyClients', this.contactUs.happy_customers);
+          this.startCounter('completedProjects', this.contactUs.project_numbers);
           observer.unobserve(entry.target);
         }
       });

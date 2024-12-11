@@ -38,7 +38,7 @@ export class BlogdetailsComponent {
       }
     })
     this._BlogService.getBlogById(this.id).subscribe((res) => {
-      console.log(res.data);
+      console.log(res);
       this.blog =res.data;
       this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(this.blog.content);
     });

@@ -50,9 +50,9 @@
             [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
             class="about-content"
           >
-            <h3>{{"about_name" | translate }}</h3>
+            <h3>{{ "about_name" | translate }}</h3>
             <p class="mt-2">
-              {{"about_header"| translate}}
+              {{ "about_header" | translate }}
             </p>
             <!-- <p>
               شركة تواجد هي شركة متخصصة في تقديم الحلول البرمجية قدمنا الكثير من
@@ -62,9 +62,11 @@
               نحو التحول الرقمي
             </p> -->
 
-            <button class="border-0 mt-3">
-              {{ "request_free_consultation" | translate }}
-            </button>
+            <a href="https://wa.me/201024848723" target="_blank">
+              <button class="border-0 mt-3">
+                {{ "request_free_consultation" | translate }}
+              </button>
+            </a>
           </div>
         </div>
       </div>
@@ -75,21 +77,41 @@
 <section class="why p-md-5 p-4 pt-5">
   <div class="w-75 px-2 mx-auto">
     <div class="row gy-5 py-md-5 px-md-5 w-100 mx-auto">
-      <div class="col-md-4">
+      <ng-container *ngFor="let item of whyUs; let i = index">
+        <div *ngIf="i < 2" class="col-md-4">
+          <div
+            [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+            class="item position-relative p-2"
+          >
+            <img class="position-absolute" [src]="item.icon" alt="" />
+            <h4>{{ item.title }}</h4>
+            <p class="mt-2">{{ "projects_content" | translate }}</p>
+          </div>
+        </div>
+      </ng-container>
+
+      <div *ngIf="whyUs.length > 2" class="col-md-4">
         <div
           [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
-          class="item position-relative p-2"
+          class="item d-flex justify-content-center align-items-center border-0 position-relative p-2"
         >
-          <img
-            class="position-absolute"
-            src="../../../../assets/images/why-1.png"
-            alt=""
-          />
-          <h4>{{ "projects_title" | translate }}</h4>
-          <p class="mt-2">{{ "projects_content" | translate }}</p>
+          <h1 class="px-3 mx-auto">{{ "why_choose" | translate }}</h1>
         </div>
       </div>
-      <div class="col-md-4">
+
+      <ng-container *ngFor="let item of whyUs; let i = index">
+        <div *ngIf="i >= 2" class="col-md-4">
+          <div
+            [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+            class="item position-relative p-2"
+          >
+            <img class="position-absolute" [src]="item.icon" alt="" />
+            <h4>{{ item.title }}</h4>
+            <p class="mt-2">{{ "projects_content" | translate }}</p>
+          </div>
+        </div>
+      </ng-container>
+      <!-- <div class="col-md-4">
         <div
           [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
           class="item position-relative p-2"
@@ -102,18 +124,10 @@
           <h4>{{ "security_title" | translate }}</h4>
           <p class="mt-2">{{ "security_content" | translate }}</p>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div
-          [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
-          class="item d-flex justify-content-center align-items-center border-0 position-relative p-2"
-        >
-          <h1 class="px-3 mx-auto">{{ "why_choose" | translate }}</h1>
-        </div>
-      </div>
+      </div> -->
     </div>
     <div class="row gy-5 py-md-5 px-md-5 w-100 mx-auto">
-      <div class="col-md-4">
+      <!-- <div class="col-md-4">
         <div
           [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
           class="item position-relative p-2"
@@ -126,8 +140,8 @@
           <h4>{{ "support_title" | translate }}</h4>
           <p class="mt-2">{{ "support_content" | translate }}</p>
         </div>
-      </div>
-      <div class="col-md-4">
+      </div> -->
+      <!-- <div class="col-md-4">
         <div
           [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
           class="item position-relative p-2"
@@ -154,7 +168,7 @@
           <h4>{{ "quality_title" | translate }}</h4>
           <p class="mt-2">{{ "quality_content" | translate }}</p>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </section>
@@ -163,8 +177,12 @@
   <div class="w-75 mx-auto">
     <div class="row w-100 mx-auto justify-content-between">
       <div class="col-md-3">
-        <div class="item d-flex flex-column justify-content-center align-items-center">
-          <h3><span>{{ yearsExperience }}</span> <span class="ms-2">+</span></h3>
+        <div
+          class="item d-flex flex-column justify-content-center align-items-center"
+        >
+          <h3>
+            <span>{{ yearsExperience }}</span> <span class="ms-2">+</span>
+          </h3>
           <h4>{{ "years_of_experience" | translate }}</h4>
         </div>
       </div>
@@ -172,8 +190,12 @@
         <div class="line"></div>
       </div>
       <div class="col-md-3">
-        <div class="item d-flex flex-column justify-content-center align-items-center">
-          <h3><span>{{ happyClients }}</span> <span class="ms-2">+</span></h3>
+        <div
+          class="item d-flex flex-column justify-content-center align-items-center"
+        >
+          <h3>
+            <span>{{ happyClients }}</span> <span class="ms-2">+</span>
+          </h3>
           <h4>{{ "happy_clients" | translate }}</h4>
         </div>
       </div>
@@ -181,15 +203,18 @@
         <div class="line ms-md-3"></div>
       </div>
       <div class="col-md-3">
-        <div class="item d-flex flex-column justify-content-center align-items-center">
-          <h3><span>{{ completedProjects }}</span> <span class="ms-2">+</span></h3>
+        <div
+          class="item d-flex flex-column justify-content-center align-items-center"
+        >
+          <h3>
+            <span>{{ completedProjects }}</span> <span class="ms-2">+</span>
+          </h3>
           <h4>{{ "completed_projects" | translate }}</h4>
         </div>
       </div>
     </div>
   </div>
 </section>
-
 
 <section class="my-3 my-md-5">
   <app-allservices [index]="6"></app-allservices>

@@ -73,18 +73,21 @@ checkRoute(): void {
 navigateBasedOnId(id: number) {
   switch (id) {
     case 1:
-      this.router.navigate(['/service-details']);
+      this.router.navigate(['/service-details', id],);
       break;
     case 3:
-      this.router.navigate(['/marketingservice']);
+      this.router.navigate(['/marketingservice' , id]);
       break;
     case 6:
-      this.router.navigate(['/domainservice']);
+      this.router.navigate(['/domainservice' , id]);
       break;
     case 4:
-      this.router.navigate(['/soulutionsservices']);
+      this.router.navigate(['/soulutionsservices' , id]);
       break;
     case 5:
+      window.open('https://wa.me/01024848723', '_blank');
+      break;
+      case 7:
       window.open('https://wa.me/01024848723', '_blank');
       break;
     default:

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
 import { changelangService } from 'src/app/Services/changelang.service';
+import { HomeService } from 'src/app/Services/home.service';
 
 @Component({
   selector: 'app-technology',
@@ -11,16 +12,7 @@ import { changelangService } from 'src/app/Services/changelang.service';
 })
 export class TechnologyComponent {
   @ViewChild('owlCarousel', { static: false }) owlCarousel!: CarouselComponent;
-  companyImages = [
-    '../../../../assets/images/t-8.png',
-    '../../../../assets/images/t-7.png',
-    '../../../../assets/images/t-6.png',
-    '../../../../assets/images/t-5.png',
-    '../../../../assets/images/t-4.png',
-    '../../../../assets/images/t-3.png',
-    '../../../../assets/images/t-2.png',
-    '../../../../assets/images/t-1.png',
-  ];
+  technologies:any;
   customOptions: OwlOptions = {
     loop: false,
     rtl: false,
@@ -52,7 +44,8 @@ export class TechnologyComponent {
   constructor(
     private changelangService: changelangService,
     private _translate: TranslateService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private _HomeService:HomeService
   ) {}
   ngOnInit(): void {
     this.changelangService.currentLang$.subscribe((lang) => {
@@ -64,6 +57,14 @@ export class TechnologyComponent {
       };
       this.cdr.detectChanges();
     });
+    this._HomeService.getTechnology().subscribe({
+      next: (res) => {
+        this.technologies = res.data.data;
+      },
+      error: (err) => {
+        console.log('Error:', err);
+      },
+    })
   }
   onLanguageChange() {
     this.cdr.detectChanges();

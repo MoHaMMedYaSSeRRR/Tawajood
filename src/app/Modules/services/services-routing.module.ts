@@ -9,13 +9,10 @@ import { DomainserviceComponent } from './domainservice/domainservice.component'
 const routes: Routes = [
   { path: '', redirectTo: 'allservices', pathMatch: 'full' },
   {path:'allservices' , component:AllservicesComponent},
-  {path:'service-details' , component:DetailsComponent},
-  {path:'soulutionsservices' , component:ServicesoloutionsComponent},
-  {path:'domainservice' , component:DomainserviceComponent},
-  {path:'marketingservice' , component:MarketingserviceComponent},
-
-
-
+  {path:'service-details/:id' , component:DetailsComponent},
+  {path:'soulutionsservices/:id' , component:ServicesoloutionsComponent},
+  {path:'domainservice/:id' , component:DomainserviceComponent},
+  {path:'marketingservice/:id' , component:MarketingserviceComponent},
 
 ];
 

@@ -3,6 +3,12 @@
     font-weight: 700;
     font-size: 32px;
     color: #1c1f35;
+    width: 70%;
+  }
+  @media (max-width: 767px) {
+    h2{
+      font-size: 22px !important;
+    }
   }
   h4{
     margin-top: 10px;

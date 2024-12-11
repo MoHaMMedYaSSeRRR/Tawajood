@@ -1,4 +1,3 @@
-import { CuttextPipe } from 'src/app/pipes/cuttext.pipe';
 import { ServicesModule } from './../services/services.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -50,3 +49,4 @@ import { ReactiveFormsModule } from '@angular/forms';
   ]
 })
 export class HomeModule { }
+ 

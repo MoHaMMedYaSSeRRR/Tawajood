@@ -14,4 +14,8 @@ export class ProjectsService {
   getWebProjects():Observable<any> {
     return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/projects_websites');
   }
+
+  getDetails(id:any):Observable<any> {
+    return this._HttpClient.get(`https://newcompanywebsite.tawajood.com/api/project_details/${id}`);
+  }
 }

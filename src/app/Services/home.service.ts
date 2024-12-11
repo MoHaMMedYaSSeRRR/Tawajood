@@ -15,13 +15,26 @@ export class HomeService {
   getSlider():Observable<any> {
     return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/sliders');
   }
-  whyUs():Observable<any> {
-    return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/why_us');
-  }
+
   getAbout():Observable<any> {
     return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/setting');
   }
   getTeam():Observable<any> {
     return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/team');
+  }
+  whyus():Observable<any> {
+    return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/why_us');
+  }
+  getpartners():Observable<any>{
+    return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/clients');
+  }
+  getContactUs():Observable<any>{
+    return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/contact_us');
+  }
+  getTechnology():Observable<any>{
+    return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/technologies');
+  }
+  getProccess():Observable<any>{
+    return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/our_process');
   }
 }

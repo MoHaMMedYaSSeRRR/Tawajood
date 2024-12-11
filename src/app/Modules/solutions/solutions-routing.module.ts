@@ -6,7 +6,7 @@ import { AllsolutionsComponent } from './allsolutions/allsolutions.component';
 const routes: Routes = [
   {path:'', redirectTo:'solutions', pathMatch: 'full'},
   {path:'solutions' , component: AllsolutionsComponent},
-  {path:'solutionDetails' , component:SoloutionDetailsComponent }
+  {path:'solutionDetails/:id' , component:SoloutionDetailsComponent }
 ];
 
 @NgModule({

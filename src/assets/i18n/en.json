@@ -76,6 +76,14 @@
 "location": "Our location",
 "about_us": "About Us",
  "submit_now": "Submit Now",
-  "arrow": "→"
+  "arrow": "→",
+  "experience": "Years of Experience",
+  "github": "GitHub Link",
+  "linkedin": "LinkedIn Link",
+  "salary": "Expected Salary",
+  "notice_period": "Notice Period",
+  "about_you": "Tell us about yourself",
+  "get_quote": "Get a Quote"
+
 
 }

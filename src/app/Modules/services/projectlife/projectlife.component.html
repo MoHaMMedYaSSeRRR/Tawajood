@@ -7,18 +7,21 @@
       {{ "operation" | translate }}
     </h2>
     <div
-      class="row position-relative mt-2 w-100 mx-auto p-0 m-0 justify-content-end align-items-center"
+      class="row position-relative  mt-2 w-100 mx-auto p-0 m-0 justify-content-end align-items-center"
     >
       <owl-carousel-o [options]="customOptions" #owlCarousel>
+       <ng-container *ngFor="let item of process.slice().reverse()">
         <ng-template carouselSlide>
           <div
             class="item d-flex flex-column justify-content-center align-items-center"
           >
-            <span> 5 </span>
-            <h4 class="mt-3">التسويق الرقمي</h4>
+            <span> {{item.number_process}} </span>
+            <h4 class="mt-3">{{item.name}}</h4>
           </div>
         </ng-template>
-        <ng-template carouselSlide>
+       </ng-container>
+       
+        <!-- <ng-template carouselSlide>
           <div
             class="item d-flex flex-column justify-content-center align-items-center"
           >
@@ -49,13 +52,13 @@
             <span> 1 </span>
             <h4 class="mt-3">أبحاث السوق | تحليل</h4>
           </div>
-        </ng-template>
+        </ng-template> -->
       </owl-carousel-o>
 
-      <span (click)="goPrev()" class="custom-nav prev">
+      <span *ngIf="process.length >4" (click)="goPrev()" class="custom-nav prev">
         <i class="fa fa-arrow-left"></i>
       </span>
-      <span (click)="goNext()" class="custom-nav next">
+      <span *ngIf="process.length >4" (click)="goNext()" class="custom-nav next">
         <i class="fa fa-arrow-right"></i>
       </span>
     </div>

@@ -4,6 +4,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { Service } from 'src/app/interfaces/service';
 import { ServicesService } from 'src/app/Services/services.service';
 import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
+import { SoloutionsService } from 'src/app/Services/soloutions.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-soloution-details',
@@ -15,22 +17,57 @@ export class SoloutionDetailsComponent {
   isInComponent: boolean = false;
   @Input() index!: number;
   @ViewChild('owlCarousel', { static: false }) owlCarousel!: CarouselComponent;
+  specificationList: { title: string; description: string }[] = [];
 
   constructor(
     private cdr: ChangeDetectorRef,
     private changelangService: changelangService,
-    private _translate: TranslateService
+    private _translate: TranslateService,
+    private _SoloutionsService: SoloutionsService,
+    private _ActivatedRoute: ActivatedRoute
   ) {}
+  soloution: any;
+  id: any;
   isMobile = false;
   services: Service[] = [];
   ngOnInit(): void {
     this.isMobile = window.innerWidth <= 768;
+    this._ActivatedRoute.paramMap.subscribe((params) => {
+      this.id = params.get('id');
+    });
     this.changelangService.currentLang$.subscribe((lang) => {
       this._translate.use(lang);
       this.currentLang = lang;
 
       this.cdr.detectChanges();
     });
+    this._SoloutionsService.getSoloutionsByid(this.id).subscribe({
+      next: (res) => {
+        this.soloution = res.data;
+        if (this.soloution.specifications) {
+          this.soloution.specifications = this.stripHtml(
+            this.soloution.specifications
+          );
+        }
+        this.specificationList=this.soloution.specifications.split('\n').map((line:any) => {
+          const [title, description] = line.split(':').map((part:any) => part.trim());
+          return { title, description };
+        });
+        console.log(res);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
+  stripHtml(html: string): string {
+    if (!html) {
+      return '';
+    }
+    return html
+      .replace(/<\/?[^>]+(>|$)/g, '') // Remove HTML tags
+      .replace(/&nbsp;/g, ' ') // Replace non-breaking spaces with regular spaces
+      .trim(); // Remove extra whitespace
   }
   onLanguageChange() {
     this.cdr.detectChanges();
@@ -55,7 +92,7 @@ export class SoloutionDetailsComponent {
       },
       940: {
         items: 4,
-      }
+      },
     },
     nav: false,
   };

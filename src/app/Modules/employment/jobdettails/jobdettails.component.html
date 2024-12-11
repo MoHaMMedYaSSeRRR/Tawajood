@@ -27,7 +27,7 @@
                       </h1>
                       <div [innerHTML]="jobContent"></div>
 
-                      <button class="d-block mt-3">
+                      <button [routerLink]="['/applytojob',job.id]" class="d-block mt-3">
                         {{ "submit_now" | translate }}
                       </button>
                 </div>

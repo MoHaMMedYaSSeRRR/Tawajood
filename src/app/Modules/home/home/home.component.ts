@@ -1,4 +1,10 @@
-import { ChangeDetectorRef, Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+} from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
@@ -10,7 +16,7 @@ import { HomeService } from 'src/app/Services/home.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements AfterViewInit {
   @ViewChild('numbersSection') numbersSection!: ElementRef;
@@ -23,15 +29,17 @@ export class HomeComponent implements AfterViewInit {
   yearsExperience = 0;
   happyClients = 0;
   completedProjects = 0;
+  whyUs: any;
+  contactUs: any;
 
   constructor(
     private cdr: ChangeDetectorRef,
     private changelangService: changelangService,
     private _translate: TranslateService,
     private _HomeService: HomeService,
-    private meta: Meta, private titleService: Title,
+    private meta: Meta,
+    private titleService: Title,
     private translate: TranslateService
-
   ) {}
 
   ngOnInit(): void {
@@ -41,11 +49,10 @@ export class HomeComponent implements AfterViewInit {
       this.currentLang = lang;
       this.customOptions = {
         ...this.customOptions,
-        rtl: lang === 'en'
+        rtl: lang === 'en',
       };
       this.cdr.detectChanges();
       this.setMetaTags();
-
     });
 
     this._HomeService.getSlider().subscribe((res: any) => {
@@ -55,31 +62,53 @@ export class HomeComponent implements AfterViewInit {
     this._HomeService.getAbout().subscribe((res: any) => {
       this.about = res.data.Setting;
     });
+    this._HomeService.whyus().subscribe({
+      next: (res) => {
+        this.whyUs = res.data.why_us;
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
+    this._HomeService.getContactUs().subscribe((res: any) => {
+      this.contactUs = res.data.contact_us;
+    });
   }
   setMetaTags(): void {
-    this.translate.get(['company_name', 'meta_description', 'meta_keywords']).subscribe(translations => {
-      this.titleService.setTitle(translations['company_name']);
+    this.translate
+      .get(['company_name', 'meta_description', 'meta_keywords'])
+      .subscribe((translations) => {
+        this.titleService.setTitle(translations['company_name']);
 
-      this.meta.updateTag({ name: 'description', content: translations['meta_description'] });
+        this.meta.updateTag({
+          name: 'description',
+          content: translations['meta_description'],
+        });
 
-      this.meta.updateTag({ name: 'keywords', content: translations['meta_keywords'] });
-    });
+        this.meta.updateTag({
+          name: 'keywords',
+          content: translations['meta_keywords'],
+        });
+      });
   }
   ngAfterViewInit() {
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          this.startCounter('yearsExperience', 8);
-          this.startCounter('happyClients', 100);
-          this.startCounter('completedProjects', 1000);
-          observer.unobserve(entry.target); 
+          this.startCounter('yearsExperience', this.contactUs.years_of_experience);
+          this.startCounter('happyClients', this.contactUs.happy_customers);
+          this.startCounter('completedProjects', this.contactUs.project_numbers);
+          observer.unobserve(entry.target);
         }
       });
     });
     observer.observe(this.numbersSection.nativeElement);
   }
 
-  startCounter(property: 'yearsExperience' | 'happyClients' | 'completedProjects', target: number) {
+  startCounter(
+    property: 'yearsExperience' | 'happyClients' | 'completedProjects',
+    target: number
+  ) {
     let current = 0;
     const step = Math.ceil(target / 100);
     const interval = setInterval(() => {

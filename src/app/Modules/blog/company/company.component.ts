@@ -4,6 +4,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { changelangService } from 'src/app/Services/changelang.service';
 import { TranslateService } from '@ngx-translate/core';
 import { CarouselComponent } from 'ngx-owl-carousel-o';
+import { HomeService } from 'src/app/Services/home.service';
 
 @Component({
   selector: 'app-company',
@@ -29,7 +30,7 @@ export class CompanyComponent {
     touchDrag: true,
     pullDrag: false,
     dots: false,
-    navSpeed: 1200,
+    navSpeed: 1000,
     responsive: {
       0: {
         items: 2,
@@ -50,11 +51,13 @@ export class CompanyComponent {
     nav: false,
   };
   currentLang: any;
+  partner:any;
   constructor(
     private Router: Router,
     private changelangService: changelangService,
     private _translate: TranslateService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private _HomeService:HomeService
   ) {}
   ngOnInit(): void {
     this.changelangService.currentLang$.subscribe((lang) => {
@@ -66,6 +69,14 @@ export class CompanyComponent {
       };
       this.cdr.detectChanges();
     });
+    this._HomeService.getpartners().subscribe({
+      next: (res) => {
+        this.partner = res.data.clients;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    })
   }
   onLanguageChange() {
     this.cdr.detectChanges();

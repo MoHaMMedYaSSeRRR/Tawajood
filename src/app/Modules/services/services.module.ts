@@ -16,6 +16,7 @@ import { ServicesoloutionsComponent } from './servicesoloutions/servicesoloution
 import { ProjectlifeComponent } from './projectlife/projectlife.component';
 import { DomainserviceComponent } from './domainservice/domainservice.component';
 import { MarketingserviceComponent } from './marketingservice/marketingservice.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { MarketingserviceComponent } from './marketingservice/marketingservice.c
   imports: [
     CommonModule,
     ServicesRoutingModule,
+    ReactiveFormsModule,
     CarouselModule,
     TranslateModule.forRoot({
         defaultLanguage: 'ar',

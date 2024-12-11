@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
 import { changelangService } from 'src/app/Services/changelang.service';
@@ -15,12 +15,14 @@ export class MobileDetailsComponent {
   @ViewChild('owlCarousel', { static: false }) owlCarousel!: CarouselComponent;
   isInComponent: boolean = false;
   isMobile = false;
-
+  project:any;
+  id:any
   constructor(
     private _ProjectsService: ProjectsService,
     private changelangService: changelangService,
     private _translate: TranslateService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private _ActivatedRoute:ActivatedRoute
   ) {}
   ngOnInit(): void {
     this.isMobile = window.innerWidth <= 768;
@@ -29,6 +31,21 @@ export class MobileDetailsComponent {
       this.currentLang = lang;
       this.cdr.detectChanges();
     });
+    this._ActivatedRoute.paramMap.subscribe({
+      next: (params) => {
+        this.id = params.get('id');
+        console.log(this.id);
+      }
+    })
+    this._ProjectsService.getDetails(this.id).subscribe({
+      next: (data) => {
+        this.project=data.data
+      console.log(data)
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    })
   }
   customOptions: OwlOptions = {
     loop: true,
