@@ -30,7 +30,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProjectlifeComponent,
     DomainserviceComponent,
     MarketingserviceComponent
-    ],
+    ], 
   imports: [
     CommonModule,
     ServicesRoutingModule,

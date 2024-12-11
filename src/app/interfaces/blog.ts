@@ -14,4 +14,7 @@ export interface Blog {
     image_one:string;
     image_two:string;
     image_three:string;
+    meta_keywords:any;
+    meta_description:any;
+    meta_title:any;
 }

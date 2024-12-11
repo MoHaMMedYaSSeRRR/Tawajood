@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Blog } from 'src/app/interfaces/blog';
 import { BlogService } from 'src/app/Services/blog.service';
 import { changelangService } from 'src/app/Services/changelang.service';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer, Meta, SafeHtml, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-blogdetails',
@@ -23,7 +23,9 @@ export class BlogdetailsComponent {
     private changelangService: changelangService,
     private _translate: TranslateService,
     private _ActivatedRoute: ActivatedRoute,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private meta:Meta , 
+    private title: Title,
   ) {}
   ngOnInit(): void {
     this.changelangService.currentLang$.subscribe((lang) => {
@@ -40,6 +42,9 @@ export class BlogdetailsComponent {
     this._BlogService.getBlogById(this.id).subscribe((res) => {
       console.log(res);
       this.blog =res.data;
+      this.title.setTitle(this.blog.meta_title);
+        this.meta.updateTag({ name: 'description', content: this.blog.meta_description });
+        this.meta.updateTag({ name: 'keywords', content: this.blog.meta_keywords });
       this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(this.blog.content);
     });
 

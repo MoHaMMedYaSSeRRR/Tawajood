@@ -1,148 +1,152 @@
-
+<section class="mt-0 secnav py-2 w-100">
+  <div
+    class="w-75 mx-auto"
+    [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+  >
+    <span>
+      <span>{{ "home" | translate }}</span> <span class="mx-2"> > </span
+      ><span>{{ "blog" | translate }}</span> <span class="mx-2"> > </span>
+      <span class="current"> {{ blog.title | cuttext : 3}} </span>
+    </span>
+  </div>
+</section>
 
 <section class="blogs my-md-4 my-3">
-    <div class="w-75 mx-auto">
-      <div class="row mt-2 w-100 mx-auto justify-content-between">
-        <div class="col-12 order-1">
-          <div class="item-image">
-            <img
-              [src]="blog.image_one
-              "
-              class="w-100"
-              alt=""
-            />
-          </div>
+  <div class="w-75 mx-auto">
+    <div class="row mt-2 w-100 mx-auto justify-content-between">
+      <div class="col-12 order-1">
+        <div class="item-image">
+          <img [src]="blog.image_one" class="w-100" alt="" />
         </div>
-        <div class="col-md-4 order-md-2 order-3 mt-3">
-          <div class="item" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">
-              <h5>
-                  المقالات الاخيرة
-              </h5>
-              <div class="row mt-2 gy-2 w-100 mx-auto justify-content-between">
-                  <div class="col-8">
-                      <div class="article-content">
-                          <p class="mb-1">
-                              تحسين محركات البحث لتعزيز وجود الأعمال عبر الإنترنت
-                          </p>
-                          <span>28 Nov, 2015</span>
-                      </div>
-                  </div>
-                  <div class="col-4">
-                     
-                      <div class="article-image">
-                          <img src="../../../../assets/images/article.jpg"  alt="">
-                      </div>
-                  </div>
-              </div>
-              <div class="row mt-2 gy-2 w-100 mx-auto justify-content-between">
-                  <div class="col-8">
-                      <div class="article-content">
-                          <p class="mb-1">
-                              تحسين محركات البحث لتعزيز وجود الأعمال عبر الإنترنت
-                          </p>
-                          <span>28 Nov, 2015</span>
-                      </div>
-                  </div>
-                  <div class="col-4">
-                     
-                      <div class="article-image">
-                          <img src="../../../../assets/images/article.jpg"  alt="">
-                      </div>
-                  </div>
-              </div>
-              <div class="row mt-2 gy-2 w-100 mx-auto justify-content-between">
-                  <div class="col-8">
-                      <div class="article-content">
-                          <p class="mb-1">
-                              تحسين محركات البحث لتعزيز وجود الأعمال عبر الإنترنت
-                          </p>
-                          <span>28 Nov, 2015</span>
-                      </div>
-                  </div>
-                  <div class="col-4">
-                     
-                      <div class="article-image">
-                          <img src="../../../../assets/images/article.jpg"  alt="">
-                      </div>
-                  </div>
-              </div>
-          </div>
-        </div>
-        <div class="col-md-8 order-md-3 order-2">
-          <div
-            [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
-            class="item-content mt-2"
-          >
-            <span>
-              <!-- {{item.created_at |date}} -->
-              {{blog.created_at | date}}
-              <i
-                [ngClass]="currentLang === 'ar' ? 'ms-2' : 'me-2'"
-                class="fa-regular fa-calendar"
-              ></i>
-            </span>
-            <h1 class="mt-2">
-              {{blog.title |cuttext:10}}
-            </h1>
-            <div [innerHTML]="sanitizedContent" class="mt-1"></div>
-
-            <div
-              class="quotes d-flex justify-content-center align-items-center p-md-3 p-5"
-            >
-              <h6>
-                التحول الرقمي المتسارع، أصبح تحسين محركات البحث (SEO) له دور بارز
-                في نجاح الأعمال عبر الإنترنت. يعتبر تحسين SEO من الاستراتيجيات
-                الأساسية التي تهدف إلى زيادة التواجد
-              </h6>
-              <img class="mx-3" src="../../../../assets/images/double-quotes-r 1.png" alt="" />
-            </div>
-            <p class="mt-1">
-              في عصر التحول الرقمي المتسارع، أصبح تحسين محركات البحث (SEO) له دور
-              بارز في نجاح الأعمال عبر الإنترنت. يعتبر تحسين SEO من الاستراتيجيات
-              الأساسية
-            </p>
-            <p class="mt-1">
-              في عصر التحول الرقمي المتسارع، أصبح تحسين محركات البحث (SEO) له دور
-              بارز في نجاح الأعمال عبر الإنترنت. يعتبر تحسين SEO من الاستراتيجيات
-              الأساسية
-            </p>
-            <p class="mt-1">
-              في عصر التحول الرقمي المتسارع، أصبح تحسين محركات البحث (SEO) له دور
-              بارز في نجاح الأعمال عبر الإنترنت. يعتبر تحسين SEO من الاستراتيجيات
-              الأساسية
-            </p>
-            <div class="row  w-100 mx-auto p-0 m-0 g-2 justify-content-between">
-              <div class="col-md-6">
-                <div class="image">
-                  <img
-                    [src]="blog.image_two"
-                    class="w-100"
-                    alt="blogdetails-2"
-                  />
-                </div>
-              </div>
-              <div class="col-md-6 ">
-                <div class="image">
-                  <img
-                    [src]="blog.image_three"
-                    class="w-100"
-                    alt="blogdetails-3"
-                  />
-                </div>
+      </div>
+      <div class="col-md-4 order-md-2 order-3 mt-3">
+        <div
+          class="item"
+          [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+        >
+          <h5>المقالات الاخيرة</h5>
+          <div class="row mt-2 gy-2 w-100 mx-auto justify-content-between">
+            <div class="col-8">
+              <div class="article-content">
+                <p class="mb-1">
+                  تحسين محركات البحث لتعزيز وجود الأعمال عبر الإنترنت
+                </p>
+                <span>28 Nov, 2015</span>
               </div>
             </div>
-            <p class="mt-1">
-              في عصر التحول الرقمي المتسارع، أصبح تحسين محركات البحث (SEO) له دور
-              بارز في نجاح الأعمال عبر الإنترنت. يعتبر تحسين SEO من الاستراتيجيات
-              الأساسية
-            </p>
-            <p class="mt-1">
-              في عصر التحول الرقمي المتسارع، أصبح تحسين محركات البحث (SEO) له دور
-              بارز في نجاح الأعمال عبر الإنترنت. يعتبر تحسين SEO من الاستراتيجيات
-              الأساسية
-            </p>
+            <div class="col-4">
+              <div class="article-image">
+                <img src="../../../../assets/images/article.jpg" alt="" />
+              </div>
+            </div>
+          </div>
+          <div class="row mt-2 gy-2 w-100 mx-auto justify-content-between">
+            <div class="col-8">
+              <div class="article-content">
+                <p class="mb-1">
+                  تحسين محركات البحث لتعزيز وجود الأعمال عبر الإنترنت
+                </p>
+                <span>28 Nov, 2015</span>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="article-image">
+                <img src="../../../../assets/images/article.jpg" alt="" />
+              </div>
+            </div>
+          </div>
+          <div class="row mt-2 gy-2 w-100 mx-auto justify-content-between">
+            <div class="col-8">
+              <div class="article-content">
+                <p class="mb-1">
+                  تحسين محركات البحث لتعزيز وجود الأعمال عبر الإنترنت
+                </p>
+                <span>28 Nov, 2015</span>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="article-image">
+                <img src="../../../../assets/images/article.jpg" alt="" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <div class="col-md-8 order-md-3 order-2">
+        <div
+          [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+          class="item-content mt-2"
+        >
+          <span>
+            <!-- {{item.created_at |date}} -->
+            {{ blog.created_at | date }}
+            <i
+              [ngClass]="currentLang === 'ar' ? 'ms-2' : 'me-2'"
+              class="fa-regular fa-calendar"
+            ></i>
+          </span>
+          <h1 class="mt-2">
+            {{ blog.title | cuttext : 10 }}
+          </h1>
+          <div [innerHTML]="sanitizedContent" class="mt-1"></div>
+
+          <div
+            class="quotes d-flex justify-content-center align-items-center p-md-3 p-5"
+          >
+            <h6>
+              التحول الرقمي المتسارع، أصبح تحسين محركات البحث (SEO) له دور بارز
+              في نجاح الأعمال عبر الإنترنت. يعتبر تحسين SEO من الاستراتيجيات
+              الأساسية التي تهدف إلى زيادة التواجد
+            </h6>
+            <img
+              class="mx-3"
+              src="../../../../assets/images/double-quotes-r 1.png"
+              alt=""
+            />
+          </div>
+          <p class="mt-1">
+            في عصر التحول الرقمي المتسارع، أصبح تحسين محركات البحث (SEO) له دور
+            بارز في نجاح الأعمال عبر الإنترنت. يعتبر تحسين SEO من الاستراتيجيات
+            الأساسية
+          </p>
+          <p class="mt-1">
+            في عصر التحول الرقمي المتسارع، أصبح تحسين محركات البحث (SEO) له دور
+            بارز في نجاح الأعمال عبر الإنترنت. يعتبر تحسين SEO من الاستراتيجيات
+            الأساسية
+          </p>
+          <p class="mt-1">
+            في عصر التحول الرقمي المتسارع، أصبح تحسين محركات البحث (SEO) له دور
+            بارز في نجاح الأعمال عبر الإنترنت. يعتبر تحسين SEO من الاستراتيجيات
+            الأساسية
+          </p>
+          <div class="row w-100 mx-auto p-0 m-0 g-2 justify-content-between">
+            <div class="col-md-6">
+              <div class="image">
+                <img [src]="blog.image_two" class="w-100" alt="blogdetails-2" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="image">
+                <img
+                  [src]="blog.image_three"
+                  class="w-100"
+                  alt="blogdetails-3"
+                />
+              </div>
+            </div>
+          </div>
+          <p class="mt-1">
+            في عصر التحول الرقمي المتسارع، أصبح تحسين محركات البحث (SEO) له دور
+            بارز في نجاح الأعمال عبر الإنترنت. يعتبر تحسين SEO من الاستراتيجيات
+            الأساسية
+          </p>
+          <p class="mt-1">
+            في عصر التحول الرقمي المتسارع، أصبح تحسين محركات البحث (SEO) له دور
+            بارز في نجاح الأعمال عبر الإنترنت. يعتبر تحسين SEO من الاستراتيجيات
+            الأساسية
+          </p>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
+</section>

@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
@@ -22,7 +23,9 @@ export class MobileDetailsComponent {
     private changelangService: changelangService,
     private _translate: TranslateService,
     private cdr: ChangeDetectorRef,
-    private _ActivatedRoute:ActivatedRoute
+    private _ActivatedRoute:ActivatedRoute , 
+    private title: Title,
+    private meta: Meta,
   ) {}
   ngOnInit(): void {
     this.isMobile = window.innerWidth <= 768;
@@ -39,8 +42,10 @@ export class MobileDetailsComponent {
     })
     this._ProjectsService.getDetails(this.id).subscribe({
       next: (data) => {
-        this.project=data.data
-      console.log(data)
+        this.project=data.data;
+        this.title.setTitle(this.project.meta_title);
+        this.meta.updateTag({ name: 'description', content: this.project.meta_description });
+        this.meta.updateTag({ name: 'keywords', content: this.project.meta_keywords });
       },
       error: (error) => {
         console.log(error);

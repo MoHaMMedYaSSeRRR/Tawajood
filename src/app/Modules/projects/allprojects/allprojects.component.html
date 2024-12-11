@@ -1,3 +1,14 @@
+<section *ngIf="isInComponent" class="mt-0 secnav py-2 w-100">
+  <div
+    class="w-75 mx-auto"
+    [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+  >
+    <span>
+      <span>{{ "home" | translate }}</span> <span class="mx-2"> > </span
+      ><span class="current">{{ "projects" | translate }}</span>
+    </span>
+  </div>
+</section>
 <section class="projects my-md-4 my-3">
   <div class="w-75 mx-auto">
     <div
@@ -40,10 +51,15 @@
       <span role="button" routerLink="/projects" *ngIf="!isInComponent">
         {{ "view_all" | translate }}
       </span>
-      <h2 *ngIf="url == '/projects' || url == '/home'">
+      <h2     [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+      *ngIf="url == '/projects' || url == '/home'">
         {{ "our_works" | translate }}
       </h2>
-      <h2 class="px-0 text-end" *ngIf="url !== '/projects' && url !== '/home'">
+      <h2
+        [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+        class="px-0"
+        *ngIf="url !== '/projects' && url !== '/home'"
+      >
         {{ "related_works" | translate }}
       </h2>
     </div>
@@ -53,9 +69,13 @@
           <div
             class="item-img w-100 d-flex justify-content-center align-items-center"
           >
-            <img [routerLink]="['/mobile',item.id]" [src]="item.home_screen" alt="" />
+            <img
+              [routerLink]="['/mobile', item.id]"
+              [src]="item.home_screen"
+              alt=""
+            />
           </div>
-          <h4 [routerLink]="['/mobile',item.id]">{{ item.name }}</h4>
+          <h4 [routerLink]="['/mobile', item.id]">{{ item.name }}</h4>
         </div>
       </div>
       <!-- <div class="col-md-4">

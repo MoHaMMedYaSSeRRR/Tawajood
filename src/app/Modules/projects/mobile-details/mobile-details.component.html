@@ -1,3 +1,16 @@
+<section class="mt-0 secnav py-2 w-100">
+  <div
+    class="w-75 mx-auto"
+    [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+  >
+    <span>
+      <span>{{ "home" | translate }}</span> <span class="mx-2"> > </span
+      ><span>{{ "projects" | translate }}</span> <span class="mx-2"> > </span>
+      <span class="current"> {{ 'projectDetails' | translate}} </span>
+    </span>
+  </div>
+</section>
+
 <section class="mobile my-md-5 my-3">
   <div class="w-75 mx-auto">
     <div class="row w-100 mx-auto align-items-center justify-content-between">

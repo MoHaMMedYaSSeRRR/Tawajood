@@ -6,6 +6,7 @@ import { ServicesService } from 'src/app/Services/services.service';
 import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
 import { SoloutionsService } from 'src/app/Services/soloutions.service';
 import { ActivatedRoute } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-soloution-details',
@@ -24,7 +25,9 @@ export class SoloutionDetailsComponent {
     private changelangService: changelangService,
     private _translate: TranslateService,
     private _SoloutionsService: SoloutionsService,
-    private _ActivatedRoute: ActivatedRoute
+    private _ActivatedRoute: ActivatedRoute,
+    private meta:Meta,
+    private title: Title,
   ) {}
   soloution: any;
   id: any;
@@ -44,6 +47,9 @@ export class SoloutionDetailsComponent {
     this._SoloutionsService.getSoloutionsByid(this.id).subscribe({
       next: (res) => {
         this.soloution = res.data;
+        this.title.setTitle(this.soloution.meta_title);
+        this.meta.updateTag({ name: 'description', content: this.soloution.meta_description });
+        this.meta.updateTag({ name: 'keywords', content: this.soloution.meta_keywords });
         if (this.soloution.specifications) {
           this.soloution.specifications = this.stripHtml(
             this.soloution.specifications

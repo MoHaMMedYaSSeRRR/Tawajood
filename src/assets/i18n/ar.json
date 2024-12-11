@@ -82,7 +82,10 @@
   "salary": "الراتب المتوقع",
   "notice_period": "فترة الاشعار",
   "about_you": "أخبرنا عن نفسك",
-  "get_quote": "احصل على عرض سعر"
+  "get_quote": "احصل على عرض سعر",
+  "jobDetails" :" تفاصيل الوظيفة",
+  "applyToJob" : "التقديم علي وظيفة" ,
+  "projectDetails": "تفاصيل المشروع"
 
 
 }

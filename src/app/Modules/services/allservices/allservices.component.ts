@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
@@ -19,7 +20,9 @@ isInComponent:boolean = false;
 constructor(private cdr: ChangeDetectorRef , 
   private changelangService: changelangService ,
   private _translate:TranslateService,private router: Router,
-  private _ServicesService:ServicesService
+  private _ServicesService:ServicesService,
+  private meta: Meta,
+  private title: Title, 
 ) {}
 isMobile=false;
   services:Service[]=[];
@@ -36,7 +39,10 @@ ngOnInit(): void {
   this._ServicesService.getServices().subscribe(
     (res) => { 
      this.services =res.data.services;
-     console.log(this.services)
+    //  this.title.setTitle(this.services.meta_title);
+    //  this.meta.updateTag({ name: 'description', content: this.services.meta_description });
+    //  this.meta.updateTag({ name: 'keywords', content: this.services.meta_keywords });
+     console.log(res.data)
      this.services= (this.index === 6) ? this.services.slice(0, 6) : this.services;
     }
   );

@@ -1,3 +1,15 @@
+<section *ngIf="isInComponent" class="mt-0 secnav py-2 w-100">
+  <div
+    class="w-75 mx-auto"
+    [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+  >
+    <span>
+      <span>{{ "home" | translate }}</span> <span class="mx-2"> > </span
+      ><span class="current">{{ "solutions" | translate }}</span>
+    </span>
+  </div>
+</section>
+
 <section class="solutions my-md-4 my-3">
   <div class="w-75 mx-auto">
     <div class="d-flex justify-content-between align-items-center px-3">

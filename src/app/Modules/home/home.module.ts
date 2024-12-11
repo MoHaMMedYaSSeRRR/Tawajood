@@ -45,7 +45,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ] ,
   exports: [
     NavbarComponent,
-    FooterComponent
+    FooterComponent 
   ]
 })
 export class HomeModule { }

@@ -15,7 +15,7 @@ import { WepDetailsComponent } from './wep-details/wep-details.component';
   declarations: [
     AllprojectsComponent,
     MobileDetailsComponent,
-    WepDetailsComponent
+    WepDetailsComponent 
   ],
   imports: [
     CommonModule,

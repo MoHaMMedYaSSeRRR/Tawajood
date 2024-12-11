@@ -1,3 +1,14 @@
+<section class="mt-0 secnav py-2 w-100">
+  <div
+    class="w-75 mx-auto"
+    [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+  >
+    <span>
+      <span>{{ "home" | translate }}</span> <span class="mx-2"> > </span
+      ><span class="current">{{ "contactUs" | translate }}</span>
+    </span>
+  </div>
+</section>
 <section
   [ngClass]="{ bg: !isInComponent }"
   class="contact mt-md-4 mt-3 p-md-5 py-3"

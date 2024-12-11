@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
@@ -21,7 +22,9 @@ export class AllsolutionsComponent {
     private cdr: ChangeDetectorRef , 
   private changelangService: changelangService ,
   private _translate:TranslateService,
-  private _SoloutionsService:SoloutionsService
+  private _SoloutionsService:SoloutionsService,
+  private meta: Meta,
+    private title: Title,
   ){
   }
   checkRoute(): void {
@@ -43,7 +46,9 @@ export class AllsolutionsComponent {
     this._SoloutionsService.getSoloutions().subscribe({
       next: (res) => {
         this.solutions = res.data.solutions;
-        console.log(res);
+        this.title.setTitle(this.solutions.meta_title);
+        this.meta.updateTag({ name: 'description', content: this.solutions.meta_description });
+        this.meta.updateTag({ name: 'keywords', content: this.solutions.meta_keywords });
       },
       error: (error) => {
         console.log(error);

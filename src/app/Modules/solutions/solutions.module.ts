@@ -12,7 +12,7 @@ import { ProjectsModule } from "../projects/projects.module";
 
 
 @NgModule({
-  declarations: [
+  declarations: [ 
     AllsolutionsComponent,
     SoloutionDetailsComponent
   ],

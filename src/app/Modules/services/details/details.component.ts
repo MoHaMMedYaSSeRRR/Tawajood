@@ -27,9 +27,9 @@ export class DetailsComponent {
     private _ActivatedRoute: ActivatedRoute,
     private _HomeService:HomeService,
     private meta: Meta,
-    private title: Title,
+    private title: Title, 
   ) {}
-  isMobile = false;
+  isMobile = false; 
   services: Service[] = [];
   ngOnInit(): void {
     this.isMobile = window.innerWidth <= 768;
