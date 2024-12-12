@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Meta, Title } from '@angular/platform-browser';
+import { DomSanitizer, Meta, SafeHtml, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Service } from 'src/app/interfaces/service';
@@ -21,6 +21,7 @@ export class ContactComponent {
   showCodeDropdown = true;
   phoneNumber = '';
   isInComponent: boolean = false;
+  sanitizedContent: SafeHtml | null = null;
 
 
   countries = [
@@ -131,7 +132,9 @@ export class ContactComponent {
     private _translate: TranslateService,
     private cdr: ChangeDetectorRef,
     private _ServicesService:ServicesService,
-    private router: Router
+    private router: Router,
+    private sanitizer: DomSanitizer,
+
 
   ) {}
  

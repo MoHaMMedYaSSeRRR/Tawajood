@@ -24,8 +24,23 @@
           class="item"
           [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
         >
-          <h5>المقالات الاخيرة</h5>
+          <h5>{{'lastblogs'|translate}}</h5>
           <div class="row mt-2 gy-2 w-100 mx-auto justify-content-between">
+            <div class="col-8">
+              <div class="article-content">
+                <p class="mb-1">
+                  تحسين محركات البحث لتعزيز وجود الأعمال عبر الإنترنت
+                </p>
+                <span>28 Nov, 2015</span>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="article-image">
+                <img src="../../../../assets/images/article.jpg" alt="" />
+              </div>
+            </div>
+          </div>
+          <!-- <div class="row mt-2 gy-2 w-100 mx-auto justify-content-between">
             <div class="col-8">
               <div class="article-content">
                 <p class="mb-1">
@@ -54,22 +69,7 @@
                 <img src="../../../../assets/images/article.jpg" alt="" />
               </div>
             </div>
-          </div>
-          <div class="row mt-2 gy-2 w-100 mx-auto justify-content-between">
-            <div class="col-8">
-              <div class="article-content">
-                <p class="mb-1">
-                  تحسين محركات البحث لتعزيز وجود الأعمال عبر الإنترنت
-                </p>
-                <span>28 Nov, 2015</span>
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="article-image">
-                <img src="../../../../assets/images/article.jpg" alt="" />
-              </div>
-            </div>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="col-md-8 order-md-3 order-2">

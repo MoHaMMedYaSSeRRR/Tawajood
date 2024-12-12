@@ -18,4 +18,5 @@ export interface Blog {
     meta_description:any;
     meta_title:any;
     secondary_content:any;
+    last_blogs:any;
 }

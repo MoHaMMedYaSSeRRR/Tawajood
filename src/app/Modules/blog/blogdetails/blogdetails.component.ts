@@ -17,6 +17,7 @@ export class BlogdetailsComponent {
   blog:Blog={} as Blog;
   sanitizedContent: SafeHtml | null = null;
   secondContent!: SafeHtml;
+  thirdContent!: SafeHtml
 
   constructor(
     private _BlogService: BlogService,
