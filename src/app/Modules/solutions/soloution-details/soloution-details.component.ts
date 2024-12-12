@@ -47,6 +47,7 @@ export class SoloutionDetailsComponent {
     this._SoloutionsService.getSoloutionsByid(this.id).subscribe({
       next: (res) => {
         this.soloution = res.data;
+        console.log(res.data)
         this.title.setTitle(this.soloution.meta_title);
         this.meta.updateTag({ name: 'description', content: this.soloution.meta_description });
         this.meta.updateTag({ name: 'keywords', content: this.soloution.meta_keywords });
