@@ -16,6 +16,7 @@ export class BlogdetailsComponent {
   id:any;
   blog:Blog={} as Blog;
   sanitizedContent: SafeHtml | null = null;
+  secondContent!: SafeHtml;
 
   constructor(
     private _BlogService: BlogService,
@@ -46,6 +47,8 @@ export class BlogdetailsComponent {
         this.meta.updateTag({ name: 'description', content: this.blog.meta_description });
         this.meta.updateTag({ name: 'keywords', content: this.blog.meta_keywords });
       this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(this.blog.content);
+      this.secondContent = this.sanitizer.bypassSecurityTrustHtml(this.blog.secondary_content);
+
     });
 
   }

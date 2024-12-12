@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 import { changelangService } from 'src/app/Services/changelang.service';
 import { ServicesService } from 'src/app/Services/services.service';
 
@@ -14,17 +15,18 @@ export class QuestionsComponent {
   @Input() id!: number; // Add the Input property to receive 'id'
   faqs :any;
   faqForm:FormGroup = new FormGroup({
-    service_id:new FormControl(),
-    the_topic:new FormControl(),
-    email :new FormControl(),
-    message :new FormControl(),
+    service_id:new FormControl(null , [Validators.required]),
+    the_topic:new FormControl(null , [Validators.required]),
+    email :new FormControl(null , [Validators.required]),
+    message :new FormControl(null , [Validators.required]),
   })
   
   constructor(
     private changelangService: changelangService,
     private _translate: TranslateService,
     private cdr: ChangeDetectorRef,
-    private _ServicesService: ServicesService
+    private _ServicesService: ServicesService,
+    private _ToastrService:ToastrService
   ) {}
   ngOnInit(): void {
     this.changelangService.currentLang$.subscribe((lang) => {
@@ -42,6 +44,8 @@ export class QuestionsComponent {
         console.log(this.faqs);
       },
     });
+    this.faqForm.controls['service_id'].setValue(this.id);
+
   }
   stripHtml(html: string): string {
     if (!html) {
@@ -59,11 +63,10 @@ export class QuestionsComponent {
     faq.open = !faq.open;
   }
   onSubmit() {
-    this.faqForm.controls['service_id'].setValue(this.id);
-    // console.log(this.faqForm.value);
-    this._ServicesService.askForSupport(this.faqForm.value).subscribe({
+     this._ServicesService.askForSupport(this.faqForm.value).subscribe({
       next: (res) => {
         console.log(res);
+        this._ToastrService.success(res.message)
       },
       error: (err) => {
         console.log(err);

@@ -1,3 +1,4 @@
+import { ToastrModule } from 'ngx-toastr';
 import { CuttextPipe } from './../../pipes/cuttext.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -36,6 +37,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ServicesRoutingModule,
     ReactiveFormsModule,
     CarouselModule,
+    ToastrModule.forRoot(),
     TranslateModule.forRoot({
         defaultLanguage: 'ar',
         loader: {

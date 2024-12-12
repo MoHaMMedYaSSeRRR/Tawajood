@@ -5,37 +5,38 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeModule } from './Modules/home/home.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http'; // Add HttpClientModule
+import {
+  HttpClientModule,
+  HttpClient,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http'; // Add HttpClientModule
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    HttpClientModule, 
+    HttpClientModule,
     BrowserModule,
-    BrowserAnimationsModule ,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
     TranslateModule.forRoot({
-      defaultLanguage: 'ar', 
+      defaultLanguage: 'ar',
       loader: {
         provide: TranslateLoader,
         useFactory: (http: HttpClient) => new TranslateHttpLoader(http),
         deps: [HttpClient],
       },
     }),
-    HomeModule
+    HomeModule,
   ],
-  exports: [
-  ],
+  exports: [],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: LangInterceptor, multi: true },
-
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

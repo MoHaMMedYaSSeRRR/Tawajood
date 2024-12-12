@@ -123,7 +123,8 @@ export class ContactComponent {
     { code: '375', flag: '🇧🇾', name: 'Belarus' },
     { code: '376', flag: '🇦🇩', name: 'Andorra' },
     { code: '377', flag: '🇲🇨', name: 'Monaco' },
-    { code: '378', flag: '🇸🇲', name: 'San Marino' }]
+    { code: '378', flag: '🇸🇲', name: 'San Marino' }
+  ]
 
   constructor(
     private changelangService: changelangService,
@@ -133,6 +134,7 @@ export class ContactComponent {
     private router: Router
 
   ) {}
+ 
   ngOnInit(): void {
     this.changelangService.currentLang$.subscribe((lang) => {
       this._translate.use(lang);
@@ -156,10 +158,11 @@ export class ContactComponent {
     this.cdr.detectChanges();
   }
   contactForm: FormGroup = new FormGroup({
+    service_id: new FormControl(1, Validators.required),
     name: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', Validators.required),
-    service: new FormControl('', Validators.required),
+    country_code: new FormControl('+20', Validators.required),
     message: new FormControl('')
   });
   onSubmit() {
@@ -168,8 +171,6 @@ export class ContactComponent {
       // Process form data here
     }
   }
-  
-
 toggleDropdown() {
   this.showDropdown = !this.showDropdown;
   

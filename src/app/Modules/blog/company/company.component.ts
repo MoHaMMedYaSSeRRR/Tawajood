@@ -30,7 +30,7 @@ export class CompanyComponent {
     touchDrag: true,
     pullDrag: false,
     dots: false,
-    navSpeed: 1000,
+    navSpeed: 500,
     responsive: {
       0: {
         items: 2,

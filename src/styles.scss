@@ -51,3 +51,13 @@ button:disabled {
     color: #4584c5;
   }
 }
+section{
+  margin-top: 64px !important;
+  margin-bottom: 64px !important;
+}
+@media (max-width:768px) {
+  section{
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
+  }
+}

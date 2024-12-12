@@ -17,4 +17,10 @@ export class HirringService {
       job_id:id
     })
   }
+  askForSupport(data: any): Observable<any> {
+    return this._HttpClient.post(
+      'https://newcompanywebsite.tawajood.com/api/apply_now',
+      data
+    );
+  }
 }

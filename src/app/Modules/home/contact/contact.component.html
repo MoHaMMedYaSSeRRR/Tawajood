@@ -23,7 +23,7 @@
     <div class="row mt-2 p-0 m-0 w-100 mx-auto justify-content-between">
       <div class="col-md-7">
         <div class="form">
-          <form>
+          <form [formGroup]="contactForm" (submit)="onSubmit()">
             <div class="row g-4 w-100 mx-auto">
               <div class="col-md-6">
                 <input

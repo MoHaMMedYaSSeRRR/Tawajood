@@ -52,14 +52,35 @@
               [class.is-invalid]="applicationForm.get('name')?.invalid && applicationForm.get('name')?.touched"
               required
             />
-             <input
-              type="text"
-              class="form-control"
-              placeholder="{{ 'phone' | translate }}"
-              formControlName="phone"
-              [class.is-invalid]="applicationForm.get('phone')?.invalid && applicationForm.get('phone')?.touched"
-              required
-            />
+            <div class="group">
+              <!-- Arrow button to toggle dropdown -->
+              <span  role="button" (click)="toggleDropdown()" class="arrow position-absolute">
+                &#9662;
+              </span>
+            
+              <!-- Country Code Display -->
+              <span class="code">
+                {{ selectedCountry.code }} <!-- Display the selected country's code -->
+              </span>
+            
+              <!-- Dropdown menu for country selection -->
+              <div *ngIf="isDropdownOpen" class="country-dropdown">
+                <div *ngFor="let country of countryCodes" (click)="selectCountry(country)" class="dropdown-item">
+                  {{ country.name }} ({{ country.code }}) <!-- Display country name and code -->
+                </div>
+              </div>
+            
+              <!-- Phone Input -->
+              <input
+                type="text"
+                class="form-control"
+                placeholder="{{ 'phone' | translate }}"
+                formControlName="phone"
+                [class.is-invalid]="applicationForm.get('phone')?.invalid && applicationForm.get('phone')?.touched"
+                required
+              />
+            </div>
+            
            </div>
           <div class="form-row">
             <input

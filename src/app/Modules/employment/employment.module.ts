@@ -11,6 +11,7 @@ import { JobdettailsComponent } from './jobdettails/jobdettails.component';
 import { CuttextPipe } from 'src/app/pipes/cuttext.pipe';
 import { ApplyjobComponent } from './applyjob/applyjob.component';
 import { ServicesModule } from '../services/services.module';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ServicesModule } from '../services/services.module';
     ServicesModule,
     ReactiveFormsModule,
     EmploymentRoutingModule,
+    ToastrModule.forRoot(),
      TranslateModule.forRoot({
       defaultLanguage: 'ar',
       loader: {
