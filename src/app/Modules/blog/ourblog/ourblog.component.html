@@ -15,7 +15,7 @@
       *ngIf="!isInComponent"
       class="d-flex justify-content-between in align-items-center px-3"
     >
-      <span role="button" routerLink="/projects" *ngIf="!isInComponent">
+      <span role="button" routerLink="/ourblogs" *ngIf="!isInComponent">
         {{ "view_all" | translate }}
       </span>
       <h2 [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">
@@ -70,7 +70,7 @@
             <span class="marketing position-absolute">
               {{ item.topic.name }}
             </span>
-            <img [src]="item.image" class="w-100" alt="blogPhot" />
+            <img role="button" [routerLink]="['/blogdetails', item.id]" [src]="item.image" class="w-100" alt="blogPhot" />
           </div>
           <div
             [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
@@ -85,9 +85,7 @@
             </span>
             <h5 class="mt-2">{{ item.title | cuttext : 10 }}</h5>
             <p class="mt-1">
-              في عصر التحول الرقمي المتسارع، أصبح تحسين محركات البحث (SEO) له
-              دور بارز في نجاح الأعمال عبر الإنترنت. يعتبر تحسين SEO من
-              الاستراتيجيات الأساسية
+              {{item.plainDescription |  cuttext : 15 }}
             </p>
             <button
               [routerLink]="['/blogdetails', item.id]"

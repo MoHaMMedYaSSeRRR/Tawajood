@@ -47,7 +47,7 @@ export class ApplyjobComponent {
     expected_salary: new FormControl(null, Validators.required),
     years_of_experience: new FormControl(null, Validators.required),
     protfolio_link: new FormControl(null),
-    notice_period: new FormControl(null, Validators.required),
+    notice_period: new FormControl(null,),
     linkedin_link: new FormControl(null),
     tell_us: new FormControl(null),
     cv: new FormControl(null, Validators.required),

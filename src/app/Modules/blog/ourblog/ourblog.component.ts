@@ -50,13 +50,31 @@ export class OurblogComponent {
     });
     this._BlogService.getAllBlog().subscribe({
       next: (res) => {
-        this.allBlogs = res.data.blogs;
-        this.filteredBlogs = [...this.allBlogs];
         console.log(res)
+        this.allBlogs = res.data.blogs.map((blog:Blog) => ({
+          ...blog,
+          plainDescription: this.stripHtmlAndExtractFirstP(blog.description)
+        }));
+        this.filteredBlogs = [...this.allBlogs];
       },
+      error: (err) => {
+        console.error('Error fetching blogs:', err);
+      }
     });
     this.checkRoute();
   }
+  stripHtmlAndExtractFirstP(html: string): string {
+    if (!html) return ''; // Return an empty string if no HTML content is provided
+  
+    // Use DOMParser to safely parse the HTML and extract the first <p> tag's text
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const firstP = doc.querySelector('p'); // Select the first <p> tag
+  
+    // Return the text content of the first <p> tag or an empty string if not found
+    return firstP ? firstP.textContent?.trim() || '' : '';
+  }
+  
   setMetaTags(): void {
     this.translate
       .get(['blog_name', 'blog_description', 'blog_keyword'])

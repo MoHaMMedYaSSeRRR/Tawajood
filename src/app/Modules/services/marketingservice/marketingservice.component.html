@@ -30,7 +30,7 @@
           <p>
             {{ service.content }}
           </p>
-          <a href="https://wa.me/201024848723" target="_blank">
+          <a routerLink="/contactus" target="_blank">
             <button class="border-0">
               {{ "requestServiceNow" | translate }}
             </button></a
@@ -39,7 +39,7 @@
       </div>
     </div>
 
-    <div class="social mt-5 pt-5">
+    <div class="social mt-5  pt-5">
       <div class="row w-100 justify-content-between g-3 mx-auto g-3">
         <div *ngFor="let item of service.sub_services" class="col-md-6">
           <div
