@@ -4,8 +4,8 @@
     [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
   >
     <span>
-      <span>{{ "home" | translate }}</span> <span class="mx-2"> > </span
-      ><span>{{ "blog" | translate }}</span> <span class="mx-2"> > </span>
+      <span role="button" routerLink="/home">{{ "home" | translate }}</span> <span class="mx-2"> > </span
+      ><span role="button" routerLink="/ourblog">{{ "blog" | translate }}</span> <span class="mx-2"> > </span>
       <span class="current"> {{ blog.title | cuttext : 3}} </span>
     </span>
   </div>
@@ -89,7 +89,7 @@
           </h1>
           <div [innerHTML]="sanitizedContent" class="mt-1"></div>
 
-          <div
+          <!-- <div
             class="quotes d-flex justify-content-center align-items-center p-md-3 p-5"
           >
             <h6>
@@ -102,7 +102,7 @@
               src="../../../../assets/images/double-quotes-r 1.png"
               alt=""
             />
-          </div>
+          </div> -->
           <div [innerHTML]="secondContent" class="mt-1"></div>
 
           <div class="row w-100 mx-auto p-0 m-0 g-2 justify-content-between">

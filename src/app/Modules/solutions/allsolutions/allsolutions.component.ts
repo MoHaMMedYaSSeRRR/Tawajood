@@ -33,7 +33,7 @@ export class AllsolutionsComponent {
       this.isInComponent = this.router.url === '/solutions';
     });
   }
-  solutions: any;
+  solutions: any[] = [];;
   ngOnInit(): void {
     this.setMetaTags();
     this.checkRoute();

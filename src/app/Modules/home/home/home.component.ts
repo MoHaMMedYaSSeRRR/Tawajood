@@ -29,7 +29,7 @@ export class HomeComponent implements AfterViewInit {
   yearsExperience = 0;
   happyClients = 0;
   completedProjects = 0;
-  whyUs: any;
+  whyUs: any[] =[];
   contactUs: any;
 
   constructor(
@@ -43,7 +43,6 @@ export class HomeComponent implements AfterViewInit {
   ) {}
 
   ngOnInit(): void {
-    this.setMetaTags();
     this.changelangService.currentLang$.subscribe((lang) => {
       this._translate.use(lang);
       this.currentLang = lang;
@@ -65,6 +64,7 @@ export class HomeComponent implements AfterViewInit {
     this._HomeService.whyus().subscribe({
       next: (res) => {
         this.whyUs = res.data.why_us;
+        console.log(this.whyUs);
       },
       error: (err) => {
         console.error(err);
@@ -73,7 +73,9 @@ export class HomeComponent implements AfterViewInit {
     this._HomeService.getContactUs().subscribe((res: any) => {
       this.contactUs = res.data.contact_us;
     });
+    this.setMetaTags();
   }
+
   setMetaTags(): void {
     this.translate
       .get(['company_name', 'meta_description', 'meta_keywords'])
@@ -95,14 +97,21 @@ export class HomeComponent implements AfterViewInit {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          this.startCounter('yearsExperience', this.contactUs.years_of_experience);
+          this.startCounter(
+            'yearsExperience',
+            this.contactUs.years_of_experience
+          );
           this.startCounter('happyClients', this.contactUs.happy_customers);
-          this.startCounter('completedProjects', this.contactUs.project_numbers);
+          this.startCounter(
+            'completedProjects',
+            this.contactUs.project_numbers
+          );
           observer.unobserve(entry.target);
         }
       });
     });
     observer.observe(this.numbersSection.nativeElement);
+    this.setMetaTags();
   }
 
   startCounter(

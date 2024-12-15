@@ -8,5 +8,11 @@ import { changelangService } from './Services/changelang.service';
 })
 export class AppComponent {
   title = 'Tawagood';
+  isMobile = false;
+
+  ngOnInit(): void {
+    this.isMobile = window.innerWidth <= 768;
+    
+  }
 
 }

@@ -1,1 +1,27 @@
-<p>notfound works!</p>
+<section>
+  <div class="w-75 mx-auto d-flex flex-column justify-content-center align-items-center">
+    <div class="image">
+      <img
+        src="../../../../assets/images/Oops! 404 Error with a broken robot-rafiki (1) 1.png"
+        class="w-100"
+        alt=""
+      />
+    </div>
+    <div class="content text-center">
+      <h3>404, Page not founds</h3>
+      <p class="w-50 text-center mx-auto">
+        Something went wrong. It’s look that your requested could not be found.
+        It’s look like the link is broken or the page is removed.
+      </p>
+      <div class="buttons">
+        <button routerLink="/home" class="mx-2 btn-2">
+            {{'gotohomepage'|translate}}
+        </button>
+        <button class="btn-1" (click)="goBack()">
+            {{ 'back' | translate }}
+          </button>
+          
+      </div>
+    </div>
+  </div>
+</section>

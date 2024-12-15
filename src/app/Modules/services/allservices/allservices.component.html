@@ -4,8 +4,8 @@
     [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
   >
     <span>
-      <span>{{ "home" | translate }}</span> <span class="mx-2"> > </span
-      ><span class="current" >{{ "services" | translate }}</span> 
+      <span routerLink="/home" role="button">{{ "home" | translate }}</span> <span class="mx-2"> > </span
+      ><span class="current"  >{{ "services" | translate }}</span> 
     </span>
   </div>
 </section>

@@ -4,8 +4,8 @@
     [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
   >
     <span>
-      <span>{{ "home" | translate }}</span> <span class="mx-2"> > </span
-      ><span>{{ "employment" | translate }}</span> <span class="mx-2"> > </span>
+      <span role="button" routerLink="/home">{{ "home" | translate }}</span> <span class="mx-2"> > </span
+      ><span role="button" routerLink="/hirring">{{ "employment" | translate }}</span> <span class="mx-2"> > </span>
       <span class="current"> {{ 'applyToJob' | translate}} </span>
     </span>
   </div>

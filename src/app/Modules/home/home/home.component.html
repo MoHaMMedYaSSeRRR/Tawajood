@@ -62,7 +62,7 @@
               نحو التحول الرقمي
             </p> -->
 
-            <a href="https://wa.me/201024848723" target="_blank">
+            <a routerLink="/contact" target="_blank">
               <button class="border-0 mt-3">
                 {{ "request_free_consultation" | translate }}
               </button>
@@ -85,7 +85,7 @@
           >
             <img class="position-absolute" [src]="item.icon" alt="" />
             <h4>{{ item.title }}</h4>
-            <p class="mt-2">{{ "projects_content" | translate }}</p>
+            <p class="mt-2">{{item.content }}</p>
           </div>
         </div>
       </ng-container>
@@ -107,7 +107,7 @@
           >
             <img class="position-absolute" [src]="item.icon" alt="" />
             <h4>{{ item.title }}</h4>
-            <p class="mt-2">{{ "projects_content" | translate }}</p>
+            <p class="mt-2">{{ item.content }}</p>
           </div>
         </div>
       </ng-container>
