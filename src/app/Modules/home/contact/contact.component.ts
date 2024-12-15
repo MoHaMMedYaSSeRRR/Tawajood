@@ -3,26 +3,29 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DomSanitizer, Meta, SafeHtml, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 import { Service } from 'src/app/interfaces/service';
 import { changelangService } from 'src/app/Services/changelang.service';
+import { HomeService } from 'src/app/Services/home.service';
 import { ServicesService } from 'src/app/Services/services.service';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+  styleUrls: ['./contact.component.scss'],
 })
 export class ContactComponent {
   currentLang: any;
   selectedCountryCode = '+20'; // Default to Egypt
   showDropdown = false;
-  allServices:Service[]= [];
+  allServices: Service[] = [];
   selectedService: Service | null = null;
   showCodeDropdown = true;
   phoneNumber = '';
   isInComponent: boolean = false;
   sanitizedContent: SafeHtml | null = null;
-
+  serviceId: any;
+  isDropdown: boolean = false;
 
   countries = [
     { code: '1', flag: '🇺🇸', name: 'United States' },
@@ -124,20 +127,21 @@ export class ContactComponent {
     { code: '375', flag: '🇧🇾', name: 'Belarus' },
     { code: '376', flag: '🇦🇩', name: 'Andorra' },
     { code: '377', flag: '🇲🇨', name: 'Monaco' },
-    { code: '378', flag: '🇸🇲', name: 'San Marino' }
-  ]
+    { code: '378', flag: '🇸🇲', name: 'San Marino' },
+  ];
 
   constructor(
     private changelangService: changelangService,
     private _translate: TranslateService,
     private cdr: ChangeDetectorRef,
-    private _ServicesService:ServicesService,
+    private _ServicesService: ServicesService,
     private router: Router,
-    private sanitizer: DomSanitizer,
-
-
+    private _HomeService:HomeService,
+    private _ToastrService:ToastrService
   ) {}
- 
+  toggleDropdowncountry() {
+    this.isDropdown = !this.isDropdown;
+  }
   ngOnInit(): void {
     this.changelangService.currentLang$.subscribe((lang) => {
       this._translate.use(lang);
@@ -145,11 +149,11 @@ export class ContactComponent {
       this.cdr.detectChanges();
     });
     this._ServicesService.getServices().subscribe({
-      next:(res)=>{
+      next: (res) => {
         this.allServices = res.data.services;
-        console.log(this.allServices)
-      }
-    })
+        console.log(this.allServices);
+      },
+    });
     this.checkRoute();
   }
   checkRoute(): void {
@@ -161,43 +165,54 @@ export class ContactComponent {
     this.cdr.detectChanges();
   }
   contactForm: FormGroup = new FormGroup({
-    service_id: new FormControl(1, Validators.required),
+    service_id: new FormControl('', Validators.required),
     name: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', Validators.required),
     country_code: new FormControl('+20', Validators.required),
-    message: new FormControl('')
+    message: new FormControl(''),
   });
   onSubmit() {
     if (this.contactForm.valid) {
       console.log(this.contactForm.value);
-      // Process form data here
     }
+    this._HomeService.contact(this.contactForm.value).subscribe({
+        next:(res)=>{
+          console.log(res);
+          if(res.result== true){
+            this._ToastrService.success(res.message);
+            this.contactForm.reset();
+          }
+        }
+    })
   }
-toggleDropdown() {
-  this.showDropdown = !this.showDropdown;
-  
-}
+  toggleDropdown() {
+    this.showDropdown = !this.showDropdown;
+  }
+  selectedCountry = { name: 'Egypt', code: '+20', flag: 'egypt.png' };
 
-selectService(service: Service) {
-  this.selectedService = service;
-  this.contactForm.controls['service'].setValue(service.name);
-  this.showDropdown = false;
-}
-selectCountry(country: any) {
-  this.selectedCountryCode = `+${country.code}`;
-  this.showCodeDropdown = false;
-  this.phoneNumber = ''; 
-}
+  selectService(service: Service) {
+    this.selectedService = service;
+    this.contactForm.controls['service_id'].setValue(service.id);
+    console.log(this.contactForm.value)
+    this.showDropdown = false;
+  }
+  selectCountry(country: any) {
+    this.selectedCountryCode = `+${country.code}`;
+    this.selectedCountry = country;
+    this.isDropdown = false;
+    this.phoneNumber = '';
+  }
 
-toggleCodeDropdown() {
-  console.log(this.showCodeDropdown)
-  this.showCodeDropdown = !this.showCodeDropdown;
-}
+  toggleCodeDropdown() {
+    console.log(this.showCodeDropdown);
+    this.showCodeDropdown = !this.showCodeDropdown;
+  }
 
-onPhoneChange(event: any) {
-  const phoneValue = event.target.value;
-  this.contactForm.controls['phone'].setValue(phoneValue.replace(this.selectedCountryCode, '').trim());
-}
-
+  onPhoneChange(event: any) {
+    const phoneValue = event.target.value;
+    this.contactForm.controls['phone'].setValue(
+      phoneValue.replace(this.selectedCountryCode, '').trim()
+    );
+  }
 }

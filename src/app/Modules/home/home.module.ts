@@ -16,6 +16,8 @@ import { ProjectsModule } from "../projects/projects.module";
 import { BlogModule } from "../blog/blog.module";
 import { ContactComponent } from './contact/contact.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     AboutComponent,
     ContactComponent,
+    NotfoundComponent,
   ],
   imports: [
     CommonModule,
@@ -41,8 +44,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ServicesModule,
     SolutionsModule,
     ProjectsModule,
-    BlogModule
-  ] ,
+    BlogModule,
+    ToastrModule.forRoot()
+  ] , 
   exports: [
     NavbarComponent,
     FooterComponent 

@@ -10,7 +10,7 @@
   </div>
 </section>
 
-<section class="solutions my-md-4 my-3">
+<section *ngIf="solutions.length > 0" class="solutions my-md-4 my-3">
   <div class="w-75 mx-auto">
     <div class="d-flex justify-content-between align-items-center px-3">
       <span role="button" routerLink="/solutions" [ngClass]="{ opacity: !isInComponent, 'opacity-0': isInComponent }">

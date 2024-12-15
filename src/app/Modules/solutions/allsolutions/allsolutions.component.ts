@@ -10,53 +10,68 @@ import { SoloutionsService } from 'src/app/Services/soloutions.service';
 @Component({
   selector: 'app-allsolutions',
   templateUrl: './allsolutions.component.html',
-  styleUrls: ['./allsolutions.component.scss']
+  styleUrls: ['./allsolutions.component.scss'],
 })
 export class AllsolutionsComponent {
   currentLang: any;
-  @Input() index! :number ;
+  @Input() index!: number;
 
-  isInComponent:boolean = false;
-  isMobile:boolean = false;
-  constructor( private router: Router ,
-    private cdr: ChangeDetectorRef , 
-  private changelangService: changelangService ,
-  private _translate:TranslateService,
-  private _SoloutionsService:SoloutionsService,
-  private meta: Meta,
-    private title: Title,
-  ){
-  }
+  isInComponent: boolean = false;
+  isMobile: boolean = false;
+  constructor(
+    private router: Router,
+    private cdr: ChangeDetectorRef,
+    private changelangService: changelangService,
+    private translate: TranslateService,
+    private _SoloutionsService: SoloutionsService,
+    private meta: Meta,
+    private title: Title
+  ) {}
   checkRoute(): void {
-    this.isMobile=window.innerWidth<=768;
+    this.isMobile = window.innerWidth <= 768;
     this.router.events.subscribe(() => {
       this.isInComponent = this.router.url === '/solutions';
-   });
+    });
   }
-  solutions:any;
+  solutions: any;
   ngOnInit(): void {
+    this.setMetaTags();
     this.checkRoute();
     this.changelangService.currentLang$.subscribe((lang) => {
-      this._translate.use(lang);
+      this.translate.use(lang);
       this.currentLang = lang;
-      this.customOptions.rtl = (lang === 'ar');
-  
-      this.cdr.detectChanges(); 
+      this.customOptions.rtl = lang === 'ar';
+
+      this.cdr.detectChanges();
     });
     this._SoloutionsService.getSoloutions().subscribe({
       next: (res) => {
         this.solutions = res.data.solutions;
-        this.title.setTitle(this.solutions.meta_title);
-        this.meta.updateTag({ name: 'description', content: this.solutions.meta_description });
-        this.meta.updateTag({ name: 'keywords', content: this.solutions.meta_keywords });
       },
       error: (error) => {
         console.log(error);
-      }
-    })
+      },
+    });
+  }
+  setMetaTags(): void {
+    this.translate
+      .get(['soloution_name', 'soloution_description', 'soloution_keyword'])
+      .subscribe((translations) => {
+        this.title.setTitle(translations['soloution_name']);
+
+        this.meta.updateTag({
+          name: 'description',
+          content: translations['soloution_description'],
+        });
+
+        this.meta.updateTag({
+          name: 'keywords',
+          content: translations['soloution_keyword'],
+        });
+      });
   }
   customOptions: OwlOptions = {
-    loop: false, 
+    loop: false,
     mouseDrag: true,
     autoplay: true,
     autoplayTimeout: 5000,
@@ -64,14 +79,15 @@ export class AllsolutionsComponent {
     smartSpeed: 200,
     touchDrag: true,
     pullDrag: true,
-    dots: true,           // Enable dots navigation
-    dotsData: true,     navSpeed: 1200,
+    dots: true, // Enable dots navigation
+    dotsData: true,
+    navSpeed: 1200,
     navText: ['', ''],
     responsive: {
       0: {
-        items: 1
-      }
+        items: 1,
+      },
     },
-    nav: false
+    nav: false,
   };
 }

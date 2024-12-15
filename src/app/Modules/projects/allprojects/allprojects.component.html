@@ -9,7 +9,7 @@
     </span>
   </div>
 </section>
-<section class="projects my-md-4 my-3">
+<section *ngIf="displayedProjects.length > 0" class="projects my-md-4 my-3">
   <div class="w-75 mx-auto">
     <div
       [ngClass]="{ 'flex-row': !isInComponent }"
@@ -68,8 +68,10 @@
         <div class="item text-center">
           <div
             class="item-img w-100 d-flex justify-content-center align-items-center"
+            *ngIf="displayedProjects.length > 0"
           >
             <img
+            *ngIf="item.home_screen"
               [routerLink]="['/mobile', item.id]"
               [src]="item.home_screen"
               alt=""
@@ -107,45 +109,20 @@
       *ngIf="!isMobile && !isInComponent"
       class="row gx-4 mt-2 w-100 mx-auto"
     >
-      <div class="col-md-4">
+      <div *ngFor="let item of displayedProjects.slice(0,3)" class="col-md-4">
         <div class="item text-center">
           <div
             class="item-img w-100 d-flex justify-content-center align-items-center"
           >
-            <img [src]="mobileApp[0].home_screen" alt="" />
+            <img *ngIf="item.home_screen" [src]="item.home_screen" alt="" />
           </div>
           <h4>
-            {{ mobileApp[0].name }}
+            {{ item.name }}
             <!-- {{ "application" | translate }} -->
           </h4>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="item text-center">
-          <div
-            class="item-img w-100 d-flex justify-content-center align-items-center"
-          >
-            <img [src]="mobileApp[2].home_screen" alt="" />
-          </div>
-          <h4>
-            {{ mobileApp[2].name }}
-            <!-- {{ "application" | translate  }} -->
-          </h4>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="item text-center">
-          <div
-            class="item-img w-100 d-flex justify-content-center align-items-center"
-          >
-            <img [src]="websites[0].home_screen" alt="" />
-          </div>
-          <h4>
-            {{ websites[0].name }}
-            <!-- {{ "website" | translate  }} -->
-          </h4>
-        </div>
-      </div>
+   
     </div>
     <div *ngIf="isMobile && !isInComponent" class="row gx-4 mt-2 w-100 mx-auto">
       <owl-carousel-o [options]="customOptions">

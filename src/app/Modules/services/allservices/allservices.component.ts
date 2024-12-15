@@ -23,6 +23,8 @@ constructor(private cdr: ChangeDetectorRef ,
   private _ServicesService:ServicesService,
   private meta: Meta,
   private title: Title, 
+  private translate: TranslateService
+
 ) {}
 isMobile=false;
   services:Service[]=[];
@@ -46,7 +48,7 @@ ngOnInit(): void {
      this.services= (this.index === 6) ? this.services.slice(0, 6) : this.services;
     }
   );
-  
+  this.setMetaTags();
 }
 customOptions: OwlOptions = {
   loop: false, 
@@ -67,7 +69,23 @@ customOptions: OwlOptions = {
   },
 };
 
+setMetaTags(): void {
+  this.translate
+    .get(['service_name', 'service_description', 'service_keyword'])
+    .subscribe((translations) => {
+      this.title.setTitle(translations['service_name']);
 
+      this.meta.updateTag({
+        name: 'description',
+        content: translations['service_description'],
+      });
+
+      this.meta.updateTag({
+        name: 'keywords',
+        content: translations['service_keyword'],
+      });
+    });
+}
 onLanguageChange() {
   this.cdr.detectChanges();
 }

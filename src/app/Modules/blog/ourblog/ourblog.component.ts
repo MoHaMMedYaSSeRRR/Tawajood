@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
@@ -24,10 +25,13 @@ export class OurblogComponent {
     private _BlogService: BlogService,
     private cdr: ChangeDetectorRef,
     private changelangService: changelangService,
-    private _translate: TranslateService,
-    private router: Router
+    private translate: TranslateService,
+    private router: Router,
+    private meta: Meta,
+    private title: Title
   ) {}
   ngOnInit(): void {
+    this.setMetaTags();
     this.isMobile = window.innerWidth <= 768;
     this._BlogService.getBlogTopic().subscribe({
       next: (res) => {
@@ -38,7 +42,7 @@ export class OurblogComponent {
       },
     });
     this.changelangService.currentLang$.subscribe((lang) => {
-      this._translate.use(lang);
+      this.translate.use(lang);
       this.currentLang = lang;
       this.customOptions.rtl = lang === 'ar';
 
@@ -52,6 +56,23 @@ export class OurblogComponent {
       },
     });
     this.checkRoute();
+  }
+  setMetaTags(): void {
+    this.translate
+      .get(['blog_name', 'blog_description', 'blog_keyword'])
+      .subscribe((translations) => {
+        this.title.setTitle(translations['blog_name']);
+
+        this.meta.updateTag({
+          name: 'description',
+          content: translations['blog_description'],
+        });
+
+        this.meta.updateTag({
+          name: 'keywords',
+          content: translations['blog_keyword'],
+        });
+      });
   }
   sortBlogs(event: Event): void {
     const target = event.target as HTMLSelectElement;

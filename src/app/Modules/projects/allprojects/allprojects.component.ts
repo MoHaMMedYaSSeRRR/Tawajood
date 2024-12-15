@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
@@ -15,7 +16,7 @@ import { ServicesService } from 'src/app/Services/services.service';
 export class AllprojectsComponent {
   isInComponent: boolean = false;
   isMobile = false;
-  url:string = '';
+  url: string = '';
   mobileApp: Project[] = [];
   websites: Project[] = [];
   allProjects: Project[] = [];
@@ -28,8 +29,9 @@ export class AllprojectsComponent {
     private _ProjectsService: ProjectsService,
     private cdr: ChangeDetectorRef,
     private changelangService: changelangService,
-    private _translate: TranslateService,
-    private _ServicesService: ServicesService
+    private translate: TranslateService,
+    private meta: Meta,
+    private title: Title
   ) {}
   checkRoute(): void {
     this.router.events.subscribe(() => {
@@ -38,16 +40,16 @@ export class AllprojectsComponent {
     });
   }
   ngOnInit(): void {
+    this.setMetaTags();
     this.isMobile = window.innerWidth <= 768;
     this.changelangService.currentLang$.subscribe((lang) => {
-      this._translate.use(lang);
+      this.translate.use(lang);
       this.currentLang = lang;
       this.customOptions.rtl = lang === 'ar';
       this.cdr.detectChanges();
     });
     this.checkRoute();
     this.fetchProjects();
-
   }
   customOptions: OwlOptions = {
     loop: false,
@@ -69,7 +71,6 @@ export class AllprojectsComponent {
     },
     nav: false,
   };
- 
 
   fetchProjects(): void {
     this._ProjectsService.getMobileProjects().subscribe({
@@ -91,6 +92,23 @@ export class AllprojectsComponent {
         console.error(error);
       },
     });
+  }
+  setMetaTags(): void {
+    this.translate
+      .get(['project_name', 'project_description', 'project_keyword'])
+      .subscribe((translations) => {
+        this.title.setTitle(translations['project_name']);
+
+        this.meta.updateTag({
+          name: 'description',
+          content: translations['project_description'],
+        });
+
+        this.meta.updateTag({
+          name: 'keywords',
+          content: translations['project_keyword'],
+        });
+      });
   }
 
   combineAndRandomizeProjects(): void {

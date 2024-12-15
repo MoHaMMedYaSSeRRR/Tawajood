@@ -1,4 +1,4 @@
-<section class="mt-0 secnav py-2 w-100">
+<section *ngIf="blog" class="mt-0 secnav py-2 w-100">
   <div
     class="w-75 mx-auto"
     [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
@@ -11,7 +11,7 @@
   </div>
 </section>
 
-<section class="blogs my-md-4 my-3">
+<section *ngIf="blog" class="blogs my-md-4 my-3">
   <div class="w-75 mx-auto">
     <div class="row mt-2 w-100 mx-auto justify-content-between">
       <div class="col-12 order-1">
@@ -25,18 +25,17 @@
           [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
         >
           <h5>{{'lastblogs'|translate}}</h5>
-          <div class="row mt-2 gy-2 w-100 mx-auto justify-content-between">
+          <div *ngFor="let item of blog.last_blogs" class="row mt-2 gy-2 w-100 mx-auto justify-content-between">
             <div class="col-8">
               <div class="article-content">
                 <p class="mb-1">
-                  تحسين محركات البحث لتعزيز وجود الأعمال عبر الإنترنت
-                </p>
-                <span>28 Nov, 2015</span>
+{{item.title | cuttext: 5}}                </p>
+                <span>{{item.created_at | date}}</span>
               </div>
             </div>
             <div class="col-4">
               <div class="article-image">
-                <img src="../../../../assets/images/article.jpg" alt="" />
+                <img [src]="item.image" alt="" />
               </div>
             </div>
           </div>

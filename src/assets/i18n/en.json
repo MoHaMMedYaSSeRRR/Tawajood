@@ -70,12 +70,12 @@
 
   "aboutDescription": "Enjoy the highest quality app and website design with us. With experience serving over 500 clients worldwide, contact us and benefit from our advanced services that meet your needs.",
   "aboutTitle": "The Best Software Development and Web/App Design Company",
-  "aboutKeyword": "Software company, web development company, best app development company, programming companies in Saudi Arabia, app design company, programming companies in Egypt"
-,"browseWebsite":"Browse the website",
-"appSpecifications": "General Specifications of the App",
-"location": "Our location",
-"about_us": "About Us",
- "submit_now": "Submit Now",
+  "aboutKeyword": "Software company, web development company, best app development company, programming companies in Saudi Arabia, app design company, programming companies in Egypt",
+  "browseWebsite": "Browse the website",
+  "appSpecifications": "General Specifications of the App",
+  "location": "Our location",
+  "about_us": "About Us",
+  "submit_now": "Submit Now",
   "arrow": "→",
   "experience": "Years of Experience",
   "github": "GitHub Link",
@@ -84,11 +84,21 @@
   "notice_period": "Notice Period",
   "about_you": "Tell us about yourself",
   "get_quote": "Get a Quote",
-  "jobDetails" :"Job Details",
-  "applyToJob" : "Apply to Job",
-  "projectDetails" : "Project Details",
-  "lastblogs":"Last Blogs "
-
-
-
+  "jobDetails": "Job Details",
+  "applyToJob": "Apply to Job",
+  "projectDetails": "Project Details",
+  "lastblogs": "Last Blogs ",
+  "formContent": "Fill out the form now and get the support you need instantly!  Our team is ready to contact you as soon as possible.  Don’t hesitate—your next step toward success starts here",
+  "service_keyword": "Website and application programming services",
+  "service_description": "Tawajod offers innovative solutions for all programming services, including website design, e-commerce stores, and applications. Request your service now.",
+  "service_name": "Our Services - Tawajod for Website, Store, and Mobile Application Programming and Design",
+  "solution_keyword": "Integrated services in design and programming",
+  "solution_description": "Start now with the best website and application design company.",
+  "solution_name": "The Best Programming and Applications Company",
+  "project_keyword": "Website and mobile application design company",
+  "project_description": "We are a website and application design company with over 7 years of experience in providing comprehensive programming solutions in Egypt, Saudi Arabia, Iraq, and across the Arab world.",
+  "project_name": "Website Development, Mobile Application Design and Programming, and Creating E-commerce Stores",
+  "blog_keyword": "Blog - Tawajod for Programming Solutions",
+  "blog_description": "Stay updated with the latest news in e-commerce store programming, applications, and website development through our blog.",
+  "blog_name": "Latest Programming News"
 }

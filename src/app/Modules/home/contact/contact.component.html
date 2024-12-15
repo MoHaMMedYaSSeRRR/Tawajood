@@ -1,4 +1,4 @@
-<section class="mt-0 secnav py-2 w-100">
+<section *ngIf="isInComponent" class="mt-0 secnav py-2 w-100">
   <div
     class="w-75 mx-auto"
     [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
@@ -23,41 +23,45 @@
     <div class="row mt-2 p-0 m-0 w-100 mx-auto justify-content-between">
       <div class="col-md-7">
         <div class="form">
-          <form [formGroup]="contactForm" (submit)="onSubmit()">
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
             <div class="row g-4 w-100 mx-auto">
+              <!-- Email Field -->
               <div class="col-md-6">
                 <input
                   [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
                   type="email"
+                  formControlName="email"
                   [placeholder]="'email' | translate"
                   class="form-control"
                   id="email"
-                  required
                 />
               </div>
+          
+              <!-- Name Field -->
               <div class="col-md-6">
                 <input
                   [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
                   type="text"
+                  formControlName="name"
                   [placeholder]="'name' | translate"
                   class="form-control"
                   id="name"
-                  required
                 />
               </div>
+          
+              <!-- Service Dropdown -->
               <div class="col-md-6 position-relative service">
                 <input
                   [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
                   type="text"
+                  formControlName="service_id"
                   class="form-control"
                   id="service"
-                  required
                   [placeholder]="'service' | translate"
                   (click)="toggleDropdown()"
                   [value]="selectedService ? selectedService.name : ''"
                   readonly
                 />
-                <!-- Dropdown Icon based on language -->
                 <span
                   class="dropdown-icon"
                   [ngClass]="currentLang === 'ar' ? 'icon-left' : 'icon-right'"
@@ -65,9 +69,7 @@
                 >
                   <i
                     class="fa"
-                    [ngClass]="
-                      showDropdown ? 'fa-chevron-up' : 'fa-chevron-down'
-                    "
+                    [ngClass]="showDropdown ? 'fa-chevron-up' : 'fa-chevron-down'"
                   ></i>
                 </span>
                 <ul *ngIf="showDropdown" class="dropdown-menu show w-100">
@@ -81,34 +83,51 @@
                   </li>
                 </ul>
               </div>
-
-              <div class="col-md-6">
+          
+              <!-- Phone Field -->
+              <div class="col-md-6 position-relative group">
                 <input
                   [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
                   type="phone"
+                  formControlName="phone"
                   [placeholder]="'phone' | translate"
                   class="form-control"
                   id="phone"
-                  required
                 />
+                <span (click)="toggleDropdowncountry()" class="arrow position-absolute" role="button">
+                  <i class=" fa fa-chevron-down"></i>
+                </span>
+                <span (click)="toggleDropdowncountry()" class="code position-absolute" role="button">
+                  {{ selectedCountry.code }}
+                </span>
+                <div *ngIf="isDropdown" class="country-dropdown">
+                  <div *ngFor="let country of countries" (click)="selectCountry(country)" class="dropdown-item">
+                    {{ country.name }} ({{ country.code }}) <!-- Display country name and code -->
+                  </div>
+                </div>
               </div>
+          
+              <!-- Message Field -->
               <div class="col-12">
                 <textarea
                   [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+                  formControlName="message"
                   [placeholder]="'message' | translate"
                   class="form-control"
                   id="message"
                   rows="3"
-                  required
                 ></textarea>
               </div>
+          
+              <!-- Submit Button -->
               <div class="">
-                <button type="submit">
+                <button type="submit" class="btn btn-primary">
                   {{ "submit" | translate }}
                 </button>
               </div>
             </div>
           </form>
+          
         </div>
       </div>
       <div class="col-md-4 d-md-block d-none">

@@ -23,7 +23,7 @@ export class SoloutionDetailsComponent {
   constructor(
     private cdr: ChangeDetectorRef,
     private changelangService: changelangService,
-    private _translate: TranslateService,
+    private translate: TranslateService,
     private _SoloutionsService: SoloutionsService,
     private _ActivatedRoute: ActivatedRoute,
     private meta:Meta,
@@ -39,7 +39,7 @@ export class SoloutionDetailsComponent {
       this.id = params.get('id');
     });
     this.changelangService.currentLang$.subscribe((lang) => {
-      this._translate.use(lang);
+      this.translate.use(lang);
       this.currentLang = lang;
 
       this.cdr.detectChanges();
@@ -67,6 +67,7 @@ export class SoloutionDetailsComponent {
       },
     });
   }
+ 
   stripHtml(html: string): string {
     if (!html) {
       return '';

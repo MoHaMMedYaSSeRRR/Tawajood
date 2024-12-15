@@ -37,4 +37,7 @@ export class HomeService {
   getProccess():Observable<any>{
     return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/our_process');
   }
+  contact(data:any):Observable<any>{
+    return this._HttpClient.post('https://newcompanywebsite.tawajood.com/api/add_form_contact_us', data);
+  }
 }

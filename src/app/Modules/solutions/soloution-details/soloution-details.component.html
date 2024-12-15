@@ -1,5 +1,5 @@
 
-<section class="mt-0 secnav py-2 w-100">
+<section *ngIf="soloution" class="mt-0 secnav py-2 w-100">
   <div
     class="w-75 mx-auto"
     [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
@@ -7,12 +7,12 @@
     <span>
       <span>{{ "home" | translate }}</span> <span class="mx-2"> > </span
       ><span>{{ "solutions" | translate }}</span> <span class="mx-2"> > </span>
-      <span class="current"> {{ soloution.title}} </span>
+      <span class="current"> {{ soloution.name}} </span>
     </span>
   </div>
 </section>
 
-<section class="details my-md-5 my-3">
+<section *ngIf="soloution" class="details my-md-5 my-3">
   <div class="w-75 mx-auto">
     <div
       class="row my-3 justify-content-between align-items-center w-100 mx-auto"
@@ -48,7 +48,7 @@
       </div>
     </div>
 
-    <div class="my-md-5 my-3">
+    <div  class="my-md-5 my-3">
         <div class="global-details py-2" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">
             <h3>
                 {{ "app_overview" | translate }}
@@ -56,7 +56,7 @@
             <div class="row g-3 mt-4 w-100 mx-auto justify-content-end">
               <div *ngFor="let spec of specificationList" class="col-md-4">
                 <div class="item d-flex align-items-start">
-                  <div [ngClass]="currentLang === 'ar' ? 'me-3' : 'ms-3'">
+                  <div class="w-75" [ngClass]="currentLang === 'ar' ? 'me-3' : 'ms-3'">
                     <h4>
                       {{ spec.title }}
                     </h4>
