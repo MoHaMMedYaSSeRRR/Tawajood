@@ -4,8 +4,9 @@
     [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
   >
     <span>
-      <span routerLink="/home" role="button">{{ "home" | translate }}</span> <span class="mx-2"> > </span
-      ><span class="current"  >{{ "services" | translate }}</span> 
+      <span routerLink="/home" role="button">{{ "home" | translate }}</span>
+      <span class="mx-2"> > </span
+      ><span class="current">{{ "services" | translate }}</span>
     </span>
   </div>
 </section>
@@ -26,23 +27,23 @@
     >
       {{ "services" | translate }}
     </h2>
-    <div *ngIf="!isMobile || isInComponent" class="row gy-5 w-100 mx-auto justify-content-end">
+    <div
+      *ngIf="!isMobile || isInComponent"
+      class="row gy-5 w-100 mx-auto justify-content-end"
+    >
       <div *ngFor="let item of services; let i = index" class="col-md-4">
         <div
           class="item"
           [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
         >
           <div class="item-img">
-            <img
-              [src]="item.icon"
-              class="w-100"
-              alt=""
-            />
+            <img [src]="item.icon" class="w-100" alt="" />
           </div>
 
           <div class="item-content mt-2">
             <h3>{{ item.name | cuttext : 3 }}</h3>
-            <p class="mt-2 limit-text">...{{ item.content | cuttext : 20 }}</p>
+            <p class="mt-2 limit-text ">
+               {{ item.content | cuttext : 20  }} </p>
             <button class="border-0" (click)="navigateBasedOnId(item.id)">
               {{ "read_more" | translate }}
             </button>

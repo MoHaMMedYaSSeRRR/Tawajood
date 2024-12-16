@@ -50,7 +50,6 @@ export class OurblogComponent {
     });
     this._BlogService.getAllBlog().subscribe({
       next: (res) => {
-        console.log(res)
         this.allBlogs = res.data.blogs.map((blog:Blog) => ({
           ...blog,
           plainDescription: this.stripHtmlAndExtractFirstP(blog.description)

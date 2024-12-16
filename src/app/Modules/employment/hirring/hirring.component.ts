@@ -5,6 +5,7 @@ import { Job } from 'src/app/interfaces/job';
 import { changelangService } from 'src/app/Services/changelang.service';
 import { HirringService } from 'src/app/Services/hirring.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-hirring',
@@ -21,7 +22,8 @@ export class HirringComponent {
     private _translate: TranslateService,
     private router: Router,
     private _HirringService:HirringService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private meta: Meta, private title: Title
   )
   {}
   ngOnInit(): void {
@@ -46,7 +48,19 @@ export class HirringComponent {
           console.error('Error getting GOBs', error);
         },
       });
+      this.setMetaTags();
   }
+  setMetaTags(): void {
+    this._translate.get('hirringmeta').subscribe((meta) => {
+      // Set the meta title
+      this.title.setTitle(meta.title);
+
+      // Set the meta description
+      this.meta.updateTag({ name: 'description', content: meta.description });
+
+      // Set the meta keywords
+      this.meta.updateTag({ name: 'keywords', content: meta.keywords });
+    });}
   onLanguageChange() {
     this.cdr.detectChanges();
   }

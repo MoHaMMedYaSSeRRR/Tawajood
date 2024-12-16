@@ -102,5 +102,10 @@
   "blog_description": "Stay updated with the latest news in e-commerce store programming, applications, and website development through our blog.",
   "blog_name": "Latest Programming News",
   "back": "Back",
-  "gotohomepage": "Home"
+  "gotohomepage": "Home",
+  "hirringmeta": {
+    "title": "Tawajda | Mobile and Web Development Company",
+    "description": "Tawajda specializes in mobile application development, web design, and programming for both iOS and Android platforms.",
+    "keywords": "Programming companies in Saudi Arabia, Application design company, Programming companies in Egypt, Web design and programming company, Programming companies in Riyadh, Website design company"
+  }
 }

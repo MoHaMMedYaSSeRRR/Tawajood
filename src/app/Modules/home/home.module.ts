@@ -18,6 +18,7 @@ import { ContactComponent } from './contact/contact.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
     AboutComponent,
     ContactComponent,
     NotfoundComponent,
+    LoadingComponent,
   ],
   imports: [
     CommonModule,
@@ -49,7 +51,8 @@ import { NotfoundComponent } from './notfound/notfound.component';
   ] , 
   exports: [
     NavbarComponent,
-    FooterComponent 
+    FooterComponent ,
+    LoadingComponent 
   ]
 })
 export class HomeModule { }
