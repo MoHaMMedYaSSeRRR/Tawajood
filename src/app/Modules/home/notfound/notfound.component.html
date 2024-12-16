@@ -8,11 +8,11 @@
       />
     </div>
     <div class="content text-center">
-      <h3>404, Page not founds</h3>
-      <p class="w-50 text-center mx-auto">
-        Something went wrong. It’s look that your requested could not be found.
-        It’s look like the link is broken or the page is removed.
-      </p>
+      <h3>{{ 'page_not_found' | translate }}</h3>
+<p class="w-50 text-center mx-auto">
+  {{ 'error_message' | translate }}
+</p>
+
       <div class="buttons">
         <button routerLink="/home" class="mx-2 btn-2">
             {{'gotohomepage'|translate}}

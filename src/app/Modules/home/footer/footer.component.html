@@ -12,7 +12,7 @@
                   {{"call_us"|translate}}
                 </p>
                 <p>
-                  01024848723 
+                  <a href="https://wa.me/01024848723" class="text-decoration-none text-white" target="_blank"> 01024848723 </a>
                 </p>
               </div>
               <div class="icon2 my-auto mx-2 d-flex justify-content-center align-items-center">
@@ -26,7 +26,7 @@
                   {{"email"|translate}}
                 </p>
                 <p>
-                  info@tawajood.com 
+                  <a href="mailto:info@tawajood.com" class="text-decoration-none text-white" target="_blank">info@tawajood.com</a>
                 </p>
               </div>
               <div class="icon1 my-auto pe-2  d-flex justify-content-center align-items-center">
@@ -72,7 +72,7 @@
           </h4>
           <ul [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"  class="list-unstyled">
             <li *ngFor="let item of services" class="mb-3">
-              <a routerLink="/home" class="text-decoration-none">{{item.name |cuttext:2}}</a>
+              <a routerLink="/home" class="text-decoration-none text-white">{{item.name |cuttext:2}}</a>
             </li>
            
           

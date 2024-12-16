@@ -49,7 +49,7 @@ export class AllprojectsComponent {
       this.cdr.detectChanges();
     });
     this.checkRoute();
-    this.fetchProjects();
+    this.fetchProjects(); 
   }
   customOptions: OwlOptions = {
     loop: false,

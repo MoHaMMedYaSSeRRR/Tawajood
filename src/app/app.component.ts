@@ -1,20 +1,23 @@
-import { Component, Renderer2, OnInit } from '@angular/core';
-import { changelangService } from './Services/changelang.service';
+import { Component, Renderer2, OnInit, OnDestroy } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'Tawagood';
   isMobile = false;
+  private routerSubscription!: Subscription;
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2, private router: Router) {}
 
   ngOnInit(): void {
-    // Check if the current device is mobile
+    // Check if the current device is mobile and listen for window resize changes
     this.isMobile = window.innerWidth <= 768;
+    window.addEventListener('resize', this.onResize.bind(this));
 
     // Initialize Google Tag Manager data layer if not already initialized
     if (!window.dataLayer) {
@@ -24,15 +27,21 @@ export class AppComponent implements OnInit {
     // Track initial page load event
     this.trackPageView(window.location.pathname);
 
-    // Listen for route changes and track them (if you're using Angular Router, add this logic)
-    // Uncomment if Angular Router is used
-    /*
-    this.router.events.subscribe((event) => {
+    // Subscribe to route changes and track them
+    this.routerSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.trackPageView(event.urlAfterRedirects);
       }
     });
-    */
+  }
+
+  ngOnDestroy(): void {
+    // Clean up the subscription to avoid memory leaks
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+    }
+    // Clean up the resize event listener
+    window.removeEventListener('resize', this.onResize);
   }
 
   /**
@@ -67,5 +76,12 @@ export class AppComponent implements OnInit {
       action: 'Click',
       label: 'Main Button'
     });
+  }
+
+  /**
+   * Handle window resize to detect if the device is mobile or not
+   */
+  private onResize(): void {
+    this.isMobile = window.innerWidth <= 768;
   }
 }

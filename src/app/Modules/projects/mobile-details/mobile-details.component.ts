@@ -43,6 +43,7 @@ export class MobileDetailsComponent {
     this._ProjectsService.getDetails(this.id).subscribe({
       next: (data) => {
         this.project=data.data;
+        console.log(this.project)
         this.title.setTitle(this.project.meta_title);
         this.meta.updateTag({ name: 'description', content: this.project.meta_description });
         this.meta.updateTag({ name: 'keywords', content: this.project.meta_keywords });

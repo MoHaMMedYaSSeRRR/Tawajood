@@ -4,14 +4,15 @@
     [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
   >
     <span>
-      <span role="button" routerLink="/home">{{ "home" | translate }}</span> <span class="mx-2"> > </span
+      <span role="button" routerLink="/home">{{ "home" | translate }}</span>
+      <span class="mx-2"> > </span
       ><span class="current">{{ "contactUs" | translate }}</span>
     </span>
   </div>
 </section>
 <section
   [ngClass]="{ bg: !isInComponent }"
-  class="contact mt-md-4 mt-3 p-md-5 py-3"
+  class="contact mt-md-4  mt-3 p-md-5 py-3"
 >
   <div class="w-75 mx-auto">
     <h2
@@ -36,7 +37,7 @@
                   id="email"
                 />
               </div>
-          
+
               <!-- Name Field -->
               <div class="col-md-6">
                 <input
@@ -48,7 +49,7 @@
                   id="name"
                 />
               </div>
-          
+
               <!-- Service Dropdown -->
               <div class="col-md-6 position-relative service">
                 <input
@@ -69,7 +70,9 @@
                 >
                   <i
                     class="fa"
-                    [ngClass]="showDropdown ? 'fa-chevron-up' : 'fa-chevron-down'"
+                    [ngClass]="
+                      showDropdown ? 'fa-chevron-up' : 'fa-chevron-down'
+                    "
                   ></i>
                 </span>
                 <ul *ngIf="showDropdown" class="dropdown-menu show w-100">
@@ -83,7 +86,7 @@
                   </li>
                 </ul>
               </div>
-          
+
               <!-- Phone Field -->
               <div class="col-md-6 position-relative group">
                 <input
@@ -94,19 +97,32 @@
                   class="form-control"
                   id="phone"
                 />
-                <span (click)="toggleDropdowncountry()" class="arrow position-absolute" role="button">
-                  <i class=" fa fa-chevron-down"></i>
+                <span
+                  (click)="toggleDropdowncountry()"
+                  class="arrow position-absolute"
+                  role="button"
+                >
+                  <i class="fa fa-chevron-down"></i>
                 </span>
-                <span (click)="toggleDropdowncountry()" class="code position-absolute" role="button">
+                <span
+                  (click)="toggleDropdowncountry()"
+                  class="code position-absolute"
+                  role="button"
+                >
                   {{ selectedCountry.code }}
                 </span>
                 <div *ngIf="isDropdown" class="country-dropdown">
-                  <div *ngFor="let country of countries" (click)="selectCountry(country)" class="dropdown-item">
-                    {{ country.name }} ({{ country.code }}) <!-- Display country name and code -->
+                  <div
+                    *ngFor="let country of countries"
+                    (click)="selectCountry(country)"
+                    class="dropdown-item"
+                  >
+                    {{ country.name }} ({{ country.code }})
+                    <!-- Display country name and code -->
                   </div>
                 </div>
               </div>
-          
+
               <!-- Message Field -->
               <div class="col-12">
                 <textarea
@@ -118,7 +134,7 @@
                   rows="3"
                 ></textarea>
               </div>
-          
+
               <!-- Submit Button -->
               <div class="">
                 <button type="submit" class="btn btn-primary">
@@ -127,7 +143,6 @@
               </div>
             </div>
           </form>
-          
         </div>
       </div>
       <div class="col-md-4 d-md-block d-none">
@@ -147,7 +162,10 @@
               <p class="mb-1">
                 {{ "call_us" | translate }}
               </p>
-              <p>01024848723</p>
+              <p>
+                <a href="https://wa.me/01024848723" class="text-decoration-none" target="_blank"> 01024848723 </a>
+
+              </p>
             </div>
             <div
               class="icon mx-2 d-flex justify-content-center align-items-center"
@@ -171,7 +189,12 @@
               <p class="mb-1">
                 {{ "email" | translate }}
               </p>
-              <p>info@tawajood.com</p>
+              <p><a
+                href="mailto:info@tawajood.com"
+                class="text-decoration-none"
+                target="_blank"
+                >info@tawajood.com</a
+              ></p>
             </div>
             <div
               class="icon pe-2 d-flex justify-content-center align-items-center"
@@ -240,7 +263,12 @@
 </section>
 <section *ngIf="isInComponent">
   <div class="map w-75 mx-auto">
-    <h3 class="mb-3" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">{{"location"|translate}}</h3>
+    <h3
+      class="mb-3"
+      [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+    >
+      {{ "location" | translate }}
+    </h3>
     <div class="location w-100">
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.4969615211176!2d31.281977!3d29.965144799999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145839172791ade1%3A0x5e80e31d7d551ad8!2z2LTYsdmD2Kkg2KrZiNin2KzYryDZhNio2LHZhdis2Kkg2KfZhNmF2YjYp9mC2Lkg2YjYp9mE2KrYt9io2YrZgtin2Ko!5e0!3m2!1sar!2seg!4v1733290115353!5m2!1sar!2seg"

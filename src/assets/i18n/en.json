@@ -107,5 +107,7 @@
     "title": "Tawajda | Mobile and Web Development Company",
     "description": "Tawajda specializes in mobile application development, web design, and programming for both iOS and Android platforms.",
     "keywords": "Programming companies in Saudi Arabia, Application design company, Programming companies in Egypt, Web design and programming company, Programming companies in Riyadh, Website design company"
-  }
+  },
+  "page_not_found": "404, Page not found",
+  "error_message": "Something went wrong. It’s look like your request could not be found. It looks like the link is broken or the page has been removed."
 }

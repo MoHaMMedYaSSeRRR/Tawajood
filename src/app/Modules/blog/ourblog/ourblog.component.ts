@@ -55,6 +55,7 @@ export class OurblogComponent {
           plainDescription: this.stripHtmlAndExtractFirstP(blog.description)
         }));
         this.filteredBlogs = [...this.allBlogs];
+        console.log(this.filteredBlogs)
       },
       error: (err) => {
         console.error('Error fetching blogs:', err);
