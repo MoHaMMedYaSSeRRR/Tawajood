@@ -83,6 +83,9 @@
 .group {
   width: 49%;
   position: relative;
+  i{
+    font-size: 12px;
+  }
 }
 
 .code {
@@ -106,7 +109,12 @@
   font-size: 20px;
   font-weight: 700;
 }
-
+.arrowen{
+  right: 5px;
+}
+.codeen{
+  right: 15px;
+}
 /* Dropdown Styles */
 .country-dropdown {
   position: absolute;
@@ -129,4 +137,61 @@
 .dropdown-item:hover {
   background-color: #f0f0f0;
 }
+/* Default left-to-right for English */
+.form-container {
+  direction: ltr;
+}
 
+.text-start, .placeholder-start {
+  text-align: left;
+}
+
+.text-end, .placeholder-end {
+  text-align: right;
+}
+
+/* Reverse layout and text alignment for Arabic */
+.form-container[dir='rtl'] {
+  direction: rtl;
+}
+
+.form-container .text-start,
+.form-container .placeholder-start {
+  text-align: right;
+}
+
+.form-container .text-end,
+.form-container .placeholder-end {
+  text-align: left;
+}
+
+.position-relative {
+  position: relative;
+  width: 49%;
+}
+
+.number-input {
+  text-align: start; /* Default for text alignment */
+}
+
+.rtl-input {
+  text-align: right; /* Arabic text alignment */
+  padding-left: 40px; /* Adjust padding to avoid overlapping controls */
+}
+
+.ltr-input {
+  text-align: left; /* English text alignment */
+  padding-right: 40px; /* Adjust padding to avoid overlapping controls */
+}
+
+/* Increment and decrement buttons */
+input[type="number"]::-webkit-inner-spin-button {
+  position: absolute;
+  right: 5px; /* Position on the right for English */
+  left: auto; /* Disable left positioning */
+}
+
+input[type="number"].rtl-input::-webkit-inner-spin-button {
+  right: auto; /* Disable right positioning */
+  left: 5px; /* Position on the left for Arabic */
+}

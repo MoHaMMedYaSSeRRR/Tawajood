@@ -1,4 +1,4 @@
-<section class="mt-0 secnav py-2 w-100">
+<section *ngIf="service" class="mt-0 secnav py-2 w-100">
   <div
     class="w-75 mx-auto"
     [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
@@ -6,13 +6,13 @@
     <span>
       <span  role="button" routerLink="/home">{{ "home" | translate }}</span> <span class="mx-2"> > </span
       ><span  role="button" routerLink="/allservices">{{ "services" | translate }}</span> <span class="mx-2"> > </span>
-      <span class="current"> {{ service.name | cuttext : 3}} </span>
+      <span *ngIf="service.name" class="current"> {{ service.name | cuttext : 3}} </span>
     </span>
   </div>
 </section>
 
 
-<section class="service my-md-4 my-3">
+<section *ngIf="service" class="service my-md-4 my-3">
   <div class="w-75 mx-auto">
     <div class="row w-100 mx-auto justify-content-between align-items-center">
       <div class="col-md-6">
@@ -20,12 +20,12 @@
           <img [src]="service.image" class="w-100" alt="" />
         </div>
       </div>
-      <div class="col-md-6 pe-3">
+      <div *ngIf="service" class="col-md-6 pe-3">
         <div
           class="item"
           [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
         >
-          <h2 class="mb-2">{{ service.name }}</h2>
+          <h2 *ngIf="service.name" class="mb-2">{{ service?.name }}</h2>
           <p>
             {{ service.content }}
           </p>
@@ -39,7 +39,7 @@
     <div class="why my-md-5 my-3">
       <h3 class="text-center mt-4">{{ "whyWeAreTheBest" | translate }}</h3>
       <div class="row g-3 mt-4 w-100 mx-auto justify-content-end">
-        <div *ngFor="let item of whyus" class="col-md-4">
+        <div *ngFor="let item of service.why_us" class="col-md-4">
           <div class="item text-center">
             <div class="item-icon">
               <img [src]="item.icon" alt="" />

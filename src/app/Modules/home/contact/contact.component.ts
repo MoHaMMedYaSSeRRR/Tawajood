@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { DomSanitizer, Meta, SafeHtml, Title } from '@angular/platform-browser';
+import { Meta, SafeHtml, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
@@ -137,7 +137,9 @@ export class ContactComponent {
     private _ServicesService: ServicesService,
     private router: Router,
     private _HomeService:HomeService,
-    private _ToastrService:ToastrService
+    private _ToastrService:ToastrService,
+    private meta: Meta, private title: Title
+
   ) {}
   toggleDropdowncountry() {
     this.isDropdown = !this.isDropdown;
@@ -155,7 +157,19 @@ export class ContactComponent {
       },
     });
     this.checkRoute();
+    this.setMetaTags();
   }
+  setMetaTags(): void {
+    this._translate.get('hirringmeta').subscribe((meta) => {
+      // Set the meta title
+      this.title.setTitle(meta.title);
+
+      // Set the meta description
+      this.meta.updateTag({ name: 'description', content: meta.description });
+
+      // Set the meta keywords
+      this.meta.updateTag({ name: 'keywords', content: meta.keywords });
+    });}
   checkRoute(): void {
     this.router.events.subscribe(() => {
       this.isInComponent = this.router.url === '/contact';

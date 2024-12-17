@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { changelangService } from './../../../Services/changelang.service';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -19,7 +20,8 @@ export class FooterComponent {
   constructor(private _ServicesService:ServicesService ,
     private changelangService: changelangService,
     private _translate: TranslateService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router:Router
 
   ){}
   services:Service[]=[];
@@ -36,5 +38,32 @@ export class FooterComponent {
           this.currentLang = lang;
           this.cdr.detectChanges();
         });
+  }
+  navigateBasedOnId(id: number) {
+    switch (id) {
+      case 1:
+        this.router.navigate(['/service-details', id]);
+        break;
+      case 3:
+        this.router.navigate(['/marketingservice', id]);
+        break;
+      case 6:
+        this.router.navigate(['/domainservice', id]);
+        break;
+      case 4:
+        this.router.navigate(['/soulutionsservices', id]);
+        break;
+      case 5:
+        window.open('https://wa.me/01024848723', '_blank');
+        break;
+      case 15:
+        this.router.navigate(['/marketingservice', id]);
+        break;
+      case 7:
+        window.open('https://wa.me/01024848723', '_blank');
+        break;
+      default:
+        console.warn('No route defined for this ID');
+    }
   }
 }

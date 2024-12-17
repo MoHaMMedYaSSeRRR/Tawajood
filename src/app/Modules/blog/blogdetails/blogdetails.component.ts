@@ -51,6 +51,5 @@ export class BlogdetailsComponent {
       this.secondContent = this.sanitizer.bypassSecurityTrustHtml(this.blog.secondary_content);
 
     });
-
   }
 }

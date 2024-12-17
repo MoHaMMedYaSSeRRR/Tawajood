@@ -64,11 +64,17 @@ export class AboutComponent {
     if (!html) {
       return '';
     }
-    return html
-      .replace(/<\/?[^>]+(>|$)/g, '') // Remove HTML tags
-      .replace(/&nbsp;/g, ' ')        // Replace non-breaking spaces with regular spaces
-      .trim();                        // Remove extra whitespace
+  
+    // Remove HTML tags
+    const withoutTags = html.replace(/<\/?[^>]+(>|$)/g, '').replace(/&nbsp;/g, ' ').trim();
+  
+    // Decode HTML entities
+    const parser = new DOMParser();
+    const decodedString = parser.parseFromString(withoutTags, 'text/html').documentElement.textContent || '';
+  
+    return decodedString.trim(); // Ensure no leading/trailing spaces remain
   }
+  
   setMetaTags(): void {
     this.translate
       .get(['aboutTitle', 'aboutDescription', 'aboutKeyword'])

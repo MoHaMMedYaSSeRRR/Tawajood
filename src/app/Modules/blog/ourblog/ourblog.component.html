@@ -4,7 +4,8 @@
     [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
   >
     <span>
-      <span role="button" routerLink="/home">{{ "home" | translate }}</span> <span class="mx-2"> > </span
+      <span role="button" routerLink="/home">{{ "home" | translate }}</span>
+      <span class="mx-2"> > </span
       ><span class="current">{{ "blog" | translate }}</span>
     </span>
   </div>
@@ -28,15 +29,14 @@
     >
       <div class="input_wrapper">
         <select
-        id="filter"
-        [ngClass]="currentLang === 'ar' ? 'rtl' : 'ltr'"
-        (change)="sortBlogs($event)"
-      >
-        <option value="asc">الأحدث</option>
-        <option value="desc">الاقدم</option>
-      </select>
-      <label class="mx-2" for="filter">:الترتيب</label>
-      
+          id="filter"
+          [ngClass]="currentLang === 'ar' ? 'rtl' : 'ltr'"
+          (change)="sortBlogs($event)"
+        >
+          <option value="asc">{{ "newest" | translate }}</option>
+          <option value="desc">{{ "oldest" | translate }}</option>
+        </select>
+        <label class="mx-2" for="filter">{{ "orderBy" | translate }}</label>
       </div>
       <ul
         class="list-unstyled d-flex justify-content-center align-items-center"
@@ -48,7 +48,7 @@
             [class.active]="currentTopicId === item.id"
             class="text-decoration-none"
           >
-            {{ item.name }}
+            {{ item.name | translate }}
           </a>
         </li>
         <li>
@@ -63,14 +63,24 @@
         </li>
       </ul>
     </div>
-    <div *ngIf="!isMobile && isInComponent" class="row mt-2 w-100 mx-auto justify-content-end">
+
+    <div
+      *ngIf="!isMobile && isInComponent"
+      class="row mt-2 w-100 mx-auto justify-content-end"
+    >
       <div *ngFor="let item of filteredBlogs" class="col-md-4">
         <div class="item">
           <div class="item-image position-relative">
             <span class="marketing position-absolute">
               {{ item.topic.name }}
             </span>
-            <img role="button" [routerLink]="['/blogdetails', item.id]" [src]="item.image" class="w-100" alt="blogPhot" />
+            <img
+              role="button"
+              [routerLink]="['/blogdetails', item.id]"
+              [src]="item.image"
+              class="w-100"
+              alt="blogPhot"
+            />
           </div>
           <div
             [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
@@ -85,7 +95,7 @@
             </span>
             <h5 class="mt-2">{{ item.title | cuttext : 10 }}</h5>
             <p class="mt-1">
-              {{item.plainDescription |  cuttext : 15 }}
+              {{ item.plainDescription | cuttext : 15 }}
             </p>
             <button
               [routerLink]="['/blogdetails', item.id]"
@@ -97,8 +107,11 @@
         </div>
       </div>
     </div>
-    <div *ngIf="!isMobile && !isInComponent" class="row mt-2 w-100 mx-auto justify-content-end">
-      <div *ngFor="let item of filteredBlogs.slice(0,3)" class="col-md-4">
+    <div
+      *ngIf="!isMobile && !isInComponent"
+      class="row mt-2 w-100 mx-auto justify-content-end"
+    >
+      <div *ngFor="let item of filteredBlogs.slice(0, 3)" class="col-md-4">
         <div class="item">
           <div class="item-image position-relative">
             <span class="marketing position-absolute">
@@ -139,7 +152,7 @@
     >
       <div class="mt-2 w-100 mx-auto">
         <owl-carousel-o [options]="customOptions">
-          <ng-container *ngFor="let item of allBlogs.slice(0,3)">
+          <ng-container *ngFor="let item of allBlogs.slice(0, 3)">
             <ng-template carouselSlide>
               <div class="item me-2">
                 <div class="item-image position-relative">

@@ -17,7 +17,7 @@ export class QuestionsComponent {
   faqForm:FormGroup = new FormGroup({
     service_id:new FormControl(null , [Validators.required]),
     the_topic:new FormControl(null , [Validators.required]),
-    email :new FormControl(null , [Validators.required]),
+    email :new FormControl(null , [Validators.email , Validators.required]),
     message :new FormControl(null , [Validators.required]),
   })
   

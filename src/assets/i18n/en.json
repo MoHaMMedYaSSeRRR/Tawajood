@@ -7,7 +7,7 @@
   "services": "Services",
   "aboutUs": "About Us",
   "home": "Home",
-  "startYourProject": "Start your Project",
+  "startYourProject": "Start Your Project",
   "request_free_consultation": "Request a Consultation",
   "featured_solutions": "Featured Solutions",
   "view_all": "View All",
@@ -26,7 +26,7 @@
   "phone": "Phone Number",
   "service": "Service",
   "message": "Your Message",
-  "submit": "send Message",
+  "submit": "Send Message",
   "partners": "Partners",
   "contact_us": "Contact Us",
   "links": "Links",
@@ -88,7 +88,7 @@
   "applyToJob": "Apply to Job",
   "projectDetails": "Project Details",
   "lastblogs": "Last Blogs ",
-  "formContent": "Fill out the form now and get the support you need instantly!  Our team is ready to contact you as soon as possible.  Don’t hesitate—your next step toward success starts here",
+  "formContent": "Fill out the form now and get the support you need instantly!  Our team is ready to contact you as soon as possible.  Don’t hesitate your next step toward success starts here",
   "service_keyword": "Website and application programming services",
   "service_description": "Tawajod offers innovative solutions for all programming services, including website design, e-commerce stores, and applications. Request your service now.",
   "service_name": "Our Services - Tawajod for Website, Store, and Mobile Application Programming and Design",
@@ -109,5 +109,12 @@
     "keywords": "Programming companies in Saudi Arabia, Application design company, Programming companies in Egypt, Web design and programming company, Programming companies in Riyadh, Website design company"
   },
   "page_not_found": "404, Page not found",
-  "error_message": "Something went wrong. It’s look like your request could not be found. It looks like the link is broken or the page has been removed."
+  "error_message": "Something went wrong. It’s look like your request could not be found. It looks like the link is broken or the page has been removed.",
+  "comprehensiveHosting": "Comprehensive Website Hosting",
+  "highQualityHosting": "Get your website hosted with the highest quality standards.",
+  "newest": "Newest",
+  "oldest": "Oldest",
+  "orderBy": ": Order By " ,
+  "upload_resume": "Your resume as a PDF or Word file only"
+
 }

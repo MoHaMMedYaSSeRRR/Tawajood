@@ -43,7 +43,7 @@
           <div class="item-content mt-2">
             <h3>{{ item.name | cuttext : 3 }}</h3>
             <p class="mt-2 limit-text ">
-               {{ item.content | cuttext : 20  }} ... </p>
+               {{ item.content | cuttext : 20  }}</p>
             <button class="border-0" (click)="navigateBasedOnId(item.id)">
               {{ "read_more" | translate }}
             </button>

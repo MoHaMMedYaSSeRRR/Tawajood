@@ -39,8 +39,14 @@
             ></textarea>
             <div class="button-container">
               <button [disabled]="faqForm.invalid" type="submit">
-                ← <span>{{ "submit" | translate }}</span>
+                <ng-container *ngIf="currentLang === 'ar'; else enArrow">
+                  ← <span>{{ "submit" | translate }}</span>
+                </ng-container>
+                <ng-template #enArrow>
+                 → <span>{{ "submit" | translate }}</span> 
+                </ng-template>
               </button>
+              
             </div>
           </form>
         </div>
@@ -60,7 +66,7 @@
               <span class="icon">{{ faq.open ? "−" : "+" }}</span>
               <span>{{ faq.question }}</span>
             </div>
-            <div class="faq-answer text-end" *ngIf="faq.open">
+            <div class="faq-answer" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'" *ngIf="faq.open">
               <p>{{ faq.answer }}</p>
             </div>
           </div>

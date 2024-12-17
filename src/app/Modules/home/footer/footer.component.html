@@ -36,7 +36,7 @@
 
             <ul class="list-unstyled d-flex justify-content-end align-items-center">
               <li class="mx-2">
-                <a target="_blank" href="https://www.tiktok.com/@tawajood?_t=8n26pzQEDlV&_r=1"><img src="../../../../assets/images/tiktok.png" alt="tiktok" />
+                <a target="_blank" href="https://www.tiktok.com/@tawajood?_t=8n26pzQEDlV&_r=1"><img class="tiktok" src="../../../../assets/images/tiktok.png" alt="tiktok" />
              </a> </li>
               <li class="mx-2">
                 <a target="_blank" href="https://wa.me/201024848723"><img
@@ -71,8 +71,8 @@
             {{"services" | translate}}
           </h4>
           <ul [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"  class="list-unstyled">
-            <li *ngFor="let item of services" class="mb-3">
-              <a routerLink="/home" class="text-decoration-none text-white">{{item.name |cuttext:2}}</a>
+            <li *ngFor="let item of services.slice(0,5)" class="mb-3">
+              <a routerLink="/home" (click)="navigateBasedOnId(item.id)" class="text-decoration-none text-white">{{item.name |cuttext:2}}</a>
             </li>
            
           
@@ -85,9 +85,9 @@
             {{"links" | translate}}
           </h4>
           <ul [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"  class="list-unstyled">
-              <li  class="mb-3 d-md-block d-none">
+              <!-- <li  class="mb-3 d-md-block d-none">
                 <a routerLink="/home" class="text-decoration-none">{{ 'home' | translate }}</a>
-              </li>
+              </li> -->
               <li  class="mb-3 d-md-block d-none">
                 <a routerLink="/" class="text-decoration-none">{{ 'aboutUs' | translate }}</a>
               </li>
@@ -106,9 +106,9 @@
               <li  class="mb-3 d-md-block d-none">
                 <a routerLink="/" class="text-decoration-none">{{ 'employment' | translate }}</a>
               </li>
-              <li  class="mb-3 d-md-block d-none">
+              <!-- <li  class="mb-3 d-md-block d-none">
                 <a routerLink="/" class="text-decoration-none">{{ 'contactUs' | translate }}</a>
-              </li>
+              </li> -->
               <li  class="mb-3 d-md-none d-block">
                 <a routerLink="/" class="text-decoration-none">{{ 'web_development' | translate }}</a>
               </li>

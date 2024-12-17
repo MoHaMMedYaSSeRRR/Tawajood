@@ -4,16 +4,20 @@
     [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
   >
     <span>
-      <span role="button" routerLink="/home">{{ "home" | translate }}</span> <span class="mx-2"> > </span
-      ><span role="button" routerLink="/ourblog">{{ "blog" | translate }}</span> <span class="mx-2"> > </span>
-      <span class="current"> {{ blog.title | cuttext : 3}} </span>
+      <span role="button" routerLink="/home">{{ "home" | translate }}</span>
+      <span class="mx-2"> > </span
+      ><span role="button" routerLink="/ourblog">{{ "blog" | translate }}</span>
+      <span class="mx-2"> > </span>
+      <span class="current"> {{ blog.title | cuttext : 3 }} </span>
     </span>
   </div>
 </section>
 
 <section *ngIf="blog" class="blogs my-md-4 my-3">
   <div class="w-75 mx-auto">
-    <div class="row mt-2 w-100 mx-auto justify-content-between">
+    <div
+  class="row mt-2 w-100 mx-auto justify-content-between"
+>
       <div class="col-12 order-1">
         <div class="item-image">
           <img [src]="blog.image_one" class="w-100" alt="" />
@@ -24,18 +28,31 @@
           class="item"
           [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
         >
-          <h5>{{'lastblogs'|translate}}</h5>
-          <div *ngFor="let item of blog.last_blogs" class="row mt-2 gy-2 w-100 mx-auto justify-content-between">
+          <h5>{{ "lastblogs" | translate }}</h5>
+          <div
+            *ngFor="let item of blog.last_blogs"
+            class="row mt-2 gy-2 w-100 mx-auto justify-content-between"
+          >
             <div class="col-8">
               <div class="article-content">
-                <p  [routerLink]="['/blogdetails', item.id]" role="button" class="mb-1">
-{{item.title | cuttext: 5}}                </p>
-                <span>{{item.created_at | date}}</span>
+                <p
+                  [routerLink]="['/blogdetails', item.id]"
+                  role="button"
+                  class="mb-1"
+                >
+                  {{ item.title | cuttext : 5 }}
+                </p>
+                <span>{{ item.created_at | date }}</span>
               </div>
             </div>
             <div class="col-4">
               <div class="article-image">
-                <img [routerLink]="['/blogdetails', item.id]" role="button" [src]="item.image" alt="" />
+                <img
+                  [routerLink]="['/blogdetails', item.id]"
+                  role="button"
+                  [src]="item.image"
+                  alt=""
+                />
               </div>
             </div>
           </div>
@@ -105,7 +122,10 @@
           </div> -->
           <div [innerHTML]="secondContent" class="mt-1"></div>
 
-          <div *ngIf="blog.image_two && blog.image_three" class="row w-100 mx-auto p-0 m-0 g-2 justify-content-between">
+          <div
+            *ngIf="blog.image_two && blog.image_three"
+            class="row w-100 mx-auto p-0 m-0 g-2 justify-content-between"
+          >
             <div class="col-md-6">
               <div class="image">
                 <img [src]="blog.image_two" class="w-100" alt="blogdetails-2" />

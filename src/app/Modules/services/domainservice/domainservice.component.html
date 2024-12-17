@@ -1,4 +1,4 @@
-<section class="mt-0 secnav py-2 w-100">
+<section *ngIf="service"  class="mt-0 secnav py-2 w-100">
   <div
     class="w-75 mx-auto"
     [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
@@ -11,7 +11,7 @@
   </div>
 </section>
 
-<section class="domain my-md-5 my-3">
+<section  *ngIf="service" class="domain my-md-5 my-3">
   <div class="w-75 mx-auto">
     <div
       class="row g-4 w-100 mx-auto justify-content-between align-items-center"
@@ -45,7 +45,7 @@
     <div class="why my-md-5 my-3">
       <h3 class="text-center mt-4">{{ "whyWeAreTheBest" | translate }}</h3>
       <div class="row g-3 mt-4 w-100 mx-auto justify-content-end">
-        <div *ngFor="let item of service.whyus" class="col-md-4">
+        <div *ngFor="let item of service.why_us" class="col-md-4">
           <div class="item text-center">
             <div class="item-icon">
               <img [src]="item.icon" alt="" />
@@ -158,10 +158,11 @@
           class="item"
           [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
         >
-          <h3 class="mb-md-4 mb-3">استضافة مواقع شاملة</h3>
+          <h3 class="mb-md-4 mb-3">
+            {{ "comprehensiveHosting" | translate }}
+          </h3>
           <p>
-            احصل على استضافة موقعك الإلكتروني بأعلى معايير الجودة،
-
+            {{ "highQualityHosting" | translate }}
             <span [ngClass]="currentLang === 'ar' ? 'ms-3' : 'me-3'">
               <svg
                 width="24"
@@ -188,8 +189,7 @@
             </span>
           </p>
           <p>
-            احصل على استضافة موقعك الإلكتروني بأعلى معايير الجودة،
-
+            {{ "highQualityHosting" | translate }}
             <span [ngClass]="currentLang === 'ar' ? 'ms-3' : 'me-3'">
               <svg
                 width="24"
@@ -216,8 +216,7 @@
             </span>
           </p>
           <p>
-            احصل على استضافة موقعك الإلكتروني بأعلى معايير الجودة،
-
+            {{ "highQualityHosting" | translate }}
             <span [ngClass]="currentLang === 'ar' ? 'ms-3' : 'me-3'">
               <svg
                 width="24"
@@ -243,12 +242,12 @@
               </svg>
             </span>
           </p>
-
           <button class="border-0">
             {{ "requestServiceNow" | translate }}
           </button>
         </div>
       </div>
+      
     </div>
   </div>
 </div>
