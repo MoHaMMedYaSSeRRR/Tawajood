@@ -29,8 +29,7 @@
           <div class="item-content">
             <h3 class="my-2">{{ item.job_title_name | cuttext:2 }}</h3>
             <p>
-              نحن متخصصون في برمجة وتصميم المواقع الإلكترونية باستخدام أحدث
-              التقنيات
+             {{item.description}}
             </p>
             <button
               [routerLink]="['/jobdetails', item.id]"

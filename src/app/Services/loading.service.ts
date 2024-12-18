@@ -10,8 +10,11 @@ export class LoadingService {
     return this._loading;
   }
 
-  show(): void {
+  show(duration: number = 1000): void {
     this._loading = true;
+    setTimeout(() => {
+      this.hide();
+    }, duration);
   }
 
   hide(): void {

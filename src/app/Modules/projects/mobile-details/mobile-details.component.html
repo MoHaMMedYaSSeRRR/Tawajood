@@ -92,7 +92,7 @@
       </div>
     </div>
 
-    <div class="my-md-5 my-3">
+    <div *ngIf="project.images.length > 0" class="my-md-5 my-3">
       <div class="screen-app pt-3">
         <h3
           class="mb-2"
@@ -102,7 +102,7 @@
         </h3>
         <div class="row position-relative mt-3 w-100 mx-auto">
           <owl-carousel-o [options]="customOptions" #owlCarousel>
-            <ng-container *ngFor="let item of project.images">
+            <ng-container *ngFor="let item of project?.images">
               <ng-template carouselSlide>
                 <div class="item">
                   <img

@@ -1,3 +1,8 @@
 <div *ngIf="loadingService.loading" class="loading-overlay">
-    <img src="../../../../assets/images/Flow 1@256p-25fps.gif" alt="Loading..." />
+  <div class="loading-content">
+    <!-- GIF with dynamic source -->
+    <img [src]="gifSrc" alt="Loading..." />
+    <!-- Optional loading text -->
+    <p>Loading, please wait...</p>
   </div>
+</div>

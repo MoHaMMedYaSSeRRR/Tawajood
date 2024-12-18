@@ -94,7 +94,7 @@ export class NavbarComponent {
       case 3:
         this.router.navigate(['/marketingservice', id]);
         break;
-      case 6:
+      case 14:
         this.router.navigate(['/domainservice', id]);
         break;
       case 15:

@@ -42,7 +42,7 @@ export class MarketingserviceComponent {
     this.getServiceDetails();
   }
   getServiceDetails(): void {
-    this._ServicesService.getServicesDetails(this.id).subscribe({
+    this._ServicesService.getServicesDetails(3).subscribe({
       next: (res) => {
         this.service = res.data;
         console.log(res);

@@ -35,9 +35,10 @@ export class HirringComponent {
       this._HirringService.getGobs().subscribe({
         next: (res) => {
           console.log(res);
-          this.jobs = res.data.data.map((job: any) => {
+          this.jobs = res.data.data.map((job: Job) => {
             // Extract the first paragraph
-            const match = job.content.match(/<p[^>]*>(.*?)<\/p>/);
+            const match  = job.content.match(/<p[^>]*>(.*?)<\/p>/);
+                job.description = this.stripHtml(job.description)
             return {
               ...job,
               firstParagraph: match && match[1] ? this.sanitizer.bypassSecurityTrustHtml(match[1]) : '', // Add sanitized first paragraph
@@ -68,5 +69,19 @@ export class HirringComponent {
     this.router.events.subscribe(() => {
       this.isInComponent = this.router.url === '/ourblog';
     });
+  }
+  stripHtml(html: string): string {
+    if (!html) {
+      return '';
+    }
+  
+    // Remove HTML tags
+    const withoutTags = html.replace(/<\/?[^>]+(>|$)/g, '').replace(/&nbsp;/g, ' ').trim();
+  
+    // Decode HTML entities
+    const parser = new DOMParser();
+    const decodedString = parser.parseFromString(withoutTags, 'text/html').documentElement.textContent || '';
+  
+    return decodedString.trim(); // Ensure no leading/trailing spaces remain
   }
 }

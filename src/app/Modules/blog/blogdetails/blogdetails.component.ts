@@ -29,6 +29,7 @@ export class BlogdetailsComponent {
     private meta:Meta , 
     private title: Title,
   ) {}
+  isArabic:boolean=false;
   ngOnInit(): void {
     this.changelangService.currentLang$.subscribe((lang) => {
       this._translate.use(lang);
@@ -44,6 +45,9 @@ export class BlogdetailsComponent {
     this._BlogService.getBlogById(this.id).subscribe((res) => {
       console.log(res);
       this.blog =res.data;
+      this.isArabic = this.isContentArabic(this.blog.content);
+      console.log(this.isArabic)
+
       this.title.setTitle(this.blog.meta_title);
         this.meta.updateTag({ name: 'description', content: this.blog.meta_description });
         this.meta.updateTag({ name: 'keywords', content: this.blog.meta_keywords });
@@ -51,5 +55,9 @@ export class BlogdetailsComponent {
       this.secondContent = this.sanitizer.bypassSecurityTrustHtml(this.blog.secondary_content);
 
     });
+  }
+  isContentArabic(content: string): boolean {
+    const arabicRegex = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/;
+    return arabicRegex.test(content);
   }
 }

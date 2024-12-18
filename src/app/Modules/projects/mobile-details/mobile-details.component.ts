@@ -37,26 +37,27 @@ export class MobileDetailsComponent {
     this._ActivatedRoute.paramMap.subscribe({
       next: (params) => {
         this.id = params.get('id');
+        this._ProjectsService.getDetails(this.id).subscribe({
+          next: (data) => {
+            this.project=data.data;
+            console.log(this.project)
+            this.title.setTitle(this.project.meta_title);
+            this.meta.updateTag({ name: 'description', content: this.project.meta_description });
+            this.meta.updateTag({ name: 'keywords', content: this.project.meta_keywords });
+          },
+          error: (error) => {
+            console.log(error);
+          },
+        })
         console.log(this.id);
       }
     })
-    this._ProjectsService.getDetails(this.id).subscribe({
-      next: (data) => {
-        this.project=data.data;
-        console.log(this.project)
-        this.title.setTitle(this.project.meta_title);
-        this.meta.updateTag({ name: 'description', content: this.project.meta_description });
-        this.meta.updateTag({ name: 'keywords', content: this.project.meta_keywords });
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    })
+   
   }
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
-    autoplay: true,
+    autoplay: false,
     autoplayTimeout: 5000,
     autoplaySpeed: 1200,
     smartSpeed: 200,
@@ -66,25 +67,29 @@ export class MobileDetailsComponent {
     navText: ['', ''],
     responsive: {
       0: {
-        items: 1,
+        items: 1, // Show one image at a time on mobile
       },
       768: {
-        items: 2,
+        items: 2, // Show two images at a time on tablets and small screens
       },
       940: {
-        items: 4,
+        items: 4, // Show four images at a time on larger screens
       }
     },
     nav: false,
   };
+  
   onLanguageChange() {
     this.cdr.detectChanges();
   }
   goPrev(): void {
-    this.owlCarousel.prev();
+    this.owlCarousel.prev();  // Navigate to the previous item
+    this.cdr.detectChanges();  // Trigger change detection to update the view
   }
-
+  
   goNext(): void {
-    this.owlCarousel.next();
+    this.owlCarousel.next();  // Navigate to the next item
+    this.cdr.detectChanges();  // Trigger change detection to update the view
   }
+  
 }

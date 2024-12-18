@@ -1,4 +1,7 @@
-<section *ngIf="blog" class="mt-0 secnav py-2 w-100">
+<section
+  *ngIf="blog"
+  class="mt-0 secnav py-2 w-100"
+>
   <div
     class="w-75 mx-auto"
     [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
@@ -15,9 +18,7 @@
 
 <section *ngIf="blog" class="blogs my-md-4 my-3">
   <div class="w-75 mx-auto">
-    <div
-  class="row mt-2 w-100 mx-auto justify-content-between"
->
+    <div   class="row   mt-2 w-100 mx-auto justify-content-between">
       <div class="col-12 order-1">
         <div class="item-image">
           <img [src]="blog.image_one" class="w-100" alt="" />

@@ -63,7 +63,7 @@
   "request_previous_work": "Request Previous Work",
   "app_overview": "General Specifications of the Application",
   "app_screens": " App Screens",
-  "related_works": "related Works",
+  "related_works": "Related Works",
   "about_name": "Start Your Digital Solution with the Leading Software Solutions company",
   "about_header": "Tawajood is a specialized company offering comprehensive software solutions. We have successfully delivered website and app development services to over 500 clients across Egypt, Saudi Arabia, Jordan, Iraq, Kuwait, Sweden, Sudan, Norway, Algeria, Libya, and Qatar.With us , you’re on the right path toward digital transformation.",
   "operation": "Project Life Cycle",
@@ -115,6 +115,7 @@
   "newest": "Newest",
   "oldest": "Oldest",
   "orderBy": ": Order By " ,
-  "upload_resume": "Your resume as a PDF or Word file only"
+  "upload_resume": "Your resume as a PDF or Word file only",
+  "app_process": "Mobile App Development Process"
 
 }

@@ -60,8 +60,8 @@ h3 {
 }
 .screen-app {
   img {
-    height: 450px;
-    width: 200px;
+    height: 450px !important;
+    width: 200px !important;
   }
 }
 .custom-nav {
@@ -135,4 +135,4 @@ h3 {
     background-color: #4584c5;
     color: #fff;
   }
-}
+ }

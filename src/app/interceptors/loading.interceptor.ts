@@ -17,16 +17,53 @@ export class LoadingInterceptor implements HttpInterceptor {
 
   constructor(private loadingService: LoadingService) {}
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    this.pendingRequests++; // Increase the request count
-    this.loadingService.show(); // Show loading spinner
+  imagePreloaded = false;
 
-    return next.handle(req).pipe(
-      finalize(() => {
-        this.pendingRequests--; // Decrease the request count once the request is complete
-        this.checkIfLoadingComplete(); // Check if all requests and images are loaded
-      })
-    );
+  preloadGif(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const gif = new Image();
+      gif.src = '../../../../assets/images/Flow 1@256p-25fps.gif';
+      gif.onload = () => {
+        this.imagePreloaded = true;
+        resolve();
+      };
+      gif.onerror = (error) => reject(error);
+    });
+  }
+
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    this.pendingRequests++;
+    this.loadingService.show(5000); 
+
+    // Ensure the GIF is preloaded before proceeding
+    if (!this.imagePreloaded) {
+      return new Observable<HttpEvent<any>>((observer) => {
+        this.preloadGif()
+          .then(() => {
+            next.handle(req).subscribe({
+              next: (event) => observer.next(event),
+              error: (err) => observer.error(err),
+              complete: () => observer.complete(),
+            });
+          })
+          .catch((error) => observer.error(error));
+      }).pipe(
+        finalize(() => {
+          this.pendingRequests--;
+          this.checkIfLoadingComplete();
+        })
+      );
+    } else {
+      return next.handle(req).pipe(
+        finalize(() => {
+          this.pendingRequests--;
+          this.checkIfLoadingComplete();
+        })
+      );
+    }
   }
 
   // Call this method when an image is loaded
@@ -78,6 +115,8 @@ export class LoadingInterceptor implements HttpInterceptor {
   public startTrackingOnPageLoad() {
     window.addEventListener('load', () => {
       this.onPageLoad();
+      this.preloadGif(); // Preload the GIF
     });
   }
+  
 }

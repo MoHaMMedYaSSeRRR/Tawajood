@@ -23,6 +23,7 @@ export class AllprojectsComponent {
   displayedProjects: Project[] = [];
   currentLang!: string;
   selectedFilter: number | null = null; // Tracks the active filter
+  mobileProject: Project[] = [];
 
   constructor(
     private router: Router,
@@ -120,6 +121,7 @@ export class AllprojectsComponent {
       () => Math.random() - 0.5
     );
     this.displayedProjects = [...this.allProjects];
+    this.mobileProject=this.displayedProjects.slice(0,3)
   }
 
   filterProjects(type: number | null): void {

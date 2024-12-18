@@ -77,14 +77,13 @@
                 role="button"
                 (click)="toggleDropdown()"
                 class="arrow position-absolute"
-                [ngClass]="currentLang === 'ar' ? '' : 'arrowen'" 
               >
               <i class="fa fa-chevron-down small text-black"></i>
             </span>
 
               <!-- Country Code Display -->
               <span class="code"
-              [ngClass]="currentLang === 'ar' ? '' : 'codeen'"      >
+             >
                 
                 {{ selectedCountry.code }}
                 <!-- Display the selected country's code -->
@@ -105,7 +104,7 @@
               <!-- Phone Input -->
               <input
                 type="text"
-                class="form-control"
+                class="form-control text-end"
                 placeholder="{{ 'phone' | translate }}"
                 formControlName="phone"
                 [class.is-invalid]="

@@ -38,6 +38,32 @@
         </div>
       </div>
     </div>
+    <div
+    *ngIf="service.second_content != null"
+    class="row mt-3 w-100 mx-auto justify-content-between align-items-center"
+  >
+    <div class="col-md-6 pe-3">
+      <div
+        class="item"
+        [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+      >
+        <!-- <h2 class="mb-2">{{ service.name }}</h2> -->
+        <p>
+          {{ service.second_content }}
+        </p>
+        <a routerLink="/contactus" target="_blank">
+          <button class="border-0">
+            {{ "requestServiceNow" | translate }}
+          </button></a
+        >
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="item-img">
+        <img [src]="service.image" class="w-100" alt="" />
+      </div>
+    </div>
+  </div>
 
     <div class="social mt-5  pt-5">
       <div class="row w-100 justify-content-between g-3 mx-auto g-3">

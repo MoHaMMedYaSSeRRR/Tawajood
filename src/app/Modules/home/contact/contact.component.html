@@ -94,26 +94,25 @@
                   type="phone"
                   formControlName="phone"
                   [placeholder]="'phone' | translate"
-                  class="form-control"
+                  class="form-control text-end"
                   id="phone"
                 />
                 <span
-                (click)="toggleDropdowncountry()"
-                class="arrow position-absolute"
-                [ngClass]="currentLang === 'en' ? 'arrow-en' : ''"
-                role="button"
-              >
-                <i class="fa fa-chevron-down"></i>
-              </span>
-              <span
-                (click)="toggleDropdowncountry()"
-                class="code position-absolute"
-                [ngClass]="currentLang === 'en' ? 'code-en' : ''"
-                role="button"
-              >
-                {{ selectedCountry.code }}
-              </span>
-              
+                  (click)="toggleDropdowncountry()"
+                  class="arrow position-absolute"
+                  [ngClass]="currentLang === 'en' ? 'arrow-en' : ''"
+                  role="button"
+                >
+                  <i class="fa fa-chevron-down"></i>
+                </span>
+                <span
+                  (click)="toggleDropdowncountry()"
+                  class="code position-absolute"
+                  role="button"
+                >
+                  {{ selectedCountry.code }}
+                </span>
+
                 <div *ngIf="isDropdown" class="country-dropdown">
                   <div
                     *ngFor="let country of countries"
@@ -176,7 +175,8 @@
               </p>
             </div>
             <div
-              class="icon mx-2 d-flex justify-content-center align-items-center"
+              [ngClass]="currentLang === 'en' ? 'pe-3' : 'mx-2'"
+              class="icon d-flex justify-content-center align-items-center"
             >
               <img
                 src="../../../../assets/images/Group.png"

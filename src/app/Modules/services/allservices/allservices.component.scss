@@ -1,57 +1,57 @@
-.service{
-    .limit-text {
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      
-    h2{
-        font-weight: 700;
-        font-size: 38px;
-        color: #475156;
+.service {
+  .limit-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  h2 {
+    font-weight: 700;
+    font-size: 38px;
+    color: #475156;
+  }
+  .item {
+    height: 435px;
+    h3 {
+      font-weight: 700;
+      font-size: 22px;
+      color: #1c1f35;
     }
-    .item{
-        height: 435px;
-        h3{
-            font-weight: 700;
-            font-size: 22px;
-            color: #1C1F35;
-        }
-        p{
-            font-weight: 400;
-            font-size: 16px;
-            color: #666C89;
-        }
-     
-        button{
-            width: 200px;
-            height: 56px;
-            background-color: #4584C5;
-            color: #FFFFFF;
-            font-weight: 400;
-            font-size: 20px;
-        }
-        img{
-            height: 240px;
-        }
+    p {
+      font-weight: 400;
+      font-size: 16px;
+      color: #666c89;
     }
-    .main-color{
-        color: #191C1F;
+
+    button {
+      width: 200px;
+      height: 56px;
+      background-color: #4584c5;
+      color: #ffffff;
+      font-weight: 400;
+      font-size: 20px;
     }
-}
-@media (max-width: 768px) {
-    .service {
-      padding: 0px !important;
-      padding-bottom: 30px !important;
-      .row {
-        flex-direction: column-reverse !important;
-        margin-top: 10px;
-      }
-      h3{
-        font-size: 18px !important;
-      }
+    img {
+      height: 240px;
     }
   }
-  
+  .main-color {
+    color: #191c1f;
+  }
+}
+@media (max-width: 768px) {
+  .service {
+    padding: 0px !important;
+    padding-bottom: 30px !important;
+    .row {
+      flex-direction: column-reverse !important;
+      margin-top: 10px;
+    }
+    h3 {
+      font-size: 18px !important;
+    }
+  }
+}
+

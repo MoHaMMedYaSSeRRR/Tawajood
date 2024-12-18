@@ -132,9 +132,8 @@
             </span>
             <h5 class="mt-2">{{ item.title | cuttext : 10 }}</h5>
             <p class="mt-1">
-              في عصر التحول الرقمي المتسارع، أصبح تحسين محركات البحث (SEO) له
-              دور بارز في نجاح الأعمال عبر الإنترنت. يعتبر تحسين SEO من
-              الاستراتيجيات الأساسية
+              {{ item.plainDescription | cuttext : 15 }}
+
             </p>
             <button
               [routerLink]="['/blogdetails', item.id]"
