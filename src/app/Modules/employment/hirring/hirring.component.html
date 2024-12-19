@@ -4,13 +4,14 @@
     [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
   >
     <span>
-      <span role="button" routerLink="/home">{{ "home" | translate }}</span> <span class="mx-2"> > </span
+      <span role="button" routerLink="/home">{{ "home" | translate }}</span>
+      <span class="mx-2"> > </span
       ><span class="current">{{ "employment" | translate }}</span>
     </span>
   </div>
-</section> 
- <section class="hirring my-md-4 my-3">
-    <div class="w-75 mx-auto">
+</section>
+<section class="hirring my-md-4 my-3">
+  <div class="w-75 mx-auto">
     <h2
       class="px-0"
       [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
@@ -27,9 +28,9 @@
             <img [src]="item.image" class="w-100" alt="hire-img" />
           </div>
           <div class="item-content">
-            <h3 class="my-2">{{ item.job_title_name | cuttext:2 }}</h3>
+            <h3 class="my-2">{{ item.job_title_name | cuttext : 2 }}</h3>
             <p>
-             {{item.description}}
+              {{ item.description }}
             </p>
             <button
               [routerLink]="['/jobdetails', item.id]"

@@ -1,28 +1,28 @@
-<section *ngIf="service"  class="mt-0 secnav py-2 w-100">
+<section *ngIf="service" class="mt-0 secnav py-2 w-100">
   <div
     class="w-75 mx-auto"
     [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
   >
     <span>
-      <span  role="button" routerLink="/home">{{ "home" | translate }}</span> <span class="mx-2"> > </span
-      ><span  role="button" routerLink="/allservices">{{ "services" | translate }}</span> <span class="mx-2"> > </span>
-      <span class="current"> {{ service.name | cuttext : 3}} </span>
+      <span role="button" routerLink="/home">{{ "home" | translate }}</span>
+      <span class="mx-2"> > </span
+      ><span role="button" routerLink="/allservices">{{
+        "services" | translate
+      }}</span>
+      <span class="mx-2"> > </span>
+      <span class="current"> {{ service.name | cuttext : 3 }} </span>
     </span>
   </div>
 </section>
 
-<section  *ngIf="service" class="domain my-md-5 my-3">
+<section *ngIf="service" class="domain my-md-5 my-3">
   <div class="w-75 mx-auto">
     <div
       class="row g-4 w-100 mx-auto justify-content-between align-items-center"
     >
       <div class="col-md-6">
         <div class="item-image">
-          <img
-            [src]="service.image"
-            class="w-100"
-            alt=""
-          />
+          <img [src]="service.image" class="w-100" alt="" />
         </div>
       </div>
       <div class="col-md-6 pe-3">
@@ -30,9 +30,9 @@
           class="item"
           [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
         >
-          <h2 class="mb-2">{{service.name}}</h2>
+          <h2 class="mb-2">{{ service.name }}</h2>
           <p>
-            {{service.content}}
+            {{ service.content }}
           </p>
           <a routerLink="/contact" target="_blank">
             <button class="border-0">
@@ -43,31 +43,31 @@
       </div>
     </div>
     <div
-    *ngIf="service.second_content != null"
-    class="row mt-3 w-100 mx-auto justify-content-between align-items-center"
-  >
-    <div class="col-md-6 pe-3">
-      <div
-        class="item"
-        [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
-      >
-        <!-- <h2 class="mb-2">{{ service.name }}</h2> -->
-        <p>
-          {{ service.second_content }}
-        </p>
-        <a routerLink="/contactus" target="_blank">
-          <button class="border-0">
-            {{ "requestServiceNow" | translate }}
-          </button></a
+      *ngIf="service.second_content != null"
+      class="row mt-3 w-100 mx-auto justify-content-between align-items-center"
+    >
+      <div class="col-md-6 pe-3">
+        <div
+          class="item"
+          [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
         >
+          <!-- <h2 class="mb-2">{{ service.name }}</h2> -->
+          <p>
+            {{ service.second_content }}
+          </p>
+          <a routerLink="/contactus" target="_blank">
+            <button class="border-0">
+              {{ "requestServiceNow" | translate }}
+            </button></a
+          >
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="item-img">
+          <img [src]="service.image" class="w-100" alt="" />
+        </div>
       </div>
     </div>
-    <div class="col-md-6">
-      <div class="item-img">
-        <img [src]="service.image" class="w-100" alt="" />
-      </div>
-    </div>
-  </div>
     <div class="why my-md-5 my-3">
       <h3 class="text-center mt-4">{{ "whyWeAreTheBest" | translate }}</h3>
       <div class="row g-3 mt-4 w-100 mx-auto justify-content-end">
@@ -165,18 +165,14 @@
     </div>
   </div>
 </section>
-<div class="hosting  mt-md-5 mt-3 p-md-5 p-2">
+<div *ngIf="service" class="hosting mt-md-5 mt-3 p-md-5 p-2">
   <div class="w-75 mx-auto">
     <div
       class="row w-100 g-3 mx-auto justify-content-between align-items-center"
     >
       <div class="col-md-6">
         <div class="item-image">
-          <img
-            src="../../../../assets/images/hosting.jfif"
-            class="w-100"
-            alt=""
-          />
+          <img [src]="service.footer_image" class="w-100" alt="" />
         </div>
       </div>
       <div class="col-md-6 pe-2">
@@ -187,7 +183,42 @@
           <h3 class="mb-md-4 mb-3">
             {{ "comprehensiveHosting" | translate }}
           </h3>
-          <p>
+          <div class="row w-100 p-0 m-0">
+            <div class="col-md-11">
+              <p>
+                {{ service.footer_content }}
+              </p>
+            </div>
+            <div
+              class="col-md-1 d-flex justify-content-center align-items-start"
+            >
+              <span [ngClass]="currentLang === 'ar' ? 'ms-3' : 'me-3'">
+                <svg
+                  width="24"
+                  height="25"
+                  viewBox="0 0 24 25"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M13.875 8.375L5.625 16.625L1.5 12.5"
+                    stroke="#4584C5"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M22.4984 8.375L14.2484 16.625L12.0547 14.4313"
+                    stroke="#4584C5"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+            </div>
+          </div>
+          <!-- <p>
             {{ "highQualityHosting" | translate }}
             <span [ngClass]="currentLang === 'ar' ? 'ms-3' : 'me-3'">
               <svg
@@ -240,40 +271,12 @@
                 />
               </svg>
             </span>
-          </p>
-          <p>
-            {{ "highQualityHosting" | translate }}
-            <span [ngClass]="currentLang === 'ar' ? 'ms-3' : 'me-3'">
-              <svg
-                width="24"
-                height="25"
-                viewBox="0 0 24 25"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M13.875 8.375L5.625 16.625L1.5 12.5"
-                  stroke="#4584C5"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M22.4984 8.375L14.2484 16.625L12.0547 14.4313"
-                  stroke="#4584C5"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </span>
-          </p>
+          </p> -->
           <button class="border-0">
             {{ "requestServiceNow" | translate }}
           </button>
         </div>
       </div>
-      
     </div>
   </div>
 </div>

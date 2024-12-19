@@ -1,7 +1,4 @@
-<section
-  *ngIf="blog"
-  class="mt-0 secnav py-2 w-100"
->
+<section *ngIf="blog" class="mt-0 secnav py-2 w-100">
   <div
     class="w-75 mx-auto"
     [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
@@ -18,21 +15,35 @@
 
 <section *ngIf="blog" class="blogs my-md-4 my-3">
   <div class="w-75 mx-auto">
-    <div   class="row   mt-2 w-100 mx-auto justify-content-between">
+    <div [ngClass]="{
+      'flex-row-reverse':
+        currentLang === 'en' && isContentArabic(blog.content),
+      'flex-row': !(
+        currentLang === 'en' && isContentArabic(blog.content)
+      )
+    }" class="row mt-2 w-100 mx-auto  justify-content-between">
       <div class="col-12 order-1">
         <div class="item-image">
           <img [src]="blog.image_one" class="w-100" alt="" />
         </div>
       </div>
-      <div class="col-md-4 order-md-2 order-3 mt-3">
+      <div class="col-md-4 text-end order-md-2 order-3 mt-3">
         <div
-          class="item"
-          [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+          *ngFor="let item of blog.last_blogs"
+          class="row   justify-content-between mt-2 gy-2 w-100 mx-auto"
+       
         >
           <h5>{{ "lastblogs" | translate }}</h5>
           <div
             *ngFor="let item of blog.last_blogs"
             class="row mt-2 gy-2 w-100 mx-auto justify-content-between"
+            [ngClass]="{
+              'flex-row-reverse':
+                currentLang === 'en' && isContentArabic(blog.content),
+              'flex-row': !(
+                currentLang === 'en' && isContentArabic(blog.content)
+              )
+            }"
           >
             <div class="col-8">
               <div class="article-content">
@@ -89,10 +100,10 @@
           </div> -->
         </div>
       </div>
-      <div class="col-md-8 order-md-3 order-2">
+      <div class="col-md-8 e order-md-3 order-2">
         <div
-          [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
-          class="item-content mt-2"
+          [ngClass]="currentLang === 'ar' && !isContentArabic(blog.content) ? 'text-end' : 'text-start'"
+          class="item-content text-end  mt-2"
         >
           <span>
             <!-- {{item.created_at |date}} -->

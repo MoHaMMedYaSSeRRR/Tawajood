@@ -43,13 +43,9 @@ ngOnInit(): void {
     next: (res) => {
       this.job = res.data;
       
-      // Update job content by adding inline styles to strong and span tags
       let updatedContent = this.job.content;
   
-      // Apply styles to <strong> tags
       updatedContent = updatedContent.replace(/<strong>/g, `<strong style="font-size: 24px; font-weight: 700; color: #475156;">`);
-  
-      // Apply styles to <span> tags
       updatedContent = updatedContent.replace(/<span>/g, `<span style="font-size: 20px; font-weight: 400; color: #475156;">`);
   
       // Sanitize the content
@@ -61,8 +57,13 @@ ngOnInit(): void {
       console.error('Error:', error);
     }
   });
-  
-  
+}
+
+isJobExpired(endTime: string | Date): boolean {
+  if (!endTime) return false; // Handle cases where endTime is undefined or null
+  const endDate = new Date(endTime); // Convert to Date object
+  const now = new Date(); // Get the current date and time
+  return endDate.getTime() < now.getTime(); // Compare timestamps
 }
 }
 

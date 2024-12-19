@@ -3,6 +3,9 @@
 }
 .footer {
   background-color: #0f1b24;
+  .row{
+    justify-content: space-between !important;
+  }
   
   h4 {
     font-weight: 700;
@@ -52,5 +55,5 @@
   }
 }
 .tiktok{
-  width: 120%;
+  width: 130%;
 }

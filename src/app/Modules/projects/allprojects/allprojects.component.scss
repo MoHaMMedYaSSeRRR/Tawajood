@@ -37,7 +37,7 @@
   .item-img {
     height: 380px;
     border-radius: 4px;
-    background-color: #F4F4F480;
+    // background-color: #F4F4F480;
   }
   img {
     width: 171px;
@@ -69,5 +69,9 @@
   img{
     max-height: 270px !important;
   }
-  
+  .related{
+    width: 75% !important;
+    margin-top: 10px;
+    text-align: end !important;
+  }
 }

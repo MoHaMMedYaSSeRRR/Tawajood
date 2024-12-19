@@ -24,7 +24,7 @@ export class HomeComponent implements AfterViewInit {
   headerContent: Slider[] = [];
   currentLang!: string;
   about: About[] = [];
-
+  isMobile: boolean=false;
   // Counter values
   yearsExperience = 0;
   happyClients = 0;
@@ -43,6 +43,7 @@ export class HomeComponent implements AfterViewInit {
   ) {}
 
   ngOnInit(): void {
+    this.isMobile = window.innerWidth <= 768;
     this.changelangService.currentLang$.subscribe((lang) => {
       this._translate.use(lang);
       this.currentLang = lang;

@@ -58,6 +58,7 @@ export class ServicesoloutionsComponent {
     this._ServicesService.getServicesDetails(this.id).subscribe({
       next: (res) => {
         this.service = res.data;
+        console.log(res)
         console.log(res);
         this.title.setTitle(this.service.meta_title);
         this.meta.updateTag({

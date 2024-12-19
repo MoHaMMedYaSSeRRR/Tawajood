@@ -12,7 +12,7 @@ import { ServicesService } from 'src/app/Services/services.service';
 })
 export class QuestionsComponent {
   currentLang: any;
-  @Input() id!: number; // Add the Input property to receive 'id'
+  @Input() id!: number; 
   faqs :any;
   faqForm:FormGroup = new FormGroup({
     service_id:new FormControl(null , [Validators.required]),
@@ -35,6 +35,7 @@ export class QuestionsComponent {
 
       this.cdr.detectChanges();
     });
+    console.log(this.id)
     this._ServicesService.getServicesDetails(this.id).subscribe({
       next: (data) => {
         this.faqs = data.data.faq.map((faq: any) => ({

@@ -1,7 +1,7 @@
 .item-img {
   width: 420px;
   height: 420px;
-  background-color: #f4f4f480;
+  // background-color: #f4f4f480;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -136,3 +136,18 @@ h3 {
     color: #fff;
   }
  }
+ .icon-links {
+ 
+
+  a {
+    text-decoration: none;
+  }
+
+  img{
+    width: 64px;
+    height: 64px;
+  }
+  img:hover{
+    scale: (1.1);
+  }
+}

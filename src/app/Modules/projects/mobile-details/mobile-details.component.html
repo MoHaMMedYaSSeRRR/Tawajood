@@ -4,9 +4,13 @@
     [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
   >
     <span>
-      <span role="button" routerLink="/home">{{ "home" | translate }}</span> <span class="mx-2"> > </span
-      ><span role="button" routerLink="/projects">{{ "projects" | translate }}</span> <span class="mx-2"> > </span>
-      <span class="current"> {{ 'projectDetails' | translate}} </span>
+      <span role="button" routerLink="/home">{{ "home" | translate }}</span>
+      <span class="mx-2"> > </span
+      ><span role="button" routerLink="/projects">{{
+        "projects" | translate
+      }}</span>
+      <span class="mx-2"> > </span>
+      <span class="current"> {{ "projectDetails" | translate }} </span>
     </span>
   </div>
 </section>
@@ -27,31 +31,35 @@
           <h2 class="mb-3">{{ project.name }}</h2>
 
           <p>
-           {{project.description}}
+            {{ project.description }}
           </p>
-          <a
-            *ngIf="project.link_website"
-            [href]="project.link_website"
-            target="_blank"
+          <div
+            class="icon-links d-flex justify-content-center align-items-center gap-3"
           >
-            <button class="border-0">
-              {{ "browseWebsite" | translate }}
-            </button>
-          </a>
-          <!-- <a *ngIf="project.link_ios" [href]="project.link_ios" target="_blank">
-            <button class="border-0">
-              {{ "browseWebsite" | translate }}
-            </button>
-          </a> -->
-          <a
-            *ngIf="project.link_android"
-            [href]="project.link_android"
-            target="_blank"
-          >
-            <button class="border-0">
-              {{ "browseWebsite" | translate }}
-            </button>
-          </a>
+            <a
+              *ngIf="project.link_website"
+              [href]="project.link_website"
+              target="_blank"
+            >
+            <img src="../../../../assets/images/ux.png" alt="" />
+
+            </a>
+            <a
+              *ngIf="project.link_ios"
+              [href]="project.link_ios"
+              class="mx-3"
+              target="_blank"
+            >
+              <img src="../../../../assets/images/app-store.png" alt="" />
+            </a>
+            <a
+              *ngIf="project.link_android"
+              [href]="project.link_android"
+              target="_blank"
+            >
+              <img src="../../../../assets/images/google-play.png" alt="" />
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -82,7 +90,7 @@
             href="https://wa.me/201024848723"
             target="_blank"
             rel="noopener noreferrer"
-            class=" d-flex justify-content-start align-items-end"
+            class="d-flex justify-content-start align-items-end"
           >
             <button class="border-0 mt-3">
               {{ "get_quote" | translate }}

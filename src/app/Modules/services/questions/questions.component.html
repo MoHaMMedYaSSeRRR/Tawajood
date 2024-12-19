@@ -6,8 +6,8 @@
     >
       {{ "asked" | translate }}
     </h3>
-    <div class="row g-3 mt-3 w-100 mx-auto justify-content-between">
-      <div class="col-md-4">
+    <div class="row  g-3 mt-3 w-100 mx-auto offset-1 justify-content-between">
+      <div class="col-md-4 mt-0 ">
         <div
           class="support-card p-md-4 p-2"
           [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
@@ -51,7 +51,7 @@
           </form>
         </div>
       </div>
-      <div class="col-md-7 p-0 m-0">
+      <div class="col-md-7  p-0 m-0">
         <div class="faq-section">
           <div
             *ngFor="let faq of faqs"

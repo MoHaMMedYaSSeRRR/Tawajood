@@ -84,4 +84,6 @@ export class HirringComponent {
   
     return decodedString.trim(); // Ensure no leading/trailing spaces remain
   }
+
+  
 }
