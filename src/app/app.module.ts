@@ -14,6 +14,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { CacheInterceptor } from './interceptors/cache.interceptor';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -42,6 +43,11 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
       useClass: LoadingInterceptor,
       multi: true,
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CacheInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent],
 })

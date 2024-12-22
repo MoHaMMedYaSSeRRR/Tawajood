@@ -74,7 +74,7 @@
         <div class="row g-3 mt-4 w-100 mx-auto justify-content-end">
           <div *ngFor="let item of project.features" class="col-md-4">
             <div class="item d-flex align-items-start">
-              <div [ngClass]="currentLang === 'ar' ? 'me-3' : 'ms-3'">
+              <div class="w-75" [ngClass]="currentLang === 'ar' ? 'me-3' : 'ms-3'">
                 <h4>{{ item.name }}</h4>
                 <p class="mt-2">
                   {{ item.description }}

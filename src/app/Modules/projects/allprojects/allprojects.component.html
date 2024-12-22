@@ -19,7 +19,7 @@
         *ngIf="isInComponent"
         class="list-unstyled  d-flex justify-content-center align-items-center"
       >
-        <li>
+        <li *ngIf="mobileApp.length>0">
           <a
             (click)="filterProjects(2)"
             [class.active]="selectedFilter === 2"
@@ -28,7 +28,7 @@
             {{ "mobile_apps" | translate }}
           </a>
         </li>
-        <li>
+        <li *ngIf="websites.length>0">
           <a
             (click)="filterProjects(1)"
             [class.active]="selectedFilter === 1"
@@ -48,7 +48,7 @@
         </li>
       </ul>
 
-      <span role="button" routerLink="/projects"  *ngIf="!isInComponent">
+      <span role="button"  routerLink="/projects"  *ngIf="!isInComponent && displayedProjects.length>3">
         {{ "view_all" | translate }}
       </span>
       <h2      [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
@@ -58,13 +58,13 @@
       <h2 
         [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
         class="px-0 related"
-        *ngIf="url !== '/projects' && url !== '/home'"
+        *ngIf="url !== '/projects' && url !== '/home' && url !== ''"
       >
         {{ "related_works" | translate }}
       </h2>
     </div>
     <div *ngIf="isInComponent" class="row g-2 gx-4 mt-2 w-100 mx-auto">
-      <div *ngFor="let item of displayedProjects" class="col-md-4">
+      <div *ngFor="let item of displayedProjects" class="col-md-3">
         <div class="item text-center">
           <div
             class="item-img w-100 d-flex justify-content-center align-items-center"

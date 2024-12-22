@@ -51,7 +51,7 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 55px !important;
+    width: 46px !important;
     height: 46px;
     background-color: #68d585;
     border-radius: 50%;
@@ -62,8 +62,13 @@ h3 {
   img {
     height: 450px !important;
     width: 200px !important;
+    transition: transform 0.3s ease; 
+    &:hover {
+      transform: scale(1.2); 
+    }
   }
 }
+
 .custom-nav {
   position: absolute;
   top: 50%;
@@ -144,8 +149,8 @@ h3 {
   }
 
   img{
-    width: 64px;
-    height: 64px;
+    width: 40px;
+    height: 40px;
   }
   img:hover{
     scale: (1.1);
