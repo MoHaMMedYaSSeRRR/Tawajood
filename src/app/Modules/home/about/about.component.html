@@ -14,7 +14,7 @@
   <div class="about py-md-5 py-2">
     <div class="w-75 mx-auto">
       <div
-        class="row w-100 p-0 m-0 mx-auto justify-content-between align-items-center"
+        class="row w-100 p-0 m-0 mx-auto justify-content-between header align-items-center"
       >
         <div class="col-md-6">
           <div class="about-img">
@@ -99,8 +99,8 @@
               alt=""
             />
           </div>
-          <div class="content">
-            <h4 class="mt-2">
+          <div *ngIf="about[2]" class="content">
+            <h4  class="mt-2">
               {{ about[2].name }}
             </h4>
             <p class="mt-2">
@@ -118,7 +118,7 @@
               alt=""
             />
           </div>
-          <div class="content">
+          <div *ngIf="about[1]" class="content">
             <h4 class="mt-2">
               {{ about[1].name }}
             </h4>
@@ -141,25 +141,52 @@
       >
         {{ "team" | translate }}
       </h2>
+
+      <div *ngIf="!isMobile" class="row w-100 mx-auto">
+        <div *ngFor="let item of allTeam" class="col-md-3">
+          <div class="item text-center">
+            <div class="item-img mx-auto p-0 m-0">
+              <img [src]="item.image" alt="{{ item.name }}" />
+            </div>
+            <div class="content">
+              <h3>{{ item.name }}</h3>
+              <p>{{ item.job_title_name }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 mt-4 d-flex justify-content-center align-items-center">
+          <div class="join text-center">
+            <h2>
+                {{ "join_team" |translate}}
+            </h2>
+            <button routerLink="/hirring" class="mt-2">
+              {{"see_careers" | translate}}
+            </button>
+          </div>
+        </div>
+       </div>
       <!-- First Owl Carousel for the Top Row -->
-      <owl-carousel-o [options]="customOptions" #owlTop>
+      <div class="row w-100 mx-auto">
+      <owl-carousel-o *ngIf="isMobile" [options]="customOptions" #owlTop>
         <ng-container *ngFor="let item of firstRowItems">
           <ng-template carouselSlide>
-            <div class="item text-center">
-              <div class="item-img mx-auto p-0 m-0">
-                <img [src]="item.image" alt="{{ item.name }}" />
+           
+              <div class="item text-center">
+                <div class="item-img mx-auto p-0 m-0">
+                  <img [src]="item.image" alt="{{ item.name }}" />
+                </div>
+                <div class="content">
+                  <h3>{{ item.name }}</h3>
+                  <p>{{ item.job_title_name }}</p>
+                </div>
               </div>
-              <div class="content">
-                <h3>{{ item.name }}</h3>
-                <p>{{ item.job_title_name }}</p>
-              </div>
-            </div>
+           
           </ng-template>
         </ng-container>
       </owl-carousel-o>
-
+    
       <!-- Second Owl Carousel for the Bottom Row -->
-      <owl-carousel-o [options]="customOptions" #owlBottom>
+      <owl-carousel-o *ngIf="isMobile" [options]="customOptions" #owlBottom>
         <ng-container *ngFor="let item of secondRowItems">
           <ng-template carouselSlide>
             <div class="item text-center">
@@ -176,7 +203,7 @@
       </owl-carousel-o>
 
       <!-- Single Navigation Controls for Both Carousels -->
-      <div class="carousel-nav">
+      <div *ngIf="isMobile" class="carousel-nav">
         <button class="arrow-left border-0" (click)="goPrev()">
           <i
             [ngClass]="
@@ -193,9 +220,24 @@
             class="fa"
           ></i>
         </button>
+      </div> 
+
+      <div *ngIf="isMobile" class="col-12 mt-4 d-flex justify-content-center align-items-center">
+        <div class="join text-center">
+          <h2>
+            {{ ("join_team" | translate)?.split(' ').slice(0, -1).join(' ') }}
+            <span class="highlight">{{ ("join_team" | translate)?.split(' ').slice(-1) }}</span>
+          </h2>
+          
+          <button routerLink="/hirring" class="mt-2">
+            {{"see_careers" | translate}}
+          </button>
+        </div>
       </div>
     </div>
   </div>
+</div>
+
 </section>
 <section class="my-3 my-md-5">
   <app-company></app-company>

@@ -34,7 +34,7 @@ export class AllservicesComponent {
     this.changelangService.currentLang$.subscribe((lang) => {
       this._translate.use(lang);
       this.currentLang = lang;
-      this.customOptions.rtl = lang === 'ar';
+      this.customOptions.rtl = lang === 'en';
 
       this.cdr.detectChanges();
     });

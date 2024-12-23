@@ -112,8 +112,9 @@
           <owl-carousel-o [options]="customOptions" #owlCarousel>
             <ng-container *ngFor="let item of project?.images">
               <ng-template carouselSlide>
-                <div class="item">
+                <div class="item" (click)="openPreview(item.image)">
                   <img
+                    role="button"
                     [src]="item.image"
                     class="mx-auto"
                     [alt]="item.project_id"
@@ -167,6 +168,15 @@
     </div>
   </div>
 </section>
+<div   *ngIf="showLayer"
+class="layer d-flex justify-content-center align-items-center ">
+  <div class="w-25 position-relative text-center bg-white rounded-2">
+    <i role="button" (click)="closePreview($event)" class="fa fa-close position-absolute fa-2x">
+
+    </i>
+    <img [src]="previewImage" alt="Preview" class="w-100 rounded-2" />
+  </div>
+</div>
 <section class="my-md-5 my-3">
   <app-allprojects></app-allprojects>
 </section>

@@ -30,38 +30,19 @@
   </div>
 </header>
 
-<section class="my-md-5 my-2">
-  <div class="about py-md-5 py-2">
+<section class="my-md-5 my-2" *ngIf="about" #aboutSection id="aboutSection">
+  <div class="about py-md-5 py-2" >
     <div class="w-75 mx-auto">
-      <div
-        class="row w-100 p-0 m-0 mx-auto justify-content-between align-items-center"
-      >
+      <div class="row between w-100 p-0 m-0 mx-auto justify-content-between align-items-center">
         <div class="col-md-6">
-          <div class="about-img">
-            <img
-              src="../../../../assets/images/about.jfif"
-              class="w-100"
-              alt=""
-            />
+          <div class="about-img" [@scaleIn]="section2Animated ? 'in' : 'void'">
+            <img src="../../../../assets/images/about.jfif" class="w-100" alt=""/>
           </div>
         </div>
-        <div class="col-md-5 p-2">
-          <div
-            [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
-            class="about-content"
-          >
+        <div class="col-md-5 p-2" [@slideInLeft]="section2Animated ? 'in' : 'void'">
+          <div [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'" class="about-content">
             <h3>{{ "about_name" | translate }}</h3>
-            <p class="mt-2">
-              {{ "about_header" | translate }}
-            </p>
-            <!-- <p>
-              شركة تواجد هي شركة متخصصة في تقديم الحلول البرمجية قدمنا الكثير من
-              برمجة وتصميم المواقع والتطبيقات، فلدينا أكثر من 500 عميل في مصر
-              والمملكة العربية السعودية والأردن والعراق والكويت والسويد والسودان
-              والنرويج والجزائر و ليبيا وقطر، مع تواجد فأنت على الطريق الصحيح
-              نحو التحول الرقمي
-            </p> -->
-
+            <p class="mt-2">{{ "about_header" | translate }}</p>
             <a routerLink="/contact" target="_blank">
               <button class="border-0 mt-3">
                 {{ "request_free_consultation" | translate }}

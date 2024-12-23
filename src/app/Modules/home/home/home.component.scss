@@ -32,6 +32,9 @@
   }
 }
 .about {
+  .between{
+    justify-content: space-between !important;
+  }
   h3 {
     font-weight: 700;
     font-size:30px;

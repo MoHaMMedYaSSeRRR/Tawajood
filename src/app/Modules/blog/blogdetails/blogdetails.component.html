@@ -117,7 +117,25 @@
             {{ blog.title | cuttext : 10 }}
           </h1>
           <div [innerHTML]="sanitizedContent" class="mt-1"></div>
-
+          <div
+          *ngIf="blog.image_two && blog.image_three"
+          class="row w-100 mx-auto p-0 m-0 g-2 justify-content-between"
+        >
+          <div class="col-md-6">
+            <div class="image">
+              <img [src]="blog.image_two" class="w-100" alt="blogdetails-2" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="image">
+              <img
+                [src]="blog.image_three"
+                class="w-100"
+                alt="blogdetails-3"
+              />
+            </div>
+          </div>
+        </div>
           <!-- <div
             class="quotes d-flex justify-content-center align-items-center p-md-3 p-5"
           >
@@ -134,25 +152,7 @@
           </div> -->
           <div [innerHTML]="secondContent" class="mt-1"></div>
 
-          <div
-            *ngIf="blog.image_two && blog.image_three"
-            class="row w-100 mx-auto p-0 m-0 g-2 justify-content-between"
-          >
-            <div class="col-md-6">
-              <div class="image">
-                <img [src]="blog.image_two" class="w-100" alt="blogdetails-2" />
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="image">
-                <img
-                  [src]="blog.image_three"
-                  class="w-100"
-                  alt="blogdetails-3"
-                />
-              </div>
-            </div>
-          </div>
+         
           <!-- <p class="mt-1">
             في عصر التحول الرقمي المتسارع، أصبح تحسين محركات البحث (SEO) له دور
             بارز في نجاح الأعمال عبر الإنترنت. يعتبر تحسين SEO من الاستراتيجيات

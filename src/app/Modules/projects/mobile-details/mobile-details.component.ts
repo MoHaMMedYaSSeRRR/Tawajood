@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, ViewChild } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,6 +13,8 @@ import { ProjectsService } from 'src/app/Services/projects.service';
 })
 export class MobileDetailsComponent {
   currentLang: any;
+  showLayer = false;
+  previewImage: string | null = null;
   @ViewChild('owlCarousel', { static: false }) owlCarousel!: CarouselComponent;
   isInComponent: boolean = false;
   isMobile = false;
@@ -33,6 +35,8 @@ export class MobileDetailsComponent {
       this._translate.use(lang);
       this.currentLang = lang;
       this.cdr.detectChanges();
+      this.customOptions.rtl = lang === 'en';
+
     });
     this._ActivatedRoute.paramMap.subscribe({
       next: (params) => {
@@ -78,7 +82,22 @@ export class MobileDetailsComponent {
     },
     nav: false,
   };
-  
+  openPreview(image: string): void {
+    this.previewImage = image;
+    this.showLayer = true;
+  }
+
+  closePreview(event: Event): void {
+    event.stopPropagation(); // Prevent click inside the modal from closing it
+    this.showLayer = false;
+    this.previewImage = null;
+  }
+
+  @HostListener('document:keydown.escape', ['$event'])
+  onEscape(event: KeyboardEvent): void {
+    this.showLayer = false;
+    this.previewImage = null;
+  }
   onLanguageChange() {
     this.cdr.detectChanges();
   }

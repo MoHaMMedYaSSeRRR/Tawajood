@@ -45,7 +45,7 @@ export class CompanyComponent {
         items: 6,
       },
       1100: {
-        items: 8,
+        items: 7,
       },
     },
     nav: false,

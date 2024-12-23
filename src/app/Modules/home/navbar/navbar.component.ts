@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Service } from 'src/app/interfaces/service';
 import { changelangService } from 'src/app/Services/changelang.service';
 import { ServicesService } from 'src/app/Services/services.service';
+import { SoloutionsService } from 'src/app/Services/soloutions.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,15 +14,18 @@ import { ServicesService } from 'src/app/Services/services.service';
 export class NavbarComponent {
   @Output() languageChanged = new EventEmitter<void>();
   isDropdownVisible = false;
+  issoloutionsVisible = false;
   isNavOpen: boolean = false;
   scrollY: number = 0;
   currentLang: string = 'ar';
   services: Service[] = [];
+  soloutions:any[]=[];
   constructor(
     private _TranslateService: changelangService,
     private _translae: TranslateService,
     private _ServicesService: ServicesService,
-    private router: Router
+    private router: Router,
+    private _SoloutionsService: SoloutionsService
   ) {
     this._TranslateService.currentLang$.subscribe((lang) => {
       this.currentLang = lang;
@@ -34,6 +38,11 @@ export class NavbarComponent {
         this.services = res.data.services;
       },
     });
+    this._SoloutionsService.getSoloutions().subscribe({
+      next: (res) => {
+        this.soloutions = res.data.solutions;
+      },
+    })
   }
 
   ngOnInit(): void {

@@ -38,6 +38,15 @@
         color: #ffffff;
     }
   }
+  .image{
+    width: 300px !important;
+    height: 100px !important;
+    img{
+      width: 300px !important;
+      height: 100px !important;
+    }
+    
+  }
 }
 @media (max-width:768px) {
   .col-9{

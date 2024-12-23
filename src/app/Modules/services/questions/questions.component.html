@@ -64,7 +64,7 @@
               (click)="toggleAnswer(faq)"
             >
               <span class="icon">{{ faq.open ? "−" : "+" }}</span>
-              <span>{{ faq.question }}</span>
+              <span class="text-start">{{ faq.question }}</span>
             </div>
             <div class="faq-answer" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'" *ngIf="faq.open">
               <p>{{ faq.answer }}</p>

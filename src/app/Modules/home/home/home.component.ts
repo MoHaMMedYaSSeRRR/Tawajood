@@ -1,3 +1,4 @@
+import { trigger, transition, style, animate } from '@angular/animations';
 import {
   ChangeDetectorRef,
   Component,
@@ -17,10 +18,45 @@ import { HomeService } from 'src/app/Services/home.service';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  animations: [
+    trigger('fadeIn', [
+      transition('void => *', [
+        style({ opacity: 0, transform: 'translateY(50px)' }),
+        animate('1s ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ]),
+  
+    // Slide In Animation from the left (image)
+    trigger('slideInLeft', [
+      transition('void => *', [
+        style({ transform: 'translateX(-100%)', opacity: 0 }),
+        animate('1s ease-out', style({ transform: 'translateX(0)', opacity: 1 }))
+      ])
+    ]),
+  
+    // Slide In Animation from the right (content)
+    trigger('slideInRight', [
+      transition('void => *', [
+        style({ transform: 'translateX(100%)', opacity: 0 }),
+        animate('1s ease-out', style({ transform: 'translateX(0)', opacity: 1 }))
+      ])
+    ]),
+    trigger('scaleIn', [
+      transition('void => *', [
+        style({ opacity: 0, transform: 'scale(0.5)' }), // Start from a smaller scale
+        animate('1s ease-out', style({ opacity: 1, transform: 'scale(1)' })) // Scale to normal size
+      ]) ])
+  ]
 })
 export class HomeComponent implements AfterViewInit {
   @ViewChild('numbersSection') numbersSection!: ElementRef;
+  @ViewChild('aboutSection') aboutSection!: ElementRef;
+  @ViewChild('whyUsSection') whyUsSection!: ElementRef;
 
+  // Add flags to track if sections have been animated
+  section1Animated = false;
+  section2Animated = false;
+  section3Animated = false;
   headerContent: Slider[] = [];
   currentLang!: string;
   about: About[] = [];
@@ -112,6 +148,28 @@ export class HomeComponent implements AfterViewInit {
       });
     });
     observer.observe(this.numbersSection.nativeElement);
+    const observerr = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Trigger animation when the section is in view
+          const target = entry.target as HTMLElement;
+          if (target.id === 'numbersSection' && !this.section1Animated) {
+            this.section1Animated = true; // Mark as animated
+          }
+          if (target.id === 'aboutSection' && !this.section2Animated) {
+            this.section2Animated = true;
+          }
+          if (target.id === 'whyUsSection' && !this.section3Animated) {
+            this.section3Animated = true;
+          }
+          observerr.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 }); // 50% of the element must be in view to trigger the animation
+
+    observerr.observe(this.numbersSection.nativeElement);
+    observerr.observe(this.aboutSection.nativeElement);
+    observerr.observe(this.whyUsSection.nativeElement);
     this.setMetaTags();
   }
 

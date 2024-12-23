@@ -26,6 +26,7 @@ export class AboutComponent {
   completedProjects = 0;
   allTeam: any[] = [];
   contactUs:any;
+  isMobile:boolean=false;
  
   constructor(
     private cdr: ChangeDetectorRef,
@@ -38,6 +39,7 @@ export class AboutComponent {
   ) {}
 
   ngOnInit(): void {
+    this.isMobile = window.innerWidth <= 768;
     this.setMetaTags();
     this.changelangService.currentLang$.subscribe((lang) => {
       this._translate.use(lang);

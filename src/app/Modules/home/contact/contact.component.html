@@ -107,7 +107,7 @@
                 </span>
                 <span
                   (click)="toggleDropdowncountry()"
-                  class="code position-absolute"
+                  class="code  position-absolute"
                   role="button"
                 >
                   {{ selectedCountry.code }}
@@ -118,14 +118,13 @@
                     *ngFor="let country of countries"
                     (click)="selectCountry(country)"
                     class="dropdown-item"
+                    [ngClass]="{'text-start': currentLang=='en'}"
                   >
                     {{ country.name }} ({{ country.code }})
-                    <!-- Display country name and code -->
                   </div>
                 </div>
               </div>
 
-              <!-- Message Field -->
               <div class="col-12">
                 <textarea
                   [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
@@ -166,11 +165,11 @@
               </p>
               <p>
                 <a
-                  href="https://wa.me/01024848723"
-                  class="text-decoration-none"
+                href="tel:01024848723"
+                class="text-decoration-none"
                   target="_blank"
                 >
-                  01024848723
+                  {{contactUs.phone}}
                 </a>
               </p>
             </div>
@@ -202,7 +201,7 @@
                   href="mailto:info@tawajood.com"
                   class="text-decoration-none"
                   target="_blank"
-                  >info@tawajood.com</a
+                  >{{contactUs.email}}</a
                 >
               </p>
             </div>
@@ -211,6 +210,38 @@
             >
               <img
                 src="../../../../assets/images/Group (1).png"
+                class="w-100"
+                alt=""
+              />
+            </div>
+          </div>
+          <div
+          *ngIf="isInComponent"
+            [ngClass]="
+              currentLang === 'ar'
+                ? 'justify-content-end'
+                : 'justify-content-end'
+            "
+            class="d-flex mt-3"
+          >
+            <div class="content mx-3">
+              <p class="mb-1">
+                {{ "address" | translate }}
+              </p>
+              <p>
+                <a
+                  href="mailto:info@tawajood.com"
+                  class="text-decoration-none"
+                  target="_blank"
+                  >{{contactUs.address}}</a
+                >
+              </p>
+            </div>
+            <div
+              class="icon pe-2 d-flex justify-content-center align-items-center"
+            >
+              <img
+                src="../../../../assets/images/location.png"
                 class="w-100"
                 alt=""
               />

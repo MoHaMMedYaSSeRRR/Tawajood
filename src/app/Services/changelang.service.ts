@@ -27,7 +27,7 @@ export class changelangService  {
     this.currentLangSubject.next(newLang);
     localStorage.setItem('currentLang', newLang);
     this.languageChanged$.next();
-  }
+  } 
   
 
   setCurrentLang(lang: string) {

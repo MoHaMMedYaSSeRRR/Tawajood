@@ -129,6 +129,7 @@ export class ContactComponent {
     { code: '377', flag: '🇲🇨', name: 'Monaco' },
     { code: '378', flag: '🇸🇲', name: 'San Marino' },
   ];
+  contactUs: any;
 
   constructor(
     private changelangService: changelangService,
@@ -156,6 +157,11 @@ export class ContactComponent {
         console.log(this.allServices);
       },
     });
+    this._HomeService.getContactUs().subscribe({
+      next: (res) => {
+        this.contactUs = res.data.contact_us;
+      },
+    })
     this.checkRoute();
     this.setMetaTags();
   }

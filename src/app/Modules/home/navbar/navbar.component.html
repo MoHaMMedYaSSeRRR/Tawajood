@@ -241,14 +241,23 @@
               {{ 'projects' | translate }}
             </a>
           </li>
-          <li>
-            <a
+          <li class="dropdown"
+          (mouseover)="issoloutionsVisible = true"
+          (mouseout)="issoloutionsVisible = false">            <a
               routerLink="/solutions"
               routerLinkActive="active"
               class="text-decoration-none"
             >
               {{ 'solutions' | translate }}
             </a>
+            <ul class="dropdown-menu" [ngStyle]="{ 'display': issoloutionsVisible ? 'block' : 'none' }">
+              <li routerLink="/solutions" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">
+                <a  class="dropdown-item">{{ 'all' | translate }}</a>
+              </li>
+              <li *ngFor="let item of soloutions" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">
+                <a [routerLink]="['/solutionDetails' , item.id]" class="dropdown-item">{{ item.name }}</a>
+              </li>
+            </ul>
           </li>
           <li class="dropdown"
     (mouseover)="isDropdownVisible = true"

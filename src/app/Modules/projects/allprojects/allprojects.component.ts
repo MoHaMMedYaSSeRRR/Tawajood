@@ -46,7 +46,7 @@ export class AllprojectsComponent {
     this.changelangService.currentLang$.subscribe((lang) => {
       this.translate.use(lang);
       this.currentLang = lang;
-      this.customOptions.rtl = lang === 'ar';
+      this.customOptions.rtl = lang === 'en';
       this.cdr.detectChanges();
     });
     this.checkRoute();
@@ -121,7 +121,7 @@ export class AllprojectsComponent {
       () => Math.random() - 0.5
     );
     this.displayedProjects = [...this.allProjects];
-    this.mobileProject=this.displayedProjects.slice(0,3)
+    this.mobileProject=this.displayedProjects.slice(0,4)
   }
 
   filterProjects(type: number | null): void {

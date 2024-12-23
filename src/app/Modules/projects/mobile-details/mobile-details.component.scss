@@ -21,7 +21,6 @@
     font-size: 16px;
     color: #666c89;
   }
-  
 }
 button {
   width: 200px;
@@ -62,10 +61,6 @@ h3 {
   img {
     height: 450px !important;
     width: 200px !important;
-    transition: transform 0.3s ease; 
-    &:hover {
-      transform: scale(1.2); 
-    }
   }
 }
 
@@ -140,19 +135,40 @@ h3 {
     background-color: #4584c5;
     color: #fff;
   }
- }
- .icon-links {
- 
-
+}
+.icon-links {
   a {
     text-decoration: none;
   }
 
-  img{
+  img {
     width: 40px;
     height: 40px;
   }
-  img:hover{
+  img:hover {
     scale: (1.1);
+  }
+}
+.layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  .w-25 {
+    i{
+      top: 20px;
+      left: 20px;
+    }
+    img {
+      height: 450px !important;
+      width: 200px !important;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .w-25 {
+    width: 90% !important;
   }
 }
