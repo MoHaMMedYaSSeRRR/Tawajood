@@ -27,6 +27,7 @@ export class AboutComponent {
   allTeam: any[] = [];
   contactUs:any;
   isMobile:boolean=false;
+  defaultImage = '../../../../assets/images/tawagood.jpg';
  
   constructor(
     private cdr: ChangeDetectorRef,
@@ -55,6 +56,7 @@ export class AboutComponent {
     this._HomeService.getTeam().subscribe({
       next: (res) => {
         this.allTeam = res.data;
+        console.log(this.allTeam)
         this.splitTeams();
       },
     });
