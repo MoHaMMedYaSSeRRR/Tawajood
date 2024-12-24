@@ -107,7 +107,7 @@
                 </span>
                 <span
                   (click)="toggleDropdowncountry()"
-                  class="code  position-absolute"
+                  class="code position-absolute"
                   role="button"
                 >
                   {{ selectedCountry.code }}
@@ -118,7 +118,7 @@
                     *ngFor="let country of countries"
                     (click)="selectCountry(country)"
                     class="dropdown-item"
-                    [ngClass]="{'text-start': currentLang=='en'}"
+                    [ngClass]="{ 'text-start': currentLang == 'en' }"
                   >
                     {{ country.name }} ({{ country.code }})
                   </div>
@@ -165,11 +165,11 @@
               </p>
               <p>
                 <a
-                href="tel:01024848723"
-                class="text-decoration-none"
+                  href="tel:01024848723"
+                  class="text-decoration-none"
                   target="_blank"
                 >
-                  {{contactUs.phone}}
+                  01024848723
                 </a>
               </p>
             </div>
@@ -201,7 +201,7 @@
                   href="mailto:info@tawajood.com"
                   class="text-decoration-none"
                   target="_blank"
-                  >{{contactUs.email}}</a
+                  >{{ contactUs.email }}</a
                 >
               </p>
             </div>
@@ -216,7 +216,7 @@
             </div>
           </div>
           <div
-          *ngIf="isInComponent"
+            *ngIf="isInComponent"
             [ngClass]="
               currentLang === 'ar'
                 ? 'justify-content-end'
@@ -233,7 +233,7 @@
                   href="mailto:info@tawajood.com"
                   class="text-decoration-none"
                   target="_blank"
-                  >{{contactUs.address}}</a
+                  >{{ contactUs.address }}</a
                 >
               </p>
             </div>

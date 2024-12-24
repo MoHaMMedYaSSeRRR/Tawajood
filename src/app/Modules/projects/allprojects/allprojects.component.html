@@ -72,6 +72,7 @@
           >
             <img
             *ngIf="item.home_screen"
+            loading="lazy"
               [routerLink]="['/mobile', item.id]"
               [src]="item.home_screen"
               role="button"
