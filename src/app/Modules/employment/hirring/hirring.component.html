@@ -10,7 +10,10 @@
     </span>
   </div>
 </section>
-<section class="hirring my-md-4 my-3">
+<section *ngIf="jobs.length ==0" class="my-md-4 my-3">
+<app-emptystatus></app-emptystatus>
+</section>
+<section *ngIf="jobs.length > 0" class="hirring my-md-4 my-3">
   <div class="w-75 mx-auto">
     <h2
       class="px-0"

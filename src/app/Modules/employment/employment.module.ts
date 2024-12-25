@@ -12,6 +12,8 @@ import { CuttextPipe } from 'src/app/pipes/cuttext.pipe';
 import { ApplyjobComponent } from './applyjob/applyjob.component';
 import { ServicesModule } from '../services/services.module';
 import { ToastrModule } from 'ngx-toastr';
+import { EmptystatusComponent } from '../home/emptystatus/emptystatus.component';
+import { HomeModule } from '../home/home.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { ToastrModule } from 'ngx-toastr';
     CommonModule,
     ServicesModule,
     ReactiveFormsModule,
+    HomeModule,
     EmploymentRoutingModule,
     ToastrModule.forRoot(),
      TranslateModule.forRoot({

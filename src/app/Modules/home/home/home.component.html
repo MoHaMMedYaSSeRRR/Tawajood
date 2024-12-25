@@ -57,8 +57,8 @@
 
 <section class="why p-md-5 p-4 pt-5">
   <div class="w-75 px-2 mx-auto">
-    <div class="row gy-5 py-md-5 px-md-5 w-100 mx-auto">
-      <ng-container *ngFor="let item of whyUs; let i = index" [@scaleIn]="section3Animated ? 'in' : 'void'">
+    <div [@scaleIn]="section3Animated ? 'in' : 'void'"  class="row gy-5 py-md-5 px-md-5 w-100 mx-auto">
+      <ng-container *ngFor="let item of whyUs; let i = index" >
         <div *ngIf="i < 2" class="col-md-4">
           <div
             [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
@@ -71,8 +71,9 @@
         </div>
       </ng-container>
 
-      <div *ngIf="whyUs.length > 2" [ngClass]="{'order-1': isMobile}" class="col-md-4" [@scaleIn]="section3Animated ? 'in' : 'void'">
+      <div *ngIf="whyUs.length > 2" [ngClass]="{'order-1': isMobile}" class="col-md-4" >
         <div
+        [@scaleIn]="section3Animated ? 'in' : 'void'"
           [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
           class="item d-flex justify-content-center align-items-center border-0 position-relative p-2"
         >
@@ -80,9 +81,10 @@
         </div>
       </div>
 
-      <ng-container *ngFor="let item of whyUs; let i = index" [@scaleIn]="section3Animated ? 'in' : 'void'">
+      <ng-container *ngFor="let item of whyUs; let i = index" >
         <div *ngIf="i >= 2" class="col-md-4">
           <div
+          [@scaleIn]="section3Animated ? 'in' : 'void'"
             [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
             class="item position-relative p-2"
           >

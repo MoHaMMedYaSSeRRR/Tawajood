@@ -19,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { LoadingComponent } from './loading/loading.component';
+import { EmptystatusComponent } from './emptystatus/emptystatus.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { LoadingComponent } from './loading/loading.component';
     ContactComponent,
     NotfoundComponent,
     LoadingComponent,
+    EmptystatusComponent,
   ],
   imports: [
     CommonModule,
@@ -52,7 +54,8 @@ import { LoadingComponent } from './loading/loading.component';
   exports: [
     NavbarComponent,
     FooterComponent ,
-    LoadingComponent 
+    LoadingComponent ,
+    EmptystatusComponent
   ]
 })
 export class HomeModule { }

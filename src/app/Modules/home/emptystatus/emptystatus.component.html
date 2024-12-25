@@ -1,0 +1,28 @@
+<section>
+    <div class="w-75 mx-auto d-flex flex-column justify-content-center align-items-center">
+      <div class="image">
+        <img
+          src="../../../../assets/images/empty.png"
+          class="w-100"
+          alt=""
+        />
+      </div>
+      <div class="content text-center">
+        <h3>{{ 'comingSoonTitle' | translate }}</h3>
+  <p class="w-50 text-center mx-auto">
+    {{ 'comingSoonMessage' | translate }}
+  </p>
+  
+        <div class="buttons">
+          <button routerLink="/home" class="mx-2 btn-2">
+              {{'gotohomepage'|translate}}
+          </button>
+          <button class="btn-1" (click)="goBack()">
+              {{ 'back' | translate }}
+            </button>
+            
+        </div>
+      </div>
+    </div>
+  </section>
+  

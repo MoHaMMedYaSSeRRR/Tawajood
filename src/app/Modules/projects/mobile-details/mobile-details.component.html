@@ -63,7 +63,7 @@
         </div>
       </div>
     </div>
-    <div class="my-md-5 my-3">
+    <div *ngIf="project.features.length>0" class="my-md-5 my-3">
       <div
         class="global-details py-2"
         [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
@@ -168,15 +168,38 @@
     </div>
   </div>
 </section>
-<div   *ngIf="showLayer"
-class="layer d-flex justify-content-center align-items-center ">
-  <div class="w-25 position-relative text-center bg-white rounded-2">
-    <i role="button" (click)="closePreview($event)" class="fa fa-close position-absolute fa-2x">
-
-    </i>
-    <img [src]="previewImage" alt="Preview" class="w-100 rounded-2" />
+<div 
+  *ngIf="showLayer" 
+  class="layer d-flex justify-content-center align-items-center">
+<span class="close position-absolute">
+  <i 
+  role="button" 
+  (click)="closePreview($event)" 
+  class="fa fa-close  fa-2x">
+</i>
+</span>
+  <div class="w-50 position-relative text-center rounded-2">
+    <img 
+      [src]="previewImage" 
+      alt="Preview" 
+      class="w-100 rounded-2" 
+    />
+    <div class="navigation d-flex justify-content-center align-items-center mt-5">
+      <span 
+        role="button" 
+        class="mx-2" 
+        (click)="goPrevPhoto()">
+        <i class="fa fa-arrow-left"></i>
+      </span>
+      <span 
+        role="button" 
+        (click)="goNextPhoto()">
+        <i class="fa fa-arrow-right"></i>
+      </span>
+    </div>
   </div>
 </div>
+
 <section class="my-md-5 my-3">
   <app-allprojects></app-allprojects>
 </section>

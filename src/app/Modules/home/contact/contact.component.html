@@ -146,7 +146,7 @@
           </form>
         </div>
       </div>
-      <div class="col-md-4 d-md-block d-none">
+      <div *ngIf="contactUs" class="col-md-4 d-md-block d-none">
         <div
           [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
           class="contact mt-3"

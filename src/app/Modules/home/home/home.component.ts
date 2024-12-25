@@ -43,9 +43,10 @@ import { HomeService } from 'src/app/Services/home.service';
     ]),
     trigger('scaleIn', [
       transition('void => *', [
-        style({ opacity: 0, transform: 'scale(0.5)' }), // Start from a smaller scale
-        animate('1s ease-out', style({ opacity: 1, transform: 'scale(1)' })) // Scale to normal size
-      ]) ])
+        style({ transform: 'scale(0)' }),
+        animate('300ms ease-in', style({ transform: 'scale(1)' }))
+      ])
+    ])
   ]
 })
 export class HomeComponent implements AfterViewInit {
@@ -131,30 +132,32 @@ export class HomeComponent implements AfterViewInit {
       });
   }
   ngAfterViewInit() {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          this.startCounter(
-            'yearsExperience',
-            this.contactUs.years_of_experience
-          );
-          this.startCounter('happyClients', this.contactUs.happy_customers);
-          this.startCounter(
-            'completedProjects',
-            this.contactUs.project_numbers
-          );
-          observer.unobserve(entry.target);
-        }
+    if (this.numbersSection?.nativeElement) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            this.startCounter(
+              'yearsExperience',
+              this.contactUs.years_of_experience
+            );
+            this.startCounter('happyClients', this.contactUs.happy_customers);
+            this.startCounter(
+              'completedProjects',
+              this.contactUs.project_numbers
+            );
+            observer.unobserve(entry.target);
+          }
+        });
       });
-    });
-    observer.observe(this.numbersSection.nativeElement);
+      observer.observe(this.numbersSection.nativeElement);
+    }
+  
     const observerr = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Trigger animation when the section is in view
           const target = entry.target as HTMLElement;
           if (target.id === 'numbersSection' && !this.section1Animated) {
-            this.section1Animated = true; // Mark as animated
+            this.section1Animated = true;
           }
           if (target.id === 'aboutSection' && !this.section2Animated) {
             this.section2Animated = true;
@@ -165,13 +168,15 @@ export class HomeComponent implements AfterViewInit {
           observerr.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.5 }); // 50% of the element must be in view to trigger the animation
-
-    observerr.observe(this.numbersSection.nativeElement);
-    observerr.observe(this.aboutSection.nativeElement);
-    observerr.observe(this.whyUsSection.nativeElement);
+    }, { threshold: 0.5 });
+  
+    if (this.numbersSection?.nativeElement) observerr.observe(this.numbersSection.nativeElement);
+    if (this.aboutSection?.nativeElement) observerr.observe(this.aboutSection.nativeElement);
+    if (this.whyUsSection?.nativeElement) observerr.observe(this.whyUsSection.nativeElement);
+  
     this.setMetaTags();
   }
+  
 
   startCounter(
     property: 'yearsExperience' | 'happyClients' | 'completedProjects',

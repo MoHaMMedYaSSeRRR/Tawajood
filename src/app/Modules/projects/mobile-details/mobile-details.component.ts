@@ -1,4 +1,9 @@
-import { ChangeDetectorRef, Component, HostListener, ViewChild } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  HostListener,
+  ViewChild,
+} from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,7 +14,7 @@ import { ProjectsService } from 'src/app/Services/projects.service';
 @Component({
   selector: 'app-mobile-details',
   templateUrl: './mobile-details.component.html',
-  styleUrls: ['./mobile-details.component.scss']
+  styleUrls: ['./mobile-details.component.scss'],
 })
 export class MobileDetailsComponent {
   currentLang: any;
@@ -18,16 +23,17 @@ export class MobileDetailsComponent {
   @ViewChild('owlCarousel', { static: false }) owlCarousel!: CarouselComponent;
   isInComponent: boolean = false;
   isMobile = false;
-  project:any;
-  id:any
+  project: any;
+  id: any;
+  currentImageIndex: number = 0;
   constructor(
     private _ProjectsService: ProjectsService,
     private changelangService: changelangService,
     private _translate: TranslateService,
     private cdr: ChangeDetectorRef,
-    private _ActivatedRoute:ActivatedRoute , 
+    private _ActivatedRoute: ActivatedRoute,
     private title: Title,
-    private meta: Meta,
+    private meta: Meta
   ) {}
   ngOnInit(): void {
     this.isMobile = window.innerWidth <= 768;
@@ -36,27 +42,31 @@ export class MobileDetailsComponent {
       this.currentLang = lang;
       this.cdr.detectChanges();
       this.customOptions.rtl = lang === 'en';
-
     });
     this._ActivatedRoute.paramMap.subscribe({
       next: (params) => {
         this.id = params.get('id');
         this._ProjectsService.getDetails(this.id).subscribe({
           next: (data) => {
-            this.project=data.data;
-            console.log(this.project)
+            this.project = data.data;
+            console.log(this.project);
             this.title.setTitle(this.project.meta_title);
-            this.meta.updateTag({ name: 'description', content: this.project.meta_description });
-            this.meta.updateTag({ name: 'keywords', content: this.project.meta_keywords });
+            this.meta.updateTag({
+              name: 'description',
+              content: this.project.meta_description,
+            });
+            this.meta.updateTag({
+              name: 'keywords',
+              content: this.project.meta_keywords,
+            });
           },
           error: (error) => {
             console.log(error);
           },
-        })
+        });
         console.log(this.id);
-      }
-    })
-   
+      },
+    });
   }
   customOptions: OwlOptions = {
     loop: true,
@@ -78,37 +88,68 @@ export class MobileDetailsComponent {
       },
       940: {
         items: 4, // Show four images at a time on larger screens
-      }
+      },
     },
     nav: false,
   };
   openPreview(image: string): void {
+    this.currentImageIndex = this.project.images.findIndex(
+      (img: string) => img === image
+    );
     this.previewImage = image;
     this.showLayer = true;
   }
 
   closePreview(event: Event): void {
-    event.stopPropagation(); // Prevent click inside the modal from closing it
+    event.stopPropagation();
     this.showLayer = false;
     this.previewImage = null;
   }
 
-  @HostListener('document:keydown.escape', ['$event'])
-  onEscape(event: KeyboardEvent): void {
-    this.showLayer = false;
-    this.previewImage = null;
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent): void {
+    if (this.showLayer) {
+      switch (event.key) {
+        case 'Escape':
+          this.closePreview(event);
+          break;
+        case 'ArrowLeft':
+          this.goPrevPhoto();
+          break;
+        case 'ArrowRight':
+          this.goNextPhoto();
+          break;
+      }
+    }
   }
+  
   onLanguageChange() {
     this.cdr.detectChanges();
   }
   goPrev(): void {
-    this.owlCarousel.prev();  // Navigate to the previous item
-    this.cdr.detectChanges();  // Trigger change detection to update the view
+    this.owlCarousel.prev(); // Navigate to the previous item
+    this.cdr.detectChanges(); // Trigger change detection to update the view
   }
-  
+
   goNext(): void {
-    this.owlCarousel.next();  // Navigate to the next item
-    this.cdr.detectChanges();  // Trigger change detection to update the view
+    this.owlCarousel.next();
+    this.cdr.detectChanges();
   }
-  
+
+  goPrevPhoto(): void {
+    if (this.project && this.project.images) {
+      this.currentImageIndex =
+        (this.currentImageIndex - 1 + this.project.images.length) %
+        this.project.images.length;
+      this.previewImage = this.project.images[this.currentImageIndex].image;
+    }
+  }
+
+  goNextPhoto(): void {
+    if (this.project && this.project.images) {
+      this.currentImageIndex =
+        (this.currentImageIndex + 1) % this.project.images.length;
+      this.previewImage = this.project.images[this.currentImageIndex].image;
+    }
+  }
 }

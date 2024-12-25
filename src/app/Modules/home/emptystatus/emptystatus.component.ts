@@ -1,15 +1,14 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { changelangService } from 'src/app/Services/changelang.service';
-import { ChangeDetectorRef } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-notfound',
-  templateUrl: './notfound.component.html',
-  styleUrls: ['./notfound.component.scss']
+  selector: 'app-emptystatus',
+  templateUrl: './emptystatus.component.html',
+  styleUrls: ['./emptystatus.component.scss']
 })
-export class NotfoundComponent {
+export class EmptystatusComponent {
   constructor(
     private changelangService: changelangService,
     private _translate: TranslateService,
