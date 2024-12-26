@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { trigger, transition, style, animate, state } from '@angular/animations';
+import { ChangeDetectorRef, Component, Input, SimpleChanges } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -11,12 +12,27 @@ import { ServicesService } from 'src/app/Services/services.service';
   selector: 'app-allservices',
   templateUrl: './allservices.component.html',
   styleUrls: ['./allservices.component.scss'],
+  animations: [
+    trigger('zoomIn', [
+      state('inactive', style({ transform: 'scale(0.5)', opacity: 0 })), // No animation applied
+      state('active', style({ transform: 'scale(1)', opacity: 1 })),
+      transition('inactive => active', [animate('0.7s ease-in')]),
+    ]),
+  ],
 })
 export class AllservicesComponent {
   currentLang: any;
   isInComponent: boolean = false;
   @Input() index!: number;
+  @Input() inView!: boolean;
 
+  hasBeenInView: boolean = false; // Tracks if `inView` has ever been true
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['inView'] && changes['inView'].currentValue) {
+      this.hasBeenInView = true;
+    }
+  }
   constructor(
     private cdr: ChangeDetectorRef,
     private changelangService: changelangService,

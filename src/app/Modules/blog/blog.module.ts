@@ -16,7 +16,7 @@ import { BlogdetailsComponent } from './blogdetails/blogdetails.component';
   declarations: [
     OurblogComponent,
     CompanyComponent,
-    BlogdetailsComponent
+    BlogdetailsComponent 
   ],
   imports: [
     CommonModule,

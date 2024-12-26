@@ -22,51 +22,67 @@ import { HomeService } from 'src/app/Services/home.service';
     trigger('fadeIn', [
       transition('void => *', [
         style({ opacity: 0, transform: 'translateY(50px)' }),
-        animate('1s ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
-      ])
+        animate(
+          '1s ease-out',
+          style({ opacity: 1, transform: 'translateY(0)' })
+        ),
+      ]),
     ]),
-  
+
     // Slide In Animation from the left (image)
     trigger('slideInLeft', [
       transition('void => *', [
         style({ transform: 'translateX(-100%)', opacity: 0 }),
-        animate('1s ease-out', style({ transform: 'translateX(0)', opacity: 1 }))
-      ])
+        animate(
+          '1s ease-out',
+          style({ transform: 'translateX(0)', opacity: 1 })
+        ),
+      ]),
     ]),
-  
+
     // Slide In Animation from the right (content)
     trigger('slideInRight', [
       transition('void => *', [
         style({ transform: 'translateX(100%)', opacity: 0 }),
-        animate('1s ease-out', style({ transform: 'translateX(0)', opacity: 1 }))
-      ])
+        animate(
+          '1s ease-out',
+          style({ transform: 'translateX(0)', opacity: 1 })
+        ),
+      ]),
     ]),
     trigger('scaleIn', [
       transition('void => *', [
         style({ transform: 'scale(0)' }),
-        animate('300ms ease-in', style({ transform: 'scale(1)' }))
-      ])
-    ])
-  ]
+        animate('1s ease-in', style({ transform: 'scale(1)' })),
+      ]),
+    ]),
+  ],
 })
 export class HomeComponent implements AfterViewInit {
   @ViewChild('numbersSection') numbersSection!: ElementRef;
   @ViewChild('aboutSection') aboutSection!: ElementRef;
-  @ViewChild('whyUsSection') whyUsSection!: ElementRef;
+  @ViewChild('whySection') whyUsSection!: ElementRef;
+  @ViewChild('servicesSection') servicesSection!: ElementRef;
+  @ViewChild('soloutionService') soloutionService!: ElementRef;
+  @ViewChild('projectService') projectService!: ElementRef;
 
+  
   // Add flags to track if sections have been animated
   section1Animated = false;
   section2Animated = false;
   section3Animated = false;
+  isServicesSectionInView = false;
+  isSoloutionServiceInView = false;
+  isProjectServiceInView = false;
   headerContent: Slider[] = [];
   currentLang!: string;
   about: About[] = [];
-  isMobile: boolean=false;
+  isMobile: boolean = false;
   // Counter values
   yearsExperience = 0;
   happyClients = 0;
   completedProjects = 0;
-  whyUs: any[] =[];
+  whyUs: any[] = [];
   contactUs: any;
 
   constructor(
@@ -132,52 +148,121 @@ export class HomeComponent implements AfterViewInit {
       });
   }
   ngAfterViewInit() {
+    // Observer for the numbers section to start counters when it comes into view
     if (this.numbersSection?.nativeElement) {
-      const observer = new IntersectionObserver((entries) => {
+      const numbersObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              this.startCounter(
+                'yearsExperience',
+                this.contactUs.years_of_experience
+              );
+              this.startCounter('happyClients', this.contactUs.happy_customers);
+              this.startCounter(
+                'completedProjects',
+                this.contactUs.project_numbers
+              );
+              numbersObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.5 }
+      ); // Trigger animation when 50% of the section is visible
+      numbersObserver.observe(this.numbersSection.nativeElement);
+    }
+    // Observer for animating sections (about, why us, etc.) on scroll
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
         entries.forEach((entry) => {
+          console.log(
+            `Observed section: ${entry.target.id}, isIntersecting: ${entry.isIntersecting}`
+          ); // Debugging log
           if (entry.isIntersecting) {
-            this.startCounter(
-              'yearsExperience',
-              this.contactUs.years_of_experience
-            );
-            this.startCounter('happyClients', this.contactUs.happy_customers);
-            this.startCounter(
-              'completedProjects',
-              this.contactUs.project_numbers
-            );
-            observer.unobserve(entry.target);
+            const target = entry.target as HTMLElement;
+
+            setTimeout(() => {
+              // Ensuring animation only happens when section is scrolled into view
+              switch (target.id) {
+                case 'numbersSection':
+                  if (!this.section1Animated) this.section1Animated = true;
+                  break;
+                case 'aboutSection':
+                  if (!this.section2Animated) this.section2Animated = true;
+                  break;
+                case 'whySection':
+                  if (!this.section3Animated) this.section3Animated = true;
+
+                  // if (!this.section3Animated) {
+                  //   console.log('Animating whyUsSection'); // Debugging log
+                  //   this.section3Animated = true;
+                  // }
+                  break;
+              }
+              sectionObserver.unobserve(entry.target); // Stop observing after animation
+            }, 300); // Delay of 300ms before animation starts
           }
         });
-      });
-      observer.observe(this.numbersSection.nativeElement);
-    }
-  
-    const observerr = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const target = entry.target as HTMLElement;
-          if (target.id === 'numbersSection' && !this.section1Animated) {
-            this.section1Animated = true;
-          }
-          if (target.id === 'aboutSection' && !this.section2Animated) {
-            this.section2Animated = true;
-          }
-          if (target.id === 'whyUsSection' && !this.section3Animated) {
-            this.section3Animated = true;
-          }
-          observerr.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-  
-    if (this.numbersSection?.nativeElement) observerr.observe(this.numbersSection.nativeElement);
-    if (this.aboutSection?.nativeElement) observerr.observe(this.aboutSection.nativeElement);
-    if (this.whyUsSection?.nativeElement) observerr.observe(this.whyUsSection.nativeElement);
-  
-    this.setMetaTags();
-  }
-  
+      },
+      {
+        threshold: 0.1, // Trigger when 10% of the section is visible (change based on preference)
+      }
+    );
 
+    // Attach the observer to the sections
+    if (this.numbersSection?.nativeElement) {
+      sectionObserver.observe(this.numbersSection.nativeElement);
+    }
+    if (this.aboutSection?.nativeElement) {
+      sectionObserver.observe(this.aboutSection.nativeElement);
+    }
+    if (this.whyUsSection?.nativeElement) {
+      sectionObserver.observe(this.whyUsSection.nativeElement);
+    }
+    if (this.servicesSection?.nativeElement) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.target === this.servicesSection.nativeElement) {
+              this.isServicesSectionInView = entry.isIntersecting;
+            }
+          });
+        },
+        { threshold: 0.5 } // Adjust threshold as needed
+      );
+
+      observer.observe(this.servicesSection.nativeElement);
+    }
+    if (this.soloutionService?.nativeElement) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.target === this.soloutionService.nativeElement) {
+              this.isSoloutionServiceInView = entry.isIntersecting;
+            }
+          });
+        },
+        { threshold: 0.5 } // Adjust threshold as needed
+      );
+
+      observer.observe(this.soloutionService.nativeElement);
+    }
+    if (this.projectService?.nativeElement) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.target === this.projectService.nativeElement) {
+              this.isProjectServiceInView = entry.isIntersecting;
+            }
+          });
+        },
+        { threshold: 0.5 } // Adjust threshold as needed
+      );
+
+      observer.observe(this.projectService.nativeElement);
+    }
+    this.setMetaTags(); // Ensure meta tags are set after view initialization
+  }
   startCounter(
     property: 'yearsExperience' | 'happyClients' | 'completedProjects',
     target: number

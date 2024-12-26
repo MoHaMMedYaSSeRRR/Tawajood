@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Blog } from 'src/app/interfaces/blog';
@@ -9,7 +9,9 @@ import { DomSanitizer, Meta, SafeHtml, Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-blogdetails',
   templateUrl: './blogdetails.component.html',
-  styleUrls: ['./blogdetails.component.scss']
+  styleUrls: ['./blogdetails.component.scss'],
+  encapsulation: ViewEncapsulation.None, // Make styles global
+
 })
 export class BlogdetailsComponent {
   currentLang: any;

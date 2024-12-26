@@ -114,15 +114,13 @@
   "highQualityHosting": "Get your website hosted with the highest quality standards.",
   "newest": "Newest",
   "oldest": "Oldest",
-  "orderBy": ": Order By " ,
+  "orderBy": ": Order By ",
   "upload_resume": "Your resume as a PDF or Word file only",
   "app_process": "Mobile App Development Process",
-  "address":"Address",
+  "address": "Address",
   "join_team": "Interested in joining Tawajood team?",
   "see_careers": "See Careers",
   "comingSoonTitle": "Coming Soon",
-  "comingSoonMessage": "Something exciting is on the way! Stay tuned as we prepare to launch an exceptional experience tailored just for you. Coming soon!"
-
-
-
+  "comingSoonMessage": "Something exciting is on the way! Stay tuned as we prepare to launch an exceptional experience tailored just for you. Coming soon!",
+  "webSpecifications": "General Specifications of the website"
 }

@@ -53,7 +53,7 @@ import { EmptystatusComponent } from './emptystatus/emptystatus.component';
   ] , 
   exports: [
     NavbarComponent,
-    FooterComponent ,
+    FooterComponent , 
     LoadingComponent ,
     EmptystatusComponent
   ]

@@ -4,7 +4,8 @@
     [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
   >
     <span>
-      <span role="buttonn" routerLink="/home">{{ "home" | translate }}</span> <span class="mx-2"> > </span
+      <span role="buttonn" routerLink="/home">{{ "home" | translate }}</span>
+      <span class="mx-2"> > </span
       ><span class="current">{{ "projects" | translate }}</span>
     </span>
   </div>
@@ -17,9 +18,9 @@
     >
       <ul
         *ngIf="isInComponent"
-        class="list-unstyled  d-flex justify-content-center align-items-center"
+        class="list-unstyled d-flex justify-content-center align-items-center"
       >
-        <li *ngIf="mobileApp.length>0">
+        <li *ngIf="mobileApp.length > 0">
           <a
             (click)="filterProjects(2)"
             [class.active]="selectedFilter === 2"
@@ -28,7 +29,7 @@
             {{ "mobile_apps" | translate }}
           </a>
         </li>
-        <li *ngIf="websites.length>0">
+        <li *ngIf="websites.length > 0">
           <a
             (click)="filterProjects(1)"
             [class.active]="selectedFilter === 1"
@@ -48,14 +49,20 @@
         </li>
       </ul>
 
-      <span role="button"  routerLink="/projects"  *ngIf="!isInComponent && displayedProjects.length>3">
+      <span
+        role="button"
+        routerLink="/projects"
+        *ngIf="!isInComponent && displayedProjects.length > 3"
+      >
         {{ "view_all" | translate }}
       </span>
-      <h2      [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
-      *ngIf="url == '/projects' || url == '/home'">
+      <h2
+        [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+        *ngIf="url == '/projects' || url == '/home'"
+      >
         {{ "our_works" | translate }}
       </h2>
-      <h2 
+      <h2
         [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
         class="px-0 related"
         *ngIf="url !== '/projects' && url !== '/home' && url !== ''"
@@ -64,22 +71,28 @@
       </h2>
     </div>
     <div *ngIf="isInComponent" class="row g-2 gx-4 mt-2 w-100 mx-auto">
-      <div *ngFor="let item of displayedProjects" class="col-md-3">
+      <div
+        [routerLink]="['/mobile', item.id]"
+        *ngFor="let item of displayedProjects"
+        class="col-md-3"
+      >
         <div class="item text-center">
           <div
             class="item-img w-100 d-flex justify-content-center align-items-center"
             *ngIf="displayedProjects.length > 0"
+            [routerLink]="['/mobile', item.id]"
           >
             <img
-            *ngIf="item.home_screen"
-            loading="lazy"
-              [routerLink]="['/mobile', item.id]"
+              *ngIf="item.home_screen"
+              loading="lazy"
               [src]="item.home_screen"
               role="button"
               alt=""
             />
           </div>
-          <h4 [routerLink]="['/mobile', item.id]" role="button">{{ item.name }}</h4>
+          <h4 [routerLink]="['/mobile', item.id]" role="button">
+            {{ item.name }}
+          </h4>
         </div>
       </div>
       <!-- <div class="col-md-4">
@@ -111,12 +124,25 @@
       *ngIf="!isMobile && !isInComponent"
       class="row gx-4 mt-2 w-100 mx-auto"
     >
-      <div *ngFor="let item of mobileProject" class="col-md-3">
-        <div class="item text-center">
+      <div
+        [routerLink]="['/mobile', item.id]"
+        *ngFor="let item of mobileProject"
+        class="col-md-3"
+      >
+        <div
+          [@zoomIn]="hasBeenInView ? 'active' : 'inactive'"
+          class="item text-center"
+        >
           <div
             class="item-img w-100 d-flex justify-content-center align-items-center"
           >
-            <img role="button" [routerLink]="['/mobile', item.id]" *ngIf="item.home_screen" [src]="item.home_screen" alt="" />
+            <img
+              role="button"
+              [routerLink]="['/mobile', item.id]"
+              *ngIf="item.home_screen"
+              [src]="item.home_screen"
+              alt=""
+            />
           </div>
           <h4 role="button" [routerLink]="['/mobile', item.id]">
             {{ item.name }}
@@ -124,18 +150,22 @@
           </h4>
         </div>
       </div>
-   
     </div>
     <div *ngIf="isMobile" class="row gx-4 mt-2 w-100 mx-auto">
       <owl-carousel-o [options]="customOptions">
         <ng-container *ngFor="let item of mobileApp">
-          <ng-template  carouselSlide>
+          <ng-template carouselSlide>
             <div class="item text-center">
               <div
                 class="item-img w-100 d-flex justify-content-center align-items-center"
                 *ngIf="item.home_screen"
               >
-                <img *ngIf="item.home_screen" [routerLink]="['/mobile', item.id]" [src]="item.home_screen" alt="" />
+                <img
+                  *ngIf="item.home_screen"
+                  [routerLink]="['/mobile', item.id]"
+                  [src]="item.home_screen"
+                  alt=""
+                />
               </div>
               <h4 class="mt-2">
                 {{ item.name }}
@@ -143,8 +173,7 @@
             </div>
           </ng-template>
         </ng-container>
-        
-       
+
         <!-- <ng-template *ngIf="mobileApp[2]" carouselSlide>
           <div class="item text-center">
             <div

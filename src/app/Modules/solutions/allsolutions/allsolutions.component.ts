@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+import { ChangeDetectorRef, Component, Input, SimpleChanges } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -11,11 +12,26 @@ import { SoloutionsService } from 'src/app/Services/soloutions.service';
   selector: 'app-allsolutions',
   templateUrl: './allsolutions.component.html',
   styleUrls: ['./allsolutions.component.scss'],
+   animations: [
+      trigger('slideIn', [
+        state('inactive', style({ transform: 'translateX(-100%)' })), 
+        state('active', style({ transform: 'translateX(0)' })),
+        transition('inactive => active', [animate('1.5s ease-out')]),
+      ])
+    ],
 })
 export class AllsolutionsComponent {
   currentLang: any;
   @Input() index!: number;
+@Input() inView!: boolean;
 
+  hasBeenInView: boolean = false; // Tracks if `inView` has ever been true
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['inView'] && changes['inView'].currentValue) {
+      this.hasBeenInView = true;
+    }
+  }
   isInComponent: boolean = false;
   isMobile: boolean = false;
   constructor(

@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+import { ChangeDetectorRef, Component, Input, SimpleChanges } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -12,6 +13,13 @@ import { ServicesService } from 'src/app/Services/services.service';
   selector: 'app-allprojects',
   templateUrl: './allprojects.component.html',
   styleUrls: ['./allprojects.component.scss'],
+  animations: [
+      trigger('zoomIn', [
+        state('inactive', style({ transform: 'scale(0.5)', opacity: 0 })), // No animation applied
+        state('active', style({ transform: 'scale(1)', opacity: 1 })),
+        transition('inactive => active', [animate('0.7s ease-in')]),
+      ]),
+    ],
 })
 export class AllprojectsComponent {
   isInComponent: boolean = false;
@@ -24,7 +32,15 @@ export class AllprojectsComponent {
   currentLang!: string;
   selectedFilter: number | null = null; // Tracks the active filter
   mobileProject: Project[] = [];
+ @Input() inView!: boolean;
 
+  hasBeenInView: boolean = false; // Tracks if `inView` has ever been true
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['inView'] && changes['inView'].currentValue) {
+      this.hasBeenInView = true;
+    }
+  }
   constructor(
     private router: Router,
     private _ProjectsService: ProjectsService,
@@ -52,7 +68,7 @@ export class AllprojectsComponent {
     this.checkRoute();
     this.fetchProjects(); 
   }
-  customOptions: OwlOptions = {
+  customOptions: OwlOptions = { 
     loop: false,
     mouseDrag: true,
     autoplay: true,

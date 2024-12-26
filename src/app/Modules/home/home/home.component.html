@@ -55,7 +55,7 @@
   </div>
 </section>
 
-<section class="why p-md-5 p-4 pt-5">
+<section #whySection id="whySection" class="why p-md-5 p-4 pt-5">
   <div class="w-75 px-2 mx-auto">
     <div [@scaleIn]="section3Animated ? 'in' : 'void'"  class="row gy-5 py-md-5 px-md-5 w-100 mx-auto">
       <ng-container *ngFor="let item of whyUs; let i = index" >
@@ -199,16 +199,16 @@
   </div>
 </section>
 
-<section class="my-3 my-md-5">
-  <app-allservices [index]="6"></app-allservices>
+<section #servicesSection class="my-3 my-md-5">
+  <app-allservices [index]="6"  [inView]="isServicesSectionInView"></app-allservices>
 </section>
 
-<section class="my-3 my-md-5">
-  <app-allsolutions></app-allsolutions>
+<section #soloutionService class="my-3 my-md-5">
+  <app-allsolutions [inView]="isSoloutionServiceInView"></app-allsolutions>
 </section>
 
-<section class="my-3 my-md-5">
-  <app-allprojects></app-allprojects>
+<section #projectService class="my-3 my-md-5">
+  <app-allprojects [inView]="isProjectServiceInView"></app-allprojects>
 </section>
 <section class="my-3 my-md-5">
   <app-ourblog></app-ourblog>
