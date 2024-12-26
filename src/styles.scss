@@ -68,3 +68,13 @@ section {
 .row {
   justify-content: end !important;
 }
+.ltr p {
+  text-align: justify;
+  text-align-last: left; /* Last line aligned to the left */
+}
+
+/* RTL - Arabic */
+.rtl p {
+  text-align: justify;
+  text-align-last: right; /* Last line aligned to the right */
+}

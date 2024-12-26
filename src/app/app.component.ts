@@ -10,6 +10,8 @@ import { Subscription } from 'rxjs';
 export class AppComponent implements OnInit, OnDestroy {
   title = 'Tawagood';
   isMobile = false;
+  currentLang: string = '';
+
   private routerSubscription!: Subscription;
 
   constructor(private renderer: Renderer2, private router: Router) {}
@@ -33,8 +35,21 @@ export class AppComponent implements OnInit, OnDestroy {
         this.trackPageView(event.urlAfterRedirects);
       }
     });
+    this.currentLang = localStorage.getItem('currentLang') || 'en'; // Default to 'en' if no language set
+    this.applyTextAlign();
   }
-
+applyTextAlign(): void {
+    const body = document.body;
+    if (this.currentLang === 'ar') {
+      // Add RTL class to body for Arabic
+      this.renderer.addClass(body, 'rtl');
+      this.renderer.removeClass(body, 'ltr');
+    } else {
+      // Add LTR class to body for English
+      this.renderer.addClass(body, 'ltr');
+      this.renderer.removeClass(body, 'rtl');
+    }
+  }
   ngOnDestroy(): void {
     // Clean up the subscription to avoid memory leaks
     if (this.routerSubscription) {

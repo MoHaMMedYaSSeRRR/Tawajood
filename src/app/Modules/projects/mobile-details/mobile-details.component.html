@@ -38,8 +38,10 @@
           >
             <a
               *ngIf="project.link_website"
-              [href]="project.link_website"
+              [href]="isValidUrl(project.link_website) ? project.link_website : 'http://' + project.link_website"
               target="_blank"
+              rel="noopener noreferrer"
+
             >
             <img src="../../../../assets/images/ux.png" alt="" />
 
@@ -49,6 +51,8 @@
               [href]="project.link_ios"
               class="mx-3"
               target="_blank"
+              rel="noopener noreferrer"
+
             >
               <img src="../../../../assets/images/app-store.png" alt="" />
             </a>
@@ -56,6 +60,8 @@
               *ngIf="project.link_android"
               [href]="project.link_android"
               target="_blank"
+              rel="noopener noreferrer"
+
             >
               <img src="../../../../assets/images/google-play.png" alt="" />
             </a>
@@ -68,10 +74,10 @@
         class="global-details py-2"
         [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
       >
-        <h3>
+        <h3 *ngIf="project.type !=2">
           {{ "appSpecifications" | translate }}
         </h3>
-        <h3>
+        <h3 *ngIf="project.type==2">
           {{ "webSpecifications" | translate }}
         </h3>
         <div class="row g-3 mt-4 w-100 mx-auto justify-content-end">

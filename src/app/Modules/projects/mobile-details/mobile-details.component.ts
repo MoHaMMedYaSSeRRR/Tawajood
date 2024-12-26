@@ -122,7 +122,9 @@ export class MobileDetailsComponent {
       }
     }
   }
-  
+  isValidUrl(url: string): boolean {
+    return /^(https?:\/\/)/.test(url);
+  }  
   onLanguageChange() {
     this.cdr.detectChanges();
   }

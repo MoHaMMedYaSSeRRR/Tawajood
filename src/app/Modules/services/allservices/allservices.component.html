@@ -57,9 +57,9 @@
         </div>
       </div>
     </div>
-  </div>
+  
   <div
-    *ngIf="!isMobile && isInComponent"
+    *ngIf="isInComponent"
     class="row gy-5 w-100 mx-auto justify-content-end"
   >
     <div *ngFor="let item of services; let i = index" class="col-md-4 py-3">
@@ -113,7 +113,7 @@
       </owl-carousel-o>
     </div>
   </div>
-
+</div>
   <!-- <div class="row mt-1  gy-5 w-100 mx-auto">
       <div class="col-md-4">
         <div
