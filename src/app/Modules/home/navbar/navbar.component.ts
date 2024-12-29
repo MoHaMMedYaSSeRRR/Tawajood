@@ -117,10 +117,10 @@ export class NavbarComponent {
         this.router.navigate(['/soulutionsservices', id]);
         break;
       case 5:
-        window.open('https://wa.me/01024848723', '_blank');
+        window.open('https://wa.me/+201024848723', '_blank');
         break;
       case 7:
-        window.open('https://wa.me/01024848723', '_blank');
+        window.open('https://wa.me/+201024848723', '_blank');
         break;
       default:
         console.warn('No route defined for this ID');

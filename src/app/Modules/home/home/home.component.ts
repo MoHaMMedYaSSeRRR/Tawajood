@@ -66,7 +66,6 @@ export class HomeComponent implements AfterViewInit {
   @ViewChild('soloutionService') soloutionService!: ElementRef;
   @ViewChild('projectService') projectService!: ElementRef;
 
-  
   // Add flags to track if sections have been animated
   section1Animated = false;
   section2Animated = false;
@@ -283,8 +282,14 @@ export class HomeComponent implements AfterViewInit {
 
   customOptions: OwlOptions = {
     loop: true,
-    items: 1,
+    mouseDrag: true,
     autoplay: true,
+    autoplaySpeed: 1200,
+    responsive: {
+      0: {
+        items: 1,
+      },
+    },
     autoplayTimeout: 3000,
     dots: false,
   };

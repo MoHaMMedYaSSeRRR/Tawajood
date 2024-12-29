@@ -363,7 +363,7 @@
             <a routerLink="/contact" class="text-decoration-none">{{ 'contactUs' | translate }}</a>
           </li>
           <li role="button" class="mb-3">
-            <a  (click)="toggleLanguage()" class="text-decoration-none">
+            <a href="" (click)="toggleLanguage(); closeNav();" class="text-decoration-none">
               {{ currentLang === 'ar' ? 'English' : 'عربى' }}
             </a>
           </li>

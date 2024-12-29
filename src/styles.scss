@@ -3,6 +3,10 @@
 * {
   font-family: "Almarai", system-ui;
 }
+body{
+  overflow-x: hidden;
+
+}
 .ltr {
   text-align: left;
   direction: ltr; // Left-to-right direction

@@ -46,10 +46,11 @@ export class AppComponent implements OnInit, OnDestroy {
   applyTextAlignToParagraphs(): void {
     const paragraphs = this.document.querySelectorAll('p');
     paragraphs.forEach((p: HTMLElement) => {
-      if (this.currentLang === 'ar') {
-        this.renderer.addClass(document.body, 'lang-ar'); // Add lang-ar class to body for Arabic
+      if (this.currentLang === 'en') {
+        this.renderer.removeClass(document.body, 'lang-ar'); // Remove lang-ar class for non-Arabiؤ
       } else {
-        this.renderer.removeClass(document.body, 'lang-ar'); // Remove lang-ar class for non-Arabic
+        this.renderer.addClass(document.body, 'lang-ar'); // Add lang-ar class to body for Arabic
+
       }
     });
   }
