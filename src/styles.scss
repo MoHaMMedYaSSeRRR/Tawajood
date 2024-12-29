@@ -53,7 +53,7 @@ button:disabled {
 }
 p {
   text-align: justify; /* Justify all lines */
-  text-align-last: right;
+   text-align-last: left;
 }
 section {
   margin-top: 64px !important;
@@ -77,4 +77,13 @@ section {
 .rtl p {
   text-align: justify;
   text-align-last: right; /* Last line aligned to the right */
+}
+p {
+  text-align: justify; /* Justify all lines */
+  text-align-last: left; /* Default to left alignment */
+}
+
+/* Right alignment for Arabic */
+.lang-ar p {
+  text-align-last: right;
 }

@@ -59,6 +59,10 @@ export class NavbarComponent {
     this._TranslateService.toggleLanguage();
     this.currentLang = newLang;
     this.updateLayoutDirection();
+
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([this.router.url]);
+    });
   }
 
   toggleNav(): void {

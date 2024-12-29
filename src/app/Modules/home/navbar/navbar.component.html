@@ -357,13 +357,13 @@
             <a routerLink="/ourblog" class="text-decoration-none">{{ 'blog' | translate }}</a>
           </li>
           <li (click)="closeNav()" class="mb-3">
-            <a routerLink="/" class="text-decoration-none">{{ 'careers' | translate }}</a>
+            <a routerLink="/hirring" class="text-decoration-none">{{ 'employment' | translate }}</a>
           </li>
           <li (click)="closeNav()" class="mb-3">
-            <a routerLink="/" class="text-decoration-none">{{ 'contactUs' | translate }}</a>
+            <a routerLink="/contact" class="text-decoration-none">{{ 'contactUs' | translate }}</a>
           </li>
           <li role="button" class="mb-3">
-            <a (click)="toggleLanguage()" class="text-decoration-none">
+            <a  (click)="toggleLanguage()" class="text-decoration-none">
               {{ currentLang === 'ar' ? 'English' : 'عربى' }}
             </a>
           </li>

@@ -3,10 +3,10 @@
 }
 .footer {
   background-color: #0f1b24;
-  .row{
+  .all-data {
     justify-content: space-between !important;
   }
-  
+
   h4 {
     font-weight: 700;
     font-size: 24px;
@@ -17,7 +17,7 @@
       width: 34px;
       height: 34px;
     }
-    .icon2{
+    .icon2 {
       width: 24px;
       height: 24px;
     }
@@ -31,36 +31,37 @@
       height: 24px;
     }
   }
-  .copy{
-    justify-content: end !important;
-  }
-  .service{
-    a{
-        font-weight: 400;
-        font-size: 16px;
-        color: #ffffff;
+
+  .service {
+    a {
+      font-weight: 400;
+      font-size: 16px;
+      color: #ffffff;
     }
   }
- 
 }
-@media (max-width:768px) {
-  .col-9{
+.copy {
+  justify-content: end !important;
+}
+@media (max-width: 768px) {
+  .col-9 {
     margin: auto;
   }
- .image{
+  .image {
     width: 100% !important;
   }
-  .row{
+  .row {
     justify-content: end !important;
-    .icon1 , .icon2{
+    .icon1,
+    .icon2 {
       padding: 0 !important;
-      margin: 0  !important;
+      margin: 0 !important;
     }
-    .logo img{
+    .logo img {
       width: 75% !important;
     }
   }
 }
-.tiktok{
+.tiktok {
   width: 130%;
 }
