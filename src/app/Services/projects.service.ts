@@ -9,13 +9,13 @@ export class ProjectsService {
 
   constructor(private _HttpClient:HttpClient) { }
   getMobileProjects():Observable<any> {
-    return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/projects_apps');
+    return this._HttpClient.get('https://dev.tawajood.com/api/projects_apps');
   }
   getWebProjects():Observable<any> {
-    return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/projects_websites');
+    return this._HttpClient.get('https://dev.tawajood.com/api/projects_websites');
   }
 
   getDetails(id:any):Observable<any> {
-    return this._HttpClient.get(`https://newcompanywebsite.tawajood.com/api/project_details/${id}`);
+    return this._HttpClient.get(`https://dev.tawajood.com/api/project_details/${id}`);
   }
 }

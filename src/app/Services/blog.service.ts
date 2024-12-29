@@ -11,13 +11,13 @@ export class BlogService {
     private _HttpClient: HttpClient
   ) { }
  getBlogTopic():Observable<any>{
-  return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/get_topics_blog');
+  return this._HttpClient.get('https://dev.tawajood.com/api/get_topics_blog');
   }
   getAllBlog():Observable<any>{
-    return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/our_blog');
+    return this._HttpClient.get('https://dev.tawajood.com/api/our_blog');
   }
   getBlogById(id:any):Observable<any>{
-    return this._HttpClient.post(`https://newcompanywebsite.tawajood.com/api/blog_by_id`,{
+    return this._HttpClient.post(`https://dev.tawajood.com/api/blog_by_id`,{
       blog_id:id
     })
   }

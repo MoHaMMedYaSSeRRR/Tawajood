@@ -14,7 +14,7 @@
     </span>
   </div>
 </section>
-<section  class="service my-md-4 my-3">
+<section *ngIf="service"  class="service my-md-4 my-3">
   <div class="w-75 mx-auto">
     <div class="row w-100 mx-auto justify-content-between align-items-center">
       <div class="col-md-6">
@@ -31,7 +31,7 @@
           <p>
             {{ service.content }}
           </p>
-          <a routerLink="/contactus" target="_blank">
+          <a routerLink="/contact" target="_blank">
             <button class="border-0">
               {{ "requestServiceNow" | translate }}
             </button></a
@@ -52,7 +52,7 @@
           <p>
             {{ service.second_content }}
           </p>
-          <a routerLink="/contactus" target="_blank">
+          <a routerLink="/contact" target="_blank">
             <button class="border-0">
               {{ "requestServiceNow" | translate }}
             </button></a
@@ -154,7 +154,7 @@
           </div>
         </div> -->
       </div>
-      <a routerLink="/contactus" target="_blank">
+      <a routerLink="/contact" target="_blank">
         <button class="border-0 mt-3 mx-auto d-block">
           {{ "requestServiceNow" | translate }}
         </button>

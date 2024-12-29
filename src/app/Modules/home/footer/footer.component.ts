@@ -24,10 +24,12 @@ export class FooterComponent {
     private router:Router
 
   ){}
+  isMobile:boolean = false;
   services:Service[]=[];
   currentLang: any;
 
   ngOnInit(): void {
+    this.isMobile = window.innerWidth <= 768;
     this._ServicesService.getServices().subscribe(res => {
       console.log(res);
       this.services = res.data.services;

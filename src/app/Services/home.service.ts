@@ -10,34 +10,34 @@ export class HomeService {
   constructor(private _HttpClient:HttpClient) { }
 
   contactUs(data:any):Observable<any> {
-    return this._HttpClient.post('https://newcompanywebsite.tawajood.com/api/add_form_contact_us', data);
+    return this._HttpClient.post('https://dev.tawajood.com/api/add_form_contact_us', data);
   }
   getSlider():Observable<any> {
-    return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/sliders');
+    return this._HttpClient.get('https://dev.tawajood.com/api/sliders');
   }
 
   getAbout():Observable<any> {
-    return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/setting');
+    return this._HttpClient.get('https://dev.tawajood.com/api/setting');
   }
   getTeam():Observable<any> {
-    return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/team');
+    return this._HttpClient.get('https://dev.tawajood.com/api/team');
   }
   whyus():Observable<any> {
-    return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/why_us');
+    return this._HttpClient.get('https://dev.tawajood.com/api/why_us');
   }
   getpartners():Observable<any>{
-    return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/clients');
+    return this._HttpClient.get('https://dev.tawajood.com/api/clients');
   }
   getContactUs():Observable<any>{
-    return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/contact_us');
+    return this._HttpClient.get('https://dev.tawajood.com/api/contact_us');
   }
   getTechnology():Observable<any>{
-    return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/technologies');
+    return this._HttpClient.get('https://dev.tawajood.com/api/technologies');
   }
   getProccess():Observable<any>{
-    return this._HttpClient.get('https://newcompanywebsite.tawajood.com/api/our_process');
+    return this._HttpClient.get('https://dev.tawajood.com/api/our_process');
   }
   contact(data:any):Observable<any>{
-    return this._HttpClient.post('https://newcompanywebsite.tawajood.com/api/add_form_contact_us', data);
+    return this._HttpClient.post('https://dev.tawajood.com/api/add_form_contact_us', data);
   }
 }
