@@ -14,10 +14,17 @@
   <div class="w-75 mx-auto">
     <div
       *ngIf="!isInComponent"
-      [ngClass]="{'justify-content-end': allBlogs.length < 3, 'justify-content-between': allBlogs.length >= 3}"
-      class="d-flex  in align-items-center px-3"
+      [ngClass]="{
+        'justify-content-end': allBlogs.length < 3,
+        'justify-content-between': allBlogs.length >= 3
+      }"
+      class="d-flex in align-items-center px-3"
     >
-      <span  role="button" routerLink="/ourblogs" *ngIf="!isInComponent && allBlogs.length > 3">
+      <span
+        role="button"
+        routerLink="/ourblogs"
+        *ngIf="!isInComponent && allBlogs.length > 3"
+      >
         {{ "view_all" | translate }}
       </span>
       <h2 [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">
@@ -41,6 +48,7 @@
       </div>
       <ul
         class="list-unstyled d-flex flex-wrap-reverse g-5 justify-content-center align-items-center"
+        *ngIf="!isMobile"
       >
         <li *ngFor="let item of blogs">
           <a
@@ -63,6 +71,38 @@
           </a>
         </li>
       </ul>
+      <div *ngIf="isMobile" class="w-100 owl my-3">
+        <ng-container *ngIf="isMobile">
+          <owl-carousel-o [options]="carouselOptions">
+            <ng-template carouselSlide>
+              <li>
+                <a
+                  role="button"
+                  (click)="filterByTopic(null)"
+                  [class.active]="currentTopicId === null"
+                  class="text-decoration-none"
+                >
+                  {{ "all" | translate }}
+                </a>
+              </li>
+            </ng-template>
+            <ng-container *ngFor="let item of blogs">
+              <ng-template carouselSlide>
+                <li>
+                  <a
+                    role="button"
+                    (click)="filterByTopic(item.id)"
+                    [class.active]="currentTopicId === item.id"
+                    class="text-decoration-none"
+                  >
+                    {{ item.name | translate }}
+                  </a>
+                </li>
+              </ng-template>
+            </ng-container>
+          </owl-carousel-o>
+        </ng-container>
+      </div>
     </div>
 
     <div
@@ -134,7 +174,6 @@
             <h5 class="mt-2">{{ item.title | cuttext : 10 }}</h5>
             <p class="mt-1">
               {{ item.plainDescription | cuttext : 15 }}
-
             </p>
             <button
               [routerLink]="['/blogdetails', item.id]"

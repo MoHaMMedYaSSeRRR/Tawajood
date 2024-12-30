@@ -92,7 +92,6 @@ export class AllprojectsComponent {
   fetchProjects(): void {
     this._ProjectsService.getMobileProjects().subscribe({
       next: (projects) => {
-        console.log(projects)
         this.mobileApp = projects.data;
         this.combineAndRandomizeProjects();
       },
@@ -104,8 +103,6 @@ export class AllprojectsComponent {
     this._ProjectsService.getWebProjects().subscribe({
       next: (projects) => {
         this.websites = projects.data;
-        console.log(projects)
-
         this.combineAndRandomizeProjects();
       },
       error: (error) => {

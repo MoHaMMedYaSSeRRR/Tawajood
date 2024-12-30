@@ -144,4 +144,16 @@ export class OurblogComponent {
     },
     nav: false,
   };
+  carouselOptions: OwlOptions = {
+    loop: false,
+    margin: 10,
+    nav: false,
+    dots: false,
+    rtl: true,
+    responsive: {
+      0: {
+        items: 3.2
+      },
+    }
+  };
 }

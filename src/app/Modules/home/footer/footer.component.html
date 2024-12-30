@@ -165,10 +165,12 @@
         </div>
       </div>
       <div
-      [ngClass]="[
-      currentLang === 'ar' ? 'justify-content-end' : 'justify-content-start',
-      isMobile ? 'ms-auto' : (currentLang === 'ar' ? 'ms-0' : 'me-auto')
-    ]"
+        [ngClass]="[
+          currentLang === 'ar'
+            ? 'justify-content-end'
+            : 'justify-content-start',
+          isMobile ? 'ms-auto' : currentLang === 'ar' ? 'ms-0' : 'me-auto'
+        ]"
         class="col-md-2 col-8 order-2 d-flex"
       >
         <div class="service">
@@ -244,8 +246,8 @@
       </div>
     </div>
     <div class="row align-items-center copy w-100 mx-auto">
-      <div class="col-md-6 d-md-block d-none"></div>
-      <div class="col-md-2 mt-3">
+      <div class="col-md-4 d-md-block d-none"></div>
+      <div class="col-md-3 mt-3">
         <div role="button" class="image w-100">
           <a href="https://www.goodfirms.co/" target="_blank">
             <img
@@ -268,7 +270,7 @@
           /></a>
         </div>
       </div>
-      <div class="col-md-2 mt-3">
+      <div class="col-md-3 mt-3">
         <div role="button" class="image w-100">
           <a href="https://entasher.com/agency/tawajood" target="_blank">
             <img
@@ -282,4 +284,3 @@
     </div>
   </div>
 </section>
- 

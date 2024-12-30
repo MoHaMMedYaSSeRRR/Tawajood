@@ -56,7 +56,6 @@ export class AboutComponent {
     this._HomeService.getTeam().subscribe({
       next: (res) => {
         this.allTeam = res.data;
-        console.log(this.allTeam)
         this.splitTeams();
       },
     });

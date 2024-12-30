@@ -31,8 +31,8 @@
             class="about-content"
           >
             <h3>{{ "about_us" | translate }}</h3>
-            <p class="mt-2">
-              {{ about[0]?.content }}
+            <p *ngIf="about[0]" class="mt-2">
+              {{ about[0].content }}
             </p>
            <a routerLink="/contact" target="_blank"routerLink="/contact" target="_blank"> <button   class="border-0 mt-3">
               {{ "request_free_consultation" | translate }}
@@ -168,7 +168,7 @@
       <!-- First Owl Carousel for the Top Row -->
       <div class="row w-100 mx-auto">
       <owl-carousel-o *ngIf="isMobile" [options]="customOptions" #owlTop>
-        <ng-container *ngFor="let item of firstRowItems">
+        <ng-container *ngFor="let item of allTeam">
           <ng-template carouselSlide>
            
               <div class="item text-center">
@@ -186,7 +186,7 @@
       </owl-carousel-o>
     
       <!-- Second Owl Carousel for the Bottom Row -->
-      <owl-carousel-o *ngIf="isMobile" [options]="customOptions" #owlBottom>
+      <!-- <owl-carousel-o *ngIf="isMobile" [options]="customOptions" #owlBottom>
         <ng-container *ngFor="let item of secondRowItems">
           <ng-template carouselSlide>
             <div class="item text-center">
@@ -200,7 +200,7 @@
             </div>
           </ng-template>
         </ng-container>
-      </owl-carousel-o>
+      </owl-carousel-o> -->
 
       <!-- Single Navigation Controls for Both Carousels -->
       <div *ngIf="isMobile" class="carousel-nav">

@@ -31,9 +31,7 @@ export class FooterComponent {
   ngOnInit(): void {
     this.isMobile = window.innerWidth <= 768;
     this._ServicesService.getServices().subscribe(res => {
-      console.log(res);
       this.services = res.data.services;
-      console.log(this.services)
         });
         this.changelangService.currentLang$.subscribe((lang) => {
           this._translate.use(lang);

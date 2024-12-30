@@ -5,13 +5,17 @@
 }
 body{
   overflow-x: hidden;
+  font-family: "Almarai", system-ui;
+
 
 }
 .ltr {
   text-align: left;
   direction: ltr; // Left-to-right direction
 }
-
+.row{
+  justify-content: end;
+}
 .rtl {
   text-align: right;
   direction: rtl; // Right-to-left direction

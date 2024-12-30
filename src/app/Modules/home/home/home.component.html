@@ -55,7 +55,7 @@
   </div>
 </section>
 
-<section #whySection id="whySection" class="why p-md-5 p-4 pt-5">
+<section [ngClass]="{'opacity-0': !section3Animated}" #whySection id="whySection" class="why p-md-5 p-4 pt-5">
   <div class="w-75 px-2 mx-auto">
     <div [@scaleIn]="section3Animated ? 'in' : 'void'"  class="row gy-5 py-md-5 px-md-5 w-100 mx-auto">
       <ng-container *ngFor="let item of whyUs; let i = index" >

@@ -49,7 +49,6 @@ export class MobileDetailsComponent {
         this._ProjectsService.getDetails(this.id).subscribe({
           next: (data) => {
             this.project = data.data;
-            console.log(this.project);
             this.title.setTitle(this.project.meta_title);
             this.meta.updateTag({
               name: 'description',
@@ -64,7 +63,6 @@ export class MobileDetailsComponent {
             console.log(error);
           },
         });
-        console.log(this.id);
       },
     });
   }

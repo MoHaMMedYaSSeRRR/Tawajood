@@ -284,6 +284,7 @@ export class HomeComponent implements AfterViewInit {
     loop: true,
     mouseDrag: true,
     autoplay: true,
+    rtl:true,
     autoplaySpeed: 1200,
     responsive: {
       0: {
