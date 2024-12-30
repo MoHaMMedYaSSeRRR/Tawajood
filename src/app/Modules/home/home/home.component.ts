@@ -281,17 +281,18 @@ export class HomeComponent implements AfterViewInit {
   }
 
   customOptions: OwlOptions = {
-    loop: false,
+    loop: true,
     mouseDrag: true,
+    touchDrag: true,
+    pullDrag: false,
+    dots: true,
     autoplay: true,
-    rtl:false,
-    autoplaySpeed: 3000,
+    autoplayTimeout: 3000,
+    navSpeed: 700,
     responsive: {
       0: {
         items: 1,
       },
     },
-    autoplayTimeout: 3000,
-    dots: false,
   };
 }
