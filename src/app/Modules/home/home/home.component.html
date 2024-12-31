@@ -5,20 +5,9 @@
         <owl-carousel-o [options]="customOptions">
           <ng-container *ngFor="let slide of headerContent">
             <ng-template carouselSlide>
-              <!-- <h2
-                class="mb-1"
-                [ngStyle]="{
-                  'margin-left': currentLang === 'ar' ? 'auto' : '',
-                  'margin-right': currentLang === 'en' ? 'auto' : ''
-                }"
-              >
-                {{ slide.title }}
-              </h2> -->
+          
               <h4
-                [ngStyle]="{
-                  'margin-left': currentLang === 'ar' ? 'auto' : '',
-                  'margin-right': currentLang === 'en' ? 'auto' : ''
-                }"
+               class="mx-auto"
               >
                 {{ slide.content }}
               </h4>
