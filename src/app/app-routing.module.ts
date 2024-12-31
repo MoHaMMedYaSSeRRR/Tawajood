@@ -9,39 +9,39 @@ const routes: Routes = [
       import('./Modules/home/home.module').then((m) => m.HomeModule),
   },
   {
-    path: '',
+    path: 'services',  // Use a unique path here
     loadChildren: () =>
       import('./Modules/services/services.module').then(
         (m) => m.ServicesModule
       ),
   },
   {
-    path: '',
+    path: 'solutions',  // Use a unique path here
     loadChildren: () =>
       import('./Modules/solutions/solutions.module').then(
         (m) => m.SolutionsModule
       ),
   },
   {
-    path: '',
+    path: 'projects',  // Use a unique path here
     loadChildren: () =>
       import('./Modules/projects/projects.module').then(
         (m) => m.ProjectsModule
       ),
   },
   {
-    path: '',
+    path: 'blog',  // Use a unique path here
     loadChildren: () =>
       import('./Modules/blog/blog.module').then((m) => m.BlogModule),
   },
   {
-    path: '',
+    path: 'employment',  // Use a unique path here
     loadChildren: () =>
       import('./Modules/employment/employment.module').then(
         (m) => m.EmploymentModule
       ),
   },
-  { path: '**', component: NotfoundComponent },
+  { path: '**', component: NotfoundComponent },  // Fallback for unknown routes
 ];
 
 @NgModule({
