@@ -1,0 +1,286 @@
+<section class="footer mt-0 p-md-5 p-3 mb-0">
+  <div class="w-75 mx-auto">
+    <div class="row all-data align-items-start justify-content-between">
+      <div class="col-md-3 col-12 order-md-1 order-4">
+        <div
+          [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+          class="contact"
+        >
+          <h4 class="mb-md-4 mb-2">
+            {{ "contact_us" | translate }}
+          </h4>
+          <div
+            [ngClass]="
+              currentLang === 'ar'
+                ? 'justify-content-end'
+                : 'justify-content-end'
+            "
+            class="d-flex"
+          >
+            <div
+              [ngClass]="{ 'ms-4': currentLang == 'en' }"
+              class="content mx-2"
+            >
+              <p class="mb-1">
+                {{ "call_us" | translate }}
+              </p>
+              <p>
+                <a
+                  href="https://wa.me/01024848723"
+                  class="text-decoration-none text-white"
+                  target="_blank"
+                >
+                  01024848723
+                </a>
+              </p>
+            </div>
+            <div
+              class="icon2 my-auto mx-2 d-flex justify-content-center align-items-center"
+            >
+              <img
+                src="../../../../assets/images/phone.png"
+                class="w-100"
+                alt=""
+              />
+            </div>
+          </div>
+          <div
+            [ngClass]="
+              currentLang === 'ar'
+                ? 'justify-content-end'
+                : 'justify-content-end'
+            "
+            class="d-flex"
+          >
+            <div class="content mx-3">
+              <p class="mb-1">
+                {{ "email" | translate }}
+              </p>
+              <p>
+                <a
+                  href="mailto:info@tawajood.com"
+                  class="text-decoration-none text-white"
+                  target="_blank"
+                  >info@tawajood.com</a
+                >
+              </p>
+            </div>
+            <div
+              class="icon1 my-auto pe-2 d-flex justify-content-center align-items-center"
+            >
+              <img
+                src="../../../../assets/images/tabler_mail-filled.png"
+                class=""
+                alt=""
+              />
+            </div>
+          </div>
+
+          <ul
+            class="list-unstyled d-flex justify-content-end align-items-center"
+          >
+            <li class="mx-2">
+              <a
+                target="_blank"
+                href="https://www.tiktok.com/@tawajood?_t=8n26pzQEDlV&_r=1"
+                ><img
+                  class="tiktok"
+                  src="../../../../assets/images/tiktok.png"
+                  alt="tiktok"
+                />
+              </a>
+            </li>
+            <li class="mx-2">
+              <a target="_blank" href="https://wa.me/201024848723"
+                ><img
+                  src="../../../../assets/images/logos_whatsapp-icon.png"
+                  alt="whatsapp"
+                />
+              </a>
+            </li>
+            <li class="mx-2">
+              <a
+                target="_blank"
+                href="https://www.facebook.com/tawajood?mibextid=LQQJ4d"
+                ><img
+                  src="../../../../assets/images/facebook.png"
+                  alt="facebook"
+                />
+              </a>
+            </li>
+            <li class="mx-2">
+              <a
+                target="_blank"
+                href="https://www.instagram.com/tawajoodco?igsh=MWxna2xqazBvZzQyaw=="
+                ><img
+                  src="../../../../assets/images/instagram.png"
+                  alt="instagram"
+                />
+              </a>
+            </li>
+            <li class="mx-2">
+              <a
+                target="_blank"
+                href="https://www.linkedin.com/company/tawajood/"
+                ><img
+                  src="../../../../assets/images/linkedin.png"
+                  alt="linkedin"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        *ngIf="services"
+        [ngClass]="
+          currentLang === 'ar' ? 'justify-content-end' : 'justify-content-start'
+        "
+        class="col-md-2 d-md-block d-none col-6 order-3 d-flex"
+      >
+        <div class="service">
+          <h4
+            [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+            class="mb-md-4 md-2"
+          >
+            {{ "services" | translate }}
+          </h4>
+          <ul
+            [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+            class="list-unstyled"
+          >
+            <li
+              *ngFor="let item of services.slice(0, 5); let i = index"
+              [hidden]="i === 3"
+              class="mb-3"
+            >
+              <a
+                routerLink="/home"
+                (click)="navigateBasedOnId(item.id)"
+                class="text-decoration-none text-white"
+                >{{ item.name | cuttext : 3 }}</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        [ngClass]="[
+          currentLang === 'ar'
+            ? 'justify-content-end'
+            : 'justify-content-start',
+          isMobile ? 'ms-auto' : currentLang === 'ar' ? 'ms-0' : 'me-auto'
+        ]"
+        class="col-md-2 col-8 order-2 d-flex"
+      >
+        <div class="service">
+          <h4
+            [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+            class="mb-md-4 md-2"
+          >
+            {{ "links" | translate }}
+          </h4>
+          <ul
+            [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+            class="list-unstyled"
+          >
+            <!-- <li  class="mb-3 d-md-block d-none">
+                <a routerLink="/home" class="text-decoration-none">{{ 'home' | translate }}</a>
+              </li> -->
+            <li class="mb-3 d-md-block d-none">
+              <a routerLink="/about" class="text-decoration-none">{{
+                "aboutUs" | translate
+              }}</a>
+            </li>
+            <li class="mb-3">
+              <a routerLink="/allservices" class="text-decoration-none">{{
+                "services" | translate
+              }}</a>
+            </li>
+            <li class="mb-3 d-md-block d-none">
+              <a routerLink="/solutions" class="text-decoration-none">{{
+                "solutions" | translate
+              }}</a>
+            </li>
+            <li class="mb-3">
+              <a routerLink="/projects" class="text-decoration-none">{{
+                "projects" | translate
+              }}</a>
+            </li>
+            <li class="mb-3 d-md-block d-none">
+              <a routerLink="/ourblog" class="text-decoration-none">{{
+                "blog" | translate
+              }}</a>
+            </li>
+            <li class="mb-3 d-md-block d-none">
+              <a routerLink="/hirring" class="text-decoration-none">{{
+                "employment" | translate
+              }}</a>
+            </li>
+            <!-- <li  class="mb-3 d-md-block d-none">
+                <a routerLink="/" class="text-decoration-none">{{ 'contactUs' | translate }}</a>
+              </li> -->
+            <li class="mb-3 d-md-none d-block">
+              <a routerLink="/" class="text-decoration-none">{{
+                "web_development" | translate
+              }}</a>
+            </li>
+            <li class="mb-3 d-md-none d-block">
+              <a routerLink="/" class="text-decoration-none">{{
+                "mobile_app_development" | translate
+              }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        class="col-md-3 col-9 d-flex justify-content-end order-md-4 order-1 align-items-start"
+      >
+        <div class="logo mt-0" routerLink="/home">
+          <img
+            class="w-100"
+            src="../../../../assets/images/footer.png"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row align-items-center copy w-100 mx-auto">
+      <div class="col-md-4 d-md-block d-none"></div>
+      <div class="col-md-3 mt-3">
+        <div role="button" class="image w-100">
+          <a href="https://www.goodfirms.co/" target="_blank">
+            <img
+              class="w-100"
+              loading="lazy"
+              src="../../../../assets/images/logo1.png"
+              alt=""
+          /></a>
+        </div>
+      </div>
+      <div class="col-md-2 col-7 mx-auto mt-3">
+        <div role="button" class="image w-75 text-center">
+          <a href="https://clutch.co/profile/tawajood#reviews" target="_blank"
+            ><img
+              class="w-100"
+              loading="lazy"
+              src="../../../../assets/images/logo2.png"
+              class="w-100"
+              alt=""
+          /></a>
+        </div>
+      </div>
+      <div class="col-md-3 mt-3">
+        <div role="button" class="image w-100">
+          <a href="https://entasher.com/agency/tawajood" target="_blank">
+            <img
+              class="w-100"
+              loading="lazy"
+              src="../../../../assets/images/logo3.png"
+              alt=""
+          /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

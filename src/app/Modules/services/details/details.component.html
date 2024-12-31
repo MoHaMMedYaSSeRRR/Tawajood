@@ -1,0 +1,175 @@
+<section *ngIf="service" class="mt-0 secnav py-2 w-100">
+  <div
+    class="w-75 mx-auto"
+    [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+  >
+    <span>
+      <span role="button" routerLink="/home">{{ "home" | translate }}</span>
+      <span class="mx-2"> > </span
+      ><span role="button" routerLink="/allservices">{{
+        "services" | translate
+      }}</span>
+      <span class="mx-2"> > </span>
+      <span class="current"> {{ service.name | cuttext : 3 }} </span>
+    </span>
+  </div>
+</section>
+<section *ngIf="service"  class="service my-md-4 my-3">
+  <div class="w-75 mx-auto">
+    <div class="row w-100 mx-auto justify-content-between align-items-center">
+      <div class="col-md-6">
+        <div class="item-img">
+          <img [src]="service.image" class="w-100" alt="" />
+        </div>
+      </div>
+      <div class="col-md-6 pe-3">
+        <div
+          class="item"
+          [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+        >
+          <h2 class="mb-2">{{ service.name }}</h2>
+          <p>
+            {{ service.content }}
+          </p>
+          <a routerLink="/contact" target="_blank">
+            <button class="border-0">
+              {{ "requestServiceNow" | translate }}
+            </button></a
+          >
+        </div>
+      </div>
+    </div>
+    <div
+      *ngIf="service.second_content != null"
+      class="row w-100 mx-auto justify-content-between align-items-center"
+    >
+      <div class="col-md-6 pe-3">
+        <div
+          class="item"
+          [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+        >
+          <!-- <h2 class="mb-2">{{ service.name }}</h2> -->
+          <p>
+            {{ service.second_content }}
+          </p>
+          <a routerLink="/contact" target="_blank">
+            <button class="border-0">
+              {{ "requestServiceNow" | translate }}
+            </button></a
+          >
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="item-img">
+          <img [src]="service.image" class="w-100" alt="" />
+        </div>
+      </div>
+    </div>
+    <div class="why my-md-5 my-3">
+      <h3 class="text-center mt-4">{{ "whyWeAreTheBest" | translate }}</h3>
+      <div class="row g-3 mt-4 w-100 mx-auto justify-content-end">
+        <div *ngFor="let item of service.why_us" class="col-md-4">
+          <div class="item text-center">
+            <div class="item-icon">
+              <img [src]="item.icon" alt="" />
+            </div>
+            <div class="item-content">
+              <h4 class="my-2">{{ item.title }}</h4>
+              <p>
+                {{ item.description }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-md-4">
+          <div class="item text-center">
+            <div class="item-icon">
+              <img src="../../../../assets/images/why-2.png" alt="" />
+            </div>
+            <div class="item-content">
+              <h4 class="my-2">التسليم في الوقت المحدد</h4>
+              <p>
+                لتزم بتسليم مشاريع تطوير المواقع والتطبيقات في الوقت المحدد، مع
+                الحفاظ على جودة عالية لضمان رضاك الكامل.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="item text-center">
+            <div class="item-icon">
+              <img src="../../../../assets/images/why-3.png" alt="" />
+            </div>
+            <div class="item-content">
+              <h4 class="my-2">شفافية تامة</h4>
+              <p>
+                : نلتزم بالشفافية الكاملة خلال رحلة تطوير المواقع ، مما يضمن لك
+                التحديث المستمر بشأن تقدمنا نحو تحقيق أهدافك.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="item text-center">
+            <div class="item-icon">
+              <img src="../../../../assets/images/why-4.png" alt="" />
+            </div>
+            <div class="item-content">
+              <h4 class="my-2">مرونة في الشراكة</h4>
+              <p>
+                نستخدم نهجًا متعدد الاستخدامات في التفاعل، حيث نستمع بعناية
+                لاحتياجات عملائنا ونقدم حلول برمجية مخصصة لدعمهم في تحقيق
+                أهدافهم التجارية
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="item text-center">
+            <div class="item-icon text-center">
+              <img src="../../../../assets/images/why-5.png" alt="" />
+            </div>
+            <div class="item-content">
+              <h4 class="my-2">شفافية تامة</h4>
+              <p>
+                نمتلك فريقًا من المحترفين ذوي خبرة واسعة في تطوير المواقع
+                والتطبيقات وتصميم المواقع الإلكترونية، مما يمكننا من تلبية
+                احتياجات عملك بشكل مخصص.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="item text-center">
+            <div class="item-icon text-center">
+              <img src="../../../../assets/images/why-1.png" alt="" />
+            </div>
+            <div class="item-content">
+              <h4 class="my-2">حلول متكاملة</h4>
+              <p>
+                نقدم حلولًا شاملة بدءًا من تجربة المستخدم (UX) إلى تصميم واجهات
+                المستخدم (UI)، مما يضمن موقعًا جذابًا وفعّالًا.
+              </p>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <a routerLink="/contact" target="_blank">
+        <button class="border-0 mt-3 mx-auto d-block">
+          {{ "requestServiceNow" | translate }}
+        </button>
+      </a>
+    </div>
+  </div>
+</section>
+<section class="my-md-5 my-3">
+  <app-technology></app-technology>
+</section>
+
+<section class="my-md-5 my-3">
+  <app-questions [id]="id"></app-questions>
+</section>
+
+<section class="my-md-5 my-3">
+  <app-allprojects></app-allprojects>
+</section>

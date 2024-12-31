@@ -1,0 +1,15 @@
+
+:host{
+    min-height:100vh;
+    display: flex;
+    flex-direction: column;
+}
+.logo{
+    top: 80%;
+    right: 50px;
+    z-index: 1200;
+    img{
+        width: 64px;
+        height: 64px;
+    }
+}

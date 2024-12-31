@@ -1,0 +1,44 @@
+.service {
+  h2 {
+    font-weight: 700;
+    font-size: 38px;
+    color: #1c1f35;
+  }
+  p {
+    font-weight: 400;
+    font-size: 16px;
+    color: #666c89;
+  }
+  button {
+    width: 194px;
+    height: 60px;
+    background-color: #4584c5;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 18px;
+  }
+  img {
+    max-height: 400px;
+  }
+}
+.social {
+  h3 {
+    font-weight: 700;
+    font-size: 30px;
+    color: #191c1f;
+  }
+  p {
+    font-weight: 400;
+    font-size: 16px;
+    color: #191C1F;
+  }
+  img {
+    width: 64px;
+    height: 64px;
+  }
+}
+@media (max-width: 768px) {
+    h3{
+        font-size: 20px !important;
+    }
+}

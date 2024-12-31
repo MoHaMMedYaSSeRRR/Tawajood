@@ -1,0 +1,32 @@
+.hirring {
+  .col-12 {
+    img {
+      height: 390px;
+    }
+  }
+  .item {
+    i {
+      color: #4584c5;
+    }
+    h1{
+        font-size: 45px;
+        font-weight: 700;
+        color: #191C1F;
+    }
+  }
+  span {
+    font-size: 20px !important;
+    font-weight: 400 !important;
+    color: #475156 !important;
+  }
+  button{
+    width: 194px;
+    height: 60px;
+    background-color: #4584C5;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 18px;
+    border-radius: 1px;
+    border: none;
+  }
+}

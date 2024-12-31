@@ -1,0 +1,253 @@
+<section class="mt-0 secnav py-2 w-100">
+  <div
+    class="w-75 mx-auto"
+    [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+  >
+    <span>
+      <span role="button" routerLink="/home">{{ "home" | translate }}</span>
+      <span class="mx-2"> > </span
+      ><span role="button" routerLink="/hirring">{{
+        "employment" | translate
+      }}</span>
+      <span class="mx-2"> > </span>
+      <span class="current"> {{ "applyToJob" | translate }} </span>
+    </span>
+  </div>
+</section>
+<section class="apply my-md-4 my-3">
+  <div class="w-75 mx-auto">
+    <div class="row w-100 mx-auto g-3 justify-content-center">
+      <div class="col-12">
+        <img
+          [src]="job.image"
+          class="w-100"
+          alt=""
+        />
+      </div>
+
+      <div *ngIf="job" class="col-md-8 form-container p-md-3 mt-4">
+        <div class="content">
+          <div class="d-flex " [ngClass]="currentLang === 'ar' ? 'flex-row' : 'flex-row-reverse'">
+            <span class="d-flex " [ngClass]="currentLang === 'ar' ? 'flex-row' : 'flex-row-reverse'">
+              <i
+                [ngClass]="currentLang === 'ar' ? 'ms-2' : 'me-2'"
+                class="fa-regular fa-calendar"
+              ></i>
+              {{ job.created_at | date }}
+            </span>
+            <span class="d-flex mx-1" [ngClass]="currentLang === 'ar' ? 'flex-row' : 'flex-row-reverse'" >
+              <i
+                [ngClass]="currentLang === 'ar' ? 'ms-2' : 'me-2'"
+                class="fa-regular mx-3 fa-calendar"
+              ></i>
+              {{ job.end_time | date }}
+            </span>
+          </div>
+
+          <h1 [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">
+            {{ job.job_title_name }}
+          </h1>
+        </div>
+        <form
+          [formGroup]="applicationForm"
+          (ngSubmit)="onSubmit()"
+          class="mt-3 "
+          
+        >
+          <div class="form-row"  [ngClass]="currentLang === 'ar' ? 'flex-row' : 'flex-row-reverse'">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="{{ 'name' | translate }}"
+              formControlName="name"
+              [class.is-invalid]="
+                applicationForm.get('name')?.invalid &&
+                applicationForm.get('name')?.touched
+              "
+              [ngClass]="
+                currentLang === 'ar'
+                  ? 'text-end placeholder-end'
+                  : 'text-start placeholder-start'
+              "
+              required
+            />
+            <div class="group">
+              <!-- Arrow button to toggle dropdown -->
+              <span
+                role="button"
+                (click)="toggleDropdown()"
+                class="arrow position-absolute"
+              >
+              <i class="fa fa-chevron-down small text-black"></i>
+            </span>
+
+              <!-- Country Code Display -->
+              <span class="code"
+             >
+                
+                {{ selectedCountry.code }}
+                <!-- Display the selected country's code -->
+              </span>
+
+              <!-- Dropdown menu for country selection -->
+              <div *ngIf="isDropdownOpen" class="country-dropdown">
+                <div
+                  *ngFor="let country of countryCodes"
+                  (click)="selectCountry(country)"
+                  class="dropdown-item"
+                >
+                  {{ country.name }} ({{ country.code }})
+                  <!-- Display country name and code -->
+                </div>
+              </div>
+
+              <!-- Phone Input -->
+              <input
+                type="text"
+                class="form-control text-end"
+                placeholder="{{ 'phone' | translate }}"
+                formControlName="phone"
+                [class.is-invalid]="
+                  applicationForm.get('phone')?.invalid &&
+                  applicationForm.get('phone')?.touched
+                "
+                [ngClass]="
+                  currentLang === 'ar'
+                    ? 'text-end placeholder-end'
+                    : 'text-start placeholder-start'
+                "
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-row" [ngClass]="currentLang === 'ar' ? 'flex-row' : 'flex-row-reverse'">
+            <input
+              type="email"
+              class="form-control"
+              placeholder="{{ 'email' | translate }}"
+              formControlName="email"
+              [class.is-invalid]="
+                applicationForm.get('email')?.invalid &&
+                applicationForm.get('email')?.touched
+              "
+              [ngClass]="
+                currentLang === 'ar'
+                  ? 'text-end placeholder-end'
+                  : 'text-start placeholder-start'
+              "
+              required
+            />
+            <input
+              type="text"
+              class="form-control"
+              placeholder="{{ 'experience' | translate }}"
+              formControlName="years_of_experience"
+              [class.is-invalid]="
+                applicationForm.get('years_of_experience')?.invalid &&
+                applicationForm.get('years_of_experience')?.touched
+              "
+              [ngClass]="
+                currentLang === 'ar'
+                  ? 'text-end placeholder-end'
+                  : 'text-start placeholder-start'
+              "
+              required
+            />
+          </div>
+          <div class="form-row" [ngClass]="currentLang === 'ar' ? 'flex-row' : 'flex-row-reverse'">
+            <input
+              type="url"
+              class="form-control"
+              placeholder="{{ 'github' | translate }}"
+              formControlName="protfolio_link"
+              [ngClass]="
+                currentLang === 'ar'
+                  ? 'text-end placeholder-end'
+                  : 'text-start placeholder-start'
+              "
+            />
+            <input
+              type="url"
+              class="form-control"
+              placeholder="{{ 'linkedin' | translate }}"
+              formControlName="linkedin_link"
+              [ngClass]="
+                currentLang === 'ar'
+                  ? 'text-end placeholder-end'
+                  : 'text-start placeholder-start'
+              "
+            />
+          </div>
+          <div class="form-row" [ngClass]="currentLang === 'ar' ? 'flex-row' : 'flex-row-reverse'">
+            <div class="position-relative">
+              <input
+                type="number"
+                class="form-control number-input"
+                placeholder="{{ 'salary' | translate }}"
+                formControlName="expected_salary"
+                [ngClass]="currentLang === 'ar' ? 'rtl-input' : 'ltr-input'"
+                [style.direction]="currentLang === 'ar' ? 'ltr' : 'rtl'"
+              />
+            </div>
+            
+            <input
+              type="text"
+              class="form-control"
+              placeholder="{{ 'notice_period' | translate }}"
+              formControlName="notice_period"
+              [style.direction]="currentLang === 'ar' ? 'rtl' : 'ltr'"
+              [ngClass]="
+                currentLang === 'ar'
+                  ? 'text-end placeholder-end'
+                  : 'text-start placeholder-start'
+              "
+            />
+          </div>
+          <textarea
+            class="form-control textarea"
+            placeholder="{{ 'about_you' | translate }}"
+            formControlName="tell_us"
+            rows="4"
+            [ngClass]="
+              currentLang === 'ar'
+                ? 'text-end placeholder-end'
+                : 'text-start placeholder-start'
+            "
+          ></textarea>
+
+          <div
+            class="resume mt-3 d-flex flex-column justify-content-center align-items-center"
+          >
+            <div class="item-img" (click)="triggerFileInput()">
+              <img
+                role="button"
+                src="../../../../assets/images/Group 1157571740.png"
+                alt="Click to upload resume"
+              />
+            </div>
+            <input
+              #fileInput
+              type="file"
+              hidden
+              formControlName="cv"
+              (change)="onFileSelected($event)"
+              accept=".pdf,.docx"
+            />
+            <h5 class="mt-3">
+              {{ fileName || ('upload_resume' | translate) }}
+            </h5>
+          </div>
+
+          <button
+            [disabled]="applicationForm.invalid"
+            type="submit"
+            class="btn-submit mt-3"
+          >
+            {{ "submit" | translate }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

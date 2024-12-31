@@ -1,0 +1,53 @@
+<section class="mt-0 secnav py-2 w-100">
+  <div
+    class="w-75 mx-auto"
+    [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+  >
+    <span>
+      <span role="button" routerLink="/home">{{ "home" | translate }}</span>
+      <span class="mx-2"> > </span
+      ><span class="current">{{ "employment" | translate }}</span>
+    </span>
+  </div>
+</section>
+<section *ngIf="jobs.length ==0" class="my-md-4 my-3">
+<app-emptystatus></app-emptystatus>
+</section>
+<section *ngIf="jobs.length > 0" class="hirring my-md-4 my-3">
+  <div class="w-75 mx-auto">
+    <h2
+      class="px-0"
+      [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+    >
+      {{ "employment" | translate }}
+    </h2>
+    <div class="row w-100 mt-3 mx-auto justify-content-end">
+      <div *ngFor="let item of jobs" class="col-md-4">
+        <div
+          class="item"
+          [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+        >
+          <div class="item-image">
+            <img [src]="item.image" class="w-100" alt="hire-img" />
+          </div>
+          <div class="item-content">
+            <h3 class="my-2">{{ item.job_title_name | cuttext : 2 }}</h3>
+            <p>
+              {{ item.description }}
+            </p>
+            <button
+              [routerLink]="['/jobdetails', item.id]"
+              class="bilingual-btn"
+              [ngStyle]="{
+                'flex-direction': currentLang == 'ar' ? 'row' : 'row-reverse'
+              }"
+            >
+              <span>{{ "arrow" | translate }}</span>
+              <span>{{ "submit_now" | translate }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

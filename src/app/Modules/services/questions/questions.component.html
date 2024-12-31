@@ -1,0 +1,77 @@
+<section class="asked my-md-5 my-2">
+  <div class="w-75 mx-auto">
+    <h3
+      class="px-3"
+      [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+    >
+      {{ "asked" | translate }}
+    </h3>
+    <div class="row  g-3 mt-3 w-100 mx-auto offset-1 justify-content-between">
+      <div class="col-md-4 mt-0 ">
+        <div
+          class="support-card p-md-4 p-2"
+          [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+        >
+          <h3>{{ "supportMessage" | translate }}</h3>
+          <p>
+           {{"formContent"|translate}}
+          </p>
+          <form [formGroup]="faqForm" (submit)="onSubmit()">
+            <input
+              formControlName="email"
+              [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+              type="email"
+              [ngClass]="{ 'rtl-placeholder': currentLang === 'ar' }"
+              [placeholder]="'email' | translate"
+            />
+            <input
+              formControlName="the_topic"
+              [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+              type="text"
+              [ngClass]="{ 'rtl-placeholder': currentLang === 'ar' }"
+              [placeholder]="'subject' | translate"
+            />
+            <textarea
+            formControlName="message"
+              [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+              [ngClass]="{ 'rtl-placeholder': currentLang === 'ar' }"
+              [placeholder]="'message' | translate"
+            ></textarea>
+            <div class="button-container">
+              <button [disabled]="faqForm.invalid" type="submit">
+                <ng-container *ngIf="currentLang === 'ar'; else enArrow">
+                  ← <span>{{ "submit" | translate }}</span>
+                </ng-container>
+                <ng-template #enArrow>
+                 → <span>{{ "submit" | translate }}</span> 
+                </ng-template>
+              </button>
+              
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-7  p-0 m-0">
+        <div class="faq-section">
+          <div
+            *ngFor="let faq of faqs"
+            class="faq-item"
+            [ngClass]="{ active: faq.open }"
+          >
+            <div
+              class="faq-question"
+              [ngClass]="faq.open ? 'active' : ''"
+              (click)="toggleAnswer(faq)"
+            >
+              <span class="icon">{{ faq.open ? "−" : "+" }}</span>
+              <span class="text-start">{{ faq.question }}</span>
+            </div>
+            <div class="faq-answer" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'" *ngIf="faq.open">
+              <p>{{ faq.answer }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

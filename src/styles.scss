@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap");
+
+* {
+  font-family: "Almarai", system-ui;
+}
+body{
+  overflow-x: hidden;
+  font-family: "Almarai", system-ui;
+
+
+}
+.ltr {
+  text-align: left;
+  direction: ltr; // Left-to-right direction
+}
+.row{
+  justify-content: end;
+}
+.rtl {
+  text-align: right;
+  direction: rtl; // Right-to-left direction
+}
+.layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+@media (max-width: 767px) {
+  .w-75 {
+    width: 100% !important;
+  }
+  h2 {
+    font-size: 30px !important;
+  }
+}
+@media (max-width: 768px) {
+  body {
+    padding: 5px !important;
+    overflow-x: hidden;
+  }
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+// second nav Style
+.secnav {
+  background-color: #f2f4f5;
+  span {
+    font-weight: 400;
+    color: #15181b;
+    font-size: 16px;
+  }
+  .current {
+    color: #4584c5;
+  }
+}
+p {
+  text-align: justify; /* Justify all lines */
+   text-align-last: left;
+}
+section {
+  margin-top: 64px !important;
+  margin-bottom: 64px !important;
+}
+@media (max-width: 768px) {
+  section {
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
+  }
+}
+.ltr p {
+  text-align: justify;
+  text-align-last: left; /* Last line aligned to the left */
+}
+
+/* RTL - Arabic */
+.rtl p {
+  text-align: justify;
+  text-align-last: right; /* Last line aligned to the right */
+}
+p {
+  text-align: justify; /* Justify all lines */
+  text-align-last: left; /* Default to left alignment */
+}
+
+/* Right alignment for Arabic */
+.lang-ar p {
+  text-align-last: right;
+}

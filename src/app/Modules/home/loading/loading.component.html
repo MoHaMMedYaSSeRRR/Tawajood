@@ -1,0 +1,9 @@
+<div *ngIf="loadingService.loading" class="loading-overlay">
+  <div class="loading-content d-flex flex-column">
+    <i class=" fa fa-spinner fa-spin fa-3x"></i>
+    <!-- GIF with dynamic source -->
+    <img [src]="gifSrc" alt="Loading..." />
+    <!-- Optional loading text -->
+    <p>Loading, please wait...</p>
+  </div>
+</div>
