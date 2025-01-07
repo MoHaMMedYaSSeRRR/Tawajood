@@ -1,0 +1,190 @@
+<section *ngIf="isInComponent" class="mt-0 secnav py-2 w-100">
+  <div
+    class="w-75 mx-auto"
+    [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+  >
+    <span>
+      <span routerLink="/home" role="button">{{ "home" | translate }}</span>
+      <span class="mx-2"> > </span
+      ><span class="current">{{ "services" | translate }}</span>
+    </span>
+  </div>
+</section>
+
+<section class="service my-md-4 my-3">
+  <div class="w-75 mx-auto">
+    <h2
+      *ngIf="isInComponent"
+      class="my-2 px-2"
+      [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+    >
+      {{ "services" | translate }}
+    </h2>
+    <h2
+      *ngIf="!isInComponent"
+      class="my-2 main-color px-2"
+      [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+    >
+      {{ "services" | translate }}
+    </h2>
+    <div
+      *ngIf="!isMobile && !isInComponent"
+      [ngClass]="{'flex-column-reverse': isMobile}"
+      class="row gy-5 w-100 mx-auto justify-content-end"
+    >
+      <div *ngFor="let item of services; let i = index" class="col-md-4 py-3">
+        <div
+          class="item"
+          [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+          [@zoomIn]="hasBeenInView ? 'active' : 'inactive'" 
+          
+
+        >
+          
+          <div class="item-img">
+            <img [src]="item.icon" class="w-100" alt="" />
+          </div>
+
+          <div class="item-content mt-2">
+            <h3>{{ item.name | cuttext : 3 }}</h3>
+            <p class="mt-2 limit-text">
+              {{ item.content | cuttext : 20 }}
+            </p>
+
+            <button class="border-0" (click)="navigateBasedOnId(item.id)">
+              {{ "read_more" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  <div
+    *ngIf="isInComponent"
+    class="row gy-5 w-100 mx-auto  justify-content-end"
+  >
+    <div *ngFor="let item of services; let i = index" class="col-md-4 py-3">
+      <div
+        class="item"
+        [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+      >
+        <div class="item-img">
+          <img [src]="item.icon" class="w-100" alt="" />
+        </div>
+
+        <div class="item-content mt-2">
+          <h3>{{ item.name | cuttext : 3 }}</h3>
+          <p class="mt-2 limit-text">
+            {{ item.content | cuttext : 20 }}
+          </p>
+
+          <button class="border-0" (click)="navigateBasedOnId(item.id)">
+            {{ "read_more" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    *ngIf="isMobile && !isInComponent"
+    [ngClass]="{'flex-column-reverse': isMobile}"
+
+    class="row mt-3 d-md-none d-block w-100 mx-auto"
+  >
+    <div class="mt-2 w-100 mx-auto">
+      <owl-carousel-o [options]="customOptions">
+        <ng-container *ngFor="let item of services; let i = index">
+          <ng-template carouselSlide>
+            <div
+              class="item p-1"
+              [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+            >
+              <div class="item-img">
+                <img [src]="item.icon" class="w-100" alt="" />
+              </div>
+
+              <div class="item-content mt-2">
+                <h3>{{ item.name | cuttext : 3 }}</h3>
+                <p class="mt-2">{{ item.content | cuttext : 15 }}</p>
+                <button (click)="navigateBasedOnId(item.id)" class="border-0">
+                  {{ "read_more" | translate }}
+                </button>
+              </div>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+  </div>
+</div>
+  <!-- <div class="row mt-1  gy-5 w-100 mx-auto">
+      <div class="col-md-4">
+        <div
+          class="item"
+          [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+        >
+          <div class="item-img">
+            <img
+              src="../../../../assets/images/service-4.jfif"
+              class="w-100"
+              alt=""
+            />
+          </div>
+          <div class="item-content mt-2">
+            <h3>تصميم العلامة التجارية</h3>
+            <p class="mt-2">
+              تصميم العلامات التجارية يُعتبر أحد أساليب التسويق الفعّالة لأنه
+              يميزك عن المنافسين. نحن في تواجد نقدم لك المساعدة في تصميم جميع
+              عناصر الهوية البصرية
+            </p>
+            <button class="border-0">{{'read_more' | translate}}</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div
+          class="item"
+          [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+        >
+          <div class="item-img">
+            <img
+              src="../../../../assets/images/service-5.jfif"
+              class="w-100"
+              alt=""
+            />
+          </div>
+          <div class="item-content mt-2">
+            <h3>خدمة الدعم الفني والصيانة</h3>
+            <p class="mt-2">
+              مع فريقنا المتميز نقدم خدمة الدعم الفني والصيانة على مدار الساعة
+              لتوفير حلول سريعة وفعالة من أجل ضمان استمرارية موقعك أو تطبيقك
+            </p>
+            <button class="border-0">{{'read_more' | translate}}</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div
+          class="item"
+          [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+        >
+          <div class="item-img">
+            <img
+              src="../../../../assets/images/service-6.jfif"
+              class="w-100"
+              alt=""
+            />
+          </div>
+          <div class="item-content mt-2">
+            <h3>خدمات التسويق الرقمي</h3>
+            <p class="mt-2">
+              نقدم خدمات التسويق الرقمي لتعزيز وجودك على الإنترنت. و نسعى لتوسيع
+              قاعدة جمهورك من خلال استراتيجيات مدروسة عبر منصات التواصل
+              الاجتماعي 
+            </p>
+            <button class="border-0">{{'read_more' | translate}}</button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+</section>

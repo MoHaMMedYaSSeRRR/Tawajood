@@ -1,0 +1,353 @@
+<section class="footer mt-0 p-md-5 p-3 mb-0">
+  <div class="w-75 mx-auto">
+    <div
+      class="row  all-data align-items-start justify-content-between"
+    >
+      <div class="col-md-3 col-12 order-md-1 order-4">
+        <div
+          [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+          class="contact"
+        >
+          <h4 class="mb-md-4 mb-2">
+            {{ "contact_us" | translate }}
+          </h4>
+          <div
+            [ngClass]="
+              currentLang === 'ar'
+                ? 'justify-content-end'
+                : 'justify-content-end'
+            "
+            class="d-flex align-items-center"
+          >
+            <div
+              *ngIf="contactUS"
+              [ngClass]="{ 'ms-4': currentLang == 'en' }"
+              [ngClass]="{ 'mx-4': isMobile }"
+              class="content mx-2"
+            >
+              <p class="mb-1">
+                {{ "call_us" | translate }}
+              </p>
+              <p>
+                <a
+                  href="https://wa.me/+201024848723"
+                  class="text-decoration-none text-white"
+                  target="_blank"
+                >
+                  01024848723
+                </a>
+              </p>
+              <p class="rtl">
+                <a
+                  href="tel:0096407745303830"
+                  class="text-decoration-none text-white"
+                  target="_blank"
+                >
+                  {{ contactUS.phone }}
+                </a>
+              </p>
+            </div>
+            <div
+              class="icon2 h-100 mt-4 my-auto mx-2 d-flex flex-column justify-content-center align-items-center"
+            >
+              <a target="_blank" href="tel:+201024848723">
+                <img
+                  src="../../../../assets/images/phone.png"
+                  class="w-100 mt-1"
+                  alt=""
+              /></a>
+              <a target="_blank" href="tel:0096407745303830">
+                <img
+                  src="../../../../assets/images/phone.png"
+                  class="w-100 mt-3"
+                  alt=""
+              /></a>
+            </div>
+          </div>
+          <div
+            [ngClass]="
+              currentLang === 'ar'
+                ? 'justify-content-end'
+                : 'justify-content-end'
+            "
+            class="d-flex align-items-center"
+          >
+            <div class="content mx-3">
+              <p class="mb-1">
+                {{ "email" | translate }}
+              </p>
+              <p>
+                <a
+                  href="mailto:info@tawajood.com"
+                  class="text-decoration-none text-white"
+                  target="_blank"
+                  >info@tawajood.com</a
+                >
+              </p>
+            </div>
+            <div
+              class="icon1 h-100 my-auto pe-2 d-flex justify-content-center align-items-center"
+            >
+              <img
+                src="../../../../assets/images/tabler_mail-filled.png"
+                class=""
+                alt=""
+              />
+            </div>
+          </div>
+          <div
+            [ngClass]="
+              currentLang === 'ar'
+                ? 'justify-content-end'
+                : 'justify-content-end'
+            "
+            class="d-flex align-items-center"
+          >
+            <div *ngIf="contactUS" class="content mx-3">
+              <p class="mb-1">
+                {{ "address" | translate }}
+              </p>
+              <p>
+                <a
+                  href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.4969615211176!2d31.281977!3d29.965144799999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145839172791ade1%3A0x5e80e31d7d551ad8!2z2LTYsdmD2Kkg2KrZiNin2KzYryDZhNio2LHZhdis2Kkg2KfZhNmF2YjYp9mC2Lkg2YjYp9mE2KrYt9io2YrZgtin2Ko!5e0!3m2!1sar!2seg!4v1733290115353!5m2!1sar!2seg"
+                  class="text-decoration-none text-white"
+                  target="_blank"
+                  >{{ contactUS.address }}</a
+                >
+              </p>
+              <p>
+                <a
+                  href=""
+                  class="text-decoration-none text-white"
+                  target="_blank"
+                  >{{ contactUS.address_sconed_ar }}</a
+                >
+              </p>
+            </div>
+            <div
+              class="icon1 h-100 my-auto pe-2 d-flex flex-column justify-content-center align-items-start"
+            >
+              <a
+                class="mt-md-1 mt-4"
+                href="https://www.google.com/maps?ll=29.965145,31.281977&z=16&t=m&hl=ar&gl=EG&mapclient=embed&cid=6809692352380476120"
+                target="_blank"
+                ><img src="../../../../assets/images/MapPin.png" alt=""
+              /></a>
+              <a
+                class="mt-md-4 mt-4"
+                href="https://www.google.com/maps/place/30%C2%B032'17.2%22N+47%C2%B052'46.8%22E/@30.5380993,47.8770867,17z/data=!3m1!4b1!4m4!3m3!8m2!3d30.5380993!4d47.8796616?hl=en&entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank"
+              >
+                <img src="../../../../assets/images/MapPin.png" alt=""
+              /></a>
+            </div>
+          </div>
+
+          <ul
+            class="list-unstyled d-flex justify-content-end align-items-center"
+          >
+            <li class="mx-2">
+              <a
+                target="_blank"
+                href="https://www.tiktok.com/@tawajood?_t=8n26pzQEDlV&_r=1"
+                ><img
+                  class="tiktok"
+                  src="../../../../assets/images/tiktok.png"
+                  alt="tiktok"
+                />
+              </a>
+            </li>
+            <li class="mx-2">
+              <a target="_blank" href="https://wa.me/201024848723"
+                ><img
+                  src="../../../../assets/images/logos_whatsapp-icon.png"
+                  alt="whatsapp"
+                />
+              </a>
+            </li>
+            <li class="mx-2">
+              <a
+                target="_blank"
+                href="https://www.facebook.com/tawajood?mibextid=LQQJ4d"
+                ><img
+                  src="../../../../assets/images/facebook.png"
+                  alt="facebook"
+                />
+              </a>
+            </li>
+            <li class="mx-2">
+              <a
+                target="_blank"
+                href="https://www.instagram.com/tawajoodco?igsh=MWxna2xqazBvZzQyaw=="
+                ><img
+                  src="../../../../assets/images/instagram.png"
+                  alt="instagram"
+                />
+              </a>
+            </li>
+            <li class="mx-2">
+              <a
+                target="_blank"
+                href="https://www.linkedin.com/company/tawajood/"
+                ><img
+                  src="../../../../assets/images/linkedin.png"
+                  alt="linkedin"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        *ngIf="services"
+        [ngClass]="
+          currentLang === 'ar' ? 'justify-content-end' : 'justify-content-start'
+        "
+        class="col-md-2 d-md-block d-none col-6 order-3 d-flex"
+      >
+        <div class="service">
+          <h4
+            [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+            class="mb-md-4 md-2"
+          >
+            {{ "services" | translate }}
+          </h4>
+          <ul
+            [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+            class="list-unstyled"
+          >
+            <li
+              *ngFor="let item of services.slice(0, 5); let i = index"
+              [hidden]="i === 3"
+              class="mb-3"
+            >
+              <a
+                routerLink="/home"
+                (click)="navigateBasedOnId(item.id)"
+                class="text-decoration-none text-white"
+                >{{ item.name | cuttext : 3 }}</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        
+        class="col-md-2  col-12 order-2 d-flex"
+      >
+        <div
+        [ngClass]="{'me-auto': currentLang === 'en',
+          'ms-auto': currentLang === 'ar'
+        }"
+          class="service "
+        >
+          <h4
+            [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+            class="mb-md-4 md-2"
+          >
+            {{ "links" | translate }}
+          </h4>
+          <ul
+            [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+            class="list-unstyled"
+          >
+            <!-- <li  class="mb-3 d-md-block d-none">
+                <a routerLink="/home" class="text-decoration-none">{{ 'home' | translate }}</a>
+              </li> -->
+            <li class="mb-3 d-md-block d-none">
+              <a routerLink="/about" class="text-decoration-none">{{
+                "aboutUs" | translate
+              }}</a>
+            </li>
+            <li class="mb-3">
+              <a routerLink="/allservices" class="text-decoration-none">{{
+                "services" | translate
+              }}</a>
+            </li>
+            <li class="mb-3 d-md-block d-none">
+              <a routerLink="/solutions" class="text-decoration-none">{{
+                "solutions" | translate
+              }}</a>
+            </li>
+            <li class="mb-3">
+              <a routerLink="/projects" class="text-decoration-none">{{
+                "projects" | translate
+              }}</a>
+            </li>
+            <li class="mb-3 d-md-block d-none">
+              <a routerLink="/ourblog" class="text-decoration-none">{{
+                "blog" | translate
+              }}</a>
+            </li>
+            <li class="mb-3 d-md-block d-none">
+              <a routerLink="/hirring" class="text-decoration-none">{{
+                "employment" | translate
+              }}</a>
+            </li>
+            <!-- <li  class="mb-3 d-md-block d-none">
+                <a routerLink="/" class="text-decoration-none">{{ 'contactUs' | translate }}</a>
+              </li> -->
+            <li class="mb-3 d-md-none d-block">
+              <a routerLink="/" class="text-decoration-none">{{
+                "web_development" | translate
+              }}</a>
+            </li>
+            <li class="mb-3 d-md-none d-block">
+              <a routerLink="/" class="text-decoration-none">{{
+                "mobile_app_development" | translate
+              }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        class="col-md-3 col-9 d-flex justify-content-end order-md-4 order-1 align-items-start"
+      >
+        <div class="logo mt-0" routerLink="/home">
+          <img
+            class="w-100"
+            src="../../../../assets/images/footer.png"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row align-items-center copy w-100 mx-auto">
+      <div class="col-md-4 d-md-block d-none"></div>
+      <div class="col-md-3 mt-3">
+        <div role="button" class="image w-100">
+          <a href="https://www.goodfirms.co/" target="_blank">
+            <img
+              class="w-100"
+              loading="lazy"
+              src="../../../../assets/images/logo1.png"
+              alt=""
+          /></a>
+        </div>
+      </div>
+      <div class="col-md-2 col-7 mx-auto mt-3">
+        <div role="button" class="image w-75 text-center">
+          <a href="https://clutch.co/profile/tawajood#reviews" target="_blank"
+            ><img
+              class="w-100"
+              loading="lazy"
+              src="../../../../assets/images/logo2.png"
+              class="w-100"
+              alt=""
+          /></a>
+        </div>
+      </div>
+      <div class="col-md-3 mt-3">
+        <div role="button" class="image w-100">
+          <a href="https://entasher.com/agency/tawajood" target="_blank">
+            <img
+              class="w-100"
+              loading="lazy"
+              src="../../../../assets/images/logo3.png"
+              alt=""
+          /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

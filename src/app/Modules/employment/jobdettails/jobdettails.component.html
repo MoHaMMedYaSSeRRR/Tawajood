@@ -1,0 +1,62 @@
+<section class="mt-0 secnav py-2 w-100">
+  <div
+    class="w-75 mx-auto"
+    [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+  >
+    <span>
+      <span role="button" routerLink="/home">{{ "home" | translate }}</span>
+      <span class="mx-2"> > </span
+      ><span role="button" routerLink="/hirring">{{
+        "employment" | translate
+      }}</span>
+      <span class="mx-2"> > </span>
+      <span class="current"> {{ "jobDetails" | translate }} </span>
+    </span>
+  </div>
+</section>
+
+<section *ngIf="job" class="hirring my-md-4 my-3">
+  <div class="w-75 mx-auto">
+    <div class="row justify-content-center g-3 w-100 mx-auto">
+      <div class="col-12">
+        <img [src]="job.image" class="w-100" alt="" />
+      </div>
+
+      <div class="col-md-12">
+        <div
+          class="item"
+          [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+        >
+          <span>
+            {{ job.created_at | date }}
+            <i
+              [ngClass]="currentLang === 'ar' ? 'ms-2' : 'me-2'"
+              class="fa-regular fa-calendar"
+            ></i>
+          </span>
+          <span class="mx-3">
+            {{ job.end_time | date }}
+            <i
+              [ngClass]="currentLang === 'ar' ? 'ms-2' : 'me-2'"
+              class="fa-regular fa-calendar"
+            ></i>
+          </span>
+
+          <h1>
+            {{ job.job_title_name }}
+          </h1>
+          <div [innerHTML]="jobContent"></div>
+
+          <button
+            [disabled]="isJobExpired(job.end_time)"
+            [ngClass]="{ 'dashed-button': isJobExpired(job.end_time) }"
+            [routerLink]="['/applytojob', job.id]"
+            class="d-block mt-3"
+          >
+            {{ "submit_now" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

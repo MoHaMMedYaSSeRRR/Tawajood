@@ -1,0 +1,11 @@
+<section class="privacy my-md-4 my-3">
+  <div class="w-75 mx-auto">
+    <h2 [ngClass]="{ 'text-end': currentLang == 'ar', 'text-start': currentLang != 'ar' }"
+    >
+      {{ "privacypolicy" | translate }}
+    </h2>
+   <div [innerHTML]="privacy[5].content" class="rtl">
+
+   </div>
+  </div>
+</section>

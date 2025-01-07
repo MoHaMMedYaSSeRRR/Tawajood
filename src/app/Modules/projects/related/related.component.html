@@ -1,0 +1,72 @@
+<section *ngIf="relatedWorks.length > 0" class="projects my-md-4 my-3">
+  <div class="w-75 mx-auto">
+    <div
+    [ngClass]="{ 'flex-row': !isInComponent }"
+    class="d-flex justify-content-between align-items-center w-100 px-3"
+  >
+    <span
+      role="button"
+      routerLink="/projects"
+      *ngIf="!isInComponent && relatedWorks.length > 3"
+    >
+      {{ "view_all" | translate }}
+    </span>
+    <h2 class="px-0 related"  [ngClass]="{
+      'w-100': relatedWorks.length < 3,
+      'text-end': currentLang === 'ar' && relatedWorks.length>3,
+      'text-start': currentLang !== 'ar && relatedWorks.length>3'
+    }">
+      {{ "related_works" | translate }}
+    </h2>
+    </div>
+    <div *ngIf="!isMobile" class="row gx-4 mt-2 w-100 mx-auto">
+      <div
+        [routerLink]="['/mobile', item.id]"
+        *ngFor="let item of relatedWorks"
+        class="col-md-3"
+      >
+        <div class="item text-center">
+          <div
+            class="item-img w-100 d-flex justify-content-center align-items-center"
+          >
+            <img
+              role="button"
+              [routerLink]="['/mobile', item.id]"
+              *ngIf="item.home_screen"
+              [src]="item.home_screen"
+              alt=""
+            />
+          </div>
+          <h4 role="button" [routerLink]="['/mobile', item.id]">
+            {{ item.name }}
+            <!-- {{ "application" | translate }} -->
+          </h4>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isMobile" class="row gx-4 mt-2 w-100 mx-auto">
+      <owl-carousel-o [options]="customOptions">
+        <ng-container *ngFor="let item of relatedWorks">
+          <ng-template carouselSlide>
+            <div class="item text-center">
+              <div
+                class="item-img w-100 d-flex justify-content-center align-items-center"
+                *ngIf="item.home_screen"
+              >
+                <img
+                  *ngIf="item.home_screen"
+                  [routerLink]="['/mobile', item.id]"
+                  [src]="item.home_screen"
+                  alt=""
+                />
+              </div>
+              <h4 class="mt-2">
+                {{ item.name }}
+              </h4>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+  </div>
+</section>

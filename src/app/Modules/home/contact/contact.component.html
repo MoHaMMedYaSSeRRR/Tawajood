@@ -1,0 +1,360 @@
+<section *ngIf="isInComponent" class="mt-0 secnav py-2 w-100">
+  <div
+    class="w-75 mx-auto"
+    [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+  >
+    <span>
+      <span role="button" routerLink="/home">{{ "home" | translate }}</span>
+      <span class="mx-2"> > </span
+      ><span class="current">{{ "contactUs" | translate }}</span>
+    </span>
+  </div>
+</section>
+<section
+  [ngClass]="{ bg: !isInComponent }"
+  class="contact mt-md-4 mt-3 p-md-5 py-3"
+>
+  <div class="w-75 mx-auto">
+    <h2
+      class="my-2 px-3"
+      [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+    >
+      {{ "contact_us" | translate }}
+    </h2>
+    <div class="row mt-2 p-0 m-0 w-100 mx-auto justify-content-between">
+      <div class="col-md-7">
+        <div class="form">
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <div class="row g-4 w-100 mx-auto">
+              <!-- Email Field -->
+              <div class="col-md-6">
+                <input
+                  [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+                  type="email"
+                  formControlName="email"
+                  [placeholder]="'email' | translate"
+                  class="form-control"
+                  id="email"
+                />
+              </div>
+
+              <!-- Name Field -->
+              <div class="col-md-6">
+                <input
+                  [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+                  type="text"
+                  formControlName="name"
+                  [placeholder]="'name' | translate"
+                  class="form-control"
+                  id="name"
+                />
+              </div>
+
+              <!-- Service Dropdown -->
+              <div class="col-md-6 position-relative service">
+                <input
+                  [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+                  type="text"
+                  formControlName="service_id"
+                  class="form-control"
+                  id="service"
+                  [placeholder]="'service' | translate"
+                  (click)="toggleDropdown()"
+                  [value]="selectedService ? selectedService.name : ''"
+                  readonly
+                />
+                <span
+                  class="dropdown-icon"
+                  [ngClass]="currentLang === 'ar' ? 'icon-left' : 'icon-right'"
+                  (click)="toggleDropdown()"
+                >
+                  <i
+                    class="fa"
+                    [ngClass]="
+                      showDropdown ? 'fa-chevron-up' : 'fa-chevron-down'
+                    "
+                  ></i>
+                </span>
+                <ul *ngIf="showDropdown" class="dropdown-menu show w-100">
+                  <li
+                    [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+                    *ngFor="let service of allServices"
+                    (click)="selectService(service)"
+                    class="dropdown-item"
+                  >
+                    {{ service.name }}
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Phone Field -->
+              <div class="col-md-6 position-relative group">
+                <input
+                  [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+                  type="phone"
+                  formControlName="phone"
+                  [placeholder]="'phone' | translate"
+                  class="form-control text-end"
+                  id="phone"
+                />
+                <span
+                  (click)="toggleDropdowncountry()"
+                  class="arrow position-absolute"
+                  [ngClass]="currentLang === 'en' ? 'arrow-en' : ''"
+                  role="button"
+                >
+                  <i class="fa fa-chevron-down"></i>
+                </span>
+                <span
+                  (click)="toggleDropdowncountry()"
+                  class="code position-absolute"
+                  role="button"
+                >
+                  {{ selectedCountry.code }}
+                </span>
+
+                <div
+                  *ngIf="isDropdown && currentLang == 'ar'"
+                  class="country-dropdown text-end"
+                >
+                  <div
+                    *ngFor="let country of countries"
+                    (click)="selectCountry(country)"
+                    class="dropdown-item"
+                    [ngClass]="{ 'text-start': currentLang == 'en' }"
+                  >
+                    {{ country.name_ar }} ({{ country.code }})
+                  </div>
+                </div>
+                <div
+                  *ngIf="isDropdown && currentLang == 'en'"
+                  class="country-dropdown"
+                >
+                  <div
+                    *ngFor="let country of countries"
+                    (click)="selectCountry(country)"
+                    class="dropdown-item"
+                    [ngClass]="{ 'text-start': currentLang == 'en' }"
+                  >
+                    {{ country.name_en }} ({{ country.code }})
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <textarea
+                  [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+                  formControlName="message"
+                  [placeholder]="'message' | translate"
+                  class="form-control"
+                  id="message"
+                  rows="3"
+                ></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="">
+                <button type="submit" class="btn btn-primary">
+                  {{ "submit" | translate }}
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div *ngIf="contactUs" class="col-md-4 d-md-block d-none">
+        <div
+          [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+          class="contact mt-3"
+        >
+          <div
+            [ngClass]="
+              currentLang === 'ar'
+                ? 'justify-content-end'
+                : 'justify-content-end'
+            "
+            class="d-flex"
+          >
+            <div class="content mx-2">
+              <p class="mb-1">
+                {{ "call_us" | translate }}
+              </p>
+              <p class="mb-0">
+                <a
+                  href="tel:01024848723"
+                  class="text-decoration-none"
+                  target="_blank"
+                >
+                  01024848723
+                </a>
+              </p>
+              <p class="rtl">
+                <a
+                  href="tel:0096407745303830"
+                  class="text-decoration-none"
+                  target="_blank"
+                >
+                  {{ contactUs.phone }}
+                </a>
+              </p>
+            </div>
+            <div
+              [ngClass]="currentLang === 'en' ? 'pe-3' : 'mx-2'"
+              class="icon pe-2 d-flex justify-content-center align-items-center"
+            >
+              <img
+                src="../../../../assets/images/Group.png"
+                class="w-100"
+                alt=""
+              />
+            </div>
+          </div>
+          <div
+            [ngClass]="
+              currentLang === 'ar'
+                ? 'justify-content-end'
+                : 'justify-content-end'
+            "
+            class="d-flex mt-3"
+          >
+            <div class="content mx-3">
+              <p class="mb-1">
+                {{ "email" | translate }}
+              </p>
+              <p>
+                <a
+                  href="mailto:info@tawajood.com"
+                  class="text-decoration-none"
+                  target="_blank"
+                  >{{ contactUs.email }}</a
+                >
+              </p>
+            </div>
+            <div
+              [ngClass]="currentLang === 'en' ? 'pe-3' : 'mx-2'"
+              class="icon pe-2 d-flex justify-content-center align-items-center"
+            >
+              <img
+                src="../../../../assets/images/Group (1).png"
+                class="w-100"
+                alt=""
+              />
+            </div>
+          </div>
+          <div
+            *ngIf="isInComponent"
+            [ngClass]="
+              currentLang === 'ar'
+                ? 'justify-content-end'
+                : 'justify-content-end'
+            "
+            class="d-flex mt-3"
+          >
+            <div class="content mx-3">
+              <p class="mb-1">
+                {{ "address" | translate }}
+              </p>
+              <p class="mb-0">
+                <a
+                  href="https://www.google.com/maps/place/%D8%B4%D8%B1%D9%83%D8%A9+%D8%AA%D9%88%D8%A7%D8%AC%D8%AF+%D9%84%D8%A8%D8%B1%D9%85%D8%AC%D8%A9+%D8%A7%D9%84%D9%85%D9%88%D8%A7%D9%82%D8%B9+%D9%88%D8%A7%D9%84%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%D8%A7%D8%AA%E2%80%AD/@29.9651494,31.2771114,17z/data=!3m1!4b1!4m12!1m5!3m4!2zMzDCsDMyJzE3LjIiTiA0N8KwNTInNDYuOCJF!8m2!3d30.5380993!4d47.8796616!3m5!1s0x145839172791ade1:0x5e80e31d7d551ad8!8m2!3d29.9651448!4d31.281977!16s%2Fg%2F11s5dwc5dr?hl=en&entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D"
+                  class="text-decoration-none"
+                  target="_blank"
+                  >{{ contactUs.address }}</a
+                >
+              </p>
+              <p>
+                <a
+                  href="https://www.google.com/maps/place/30%C2%B032'17.2%22N+47%C2%B052'46.8%22E/@30.5380993,47.8770867,17z/data=!3m1!4b1!4m4!3m3!8m2!3d30.5380993!4d47.8796616?hl=en&entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D"
+                  class="text-decoration-none"
+                  target="_blank"
+                  >{{ contactUs.address_sconed_ar }}</a
+                >
+              </p>
+            </div>
+            <div
+              [ngClass]="currentLang === 'en' ? 'pe-3' : 'mx-2'"
+              class="icon loc pe-2 d-flex justify-content-center align-items-center"
+            >
+              <img
+                src="../../../../assets/images/location.png"
+                class="w-100"
+                alt=""
+              />
+            </div>
+          </div>
+
+          <ul
+            class="list-unstyled d-flex mt-4 justify-content-center align-items-center"
+          >
+            <li class="mx-2">
+              <a
+                target="_blank"
+                href="https://www.tiktok.com/@tawajood?_t=8n26pzQEDlV&_r=1"
+                ><img src="../../../../assets/images/tiktok.png" alt="tiktok" />
+              </a>
+            </li>
+            <li class="mx-2">
+              <a target="_blank" href="https://wa.me/201024848723"
+                ><img
+                  src="../../../../assets/images/logos_whatsapp-icon.png"
+                  alt="whatsapp"
+                />
+              </a>
+            </li>
+            <li class="mx-2">
+              <a
+                target="_blank"
+                href="https://www.facebook.com/tawajood?mibextid=LQQJ4d"
+                ><img
+                  src="../../../../assets/images/facebook.png"
+                  alt="facebook"
+                />
+              </a>
+            </li>
+            <li class="mx-2">
+              <a
+                target="_blank"
+                href="https://www.instagram.com/tawajoodco?igsh=MWxna2xqazBvZzQyaw=="
+                ><img
+                  src="../../../../assets/images/instagram.png"
+                  alt="instagram"
+                />
+              </a>
+            </li>
+            <li class="mx-2">
+              <a
+                target="_blank"
+                href="https://www.linkedin.com/company/tawajood/"
+                ><img
+                  src="../../../../assets/images/linkedin.png"
+                  alt="linkedin"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section *ngIf="isInComponent">
+  <div class="map w-75 mx-auto">
+    <h3
+      class="mb-3"
+      [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+    >
+      {{ "location" | translate }}
+    </h3>
+    <div class="location w-100">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.4969615211176!2d31.281977!3d29.965144799999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145839172791ade1%3A0x5e80e31d7d551ad8!2z2LTYsdmD2Kkg2KrZiNin2KzYryDZhNio2LHZhdis2Kkg2KfZhNmF2YjYp9mC2Lkg2YjYp9mE2KrYt9io2YrZgtin2Ko!5e0!3m2!1sar!2seg!4v1733290115353!5m2!1sar!2seg"
+        width="100%"
+        height="400"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </div>
+</section>

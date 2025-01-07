@@ -1,0 +1,124 @@
+.blogs {
+  h2 {
+    font-weight: 700;
+    font-size: 38px;
+    color: #15181b;
+  }
+  span {
+    font-weight: 700;
+    font-size: 16px;
+    color: #4584c5;
+  }
+  ul,
+  .owl {
+    li {
+      margin: 0 10px;
+      cursor: pointer;
+      list-style: none;
+      a {
+        font-weight: 400;
+        font-size: 16px;
+        color: #15181b;
+        text-decoration: none;
+      }
+    }
+    .active {
+      padding: 8px;
+      background-color: #4584c5;
+      color: white !important;
+      border-radius: 2px;
+    }
+  }
+  .input_wrapper {
+    label {
+      font-weight: 400;
+      font-size: 18px;
+      color: #191c1f;
+    }
+    select {
+      width: 160px;
+      height: 40px;
+      border-color: #e4e7e9;
+    }
+    .rtl {
+      direction: rtl;
+    }
+    .ltr {
+      direction: ltr;
+    }
+  }
+
+  .item {
+    border: 1px solid #e4e7e9;
+    padding: 15px;
+    img {
+      height: 240px;
+    }
+    i {
+      color: #4584c5;
+    }
+    span {
+      font-weight: 400;
+      font-size: 14px;
+      color: #475156;
+    }
+    h5 {
+      font-weight: 700;
+      font-size: 18px;
+      color: #191c1f;
+    }
+    p {
+      font-weight: 400;
+      font-size: 16px;
+      color: #475156;
+    }
+    button {
+      display: block;
+      width: 138px;
+      height: 48px;
+      border: 2px solid #4584c5;
+      background-color: transparent;
+      border-radius: 2px;
+      color: #4584c5;
+      transition: all 0.25s ease-in;
+      &:hover {
+        background-color: #4584c5;
+        color: white;
+      }
+    }
+    .marketing {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 10px;
+      left: 10px;
+      background-color: #ffc11f;
+      width: 100px;
+      height: 30px;
+      border-radius: 4px;
+      color: #ffffff;
+      font-weight: 500;
+      font-size: 14px;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .w-75 > .d-flex {
+    flex-direction: column;
+  }
+  .row {
+    padding: 0 !important;
+    margin: auto !important;
+  }
+  .in {
+    flex-direction: row !important;
+  }
+  ul,
+  .owl {
+    li {
+      a {
+        font-size: 12px !important;
+      }
+    }
+  }
+}

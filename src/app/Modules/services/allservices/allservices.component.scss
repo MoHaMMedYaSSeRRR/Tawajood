@@ -1,0 +1,64 @@
+.service {
+  .limit-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  h2 {
+    font-weight: 700;
+    font-size: 38px;
+    color: #475156;
+  }
+  .col-md-4{
+    transition: all 0.5s ease-in-out;
+    &:hover{
+      background-color: #e3eaf3;
+    }
+  }
+  .item {
+    height: 435px;
+   
+    h3 {
+      font-weight: 700;
+      font-size: 22px;
+      color: #1c1f35;
+    }
+    p {
+      font-weight: 400;
+      font-size: 16px;
+      color: #666c89;
+    }
+
+    button {
+      width: 200px;
+      height: 56px;
+      background-color: #4584c5;
+      color: #ffffff;
+      font-weight: 400;
+      font-size: 20px;
+    }
+    img {
+      height: 240px;
+    }
+  }
+  .main-color {
+    color: #191c1f;
+  }
+}
+@media (max-width: 768px) {
+  .service {
+    padding: 0px !important;
+    padding-bottom: 30px !important;
+    .row {
+      margin-top: 10px;
+    }
+    h3 {
+      font-size: 18px !important;
+    }
+  }
+  
+}
+

@@ -1,0 +1,68 @@
+
+
+<section *ngIf="process" class="company my-md-4 my-3">
+  <div class="w-75 mx-auto">
+    <h2
+      class="px-2"
+      [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+    >
+      {{ "operation" | translate }}
+    </h2>
+    <div
+      class="row position-relative  mt-2 w-100 mx-auto p-0 m-0 justify-content-end align-items-center"
+    >
+      <owl-carousel-o [options]="customOptions" #owlCarousel>
+       <ng-container *ngFor="let item of process.slice().reverse()">
+        <ng-template carouselSlide>
+          <div
+            class="item d-flex flex-column justify-content-center align-items-center"
+          >
+            <span> {{item.number_process}} </span>
+            <h4 class="mt-3 text-center">{{item.name}}</h4>
+          </div>
+        </ng-template>
+       </ng-container>
+       
+        <!-- <ng-template carouselSlide>
+          <div
+            class="item d-flex flex-column justify-content-center align-items-center"
+          >
+            <span> 4 </span>
+            <h4 class="mt-3">إطلاق | صيانة</h4>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div
+            class="item d-flex flex-column justify-content-center align-items-center"
+          >
+            <span> 3 </span>
+            <h4 class="mt-3">البرمجة| و التطوير</h4>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div
+            class="item d-flex flex-column justify-content-center align-items-center"
+          >
+            <span> 2 </span>
+            <h4 class="mt-3">مرحلة التصميم</h4>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <div
+            class="item d-flex flex-column justify-content-center align-items-center"
+          >
+            <span> 1 </span>
+            <h4 class="mt-3">أبحاث السوق | تحليل</h4>
+          </div>
+        </ng-template> -->
+      </owl-carousel-o>
+
+      <span *ngIf="process.length >4" (click)="goPrev()" class="custom-nav prev">
+        <i class="fa fa-arrow-left"></i>
+      </span>
+      <span *ngIf="process.length >4" (click)="goNext()" class="custom-nav next">
+        <i class="fa fa-arrow-right"></i>
+      </span>
+    </div>
+  </div>
+</section>

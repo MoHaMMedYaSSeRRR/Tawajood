@@ -1,0 +1,76 @@
+.domain {
+  h2 {
+    font-weight: 700;
+    font-size: 38px;
+    color: #1c1f35;
+  }
+  p {
+    font-weight: 400;
+    font-size: 16px;
+    color: #666c89;
+  }
+  button {
+    width: 194px;
+    height: 60px;
+    background-color: #4584c5;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 18px;
+  }
+  .why {
+   .row{
+    justify-content: center!important;
+   }
+    h3 {
+      font-weight: 700;
+      font-size: 36px;
+      color: #15181b;
+    }
+    img {
+      width: 64px;
+      height: 64px;
+    }
+    h4 {
+      font-weight: 700;
+      font-size: 24px;
+      color: #15181b;
+    }
+    p {
+      font-weight: 400;
+      font-size: 16px;
+      color: #666c89;
+    }
+    button {
+      width: 283.63px;
+    }
+  }
+}
+.hosting {
+  background-color: #f4f4f4;
+  h3 {
+    font-weight: 700;
+    font-size: 36px;
+    color: #191c1f;
+  }
+
+  p {
+    font-weight: 400;
+    font-size: 16px;
+    color: #191c1f;
+  }
+  button {
+    width: 194px;
+    height: 60px;
+    background-color: #4584c5;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 18px;
+  }
+}
+@media (max-width: 768px) {
+  .domain {
+    h2 {
+      font-size: 24px !important;
+    }
+  }
+}

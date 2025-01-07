@@ -1,0 +1,192 @@
+.contact {
+  
+  
+  input,
+  textarea {
+    background-color: transparent;
+    border: 1px solid #4e5683;
+    padding: 10px 5px;
+    ::placeholder {
+      color: #4e5683;
+      font-weight: 700;
+      font-size: 18px;
+      color: #2b2b2b;
+    }
+  }
+
+  button {
+    display: block;
+    width: 167px;
+    height: 60px;
+    background-color: #4584c5;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 16px;
+    border: 0;
+    &:hover {
+      border: 1px solid #4584c5;
+      background-color: transparent;
+      color: #4584c5;
+    }
+  }
+}
+.service {
+  .position-relative {
+    position: relative;
+  }
+
+  .dropdown-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+
+  .icon-right {
+    right: 20px;
+  }
+
+  .icon-left {
+    left: 20px;
+  }
+
+  .dropdown-menu {
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+}
+.phone {
+  .input-wrapper {
+    position: relative;
+  }
+
+  .country-code {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #2b2b2b;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-50%);
+  }
+
+  .arrow {
+    color: #2b2b2b;
+    font-weight: 700;
+    font-size: 12px;
+    margin-left: 5px;
+  }
+
+  .text-start .country-code {
+    left: 30px !important;
+  }
+
+  .text-end .country-code {
+    right: 30px !important;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%;
+    z-index: 1000;
+    display: block;
+  }
+
+  .dropdown-item {
+    padding: 8px;
+    cursor: pointer;
+  }
+
+  .dropdown-item:hover {
+    background-color: #f0f0f0;
+  }
+}
+
+.contact p,
+a {
+  font-weight: 500;
+  font-size: 14px;
+  color: #2b2b2b;
+}
+.bg {
+  background-color: #f2f4f5;
+}
+
+.map {
+  h3 {
+    font-weight: 700;
+    font-size: 36px;
+    color: #191c1f;
+  }
+  .location {
+    height: 400px;
+  }
+}
+.arrow {
+  color: #000000;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.code {
+  color: #000000;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+// .arrow-en {
+//   right: 20px; /* Position on the right for English */
+//   left: auto;
+// }
+
+// .code-en {
+//   right: 40px; /* Position on the right for English */
+//   left: auto;
+// }
+.country-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1;
+}
+
+.dropdown-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+.icon{
+  width: 83px !important;
+  height: 80px !important;
+  img{
+    width: 83px !important;
+    height: 80px !important;
+  }
+}

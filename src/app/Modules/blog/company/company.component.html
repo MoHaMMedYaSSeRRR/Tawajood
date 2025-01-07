@@ -1,0 +1,26 @@
+<section class="company my-md-4 my-3">
+    <div class="w-75 mx-auto">
+        <h2   class="px-2"     [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
+        >{{'partners'|translate}}</h2>
+        <div  class="row position-relative  mt-2 w-100 mx-auto">
+            <owl-carousel-o [options]="customOptions" #owlCarousel>
+              <ng-template carouselSlide *ngFor="let item of partner">
+                <div 
+                class="item" 
+                [ngClass]="{'decreased-size': item.id >= 14}">
+                <img [src]="item.icon" alt="companyPhoto">
+              </div>
+              
+              </ng-template>
+            </owl-carousel-o>
+          
+            <span  (click)="goPrev()" class="custom-nav prev">
+              <i class="fa fa-arrow-left"></i>
+            </span>
+            <span  (click)="goNext()" class="custom-nav next">
+              <i class="fa fa-arrow-right"></i>
+            </span>
+          </div>
+          
+    </div>
+</section>
