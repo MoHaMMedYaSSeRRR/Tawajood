@@ -1,23 +1,19 @@
-<header>
-  <div class="header position-relative">
+<header *ngIf="headerContent">
+  <div class="header position-relative"  [style.background-image]="'url(' + currentBackground + ')'">
     <div class="layer d-flex justify-content-center align-items-center">
-      <div class="header-content  w-75 p-2">
-        <owl-carousel-o [options]="customOptions">
-          <ng-container *ngFor="let slide of headerContent">
-            <ng-template carouselSlide>
-          
-              <h4
-               class="mx-auto mt-md-5 pt-md-5"
-              >
-                {{ slide.content }}
-              </h4>
-            </ng-template>
-          </ng-container>
-        </owl-carousel-o>
+      <div *ngIf="headerContent[1]" class="header-content  mt-md-0 mt-5 w-75 p-2">
+        <h3 [ngClass]="{'fontArabic' : currentLang =='ar' }" class="mx-auto mt-md-5 text-center pt-md-3 fixed-content">
+          {{ headerContent[1].content.split(' ').slice(0, 2).join(' ') }}
+        </h3>
+        <!-- Remaining words -->
+        <h4 class="mx-auto text-center mt-md-4 mt-2 fixed-content">
+          {{ headerContent[1].content.split(' ').slice(2).join(' ') }}
+        </h4>
       </div>
     </div>
   </div>
 </header>
+
 
 <section class="my-md-5 my-2" *ngIf="about" #aboutSection id="aboutSection">
   <div class="about py-md-5 py-2" >
@@ -44,9 +40,9 @@
   </div>
 </section>
 
-<section [ngClass]="{'opacity-0': !section3Animated}" #whySection id="whySection" class="why p-md-5 p-4 pt-5">
+<section #whySection id="whySection" class="why p-md-5 p-4 pt-5">
   <div class="w-75 px-2 mx-auto">
-    <div [@scaleIn]="section3Animated ? 'in' : 'void'"  class="row gy-5 py-md-5 px-md-5 w-100 mx-auto">
+    <div class="row gy-5 py-md-5 px-md-5 w-100 mx-auto">
       <ng-container *ngFor="let item of whyUs; let i = index" >
         <div *ngIf="i < 2" class="col-md-4">
           <div
@@ -62,7 +58,7 @@
 
       <div *ngIf="whyUs.length > 2" [ngClass]="{'order-1': isMobile}" class="col-md-4" >
         <div
-        [@scaleIn]="section3Animated ? 'in' : 'void'"
+        
           [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
           class="item d-flex justify-content-center align-items-center border-0 position-relative p-2"
         >
@@ -73,7 +69,7 @@
       <ng-container *ngFor="let item of whyUs; let i = index" >
         <div *ngIf="i >= 2" class="col-md-4">
           <div
-          [@scaleIn]="section3Animated ? 'in' : 'void'"
+        
             [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
             class="item position-relative p-2"
           >

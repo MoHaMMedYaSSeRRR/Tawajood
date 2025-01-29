@@ -66,11 +66,13 @@ export class AllprojectsComponent {
       this.currentLang = lang;
       this.customOptions.rtl = lang === 'en';
       this.mobileCustomOptions.rtl = lang === 'en';
+      this.mobileOptions.rtl = lang === 'en';
 
       this.cdr.detectChanges();
     });
     this.checkRoute();
     this.fetchProjects(); 
+   
   }
   customOptions: OwlOptions = { 
     loop: true,
@@ -94,6 +96,28 @@ export class AllprojectsComponent {
     },
     nav: false,
   };
+  mobileOptions: OwlOptions = { 
+    loop: true,
+    mouseDrag: true,
+    autoplay: false,
+    autoplayTimeout: 5000,
+    autoplaySpeed: 1200,
+    smartSpeed: 200,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true, // Enable dots navigation
+    dotsData: false,
+    navSpeed: 1200,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 2.1,
+        dotsEach: 3
+        
+      },
+    },
+    nav: false,
+  };
   mobileCustomOptions: OwlOptions = { 
     loop: true,
     mouseDrag: true,
@@ -109,7 +133,8 @@ export class AllprojectsComponent {
     navText: ['', ''],
     responsive: {
       0: {
-        items: 1,  
+        items: 1.7, 
+         
       },
     },
     nav: false,

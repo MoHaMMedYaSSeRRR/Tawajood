@@ -19,7 +19,7 @@ export class ApplyjobComponent {
   isDropdownOpen = false;
   selectedCountry = { name: 'Egypt', code: '+20', flag: 'egypt.png' };
 
-  countryCodes = [
+  countryCodes = [ 
     { name: 'Egypt', code: '+20', flag: 'egypt.png' },
     { name: 'United States', code: '+1', flag: 'us.png' },
     { name: 'United Kingdom', code: '+44', flag: 'uk.png' },

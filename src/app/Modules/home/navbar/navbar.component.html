@@ -255,7 +255,7 @@
                 <span  class="dropdown-item">{{ 'all' | translate }}</span>
               </li>
               <li *ngFor="let item of soloutions" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">
-                <span [routerLink]="['/solutionDetails' , item.id]" class="dropdown-item">{{ item.name }}</span>
+                <span role="button" [routerLink]="['/solutionDetails' , item.id]" class="dropdown-item">{{ item.name }}</span>
               </li>
             </ul>
           </li>

@@ -83,6 +83,10 @@ export class HomeComponent implements AfterViewInit {
   completedProjects = 0;
   whyUs: any[] = [];
   contactUs: any;
+  currentBackground!: string ;
+  currentIndex: number = 0; 
+  private intervalId: any;
+
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -109,6 +113,10 @@ export class HomeComponent implements AfterViewInit {
 
     this._HomeService.getSlider().subscribe((res: any) => {
       this.headerContent = res.data.sliders;
+      if (this.headerContent.length) {
+        this.currentBackground = this.headerContent[0].media;
+        this.startBackgroundRotation(); // Start rotating backgrounds
+      }
     });
 
     this._HomeService.getAbout().subscribe((res: any) => {
@@ -128,7 +136,19 @@ export class HomeComponent implements AfterViewInit {
     });
     this.setMetaTags();
   }
+  startBackgroundRotation(): void {
+    let index = 0;
+    this.intervalId = setInterval(() => {
+      index = (index + 1) % this.headerContent.length; // Loop through backgrounds
+      this.currentBackground = this.headerContent[index].media;
+    }, 5000);
+  }
 
+  ngOnDestroy(): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId); // Clear interval on component destroy
+    }
+  }
   setMetaTags(): void {
     this.translate
       .get(['company_name', 'meta_description', 'meta_keywords'])

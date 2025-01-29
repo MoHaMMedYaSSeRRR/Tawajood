@@ -209,7 +209,7 @@
   </div>
 </div>
 
-<section class="my-md-5 my-3">
+<section *ngIf="!isMobile" class="my-md-5 my-3">
   <app-related [relatedWorks]="relatedWorks"></app-related>
 </section>
 

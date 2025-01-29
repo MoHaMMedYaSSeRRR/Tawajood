@@ -190,3 +190,14 @@ a {
     height: 80px !important;
   }
 }
+/* Style the error message */
+.text-danger {
+  font-size: 1rem; /* Small font size */
+  color: #dc3545; /* Red color for errors */
+  text-align: center; /* Center the text */
+  position: absolute; /* Position it relative to the parent */
+  bottom: -20px; /* Adjust to be just below the input */
+  left: 0;
+  right: 0;
+  padding: 0 5px; /* Some padding to avoid touching edges */
+}

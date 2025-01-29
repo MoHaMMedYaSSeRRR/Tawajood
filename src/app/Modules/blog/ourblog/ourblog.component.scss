@@ -49,6 +49,7 @@
   }
 
   .item {
+    height: 500px;
     border: 1px solid #e4e7e9;
     padding: 15px;
     img {
@@ -93,7 +94,9 @@
       top: 10px;
       left: 10px;
       background-color: #ffc11f;
-      width: 100px;
+      min-width: 100px;
+      max-width: 200px;
+      padding: 0px 10px;
       height: 30px;
       border-radius: 4px;
       color: #ffffff;
@@ -121,4 +124,11 @@
       }
     }
   }
+  button{
+    margin-top: 15px;
+  }
+  .item{
+    height: auto !important;
+  }
 }
+

@@ -40,4 +40,7 @@ export class HomeService {
   contact(data:any):Observable<any>{
     return this._HttpClient.post('https://dev.tawajood.com/api/add_form_contact_us', data);
   }
+  checkIp():Observable<any>{
+    return this._HttpClient.get('https://ipwhois.app/json/');
+  }
 }

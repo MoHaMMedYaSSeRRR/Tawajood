@@ -26,8 +26,10 @@ export class ContactComponent {
   sanitizedContent: SafeHtml | null = null;
   serviceId: any;
   isDropdown: boolean = false;
+  isIraq: boolean = false;
 
   countries = [
+    { code: '966', flag: '🇸🇦', name_ar: 'السعودية', name_en: 'Saudi Arabia' },
     { code: '20', flag: '🇪🇬', name_ar: 'مصر', name_en: 'Egypt' },
     { code: '212', flag: '🇲🇦', name_ar: 'المغرب', name_en: 'Morocco' },
     { code: '213', flag: '🇩🇿', name_ar: 'الجزائر', name_en: 'Algeria' },
@@ -38,12 +40,10 @@ export class ContactComponent {
     { code: '968', flag: '🇴🇲', name_ar: 'عمان', name_en: 'Oman' },
     { code: '970', flag: '🇵🇸', name_ar: 'فلسطين', name_en: 'Palestine' },
     { code: '971', flag: '🇦🇪', name_ar: 'الإمارات', name_en: 'United Arab Emirates' },
-    { code: '972', flag: '🇮🇱', name_ar: 'إسرائيل', name_en: 'Israel' },
     { code: '973', flag: '🇧🇭', name_ar: 'البحرين', name_en: 'Bahrain' },
     { code: '974', flag: '🇶🇦', name_ar: 'قطر', name_en: 'Qatar' },
     { code: '963', flag: '🇸🇾', name_ar: 'سوريا', name_en: 'Syria' },
     { code: '965', flag: '🇰🇼', name_ar: 'الكويت', name_en: 'Kuwait' },
-    { code: '966', flag: '🇸🇦', name_ar: 'السعودية', name_en: 'Saudi Arabia' },
     { code: '967', flag: '🇾🇪', name_ar: 'اليمن', name_en: 'Yemen' },
     { code: '962', flag: '🇯🇴', name_ar: 'الأردن', name_en: 'Jordan' },
     { code: '252', flag: '🇸🇴', name_ar: 'الصومال', name_en: 'Somalia' },
@@ -85,6 +85,14 @@ export class ContactComponent {
     })
     this.checkRoute();
     this.setMetaTags();
+    this._HomeService.checkIp().subscribe({
+      next: (res) => {
+        this.isIraq = res.country_code === 'IQ';
+      },
+      error: (err) => {
+        console.log('Error:', err);
+      }
+     })
   }
   setMetaTags(): void {
     this._translate.get('hirringmeta').subscribe((meta) => {
@@ -113,19 +121,28 @@ export class ContactComponent {
     country_code: new FormControl('+20', Validators.required),
     message: new FormControl(''),
   });
+  isFieldInvalid(field: string): boolean {
+    const control = this.contactForm.get(field);
+    return control?.invalid && (control.touched || control.dirty) ? true : false;
+  }
+  get emailControl() {
+    return this.contactForm.get('email');
+  }
+
   onSubmit() {
     if (this.contactForm.valid) {
-      // console.log(this.contactForm.value);
-    }
-    this._HomeService.contact(this.contactForm.value).subscribe({
-        next:(res)=>{
-          // console.log(res);
-          if(res.result== true){
+      this._HomeService.contact(this.contactForm.value).subscribe({
+        next: (res) => {
+          if (res.result === true) {
             this._ToastrService.success(res.message);
             this.contactForm.reset();
+            this.router.navigate(['/submit']);
           }
         }
-    })
+      });
+    } else {
+      this.contactForm.markAllAsTouched();
+    }
   }
   toggleDropdown() {
     this.showDropdown = !this.showDropdown;

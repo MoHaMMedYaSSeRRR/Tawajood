@@ -44,9 +44,9 @@
   justify-content: end !important;
 }
 @media (max-width: 768px) {
-  .col-9 {
-    margin: auto;
-  }
+  // .col-9 {
+  //   margin: auto;
+  // }
   .image {
     width: 100% !important;
   }
@@ -65,4 +65,48 @@
 
 .tiktok {
   width: 130%;
+}
+h5 {
+  font-weight: 400;
+  font-size: 18px;
+  color: #ffffff;
+}
+hr {
+  color: #303639;
+}
+@media (max-width: 768px) {
+  h5 {
+    font-size: 14px;
+  }
+}
+.sp {
+  height: 200px !important;
+}
+@media (max-width: 768px) {
+  .sp {
+    justify-content: center !important;
+  }
+}
+@media (min-width:768px) {
+  .sp{
+    position: relative;
+  }
+  p {
+    text-align: end !important; /* Ensures text is aligned to the left */
+  }
+    .sp > a:nth-child(1) {
+      position: absolute;
+      top: 9px;
+  }
+  
+  .sp > a:nth-child(2) {
+    position: absolute;
+    top: 48px !important;
+  }
+  
+  .sp > a:nth-child(3) {
+    position: absolute;
+    top: 115px !important;
+  }
+
 }

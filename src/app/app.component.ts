@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Renderer2, OnInit, OnDestroy, Inject } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { HomeService } from './Services/home.service';
 
 @Component({
   selector: 'app-root',
@@ -18,9 +19,12 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
-    private router: Router
+    private router: Router,
+        private _HomeService:HomeService
+    
   ) {}
-
+  isIraq: boolean = false;
+  isEgypt: boolean = false;
   ngOnInit(): void {
     // Check if the current device is mobile and listen for window resize changes
     this.isMobile = window.innerWidth <= 768;
@@ -42,6 +46,15 @@ export class AppComponent implements OnInit, OnDestroy {
     });
     this.currentLang = localStorage.getItem('currentLang') || 'ar'; // Default to 'en' if no language set
     this.applyTextAlignToParagraphs();
+    this._HomeService.checkIp().subscribe({
+      next: (res) => {
+        this.isIraq = res.country_code === 'IQ';
+        this.isEgypt =  res.country_code === 'EG';
+      },
+      error: (err) => {
+        console.log('Error:', err);
+      }
+     })
   }
   applyTextAlignToParagraphs(): void {
     const paragraphs = this.document.querySelectorAll('p');

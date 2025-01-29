@@ -107,11 +107,10 @@
 
     <div
       *ngIf="(!isMobile || isInComponent) && isInComponent"
-      class="row mt-2 w-100 mx-auto justify-content-end"
+      class="row g-3 mt-2 w-100 mx-auto justify-content-end"
     >
       <div *ngFor="let item of filteredBlogs" class="col-md-4">
-        <div class="item" 
-        >
+        <div class="item">
           <div class="item-image position-relative">
             <span class="marketing position-absolute">
               {{ item.topic.name }}
@@ -127,7 +126,11 @@
           <div
             [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
             class="item-content mt-2"
-            [ngClass]="currentLang === 'ar' && !isContentArabic(item.plainDescription) ? 'ltr' : 'rtl'"
+            [ngClass]="
+              currentLang === 'ar' && !isContentArabic(item.plainDescription)
+                ? 'ltr'
+                : 'rtl'
+            "
           >
             <span>
               {{ item.created_at | date }}
@@ -138,7 +141,7 @@
             </span>
             <h5 class="mt-2">{{ item.title | cuttext : 10 }}</h5>
             <p class="mt-1">
-              {{ item.plainDescription | cuttext : 15 }}
+              {{ item.plainDescription | cuttext : 20 }}
             </p>
             <button
               [routerLink]="['/blogdetails', item.id]"
@@ -152,7 +155,7 @@
     </div>
     <div
       *ngIf="!isMobile && !isInComponent"
-      class="row mt-2 w-100 mx-auto justify-content-end"
+      class="row g-3 mt-2 w-100 mx-auto justify-content-end"
     >
       <div *ngFor="let item of filteredBlogs.slice(0, 3)" class="col-md-4">
         <div class="item">
@@ -165,7 +168,11 @@
           <div
             [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
             class="item-content mt-2"
-            [ngClass]="currentLang === 'ar' && !isContentArabic(item.plainDescription) ? 'ltr' : 'rtl'"
+            [ngClass]="
+              currentLang === 'ar' && !isContentArabic(item.plainDescription)
+                ? 'ltr'
+                : 'rtl'
+            "
           >
             <span>
               {{ item.created_at | date }}
@@ -190,11 +197,11 @@
     </div>
     <div
       *ngIf="isMobile && !isInComponent"
-      class="row mt-2 d-md-none d-block w-100 mx-auto"
+      class="row g-3 mt-2 d-md-none d-block w-100 mx-auto"
     >
       <div class="mt-2 w-100 mx-auto">
         <owl-carousel-o [options]="customOptions">
-          <ng-container *ngFor="let item of allBlogs.slice(0, 3)">
+          <ng-container *ngFor="let item of filteredBlogs.slice(0, 3)">
             <ng-template carouselSlide>
               <div class="item me-2">
                 <div class="item-image position-relative">
@@ -206,7 +213,12 @@
                 <div
                   [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
                   class="item-content mt-2"
-                  [ngClass]="currentLang === 'ar' && !isContentArabic(item.plainDescription) ? 'ltr' : 'rtl'"
+                  [ngClass]="
+                    currentLang === 'ar' &&
+                    !isContentArabic(item.plainDescription)
+                      ? 'ltr'
+                      : 'rtl'
+                  "
                 >
                   <span>
                     {{ item.created_at | date }}
@@ -222,6 +234,7 @@
                     الاستراتيجيات الأساسية
                   </p>
                   <button
+                    [routerLink]="['/blogdetails', item.id]"
                     [ngClass]="currentLang === 'ar' ? 'me-auto' : 'ms-auto'"
                   >
                     {{ "read_more" | translate }}

@@ -1,0 +1,29 @@
+<section>
+    <div class="w-75 mx-auto d-flex flex-column justify-content-center align-items-center">
+      <div class="image">
+        <img
+          src="../../../../assets/images/check-button (1) 1.png"
+          class="w-100"
+          alt=""
+        />
+      </div>
+      <div class="content mt-3 text-center">
+        <h3>{{ 'thank_you' | translate }}</h3>
+  <p 
+  class="w-50 text-center ltr px-md-0 px-2 mx-auto">
+    {{ 'message_received' | translate }}
+  </p>
+  
+        <div class="buttons">
+          <button routerLink="/home" class="mx-2 btn-2">
+              {{'home'|translate}}
+          </button>
+          <button class="btn-1" (click)="goBack()">
+              {{ 'contact_us' | translate }}
+            </button>
+            
+        </div>
+      </div>
+    </div>
+  </section>
+  

@@ -1,0 +1,40 @@
+.image{
+    width: 164px;
+    height: 164px;
+    img{
+        width: 100%;
+    }
+}
+p{
+    direction: rtl !important;
+        text-align-last: center !important;
+}
+button{
+    width: 148px;
+    height: 50px;
+    font-weight: 700;
+    font-size: 14px;
+}
+.btn-1{
+    background-color: #4584c5;
+    color: #ffffff;
+    border: none;
+}
+
+.btn-2{
+    background-color: transparent;
+    color: #4584c5;
+    border: 2px solid #4584c5;
+}
+@media (max-width:768px) {
+    p{
+        width: 100% !important;
+    }
+    .image{
+        width:200px;
+        height:200px;
+        img{
+            width: 100%;
+        }
+    }
+}

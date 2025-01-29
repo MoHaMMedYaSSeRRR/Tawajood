@@ -14,7 +14,7 @@
     <h2 class="px-0 related"  [ngClass]="{
       'w-100': relatedWorks.length < 3,
       'text-end': currentLang === 'ar' && relatedWorks.length>3,
-      'text-start': currentLang !== 'ar && relatedWorks.length>3'
+      'text-start': currentLang !== 'ar ' && relatedWorks.length>3
     }">
       {{ "related_works" | translate }}
     </h2>

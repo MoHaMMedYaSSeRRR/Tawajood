@@ -28,7 +28,25 @@
               <p class="mb-1">
                 {{ "call_us" | translate }}
               </p>
-              <p>
+              <p *ngIf="isIraq">
+                <a
+                  href="https://wa.me/+009647747780006"
+                  class="text-decoration-none text-white"
+                  target="_blank"
+                >
+                  {{ contactUS.phone }}
+                </a>
+              </p>
+              <p class="rtl" *ngIf="isIraq">
+                <a
+                  href="tel:+009647747780006"
+                  class="text-decoration-none text-white"
+                  target="_blank"
+                >
+                  {{ contactUS.phone }}
+                </a>
+              </p>
+              <p *ngIf="isEgypt">
                 <a
                   href="https://wa.me/+201024848723"
                   class="text-decoration-none text-white"
@@ -37,31 +55,62 @@
                   01024848723
                 </a>
               </p>
-              <p class="rtl">
+              <p class="rtl" *ngIf="isEgypt">
                 <a
-                  href="tel:0096407745303830"
+                  href="tel:+201024848723"
                   class="text-decoration-none text-white"
                   target="_blank"
                 >
-                  {{ contactUS.phone }}
+                01024848723
+                </a>
+              </p>
+              <p *ngIf="!isEgypt && !isIraq">
+                <a
+                  href="https://wa.me/+966580547863"
+                  class="text-decoration-none text-white"
+                  target="_blank"
+                >
+                 {{contactUS.phone_third}}
+                </a>
+              </p>
+              <p class="" *ngIf="!isEgypt && !isIraq">
+                <a
+                  href="tel:+966580547863"
+                  class="text-decoration-none text-white"
+                  target="_blank"
+                >
+                {{contactUS.phone_third}}
                 </a>
               </p>
             </div>
             <div
               class="icon2 h-100 mt-4 my-auto mx-2 d-flex flex-column justify-content-center align-items-center"
             >
-              <a target="_blank" href="tel:+201024848723">
+            <a *ngIf="!isIraq && !isEgypt" target="_blank" href="tel:+966580547863">
+              <img
+                src="../../../../assets/images/phone.png"
+                class="w-100 mt-1"
+                alt=""
+            /></a>
+            <a *ngIf="!isIraq && !isEgypt" target="_blank"  href="https://wa.me/+966580547863">
+              <i class="fa-brands fa-whatsapp fa-2x mt-2 text-white"></i></a>
+              <a *ngIf="isEgypt" target="_blank" href="tel:+201024848723">
                 <img
                   src="../../../../assets/images/phone.png"
                   class="w-100 mt-1"
                   alt=""
               /></a>
-              <a target="_blank" href="tel:0096407745303830">
-                <img
-                  src="../../../../assets/images/phone.png"
-                  class="w-100 mt-3"
-                  alt=""
-              /></a>
+              <a *ngIf="isEgypt" target="_blank"  href="https://wa.me/+201024848723">
+                <i class="fa-brands fa-whatsapp fa-2x mt-2 text-white"></i></a>
+
+                <a *ngIf="isIraq" target="_blank"  href="tel:+009647747780006">
+                  <img
+                    src="../../../../assets/images/phone.png"
+                    class="w-100 mt-1"
+                    alt=""
+                /></a>
+                <a *ngIf="isIraq" target="_blank"  href="https://wa.me/+009647747780006">
+                  <i class="fa-brands fa-whatsapp fa-2x mt-2 text-white"></i></a>
             </div>
           </div>
           <div
@@ -103,9 +152,43 @@
             "
             class="d-flex align-items-center"
           >
-            <div *ngIf="contactUS" class="content mx-3">
+            <div   *ngIf="contactUS" class="content  mx-3">
               <p class="mb-1">
                 {{ "address" | translate }}
+              </p>
+              <p *ngIf="currentLang =='ar'">
+                <a
+                  href=""
+                  class="text-decoration-none text-white"
+                  target="_blank"
+                  >{{ contactUS.address_third_ar }}</a
+                >
+              </p>
+             
+              <p *ngIf="currentLang =='en'">
+                <a
+                  href=""
+                  class="text-decoration-none text-white"
+                  target="_blank"
+                  >{{ contactUS.address_third_en}}</a
+                >
+              </p>
+              <p *ngIf="currentLang =='ar'">
+                <a
+                  href=""
+                  class="text-decoration-none text-white"
+                  target="_blank"
+                  >{{ contactUS.address_sconed_ar }}</a
+                >
+              </p>
+             
+              <p *ngIf="currentLang =='en'">
+                <a
+                  href=""
+                  class="text-decoration-none text-white"
+                  target="_blank"
+                  >{{ contactUS.address_sconed_en}}</a
+                >
               </p>
               <p>
                 <a
@@ -115,26 +198,28 @@
                   >{{ contactUS.address }}</a
                 >
               </p>
-              <p>
-                <a
-                  href=""
-                  class="text-decoration-none text-white"
-                  target="_blank"
-                  >{{ contactUS.address_sconed_ar }}</a
-                >
-              </p>
+             
             </div>
             <div
-              class="icon1 h-100 my-auto pe-2 d-flex flex-column justify-content-center align-items-start"
-            >
+              class="icon1 sp  my-auto pe-2 d-flex flex-column justify-content-around align-items-start"
+              [ngClass]="{'ps-4': currentLang == 'en' && !isMobile , 
+                'pe-4': currentLang == 'ar' && !isMobile
+              }"  >
               <a
-                class="mt-md-1 mt-4"
+                class="mt-md-0 mb-md-2mt-4"
                 href="https://www.google.com/maps?ll=29.965145,31.281977&z=16&t=m&hl=ar&gl=EG&mapclient=embed&cid=6809692352380476120"
                 target="_blank"
                 ><img src="../../../../assets/images/MapPin.png" alt=""
               /></a>
               <a
                 class="mt-md-4 mt-4"
+                href="https://www.google.com/maps/place/30%C2%B032'17.2%22N+47%C2%B052'46.8%22E/@30.5380993,47.8770867,17z/data=!3m1!4b1!4m4!3m3!8m2!3d30.5380993!4d47.8796616?hl=en&entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank"
+              >
+                <img src="../../../../assets/images/MapPin.png" alt=""
+              /></a>
+                 <a
+                class="mt-md-4  mt-4"
                 href="https://www.google.com/maps/place/30%C2%B032'17.2%22N+47%C2%B052'46.8%22E/@30.5380993,47.8770867,17z/data=!3m1!4b1!4m4!3m3!8m2!3d30.5380993!4d47.8796616?hl=en&entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D"
                 target="_blank"
               >
@@ -288,12 +373,12 @@
                 <a routerLink="/" class="text-decoration-none">{{ 'contactUs' | translate }}</a>
               </li> -->
             <li class="mb-3 d-md-none d-block">
-              <a routerLink="/" class="text-decoration-none">{{
+              <a routerLink="/service-details/1" class="text-decoration-none">{{
                 "web_development" | translate
               }}</a>
             </li>
             <li class="mb-3 d-md-none d-block">
-              <a routerLink="/" class="text-decoration-none">{{
+              <a routerLink="/soulutionsservices/4" class="text-decoration-none">{{
                 "mobile_app_development" | translate
               }}</a>
             </li>
@@ -301,20 +386,26 @@
         </div>
       </div>
       <div
+      [ngClass]="{'text-start ': currentLang =='en' && isMobile == true , 
+        'me-auto': currentLang =='en' && isMobile == true ,
+        'ms-auto': currentLang =='ar' && isMobile == true ,
+        'text-end': currentLang =='ar' && isMobile == true
+      }"
         class="col-md-3 col-9 d-flex justify-content-end order-md-4 order-1 align-items-start"
       >
-        <div class="logo mt-0" routerLink="/home">
+        <div class="logo  mt-0" routerLink="/home">
           <img
+          
             class="w-100"
             src="../../../../assets/images/footer.png"
             alt=""
           />
         </div>
       </div>
-    </div>
+    </div> 
     <div class="row align-items-center copy w-100 mx-auto">
-      <div class="col-md-4 d-md-block d-none"></div>
-      <div class="col-md-3 mt-3">
+      <div class="col-md-4 col-7 mx-auto d-md-block d-none"></div>
+      <div class="col-md-3 mt-3"> 
         <div role="button" class="image w-100">
           <a href="https://www.goodfirms.co/" target="_blank">
             <img
@@ -325,7 +416,7 @@
           /></a>
         </div>
       </div>
-      <div class="col-md-2 col-7 mx-auto mt-3">
+      <div class="col-md-2 col-4 d-block mx-auto mt-3">
         <div role="button" class="image w-75 text-center">
           <a href="https://clutch.co/profile/tawajood#reviews" target="_blank"
             ><img
@@ -337,7 +428,7 @@
           /></a>
         </div>
       </div>
-      <div class="col-md-3 mt-3">
+      <div class="col-md-3 col-9 mx-auto mt-3">
         <div role="button" class="image w-100">
           <a href="https://entasher.com/agency/tawajood" target="_blank">
             <img
@@ -347,6 +438,17 @@
               alt=""
           /></a>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="w-100 my-3">
+  <div class="w-75 pb-0 mx-auto">
+    <div class="row w-100 mx-auto justify-content-center align-items-center">
+      <div class="col-md-6 text-center">
+        <h5>
+          {{"footer_rights" | translate}}
+        </h5>
       </div>
     </div>
   </div>

@@ -9,6 +9,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./emptystatus.component.scss']
 })
 export class EmptystatusComponent {
+  currentLang: any;
   constructor(
     private changelangService: changelangService,
     private _translate: TranslateService,
@@ -20,6 +21,7 @@ export class EmptystatusComponent {
     this.changelangService.currentLang$.subscribe((lang) => {
       this._translate.use(lang);
       this.cdr.detectChanges();
+      this.currentLang = lang;
     });
   }
 

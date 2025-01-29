@@ -21,6 +21,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { LoadingComponent } from './loading/loading.component';
 import { EmptystatusComponent } from './emptystatus/emptystatus.component';
 import { PrivacyComponent } from './privacy/privacy.component';
+import { SubmitComponent } from './submit/submit.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { PrivacyComponent } from './privacy/privacy.component';
     LoadingComponent,
     EmptystatusComponent,
     PrivacyComponent,
+    SubmitComponent,
   ],
   imports: [
     CommonModule,

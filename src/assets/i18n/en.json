@@ -118,10 +118,20 @@
   "upload_resume": "Your resume as a PDF or Word file only",
   "app_process": "Mobile App Development Process",
   "address": "Address",
-  "join_team": "Interested in joining Tawajood team?",
+  "join_team": "Interested to joining Tawajood team?",
   "see_careers": "See Careers",
   "comingSoonTitle": "Coming Soon",
-  "comingSoonMessage": "Something exciting is on the way! Stay tuned as we prepare to launch an exceptional experience tailored just for you. Coming soon!",
+  "comingSoonMessage": "Something exciting is on the way! Stay tuned as we prepare to launch an exceptional experience tailored just for you. Coming soon",
   "webSpecifications": "General Specifications of the website",
-  "privacypolicy": "Privacy Policy"
+  "privacypolicy": "Privacy Policy",
+  "footer_rights": "All rights reserved - Tawajood Software Solutions 2024",
+  "thank_you": "Thank you for reaching out to us",
+  "message_received": "Your message has been successfully received, and we will respond to you as soon as possible. If you have any additional inquiries or urgent matters, do not hesitate to contact us directly. Thank you for your trust in us.",
+  "email_required": "Email is required",
+  "name_required": "Name is required",
+  "service_required": "Service selection is required",
+  "phone_required": "Phone number is required",
+  "message_required": "Message cannot be empty",
+  "invalid_email": "Invalid email address"
+
 }

@@ -31,10 +31,10 @@
   }
   li {
     cursor: pointer;
-    margin: 0 7px;
+    margin: 0 4px;
     a {
       font-weight: 400;
-      font-size: 14px;
+      font-size: 15px;
       color: #15181b;
     }
   }
@@ -50,7 +50,7 @@
   }
   img {
     width: 171px;
-    max-height: 370px;
+    max-height: 370px !important;
   }
   .active {
     padding: 10px;
@@ -72,10 +72,21 @@
     width: 100% !important  ;
     padding: 10px !important;
   }
-  .item-img{
-    height: 300px !important;
+  .item{
+    margin-left: 15px !important;
   }
   img{
+    height: 400px !important;
+  }
+  .mobile_view{
+    img{
+      height: 300px !important;
+      width: 45%;
+    }
+   
+  }
+  img{
+    width: 100% !important;
     max-height: 270px !important;
   }
   .related{
@@ -83,4 +94,26 @@
     margin-top: 10px;
     text-align: end !important;
   }
+}
+.one{
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
+.two{
+  top: 3px;
+  left: 0;
+  right: 0;
+  bottom: 3px;
+  z-index: 1;
+  
+  
+}
+.mocub{
+  width: 170px;
+  height: 356px;
+  overflow: hidden;
+  border-radius: 24px !important;
 }

@@ -88,11 +88,11 @@
   <div
     *ngIf="isMobile && !isInComponent"
     [ngClass]="{'flex-column-reverse': isMobile}"
-
+    
     class="row mt-3 d-md-none d-block w-100 mx-auto"
   >
     <div class="mt-2 w-100 mx-auto">
-      <owl-carousel-o [options]="customOptions">
+      <owl-carousel-o #owlCarousel   [options]="customOptions">
         <ng-container *ngFor="let item of services; let i = index">
           <ng-template carouselSlide>
             <div

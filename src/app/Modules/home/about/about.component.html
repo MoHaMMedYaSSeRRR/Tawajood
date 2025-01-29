@@ -224,11 +224,12 @@
 
       <div *ngIf="isMobile" class="col-12 mt-4 d-flex justify-content-center align-items-center">
         <div class="join text-center">
-          <h2>
+          <h2  
+          [ngClass]="{'ltr': currentLang =='en'}">
             {{ ("join_team" | translate)?.split(' ').slice(0, -1).join(' ') }}
             <span class="highlight">{{ ("join_team" | translate)?.split(' ').slice(-1) }}</span>
           </h2>
-          
+         
           <button routerLink="/hirring/hirring" class="mt-2">
             {{"see_careers" | translate}}
           </button>

@@ -38,7 +38,9 @@ export class OurblogComponent {
         this._BlogService.getBlogTopic().subscribe({
           next: (res) => {
             this.blogs = res.data.topics.filter((topic: any) => {
-              const relatedBlogs = this.allBlogs.filter((blog) => blog.topic_id === topic.id);
+              const relatedBlogs = this.allBlogs.filter(
+                (blog) => blog.topic_id === topic.id
+              );
               return relatedBlogs.length > 0;
             });
           },
@@ -46,7 +48,7 @@ export class OurblogComponent {
             console.error('Error fetching blog topics:', err);
           },
         });
-              },
+      },
       error: (error) => {
         console.error('Error fetching blogs:', error);
       },
@@ -54,37 +56,44 @@ export class OurblogComponent {
     this.changelangService.currentLang$.subscribe((lang) => {
       this.translate.use(lang);
       this.currentLang = lang;
-      this.customOptions.rtl = lang === 'ar';
-
+      this.customOptions.rtl = lang === 'en';
       this.cdr.detectChanges();
     });
     this._BlogService.getAllBlog().subscribe({
       next: (res) => {
-        this.allBlogs = res.data.blogs.map((blog:Blog) => ({
+        this.allBlogs = res.data.blogs.map((blog: Blog) => ({
           ...blog,
-          plainDescription: this.stripHtmlAndExtractFirstP(blog.description)
+          plainDescription: this.stripHtmlAndExtractFirstP(blog.description),
         }));
         this.filteredBlogs = [...this.allBlogs];
-        // console.log(this.filteredBlogs)
+        console.log('Filtered Blogs:', this.filteredBlogs);
       },
       error: (err) => {
         console.error('Error fetching blogs:', err);
-      }
+      },
     });
+
     this.checkRoute();
   }
   stripHtmlAndExtractFirstP(html: string): string {
-    if (!html) return ''; // Return an empty string if no HTML content is provided
-  
-    // Use DOMParser to safely parse the HTML and extract the first <p> tag's text
+    if (!html) return ''; // If no content, return an empty string
+
+    // Create a DOM parser to parse the HTML safely
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, 'text/html');
-    const firstP = doc.querySelector('p'); // Select the first <p> tag
-  
-    // Return the text content of the first <p> tag or an empty string if not found
-    return firstP ? firstP.textContent?.trim() || '' : '';
+
+    // Select all <p> tags
+    const allPTags = Array.from(doc.querySelectorAll('p'));
+
+    // Extract text content from each <p>, replacing &nbsp; and trimming whitespace
+    const textContent = allPTags
+      .map((p) => p.textContent?.replace(/\u00A0/g, ' ').trim() || '') // Replace non-breaking spaces and trim
+      .filter((text) => text.length > 0); // Remove empty or null text
+
+    // Return the first meaningful content, or an empty string if none
+    return textContent.length > 0 ? (textContent[0] as string) : '';
   }
-  
+
   setMetaTags(): void {
     this.translate
       .get(['blog_name', 'blog_description', 'blog_keyword'])
@@ -135,7 +144,7 @@ export class OurblogComponent {
   }
 
   customOptions: OwlOptions = {
-    loop: false,
+    loop: true,
     mouseDrag: true,
     autoplay: true,
     autoplayTimeout: 5000,
@@ -162,9 +171,9 @@ export class OurblogComponent {
     rtl: true,
     responsive: {
       0: {
-        items: 4.3
+        items: 4.3,
       },
-    }
+    },
   };
   isContentArabic(content: string): boolean {
     const arabicRegex = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/;

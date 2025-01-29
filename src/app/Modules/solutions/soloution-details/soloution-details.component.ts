@@ -37,6 +37,9 @@ export class SoloutionDetailsComponent {
     this.isMobile = window.innerWidth <= 768;
     this._ActivatedRoute.paramMap.subscribe((params) => {
       this.id = params.get('id');
+      this.getSoulutionDetails();
+      this.cdr.detectChanges();
+
     });
     this.changelangService.currentLang$.subscribe((lang) => {
       this.translate.use(lang);
@@ -44,30 +47,32 @@ export class SoloutionDetailsComponent {
       this.customOptions.rtl = lang === 'en';
       this.cdr.detectChanges();
     });
-    this._SoloutionsService.getSoloutionsByid(this.id).subscribe({
-      next: (res) => {
-        this.soloution = res.data;
-        // console.log(res.data)
-        this.title.setTitle(this.soloution.meta_title);
-        this.meta.updateTag({ name: 'description', content: this.soloution.meta_description });
-        this.meta.updateTag({ name: 'keywords', content: this.soloution.meta_keywords });
-        if (this.soloution.specifications) {
-          this.soloution.specifications = this.stripHtml(
-            this.soloution.specifications
-          );
-        }
-        this.specificationList=this.soloution.specifications.split('\n').map((line:any) => {
-          const [title, description] = line.split(':').map((part:any) => part.trim());
-          return { title, description };
-        });
-        // console.log(res);
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+   this.getSoulutionDetails();
   }
- 
+ getSoulutionDetails(){
+  this._SoloutionsService.getSoloutionsByid(this.id).subscribe({
+    next: (res) => {
+      this.soloution = res.data;
+       console.log(res.data)
+      this.title.setTitle(this.soloution.meta_title);
+      this.meta.updateTag({ name: 'description', content: this.soloution.meta_description });
+      this.meta.updateTag({ name: 'keywords', content: this.soloution.meta_keywords });
+      if (this.soloution.specifications) {
+        this.soloution.specifications = this.stripHtml(
+          this.soloution.specifications
+        );
+      }
+      this.specificationList=this.soloution.specifications.split('\n').map((line:any) => {
+        const [title, description] = line.split(':').map((part:any) => part.trim());
+        return { title, description };
+      });
+      // console.log(res);
+    },
+    error: (error) => {
+      console.log(error);
+    },
+  });
+ }
   stripHtml(html: string): string {
     if (!html) {
       return '';

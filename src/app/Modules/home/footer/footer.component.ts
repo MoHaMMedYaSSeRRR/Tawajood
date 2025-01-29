@@ -30,6 +30,8 @@ export class FooterComponent {
   services:Service[]=[];
   currentLang: any;
   contactUS:any;
+  isIraq: boolean = false;
+  isEgypt: boolean = false;
   ngOnInit(): void {
     this.isMobile = window.innerWidth <= 768;
     this._ServicesService.getServices().subscribe(res => {
@@ -48,6 +50,15 @@ export class FooterComponent {
             console.log('Error:', err);
           }
         })
+       this._HomeService.checkIp().subscribe({
+        next: (res) => {
+          this.isIraq = res.country_code === 'IQ';
+          this.isEgypt =  res.country_code === 'EG';
+        },
+        error: (err) => {
+          console.log('Error:', err);
+        }
+       })
   }
   navigateBasedOnId(id: number) {
     switch (id) {

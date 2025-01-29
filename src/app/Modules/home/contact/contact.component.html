@@ -27,7 +27,7 @@
           <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
             <div class="row g-4 w-100 mx-auto">
               <!-- Email Field -->
-              <div class="col-md-6">
+              <div class="col-md-6 position-relative">
                 <input
                   [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
                   type="email"
@@ -36,10 +36,18 @@
                   class="form-control"
                   id="email"
                 />
+                <small *ngIf="emailControl?.touched && emailControl?.hasError('required')" class="text-danger text-center">
+                  {{ 'email_required' | translate }}
+                </small>
+              
+                <!-- Validation message for invalid email format -->
+                <small *ngIf="emailControl?.touched && emailControl?.hasError('email')" class="text-danger text-center">
+                  {{ 'invalid_email' | translate }}
+                </small>
               </div>
 
               <!-- Name Field -->
-              <div class="col-md-6">
+              <div class="col-md-6 position-relative">
                 <input
                   [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
                   type="text"
@@ -48,10 +56,13 @@
                   class="form-control"
                   id="name"
                 />
+                <small *ngIf="isFieldInvalid('name')" class="text-danger  text-center">
+                  {{ 'name_required' | translate }}
+                </small>
               </div>
 
               <!-- Service Dropdown -->
-              <div class="col-md-6 position-relative service">
+              <div class="col-md-6  position-relative service">
                 <input
                   [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
                   type="text"
@@ -63,6 +74,9 @@
                   [value]="selectedService ? selectedService.name : ''"
                   readonly
                 />
+                <small *ngIf="isFieldInvalid('service_id')" class="text-danger">
+                  {{ 'service_required' | translate }}
+                </small>
                 <span
                   class="dropdown-icon"
                   [ngClass]="currentLang === 'ar' ? 'icon-left' : 'icon-right'"
@@ -97,6 +111,9 @@
                   class="form-control text-end"
                   id="phone"
                 />
+                <small *ngIf="isFieldInvalid('phone')" class="text-danger">
+                  {{ 'phone_required' | translate }}
+                </small>
                 <span
                   (click)="toggleDropdowncountry()"
                   class="arrow position-absolute"
@@ -141,7 +158,7 @@
                 </div>
               </div>
 
-              <div class="col-12">
+              <div class="col-12 position-relative ">
                 <textarea
                   [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
                   formControlName="message"
@@ -154,7 +171,7 @@
 
               <!-- Submit Button -->
               <div class="">
-                <button type="submit" class="btn btn-primary">
+                <button  type="submit" class="btn btn-primary">
                   {{ "submit" | translate }}
                 </button>
               </div>
@@ -179,22 +196,40 @@
               <p class="mb-1">
                 {{ "call_us" | translate }}
               </p>
-              <p class="mb-0">
+              <p *ngIf="isIraq" class="mb-0">
                 <a
-                  href="tel:01024848723"
-                  class="text-decoration-none"
+                  href="https://wa.me/+009647747780006"
+                  class="text-decoration-none "
+                  target="_blank"
+                >
+                  {{ contactUs.phone }}
+                </a>
+              </p>
+              <p class="rtl" *ngIf="isIraq">
+                <a
+                  href="tel:+009647747780006"
+                  class="text-decoration-none "
+                  target="_blank"
+                >
+                  {{ contactUs.phone }}
+                </a>
+              </p>
+              <p *ngIf="!isIraq" class="mb-0"> 
+                <a
+                  href="https://wa.me/+201024848723"
+                  class="text-decoration-none "
                   target="_blank"
                 >
                   01024848723
                 </a>
               </p>
-              <p class="rtl">
+              <p class="rtl" *ngIf="!isIraq">
                 <a
-                  href="tel:0096407745303830"
-                  class="text-decoration-none"
+                  href="tel:+201024848723"
+                  class="text-decoration-none "
                   target="_blank"
                 >
-                  {{ contactUs.phone }}
+                01024848723
                 </a>
               </p>
             </div>
@@ -262,12 +297,20 @@
                   >{{ contactUs.address }}</a
                 >
               </p>
-              <p>
+              <p *ngIf="currentLang == 'ar'">
                 <a
                   href="https://www.google.com/maps/place/30%C2%B032'17.2%22N+47%C2%B052'46.8%22E/@30.5380993,47.8770867,17z/data=!3m1!4b1!4m4!3m3!8m2!3d30.5380993!4d47.8796616?hl=en&entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D"
                   class="text-decoration-none"
                   target="_blank"
                   >{{ contactUs.address_sconed_ar }}</a
+                >
+              </p>
+              <p *ngIf="currentLang == 'en' ">
+                <a
+                  href="https://www.google.com/maps/place/30%C2%B032'17.2%22N+47%C2%B052'46.8%22E/@30.5380993,47.8770867,17z/data=!3m1!4b1!4m4!3m3!8m2!3d30.5380993!4d47.8796616?hl=en&entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D"
+                  class="text-decoration-none"
+                  target="_blank"
+                  >{{ contactUs.address_sconed_en }}</a
                 >
               </p>
             </div>

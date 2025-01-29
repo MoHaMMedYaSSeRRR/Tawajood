@@ -1,9 +1,21 @@
-import { trigger, transition, style, animate, state } from '@angular/animations';
-import { ChangeDetectorRef, Component, Input, SimpleChanges } from '@angular/core';
+import {
+  trigger,
+  transition,
+  style,
+  animate,
+  state,
+} from '@angular/animations';
+import {
+  ChangeDetectorRef,
+  Component,
+  Input,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { OwlOptions } from 'ngx-owl-carousel-o';
+import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
 import { Service } from 'src/app/interfaces/service';
 import { changelangService } from 'src/app/Services/changelang.service';
 import { ServicesService } from 'src/app/Services/services.service';
@@ -50,25 +62,26 @@ export class AllservicesComponent {
     this.changelangService.currentLang$.subscribe((lang) => {
       this._translate.use(lang);
       this.currentLang = lang;
-      this.customOptions.rtl = lang === 'en';
-
+       this.customOptions.rtl = lang == 'en';
       this.cdr.detectChanges();
     });
     this.checkRoute();
     this._ServicesService.getServices().subscribe((res) => {
       this.services = res.data.services;
-      //  this.title.setTitle(this.services.meta_title);
-      //  this.meta.updateTag({ name: 'description', content: this.services.meta_description });
-      //  this.meta.updateTag({ name: 'keywords', content: this.services.meta_keywords });
-      // console.log(res.data);
       this.services =
         this.index === 6 ? this.services.slice(0, 6) : this.services;
     });
     this.setMetaTags();
+    
+    if(this.currentLang === 'ar'){
+      this.customOptions.rtl = true;
+      this.services = this.services.reverse();
+    }
   }
   customOptions: OwlOptions = {
     loop: false,
     mouseDrag: true,
+    startPosition:0,
     autoplay: false,
     autoplayTimeout: 5000,
     autoplaySpeed: 1200,
@@ -86,6 +99,8 @@ export class AllservicesComponent {
     },
   };
 
+
+ 
   setMetaTags(): void {
     this.translate
       .get(['service_name', 'service_description', 'service_keyword'])
