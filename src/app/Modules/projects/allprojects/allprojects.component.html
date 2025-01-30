@@ -151,13 +151,17 @@
           <div
             class="item-img w-100 d-flex justify-content-center align-items-center"
           >
+          <div class="position-relative mocub">
+            <img src="../../../../assets/images/flatend.png" class="position-absolute one" alt="">
             <img
-              role="button"
-              [routerLink]="['/mobile', item.id]"
               *ngIf="item.home_screen"
+              loading="lazy"
               [src]="item.home_screen"
+              role="button"
+              class="position-absolute two"
               alt=""
             />
+          </div>
           </div>
           <h4 role="button" [routerLink]="['/mobile', item.id]">
             {{ item.name }}

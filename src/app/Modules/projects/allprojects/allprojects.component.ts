@@ -152,6 +152,7 @@ export class AllprojectsComponent {
     this._ProjectsService.getMobileProjects().subscribe({
       next: (projects) => {
         this.mobileApp = projects.data;
+        console.log(this.mobileApp);
         this.combineAndRandomizeProjects();
       },
       error: (error) => {

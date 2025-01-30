@@ -208,3 +208,25 @@ h3 {
     }
   }
 }
+.one{
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
+.two{
+  top: 3px;
+  left: 0;
+  right: 0;
+  bottom: 3px;
+  z-index: 1;
+  
+  
+}
+.mocub{
+  width: 183px;
+  height: 376px;
+  overflow: hidden;
+  border-radius: 26px !important;
+}

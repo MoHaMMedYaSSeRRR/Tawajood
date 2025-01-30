@@ -18,9 +18,26 @@
 <section *ngIf="project" class="mobile my-md-5 my-3">
   <div class="w-75 mx-auto">
     <div class="row w-100 mx-auto align-items-center justify-content-between">
-      <div class="col-md-6">
-        <div class="item-img">
-          <img [src]="project.home_screen" alt="" />
+      <div class="col-md-6 ">
+        <div class="item-img  mx-auto">
+          <div class="mx-auto  position-relative mocub">
+            <img
+            src="../../../../assets/images/flatend.png"
+            class="position-absolute one"
+            alt=""
+          />
+          <img
+            *ngIf="project.home_screen"
+            loading="lazy"
+            [src]="project.home_screen"
+            role="button"
+            class="position-absolute two"
+            alt=""
+          />
+          </div>
+         
+
+          <!-- <img [src]="project.home_screen" alt="" /> -->
         </div>
       </div>
       <div class="col-md-5">
@@ -38,13 +55,15 @@
           >
             <a
               *ngIf="project.link_website"
-              [href]="isValidUrl(project.link_website) ? project.link_website : 'http://' + project.link_website"
+              [href]="
+                isValidUrl(project.link_website)
+                  ? project.link_website
+                  : 'http://' + project.link_website
+              "
               target="_blank"
               rel="noopener noreferrer"
-
             >
-            <img src="../../../../assets/images/ux.png" alt="" />
-
+              <img src="../../../../assets/images/ux.png" alt="" />
             </a>
             <a
               *ngIf="project.link_ios"
@@ -52,7 +71,6 @@
               class="mx-3"
               target="_blank"
               rel="noopener noreferrer"
-
             >
               <img src="../../../../assets/images/app-store.png" alt="" />
             </a>
@@ -61,7 +79,6 @@
               [href]="project.link_android"
               target="_blank"
               rel="noopener noreferrer"
-
             >
               <img src="../../../../assets/images/google-play.png" alt="" />
             </a>
@@ -69,21 +86,24 @@
         </div>
       </div>
     </div>
-    <div *ngIf="project.features.length>0" class="my-md-5 my-3">
+    <div *ngIf="project.features.length > 0" class="my-md-5 my-3">
       <div
         class="global-details py-2"
         [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
       >
-        <h3 *ngIf="project.type !=2">
+        <h3 *ngIf="project.type != 2">
           {{ "appSpecifications" | translate }}
         </h3>
-        <h3 *ngIf="project.type==2">
+        <h3 *ngIf="project.type == 2">
           {{ "webSpecifications" | translate }}
         </h3>
         <div class="row g-3 mt-4 w-100 mx-auto justify-content-end">
           <div *ngFor="let item of project.features" class="col-md-4">
             <div class="item d-flex align-items-start">
-              <div class="w-75" [ngClass]="currentLang === 'ar' ? 'me-3' : 'ms-3'">
+              <div
+                class="w-75"
+                [ngClass]="currentLang === 'ar' ? 'me-3' : 'ms-3'"
+              >
                 <h4>{{ item.name }}</h4>
                 <p class="mt-2">
                   {{ item.description }}
@@ -177,32 +197,23 @@
     </div>
   </div>
 </section>
-<div 
-  *ngIf="showLayer" 
-  class="layer d-flex justify-content-center align-items-center">
-<span class="close position-absolute">
-  <i 
-  role="button" 
-  (click)="closePreview($event)" 
-  class="fa fa-close  fa-2x">
-</i>
-</span>
+<div
+  *ngIf="showLayer"
+  class="layer d-flex justify-content-center align-items-center"
+>
+  <span class="close position-absolute">
+    <i role="button" (click)="closePreview($event)" class="fa fa-close fa-2x">
+    </i>
+  </span>
   <div class="w-50 position-relative text-center rounded-2">
-    <img 
-      [src]="previewImage" 
-      alt="Preview" 
-      class="w-100 rounded-2" 
-    />
-    <div class="navigation d-flex justify-content-center align-items-center mt-5">
-      <span 
-        role="button" 
-        class="mx-2" 
-        (click)="goPrevPhoto()">
+    <img [src]="previewImage" alt="Preview" class="w-100 rounded-2" />
+    <div
+      class="navigation d-flex justify-content-center align-items-center mt-5"
+    >
+      <span role="button" class="mx-2" (click)="goPrevPhoto()">
         <i class="fa fa-arrow-left"></i>
       </span>
-      <span 
-        role="button" 
-        (click)="goNextPhoto()">
+      <span role="button" (click)="goNextPhoto()">
         <i class="fa fa-arrow-right"></i>
       </span>
     </div>
@@ -212,4 +223,3 @@
 <section *ngIf="!isMobile" class="my-md-5 my-3">
   <app-related [relatedWorks]="relatedWorks"></app-related>
 </section>
-
