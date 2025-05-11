@@ -56,6 +56,7 @@
     border-radius: 4px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 10;
+    
   }
 }
 .phone {
@@ -200,4 +201,16 @@ a {
   left: 0;
   right: 0;
   padding: 0 5px; /* Some padding to avoid touching edges */
+}
+.country-flag {
+  width: 24px;
+  height: 16px;
+  object-fit: cover;
+  border-radius: 3px;
+}
+@media (max-width: 767px) {
+  .dropdown-menu{
+    margin-right:30px !important;
+    width: 95% !important;
+  }
 }

@@ -52,10 +52,11 @@ button:disabled {
 // second nav Style
 .secnav {
   background-color: #f2f4f5;
-  span {
+  a {
     font-weight: 400;
     color: #15181b;
     font-size: 16px;
+    text-decoration: none;
   }
   .current {
     color: #4584c5;
@@ -100,6 +101,7 @@ p {
 }
 @media (max-width: 767px) { 
   .secnav{
-    padding: 10px 0;
+    padding: 10px 6px;
   }
+
 }

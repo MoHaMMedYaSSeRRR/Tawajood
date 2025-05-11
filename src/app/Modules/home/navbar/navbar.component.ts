@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Service } from 'src/app/interfaces/service';
@@ -20,6 +20,8 @@ export class NavbarComponent {
   currentLang: string = 'ar';
   services: Service[] = [];
   soloutions:any[]=[];
+  isMobile: boolean = false;
+  email='info@tawajood.com';
   constructor(
     private _TranslateService: changelangService,
     private _translae: TranslateService,
@@ -46,6 +48,7 @@ export class NavbarComponent {
   }
 
   ngOnInit(): void {
+    this.isMobile = window.innerWidth<=768;
     this._TranslateService.currentLang$.subscribe((lang) => {
       this.currentLang = lang;
       this._translae.use(lang);
@@ -126,4 +129,30 @@ export class NavbarComponent {
         console.warn('No route defined for this ID');
     }
   }
+  isFixed = false;
+  isHidden = false;
+  lastScrollTop = 0;
+
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+  if(!this.isMobile){
+    const currentScroll = window.scrollY || document.documentElement.scrollTop;
+
+    if (currentScroll > this.lastScrollTop) {
+      // Scrolling down: hide navbar
+      this.isHidden = true;
+    } else {
+      // Scrolling up: show and fix navbar if past 100px
+      this.isHidden = false;
+      if (currentScroll > 100) {
+        this.isFixed = true;
+      } else {
+        this.isFixed = false;
+      }
+    }
+
+    this.lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+  }
+  }
+
 }

@@ -2,6 +2,7 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  HostListener,
   ViewChild,
 } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
@@ -18,6 +19,7 @@ import { HomeService } from 'src/app/Services/home.service';
 })
 export class AboutComponent {
   @ViewChild('numbersSection') numbersSection!: ElementRef;
+
 
   currentLang!: string;
   about: About[] = [];
@@ -39,9 +41,11 @@ export class AboutComponent {
     private translate: TranslateService
   ) {}
 
+
   ngOnInit(): void {
     this.isMobile = window.innerWidth <= 768;
     this.setMetaTags();
+    this.setCanonicalURL();
     this.changelangService.currentLang$.subscribe((lang) => {
       this._translate.use(lang);
       this.currentLang = lang;
@@ -62,6 +66,10 @@ export class AboutComponent {
     this._HomeService.getContactUs().subscribe((res: any) => {
       this.contactUs = res.data.contact_us;
     });
+  
+  }
+  setCanonicalURL(): void {
+    this.meta.addTag({ rel: 'canonical', href: 'https://www.tawajood.com/about' });
   }
   stripHtml(html: string): string {
     if (!html) {
@@ -77,8 +85,7 @@ export class AboutComponent {
   
     return decodedString.trim(); // Ensure no leading/trailing spaces remain
   }
-  
-  setMetaTags(): void {
+   setMetaTags(): void {
     this.translate
       .get(['aboutTitle', 'aboutDescription', 'aboutKeyword'])
       .subscribe((translations) => {
@@ -193,4 +200,5 @@ export class AboutComponent {
     this.owlTop.prev();
     this.owlBottom.prev();
   }
+
 }

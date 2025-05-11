@@ -67,11 +67,15 @@
       font-weight: 700;
       font-size: 18px;
       color: #191c1f;
+      line-height: 1.4;
+      min-height: calc(1.4em * 2); // Reserve space for 2 lines
     }
+    
     p {
       font-weight: 400;
       font-size: 16px;
       color: #475156;
+   
     }
     button {
       display: block;

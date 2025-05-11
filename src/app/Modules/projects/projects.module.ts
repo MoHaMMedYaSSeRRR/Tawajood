@@ -10,6 +10,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { MobileDetailsComponent } from './mobile-details/mobile-details.component';
 import { WepDetailsComponent } from './wep-details/wep-details.component';
 import { RelatedComponent } from './related/related.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ProjectsTestComponent } from './projects-test/projects-test.component';
 
 
 @NgModule({
@@ -17,12 +19,14 @@ import { RelatedComponent } from './related/related.component';
     AllprojectsComponent,
     MobileDetailsComponent,
     WepDetailsComponent,
-    RelatedComponent 
+    RelatedComponent,
+    ProjectsTestComponent 
   ],
   imports: [
     CommonModule,
     CarouselModule,
     ProjectsRoutingModule,
+    NgxPaginationModule ,
     TranslateModule.forRoot({
       defaultLanguage: 'ar', 
       loader: {

@@ -113,6 +113,15 @@
     }
   }
   @media (max-width: 768px) {
+    h3{
+      font-size: 24px;
+    }
+    h2{
+      font-size: 24px !important;
+    }
+    section{
+      padding: 4px;
+    }
     .custom-nav {
       width: 30px;
       height: 30px;

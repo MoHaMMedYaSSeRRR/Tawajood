@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { changelangService } from 'src/app/Services/changelang.service';
 import { HomeService } from 'src/app/Services/home.service';
@@ -13,7 +14,8 @@ export class PrivacyComponent {
     private _HomeService: HomeService,
     private changelangService: changelangService,
     private cdr: ChangeDetectorRef,
-    private _translate:TranslateService
+    private _translate:TranslateService,
+    private meta: Meta
   ) {}
   currentLang: any;
   privacy: any;
@@ -29,5 +31,9 @@ export class PrivacyComponent {
       this.currentLang = lang;
       this.cdr.detectChanges();
     });
+    this.setCanonicalURL();
+  }
+  setCanonicalURL(): void {
+    this.meta.addTag({ rel: 'canonical', href: 'https://www.tawajood.com/privacy' });
   }
 }

@@ -43,4 +43,7 @@ export class HomeService {
   checkIp():Observable<any>{
     return this._HttpClient.get('https://ipwhois.app/json/');
   }
+  getCountryCodes():Observable<any>{
+    return this._HttpClient.get('https://restcountries.com/v3.1/all');
+  }
 }

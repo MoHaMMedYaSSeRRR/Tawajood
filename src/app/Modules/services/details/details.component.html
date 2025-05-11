@@ -14,9 +14,9 @@
     </span>
   </div>
 </section>
-<section *ngIf="service"  class="service my-md-4 my-3">
+<section *ngIf="service"  class="service my-md-4 my-3 p-md-0 p-2">
   <div class="w-75 mx-auto">
-    <div class="row w-100 mx-auto justify-content-between align-items-center">
+    <div class="row g-3  w-100 mx-auto justify-content-between align-items-center">
       <div class="col-md-6">
         <div class="item-img">
           <img [src]="service.image" class="w-100" alt="" />
@@ -41,7 +41,7 @@
     </div>
     <div
       *ngIf="service.second_content != null"
-      class="row w-100 mx-auto justify-content-between align-items-center"
+      class="row g-3 w-100 mx-auto justify-content-between align-items-center"
     >
       <div class="col-md-6 pe-3">
         <div

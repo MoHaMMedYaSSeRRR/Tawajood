@@ -1,0 +1,46 @@
+.image-one,
+.image-two,
+.image-three {
+  transition: all 0.5s ease; // Add transition here globally
+}
+
+.image-one {
+  z-index: 1;
+}
+
+.image-two {
+  bottom: 0;
+  right: 0;
+  z-index: 2;   
+}
+
+.image-three {
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.item {
+    padding-top: 20px;
+    transition: all 0.5s ease; 
+  &:hover {
+    padding: 0;
+    .image-one {
+      width: 177px;
+      height: 367px;
+      margin-bottom: 10px;
+      transform: scale(1); // Optional if you're scaling
+    }
+
+    .image-two {
+      transform: rotate(-25deg);
+      bottom: -10px;
+    }
+
+    .image-three {
+      transform: rotate(23deg);
+      bottom: -5px;
+
+    }
+  }
+}

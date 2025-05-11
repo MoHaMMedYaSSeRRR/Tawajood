@@ -4,7 +4,8 @@
     [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
   >
     <span>
-      <span role="button" routerLink="/home">{{ "home" | translate }}</span> <span class="mx-2"> > </span
+      <span role="button" routerLink="/home">{{ "home" | translate }}</span>
+      <span class="mx-2"> > </span
       ><span class="current">{{ "aboutUs" | translate }}</span>
     </span>
   </div>
@@ -34,9 +35,16 @@
             <p *ngIf="about[0]" class="mt-2">
               {{ about[0].content }}
             </p>
-           <a routerLink="/contact" target="_blank"routerLink="/contact" target="_blank"> <button   class="border-0 mt-3">
-              {{ "request_free_consultation" | translate }}
-            </button></a>
+            <a
+              routerLink="/contact"
+              target="_blank"
+              routerLink="/contact"
+              target="_blank"
+            >
+              <button class="border-0 mt-3">
+                {{ "request_free_consultation" | translate }}
+              </button></a
+            >
           </div>
         </div>
       </div>
@@ -100,10 +108,10 @@
             />
           </div>
           <div *ngIf="about[2]" class="content">
-            <h4  class="mt-2">
+            <h4 class="mt-2">
               {{ about[2].name }}
             </h4>
-            <p class="mt-2 ">
+            <p class="mt-2">
               {{ about[2].content }}
             </p>
           </div>
@@ -134,7 +142,7 @@
 
 <section *ngIf="allTeam" class="my-md-5 my-2">
   <div class="w-75 mx-auto">
-    <div class="w-100 mx-auto team  row  position-relative">
+    <div class="w-100 mx-auto team row position-relative">
       <h2
         class="my-3 px-3"
         [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
@@ -142,11 +150,14 @@
         {{ "team" | translate }}
       </h2>
 
-      <div *ngIf="!isMobile" class="row w-100 mx-auto flex-row-reverse ">
+      <div *ngIf="!isMobile" class="row w-100 mx-auto flex-row-reverse">
         <div *ngFor="let item of allTeam" class="col-md-3">
           <div class="item text-center">
             <div class="item-img mx-auto p-0 m-0">
-              <img [src]="item.image ? item.image : defaultImage" alt="{{ item.name }}" />
+              <img
+                [src]="item.image ? item.image : defaultImage"
+                alt="{{ item.name }}"
+              />
             </div>
             <div class="content">
               <h3>{{ item.name }}</h3>
@@ -154,39 +165,42 @@
             </div>
           </div>
         </div>
-        <div class="col-12 mt-4 d-flex justify-content-center align-items-center">
+        <div
+          class="col-12 mt-4 d-flex justify-content-center align-items-center"
+        >
           <div class="join text-center">
             <h2>
-                {{ "join_team" |translate}}
+              {{ "join_team" | translate }}
             </h2>
             <button routerLink="/hirring/hirring" class="mt-2">
-              {{"see_careers" | translate}}
+              {{ "see_careers" | translate }}
             </button>
           </div>
         </div>
-       </div>
+      </div>
       <!-- First Owl Carousel for the Top Row -->
       <div class="row w-100 mx-auto">
-      <owl-carousel-o *ngIf="isMobile" [options]="customOptions" #owlTop>
-        <ng-container *ngFor="let item of allTeam">
-          <ng-template carouselSlide>
-           
+        <owl-carousel-o *ngIf="isMobile" [options]="customOptions" #owlTop>
+          <ng-container *ngFor="let item of allTeam">
+            <ng-template carouselSlide>
               <div class="item text-center">
                 <div class="item-img mx-auto p-0 m-0">
-                  <img [src]="item.image || defaultImage" alt="{{ item.name }}" />
+                  <img
+                    [src]="item.image || defaultImage"
+                    alt="{{ item.name }}"
+                  />
                 </div>
                 <div class="content">
                   <h3>{{ item.name }}</h3>
                   <p>{{ item.job_title_name }}</p>
                 </div>
               </div>
-           
-          </ng-template>
-        </ng-container>
-      </owl-carousel-o>
-    
-      <!-- Second Owl Carousel for the Bottom Row -->
-      <!-- <owl-carousel-o *ngIf="isMobile" [options]="customOptions" #owlBottom>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+
+        <!-- Second Owl Carousel for the Bottom Row -->
+        <!-- <owl-carousel-o *ngIf="isMobile" [options]="customOptions" #owlBottom>
         <ng-container *ngFor="let item of secondRowItems">
           <ng-template carouselSlide>
             <div class="item text-center">
@@ -202,43 +216,46 @@
         </ng-container>
       </owl-carousel-o> -->
 
-      <!-- Single Navigation Controls for Both Carousels -->
-      <div *ngIf="isMobile" class="carousel-nav">
-        <button class="arrow-left border-0" (click)="goPrev()">
-          <i
-            [ngClass]="
-              currentLang === 'ar' ? 'fa-arrow-left' : 'fa-arrow-right'
-            "
-            class="fa"
-          ></i>
-        </button>
-        <button class="arrow-right border-0" (click)="goNext()">
-          <i
-            [ngClass]="
-              currentLang === 'ar' ? 'fa-arrow-right' : 'fa-arrow-left'
-            "
-            class="fa"
-          ></i>
-        </button>
-      </div> 
-
-      <div *ngIf="isMobile" class="col-12 mt-4 d-flex justify-content-center align-items-center">
-        <div class="join text-center">
-          <h2  
-          [ngClass]="{'ltr': currentLang =='en'}">
-            {{ ("join_team" | translate)?.split(' ').slice(0, -1).join(' ') }}
-            <span class="highlight">{{ ("join_team" | translate)?.split(' ').slice(-1) }}</span>
-          </h2>
-         
-          <button routerLink="/hirring/hirring" class="mt-2">
-            {{"see_careers" | translate}}
+        <!-- Single Navigation Controls for Both Carousels -->
+        <div *ngIf="isMobile" class="carousel-nav">
+          <button class="arrow-left border-0" (click)="goPrev()">
+            <i
+              [ngClass]="
+                currentLang === 'ar' ? 'fa-arrow-left' : 'fa-arrow-right'
+              "
+              class="fa"
+            ></i>
           </button>
+          <button class="arrow-right border-0" (click)="goNext()">
+            <i
+              [ngClass]="
+                currentLang === 'ar' ? 'fa-arrow-right' : 'fa-arrow-left'
+              "
+              class="fa"
+            ></i>
+          </button>
+        </div>
+
+        <div
+          *ngIf="isMobile"
+          class="col-12 mt-4 d-flex justify-content-center align-items-center"
+        >
+          <div class="join text-center">
+            <h2 [ngClass]="{ ltr: currentLang == 'en' }">
+              {{ ("join_team" | translate)?.split(" ").slice(0, -1).join(" ") }}
+              <span class="highlight">{{
+                ("join_team" | translate)?.split(" ").slice(-1)
+              }}</span>
+            </h2>
+
+            <button routerLink="/hirring/hirring" class="mt-2">
+              {{ "see_careers" | translate }}
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-
 </section>
 <section class="my-3 my-md-5">
   <app-company></app-company>

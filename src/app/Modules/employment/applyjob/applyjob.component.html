@@ -71,7 +71,7 @@
               "
               required
             />
-            <div class="group">
+            <div  class="group">
               <!-- Arrow button to toggle dropdown -->
               <span
                 role="button"
@@ -82,7 +82,7 @@
             </span>
 
               <!-- Country Code Display -->
-              <span class="code"
+              <span (click)="toggleDropdown()" class="code"
              >
                 
                 {{ selectedCountry.code }}
@@ -90,20 +90,25 @@
               </span>
 
               <!-- Dropdown menu for country selection -->
-              <div *ngIf="isDropdownOpen" class="country-dropdown">
+              <div (click)="toggleDropdown()"  *ngIf="isDropdownOpen" class="country-dropdown">
                 <div
                   *ngFor="let country of countryCodes"
                   (click)="selectCountry(country)"
                   class="dropdown-item"
                 >
-                  {{ country.name }} ({{ country.code }})
+                 <span *ngIf="currentLang =='ar'">
+                  {{ country.name_ar }} ({{ country.code }})
+                 </span>
+                 <span *ngIf="currentLang =='en'">
+                  {{ country.name_en }} ({{ country.code }})
+                 </span>
                   <!-- Display country name and code -->
                 </div>
               </div>
 
               <!-- Phone Input -->
               <input
-                type="text"
+                type="number"
                 class="form-control text-end"
                 placeholder="{{ 'phone' | translate }}"
                 formControlName="phone"
@@ -139,7 +144,7 @@
               required
             />
             <input
-              type="text"
+              type="number"
               class="form-control"
               placeholder="{{ 'experience' | translate }}"
               formControlName="years_of_experience"

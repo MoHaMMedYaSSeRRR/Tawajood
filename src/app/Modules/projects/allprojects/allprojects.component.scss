@@ -2,7 +2,7 @@
   .col-md-3 {
     transition: all 0.5s ease-in-out;
     &:hover{
-      background-color: #c1c5ca;
+      background-color: #eef3f8;
       // p{
       //   color: white;
       // }
@@ -32,14 +32,15 @@
   li {
     cursor: pointer;
     margin: 0 4px;
-    a {
+    span {
       font-weight: 400;
       font-size: 15px;
       color: #15181b;
     }
   }
-  span {
+  a {
     font-weight: 700;
+    text-decoration: none;
     font-size: 16px;
     color: #4584c5;
   }
@@ -96,17 +97,17 @@
   }
 }
 .one{
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  z-index: 2 !important;
 }
 .two{
-  top: 3px;
-  left: 0;
-  right: 0;
-  bottom: 3px;
+  top: 3px !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 8px !important;
   z-index: 1;
   
   
@@ -116,4 +117,52 @@
   height: 356px;
   overflow: hidden;
   border-radius: 24px !important;
+}
+@media (max-width: 767px) {
+  .mocub{
+    width: 140px;
+    height: 300px !important;
+  }
+  .one{
+    width: 140px;
+    height: 300px !important; 
+    border-radius: 24px !important;
+
+  }
+  .two{
+    width: 140px;
+    height: 300px !important;
+    border-radius: 24px !important;
+
+  }
+}
+.pagination {
+  li {
+    width: 49px;
+    height: 49px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 2px solid #124261;
+    color: #124261;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 20px;
+    cursor: pointer;
+
+    &.active {
+      background-color: #124261;
+      color: #ffffff;
+    }
+
+    &.disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+  }
+
+  svg {
+    cursor: pointer;
+  }
 }

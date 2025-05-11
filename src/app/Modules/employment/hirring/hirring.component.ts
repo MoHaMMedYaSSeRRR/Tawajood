@@ -49,6 +49,7 @@ export class HirringComponent {
         },
       });
       this.setMetaTags();
+      this.setCanonicalURL();
   }
   setMetaTags(): void {
     this._translate.get('hirringmeta').subscribe((meta) => {
@@ -61,6 +62,9 @@ export class HirringComponent {
       // Set the meta keywords
       this.meta.updateTag({ name: 'keywords', content: meta.keywords });
     });}
+    setCanonicalURL(): void {
+      this.meta.addTag({ rel: 'canonical', href: 'https://www.tawajood.com/hirring/hirring' });
+    }
   onLanguageChange() {
     this.cdr.detectChanges();
   }

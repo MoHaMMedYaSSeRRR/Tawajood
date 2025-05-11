@@ -29,13 +29,26 @@
           <div
             class="item-img w-100 d-flex justify-content-center align-items-center"
           >
+          <img
+          *ngIf="item.home_screen && item.type != 2"
+          loading="lazy"
+          [src]="item.home_screen"
+          role="button"
+          class=""
+          alt=""
+        />
+ 
+          <div *ngIf="item.type == 2" class="position-relative mocub">
+            <img  src="../../../../assets/images/flatend.png" class="position-absolute one" alt="">
             <img
-              role="button"
-              [routerLink]="['/mobile', item.id]"
               *ngIf="item.home_screen"
+              loading="lazy"
               [src]="item.home_screen"
+              role="button"
+              class="position-absolute two"
               alt=""
             />
+          </div>
           </div>
           <h4 role="button" [routerLink]="['/mobile', item.id]">
             {{ item.name }}
@@ -53,12 +66,27 @@
                 class="item-img w-100 d-flex justify-content-center align-items-center"
                 *ngIf="item.home_screen"
               >
+              >
+              <img
+              *ngIf="item.home_screen && item.type != 2"
+              loading="lazy"
+              [src]="item.home_screen"
+              role="button"
+              class=""
+              alt=""
+            />
+     
+              <div *ngIf="item.type == 2" class="position-relative mocub">
+                <img  src="../../../../assets/images/flatend.png" class="position-absolute one" alt="">
                 <img
                   *ngIf="item.home_screen"
-                  [routerLink]="['/mobile', item.id]"
+                  loading="lazy"
                   [src]="item.home_screen"
+                  role="button"
+                  class="position-absolute two"
                   alt=""
                 />
+              </div>
               </div>
               <h4 class="mt-2">
                 {{ item.name }}
@@ -68,5 +96,7 @@
         </ng-container>
       </owl-carousel-o>
     </div>
+
+   
   </div>
 </section>

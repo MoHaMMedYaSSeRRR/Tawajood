@@ -1,4 +1,4 @@
-<section class="mt-0 secnav py-2 w-100">
+<section *ngIf="service" class="mt-0 secnav py-2 w-100">
   <div
     class="w-75 mx-auto"
     [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
@@ -11,14 +11,14 @@
   </div>
 </section>
 
-<section class="service my-md-4 my-3">
+<section *ngIf="service" class="service my-md-4 my-3">
   <div class="w-75 mx-auto">
     <div
       class="row g-3 w-100 mx-auto justify-content-between align-items-center"
     >
       <div class="col-md-6">
         <div class="item-img">
-          <img [src]="service.image" class="w-100" alt="" />
+          <img [src]="service?.image" class="w-100" alt="" />
         </div>
       </div>
       <div class="col-md-6 pe-3">

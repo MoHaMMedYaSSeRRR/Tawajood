@@ -50,7 +50,7 @@
           <button
             [disabled]="isJobExpired(job.end_time)"
             [ngClass]="{ 'dashed-button': isJobExpired(job.end_time) }"
-            [routerLink]="['/applytojob', job.id]"
+            [routerLink]="['/hirring/applytojob', job.id]"
             class="d-block mt-3"
           >
             {{ "submit_now" | translate }}

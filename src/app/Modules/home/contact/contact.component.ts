@@ -27,28 +27,29 @@ export class ContactComponent {
   serviceId: any;
   isDropdown: boolean = false;
   isIraq: boolean = false;
+  countries:any;
 
-  countries = [
-    { code: '966', flag: '🇸🇦', name_ar: 'السعودية', name_en: 'Saudi Arabia' },
-    { code: '20', flag: '🇪🇬', name_ar: 'مصر', name_en: 'Egypt' },
-    { code: '212', flag: '🇲🇦', name_ar: 'المغرب', name_en: 'Morocco' },
-    { code: '213', flag: '🇩🇿', name_ar: 'الجزائر', name_en: 'Algeria' },
-    { code: '216', flag: '🇹🇳', name_ar: 'تونس', name_en: 'Tunisia' },
-    { code: '218', flag: '🇱🇾', name_ar: 'ليبيا', name_en: 'Libya' },
-    { code: '249', flag: '🇸🇩', name_ar: 'السودان', name_en: 'Sudan' },
-    { code: '964', flag: '🇮🇶', name_ar: 'العراق', name_en: 'Iraq' },
-    { code: '968', flag: '🇴🇲', name_ar: 'عمان', name_en: 'Oman' },
-    { code: '970', flag: '🇵🇸', name_ar: 'فلسطين', name_en: 'Palestine' },
-    { code: '971', flag: '🇦🇪', name_ar: 'الإمارات', name_en: 'United Arab Emirates' },
-    { code: '973', flag: '🇧🇭', name_ar: 'البحرين', name_en: 'Bahrain' },
-    { code: '974', flag: '🇶🇦', name_ar: 'قطر', name_en: 'Qatar' },
-    { code: '963', flag: '🇸🇾', name_ar: 'سوريا', name_en: 'Syria' },
-    { code: '965', flag: '🇰🇼', name_ar: 'الكويت', name_en: 'Kuwait' },
-    { code: '967', flag: '🇾🇪', name_ar: 'اليمن', name_en: 'Yemen' },
-    { code: '962', flag: '🇯🇴', name_ar: 'الأردن', name_en: 'Jordan' },
-    { code: '252', flag: '🇸🇴', name_ar: 'الصومال', name_en: 'Somalia' },
-    { code: '222', flag: '🇲🇷', name_ar: 'موريتانيا', name_en: 'Mauritania' }
-  ];
+  // countries = [
+  //   { code: '966', flag: '🇸🇦', name_ar: 'السعودية', name_en: 'Saudi Arabia' },
+  //   { code: '20', flag: '🇪🇬', name_ar: 'مصر', name_en: 'Egypt' },
+  //   { code: '212', flag: '🇲🇦', name_ar: 'المغرب', name_en: 'Morocco' },
+  //   { code: '213', flag: '🇩🇿', name_ar: 'الجزائر', name_en: 'Algeria' },
+  //   { code: '216', flag: '🇹🇳', name_ar: 'تونس', name_en: 'Tunisia' },
+  //   { code: '218', flag: '🇱🇾', name_ar: 'ليبيا', name_en: 'Libya' },
+  //   { code: '249', flag: '🇸🇩', name_ar: 'السودان', name_en: 'Sudan' },
+  //   { code: '964', flag: '🇮🇶', name_ar: 'العراق', name_en: 'Iraq' },
+  //   { code: '968', flag: '🇴🇲', name_ar: 'عمان', name_en: 'Oman' },
+  //   { code: '970', flag: '🇵🇸', name_ar: 'فلسطين', name_en: 'Palestine' },
+  //   { code: '971', flag: '🇦🇪', name_ar: 'الإمارات', name_en: 'United Arab Emirates' },
+  //   { code: '973', flag: '🇧🇭', name_ar: 'البحرين', name_en: 'Bahrain' },
+  //   { code: '974', flag: '🇶🇦', name_ar: 'قطر', name_en: 'Qatar' },
+  //   { code: '963', flag: '🇸🇾', name_ar: 'سوريا', name_en: 'Syria' },
+  //   { code: '965', flag: '🇰🇼', name_ar: 'الكويت', name_en: 'Kuwait' },
+  //   { code: '967', flag: '🇾🇪', name_ar: 'اليمن', name_en: 'Yemen' },
+  //   { code: '962', flag: '🇯🇴', name_ar: 'الأردن', name_en: 'Jordan' },
+  //   { code: '252', flag: '🇸🇴', name_ar: 'الصومال', name_en: 'Somalia' },
+  //   { code: '222', flag: '🇲🇷', name_ar: 'موريتانيا', name_en: 'Mauritania' }
+  // ];
   contactUs: any;
 
   constructor(
@@ -80,7 +81,7 @@ export class ContactComponent {
     this._HomeService.getContactUs().subscribe({
       next: (res) => {
         this.contactUs = res.data.contact_us;
-        console.log(this.contactUs)
+        // console.log(this.contactUs)
       },
     })
     this.checkRoute();
@@ -93,6 +94,31 @@ export class ContactComponent {
         console.log('Error:', err);
       }
      })
+     this._HomeService.getCountryCodes().subscribe({
+      next: (res) => {
+        // Remove Israel
+        let filteredData = res.filter((country: any) => country.cca2 !== 'IL');
+    
+        // Find Egypt and Saudi Arabia
+        let egypt = filteredData.find((country: any) => country.cca2 === 'EG');
+        let saudi = filteredData.find((country: any) => country.cca2 === 'SA');
+    
+        // Remove them from their current position
+        filteredData = filteredData.filter((country: any) => country.cca2 !== 'EG' && country.cca2 !== 'SA');
+    
+        // Prepend Egypt and Saudi Arabia
+        this.countries = [egypt, saudi, ...filteredData].map((country: any) => ({
+          name_ar: country.translations.ara.common, // Arabic name
+          name_en: country.name.common, // English name
+          code: country.cca2, // Country code
+          flag: country.flags.png, // Flag PNG URL
+          codeNumber: country.idd.root ? `${country.idd.root}${country.idd.suffixes ? country.idd.suffixes[0] : ''}` : '-', // Phone code
+          
+        }));
+      }
+    });
+    
+
   }
   setMetaTags(): void {
     this._translate.get('hirringmeta').subscribe((meta) => {
@@ -156,8 +182,9 @@ export class ContactComponent {
     this.showDropdown = false;
   }
   selectCountry(country: any) {
-    this.selectedCountryCode = `+${country.code}`;
+    this.selectedCountryCode = `+${country.codeNumber}`;
     this.selectedCountry = country;
+    this.selectedCountry.code=country.codeNumber;
     this.isDropdown = false;
     this.phoneNumber = '';
   }

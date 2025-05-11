@@ -84,3 +84,31 @@
       text-align: end !important;
     }
   }
+  .one{
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    z-index: 2 !important;
+  }
+  .two{
+    top: 3px !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 8px !important;
+    z-index: 1;
+    
+    
+  }
+  .mocub{
+    width: 170px;
+    height: 356px;
+    overflow: hidden;
+    border-radius: 24px !important;
+  }
+  @media (max-width: 767px) {
+    .mocub{
+      width: 140px;
+      height: 300px !important;
+    }
+  }

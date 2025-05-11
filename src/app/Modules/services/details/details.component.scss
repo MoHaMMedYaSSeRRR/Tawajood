@@ -1,13 +1,14 @@
 .service{
     h2{
         font-weight: 700;
-        font-size: 38px;
+        font-size: 35px;
         color: #1C1F35;
     }
     p{
         font-weight: 400;
         font-size: 16px;
         color: #666C89;
+        line-height: 32px;
     }
     button{
         width: 194px;
@@ -37,6 +38,7 @@
             font-weight: 400;
             font-size: 16px;
             color: #666C89;
+            text-align-last: center !important;
         }
     }
 }

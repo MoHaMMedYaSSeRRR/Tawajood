@@ -1,375 +1,384 @@
-<div class="nav-header w-100 d-md-block d-none py-3">
-  <div class="w-75 mx-auto d-flex justify-content-between align-items-center">
-    <div class="nav-contact d-flex justify-content-center align-items-center">
-      <div class="dropdown" [ngClass]="{'rtl': currentLang === 'en', 'ltr': currentLang === 'ar'}">
-        <button
-          class="btn border-0 mt-1 bg-transparent d-flex justify-content-center align-items-center dropdown-toggle"
-          type="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          {{ currentLang === 'en' ? 'Eng' : 'عربي' }} 
-        </button>
-        <ul class="dropdown-menu">
-          <li (click)="toggleLanguage()"><a href="" class="dropdown-item">{{ currentLang === 'en' ? 'Ar' : 'En' }}</a></li>
-        </ul>
-    </div>
-    
+<section  [class.fixed]="isFixed" [class.hidden]="isHidden" class="m-0">
+  <div class="nav-header  w-100 d-md-block d-none py-3">
+    <div class="w-75 mx-auto d-flex justify-content-between align-items-center">
+      <div class="nav-contact d-flex justify-content-center align-items-center">
+        <div class="dropdown" [ngClass]="{'rtl': currentLang === 'en', 'ltr': currentLang === 'ar'}">
+          <button
+            class="btn border-0 mt-1 bg-transparent d-flex justify-content-center align-items-center dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {{ currentLang === 'en' ? 'Eng' : 'عربي' }} 
+          </button>
+          <ul class="dropdown-menu">
+            <li (click)="toggleLanguage()"><a href="" class="dropdown-item">{{ currentLang === 'en' ? 'Ar' : 'En' }}</a></li>
+          </ul>
+      </div>
       
-      <div class="line my-auto me-3"></div>
-      <div class="links d-flex justify-content-center align-items-center">
-        <ul
-          class="list-unstyled d-flex justify-content-between align-items-center mb-0"
-        >
-          <li role="button">
-            <a
-              target="_blank"
-              href="https://www.tiktok.com/@tawajood?_t=8n26pzQEDlV&_r=1"
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+        
+        <div class="line my-auto me-3"></div>
+        <div class="links d-flex justify-content-center align-items-center">
+          <ul
+            class="list-unstyled d-flex justify-content-between align-items-center mb-0"
+          >
+            <li >
+              <a
+                target="_blank"
+                href="https://www.tiktok.com/@tawajood?_t=8n26pzQEDlV&_r=1"
+                aria-label="Visit our TikTok page"
               >
-                <path
-                  d="M12.8806 3.708C12.7792 3.65575 12.6807 3.59835 12.5852 3.536C12.3076 3.35263 12.053 3.1364 11.8272 2.892C11.2612 2.24467 11.0499 1.588 10.9726 1.12867H10.9752C10.9106 0.746667 10.9372 0.5 10.9419 0.5H8.36522V10.462C8.36611 10.5953 8.36433 10.7276 8.35989 10.8587L8.35722 10.9073C8.35722 10.9144 8.35655 10.9218 8.35522 10.9293V10.9353C8.32816 11.2927 8.21369 11.6379 8.02188 11.9406C7.83006 12.2433 7.56679 12.4943 7.25522 12.6713C6.93048 12.857 6.56262 12.954 6.18855 12.9527C4.98855 12.9527 4.01522 11.974 4.01522 10.7653C4.01522 9.55667 4.98855 8.57733 6.18855 8.57733C6.41589 8.57733 6.64189 8.61333 6.85789 8.684L6.86122 6.06C6.20523 5.97545 5.53884 6.02777 4.90408 6.21365C4.26932 6.39953 3.67998 6.71495 3.17322 7.14C2.72929 7.52586 2.35594 7.98606 2.06989 8.5C1.96122 8.68733 1.55055 9.44133 1.50122 10.664C1.46989 11.3573 1.67855 12.0773 1.77789 12.374V12.3807C1.83989 12.5553 2.08255 13.1527 2.47722 13.656C2.7958 14.0597 3.17179 14.4146 3.59322 14.7093V14.7027L3.59922 14.7093C4.84589 15.556 6.22922 15.5007 6.22922 15.5007C6.46855 15.4907 7.27055 15.5007 8.18122 15.0693C9.19122 14.5907 9.76589 13.878 9.76589 13.878C10.1336 13.4523 10.4258 12.9669 10.6299 12.4427C10.8632 11.8293 10.9406 11.0947 10.9406 10.8013V5.51533C10.9719 5.534 11.3886 5.80933 11.3886 5.80933C11.3886 5.80933 11.9886 6.194 12.9239 6.444C13.5946 6.622 14.4992 6.66 14.4992 6.66V4.102C14.1826 4.13667 13.5392 4.03667 12.8799 3.70867"
-                  fill="white"
-                />
-              </svg>
-            </a>
-          </li>
-          <li role="button">
-            <a target="_blank" href="https://wa.me/201024848723">
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 18 18"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M1.21242 8.77205V8.77212C1.21207 10.0435 1.52911 11.2871 2.13382 12.3972L1.17037 15.8876L0.939874 16.7227L1.77824 16.5046L5.39634 15.5632C6.47632 16.1109 7.67248 16.3971 8.88682 16.3972H8.88686H8.89001C13.1179 16.3972 16.5653 12.9833 16.5671 8.77809V8.77807C16.5679 6.74199 15.7684 4.82567 14.3191 3.38645C12.87 1.94739 10.9412 1.15425 8.88995 1.15332H8.88972C4.66135 1.15332 1.21417 4.56699 1.21242 8.77205Z"
-                  fill="white"
-                  stroke="white"
-                />
-                <path
-                  d="M7.03285 5.68704C6.89368 5.38012 6.74722 5.37393 6.61487 5.36855C6.5065 5.36392 6.38261 5.36426 6.25884 5.36426C6.13495 5.36426 5.93366 5.41051 5.76352 5.59484C5.5932 5.77935 5.11328 6.22522 5.11328 7.13208C5.11328 8.03893 5.77898 8.9154 5.87178 9.0385C5.96469 9.16137 7.15691 11.0819 9.0451 11.8208C10.6144 12.4348 10.9337 12.3126 11.2743 12.2819C11.6149 12.2512 12.3734 11.8361 12.5281 11.4057C12.683 10.9753 12.683 10.6064 12.6366 10.5293C12.5902 10.4525 12.4663 10.4064 12.2805 10.3143C12.0947 10.2221 11.1814 9.77613 11.0111 9.7146C10.8408 9.65314 10.717 9.62247 10.5931 9.80703C10.4692 9.99131 10.1134 10.4064 10.005 10.5293C9.89669 10.6525 9.78826 10.6679 9.60254 10.5757C9.41665 10.4832 8.81838 10.2888 8.10859 9.66089C7.55634 9.17231 7.18351 8.56896 7.07514 8.38439C6.96676 8.20011 7.06353 8.10022 7.15668 8.00837C7.24015 7.92578 7.34251 7.79313 7.43549 7.68554C7.52811 7.57789 7.55903 7.50109 7.62097 7.37816C7.68297 7.25512 7.65194 7.14747 7.60557 7.05528C7.55903 6.96308 7.19803 6.05148 7.03285 5.68704Z"
-                  fill="#4584C5"
-                />
-              </svg>
-            </a>
-          </li>
-          <li role="button">
-            <a
-              target="_blank"
-              href="https://www.instagram.com/tawajoodco?igsh=MWxna2xqazBvZzQyaw=="
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clip-path="url(#clip0_542_3387)">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   <path
-                    d="M5.60136 7.9998C5.60136 6.67437 6.67558 5.59961 8.00107 5.59961C9.32656 5.59961 10.4014 6.67437 10.4014 7.9998C10.4014 9.32524 9.32656 10.4 8.00107 10.4C6.67558 10.4 5.60136 9.32524 5.60136 7.9998ZM4.30381 7.9998C4.30381 10.0417 5.95907 11.6969 8.00107 11.6969C10.0431 11.6969 11.6983 10.0417 11.6983 7.9998C11.6983 5.95788 10.0431 4.30269 8.00107 4.30269C5.95907 4.30269 4.30387 5.95777 4.30387 7.9998H4.30381ZM10.9807 4.1561C10.9807 4.32698 11.0313 4.49405 11.1261 4.63617C11.221 4.77829 11.3559 4.88909 11.5138 4.95454C11.6716 5.02 11.8454 5.03718 12.013 5.00391C12.1806 4.97064 12.3346 4.88841 12.4555 4.76763C12.5764 4.64684 12.6587 4.49293 12.6921 4.32534C12.7255 4.15776 12.7085 3.98403 12.6432 3.82613C12.5778 3.66822 12.4671 3.53324 12.3251 3.43825C12.183 3.34325 12.016 3.29251 11.8451 3.29244H11.8448C11.6157 3.29255 11.396 3.38357 11.234 3.5455C11.072 3.70743 10.9809 3.92704 10.9807 4.1561ZM5.09215 13.8605C4.39015 13.8285 4.0086 13.7116 3.75503 13.6128C3.41886 13.4819 3.17901 13.3261 2.92682 13.0742C2.67464 12.8224 2.51854 12.5828 2.38824 12.2467C2.2894 11.9932 2.17246 11.6116 2.14055 10.9096C2.10565 10.1506 2.09868 9.92266 2.09868 7.99992C2.09868 6.07717 2.10622 5.84983 2.14055 5.09026C2.17252 4.38828 2.29032 4.00738 2.38824 3.75319C2.51912 3.41703 2.67499 3.17719 2.92682 2.92501C3.17866 2.67284 3.41829 2.51675 3.75503 2.38645C4.00848 2.28761 4.39015 2.17068 5.09215 2.13877C5.85112 2.10387 6.07911 2.0969 8.00107 2.0969C9.92303 2.0969 10.1512 2.10433 10.9108 2.13889C11.6128 2.17086 11.9938 2.28865 12.248 2.38657C12.5841 2.51686 12.824 2.6733 13.0762 2.92513C13.3284 3.17696 13.4839 3.41715 13.6148 3.7533C13.7136 4.00674 13.8305 4.3884 13.8624 5.09037C13.8974 5.84994 13.9043 6.07729 13.9043 8.00003C13.9043 9.92278 13.8974 10.1501 13.8624 10.9097C13.8305 11.6117 13.713 11.9932 13.6148 12.2468C13.4839 12.5829 13.328 12.8228 13.0762 13.0744C12.8243 13.326 12.5841 13.4821 12.248 13.6129C11.9945 13.7118 11.6128 13.8287 10.9108 13.8606C10.1519 13.8955 9.92389 13.9025 8.00107 13.9025C6.07825 13.9025 5.85089 13.8955 5.09215 13.8606V13.8605ZM5.03253 0.843408C4.26602 0.878314 3.74224 0.999849 3.28482 1.17783C2.81139 1.36164 2.41007 1.60822 2.00933 2.00831C1.6086 2.4084 1.36263 2.80976 1.17883 3.28375C1.00083 3.74144 0.879293 4.26491 0.844386 5.03139C0.808903 5.79908 0.800781 6.04451 0.800781 7.9998C0.800781 9.95509 0.808903 10.2005 0.844386 10.9682C0.879293 11.7348 1.00083 12.2582 1.17883 12.7159C1.36263 13.1893 1.60865 13.5914 2.00933 13.9913C2.41002 14.3912 2.81081 14.6375 3.28482 14.8218C3.74311 14.9998 4.26602 15.1213 5.03253 15.1562C5.80066 15.1911 6.0457 15.1998 8.00107 15.1998C9.95644 15.1998 10.2019 15.1917 10.9696 15.1562C11.7362 15.1213 12.2596 14.9998 12.7173 14.8218C13.1907 14.6375 13.5921 14.3914 13.9928 13.9913C14.3935 13.5912 14.639 13.1893 14.8233 12.7159C15.0013 12.2582 15.1234 11.7347 15.1578 10.9682C15.1927 10.2 15.2008 9.95509 15.2008 7.9998C15.2008 6.04451 15.1927 5.79908 15.1578 5.03139C15.1228 4.26485 15.0013 3.74115 14.8233 3.28375C14.639 2.81033 14.3929 2.40903 13.9928 2.00831C13.5927 1.60759 13.1907 1.36164 12.7179 1.17783C12.2596 0.999849 11.7361 0.877738 10.9702 0.843408C10.2023 0.80833 9.95701 0.799805 8.00193 0.799805C6.04685 0.799805 5.80095 0.807926 5.03282 0.843408"
+                    d="M12.8806 3.708C12.7792 3.65575 12.6807 3.59835 12.5852 3.536C12.3076 3.35263 12.053 3.1364 11.8272 2.892C11.2612 2.24467 11.0499 1.588 10.9726 1.12867H10.9752C10.9106 0.746667 10.9372 0.5 10.9419 0.5H8.36522V10.462C8.36611 10.5953 8.36433 10.7276 8.35989 10.8587L8.35722 10.9073C8.35722 10.9144 8.35655 10.9218 8.35522 10.9293V10.9353C8.32816 11.2927 8.21369 11.6379 8.02188 11.9406C7.83006 12.2433 7.56679 12.4943 7.25522 12.6713C6.93048 12.857 6.56262 12.954 6.18855 12.9527C4.98855 12.9527 4.01522 11.974 4.01522 10.7653C4.01522 9.55667 4.98855 8.57733 6.18855 8.57733C6.41589 8.57733 6.64189 8.61333 6.85789 8.684L6.86122 6.06C6.20523 5.97545 5.53884 6.02777 4.90408 6.21365C4.26932 6.39953 3.67998 6.71495 3.17322 7.14C2.72929 7.52586 2.35594 7.98606 2.06989 8.5C1.96122 8.68733 1.55055 9.44133 1.50122 10.664C1.46989 11.3573 1.67855 12.0773 1.77789 12.374V12.3807C1.83989 12.5553 2.08255 13.1527 2.47722 13.656C2.7958 14.0597 3.17179 14.4146 3.59322 14.7093V14.7027L3.59922 14.7093C4.84589 15.556 6.22922 15.5007 6.22922 15.5007C6.46855 15.4907 7.27055 15.5007 8.18122 15.0693C9.19122 14.5907 9.76589 13.878 9.76589 13.878C10.1336 13.4523 10.4258 12.9669 10.6299 12.4427C10.8632 11.8293 10.9406 11.0947 10.9406 10.8013V5.51533C10.9719 5.534 11.3886 5.80933 11.3886 5.80933C11.3886 5.80933 11.9886 6.194 12.9239 6.444C13.5946 6.622 14.4992 6.66 14.4992 6.66V4.102C14.1826 4.13667 13.5392 4.03667 12.8799 3.70867"
                     fill="white"
                   />
-                </g>
-                <defs>
-                  <clipPath id="clip0_542_3387">
-                    <rect width="16" height="16" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-            </a>
-          </li>
-          <li role="button">
-            <a
-              target="_blank"
-              href="https://www.linkedin.com/company/tawajood/"
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8.01586 0H7.97944C3.57252 0 0 3.57357 0 7.98178V8.01822C0 12.4264 3.57252 16 7.97944 16H8.01586C12.4228 16 15.9953 12.4264 15.9953 8.01822V7.98178C15.9953 3.57357 12.4228 0 8.01586 0Z"
-                  fill="#4584C5"
-                />
-                <path
-                  d="M2.42649 4.37484C2.14165 4.11038 2 3.78302 2 3.39353C2 3.00404 2.14241 2.66229 2.42649 2.39707C2.71132 2.13261 3.07798 2 3.5272 2C3.97643 2 4.32869 2.13261 4.61277 2.39707C4.8976 2.66153 5.03926 2.99419 5.03926 3.39353C5.03926 3.79288 4.89685 4.11038 4.61277 4.37484C4.32793 4.6393 3.96658 4.77191 3.5272 4.77191C3.08783 4.77191 2.71132 4.6393 2.42649 4.37484ZM4.79988 5.89189V14H2.23862V5.89189H4.79988Z"
-                  fill="#FEFFFC"
-                />
-                <path
-                  d="M13.3269 6.69252C13.8852 7.29874 14.164 8.13076 14.164 9.19012V13.8565H11.7315V9.519C11.7315 8.98477 11.5929 8.56951 11.3164 8.27399C11.0399 7.97846 10.6672 7.82993 10.2005 7.82993C9.73387 7.82993 9.36115 7.9777 9.08464 8.27399C8.80814 8.56951 8.66951 8.98477 8.66951 9.519V13.8565H6.22266V5.86883H8.66951V6.92819C8.91723 6.57507 9.25132 6.29621 9.671 6.09086C10.0907 5.8855 10.5626 5.7832 11.0876 5.7832C12.0224 5.7832 12.7693 6.08631 13.3269 6.69252Z"
-                  fill="#FEFFFC"
-                />
-              </svg>
-            </a>
-          </li>
-          <li role="button">
-            <a
-              target="_blank"
-              href="https://www.facebook.com/tawajood?mibextid=LQQJ4d"
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clip-path="url(#clip0_542_3395)">
+                </svg>
+              </a>
+            </li>
+            <li >
+              <a target="_blank" href="https://wa.me/201024848723" aria-label="Chat with us on WhatsApp">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M7.99609 0C12.4144 0 15.9961 3.58173 15.9961 8C15.9961 12.4183 12.4144 16 7.99609 16C3.57782 16 -0.00390625 12.4183 -0.00390625 8C-0.00390625 3.58173 3.57782 0 7.99609 0Z"
+                    d="M1.21242 8.77205V8.77212C1.21207 10.0435 1.52911 11.2871 2.13382 12.3972L1.17037 15.8876L0.939874 16.7227L1.77824 16.5046L5.39634 15.5632C6.47632 16.1109 7.67248 16.3971 8.88682 16.3972H8.88686H8.89001C13.1179 16.3972 16.5653 12.9833 16.5671 8.77809V8.77807C16.5679 6.74199 15.7684 4.82567 14.3191 3.38645C12.87 1.94739 10.9412 1.15425 8.88995 1.15332H8.88972C4.66135 1.15332 1.21417 4.56699 1.21242 8.77205Z"
                     fill="white"
+                    stroke="white"
                   />
                   <path
-                    d="M9.03631 15.933V9.75237H10.7798L11.0109 7.5771H9.03631L9.03924 6.48827C9.03924 5.92091 9.09317 5.61705 9.90859 5.61705H10.9987V3.44141H9.25479C7.16011 3.44141 6.42295 4.4966 6.42295 6.27136V7.57726H5.11719V9.75274H6.42295V15.8453C6.93164 15.9466 7.45754 16.0001 7.99601 16.0001C8.34386 16.0001 8.69135 15.9777 9.03631 15.933Z"
+                    d="M7.03285 5.68704C6.89368 5.38012 6.74722 5.37393 6.61487 5.36855C6.5065 5.36392 6.38261 5.36426 6.25884 5.36426C6.13495 5.36426 5.93366 5.41051 5.76352 5.59484C5.5932 5.77935 5.11328 6.22522 5.11328 7.13208C5.11328 8.03893 5.77898 8.9154 5.87178 9.0385C5.96469 9.16137 7.15691 11.0819 9.0451 11.8208C10.6144 12.4348 10.9337 12.3126 11.2743 12.2819C11.6149 12.2512 12.3734 11.8361 12.5281 11.4057C12.683 10.9753 12.683 10.6064 12.6366 10.5293C12.5902 10.4525 12.4663 10.4064 12.2805 10.3143C12.0947 10.2221 11.1814 9.77613 11.0111 9.7146C10.8408 9.65314 10.717 9.62247 10.5931 9.80703C10.4692 9.99131 10.1134 10.4064 10.005 10.5293C9.89669 10.6525 9.78826 10.6679 9.60254 10.5757C9.41665 10.4832 8.81838 10.2888 8.10859 9.66089C7.55634 9.17231 7.18351 8.56896 7.07514 8.38439C6.96676 8.20011 7.06353 8.10022 7.15668 8.00837C7.24015 7.92578 7.34251 7.79313 7.43549 7.68554C7.52811 7.57789 7.55903 7.50109 7.62097 7.37816C7.68297 7.25512 7.65194 7.14747 7.60557 7.05528C7.55903 6.96308 7.19803 6.05148 7.03285 5.68704Z"
                     fill="#4584C5"
                   />
-                </g>
-                <defs>
-                  <clipPath id="clip0_542_3395">
-                    <rect
-                      width="16"
-                      height="16"
+                </svg>
+              </a>
+            </li>
+            <li >
+              <a
+                target="_blank"
+                href="https://www.instagram.com/tawajoodco?igsh=MWxna2xqazBvZzQyaw=="
+                aria-label="Follow us on Instagram" >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_542_3387)">
+                    <path
+                      d="M5.60136 7.9998C5.60136 6.67437 6.67558 5.59961 8.00107 5.59961C9.32656 5.59961 10.4014 6.67437 10.4014 7.9998C10.4014 9.32524 9.32656 10.4 8.00107 10.4C6.67558 10.4 5.60136 9.32524 5.60136 7.9998ZM4.30381 7.9998C4.30381 10.0417 5.95907 11.6969 8.00107 11.6969C10.0431 11.6969 11.6983 10.0417 11.6983 7.9998C11.6983 5.95788 10.0431 4.30269 8.00107 4.30269C5.95907 4.30269 4.30387 5.95777 4.30387 7.9998H4.30381ZM10.9807 4.1561C10.9807 4.32698 11.0313 4.49405 11.1261 4.63617C11.221 4.77829 11.3559 4.88909 11.5138 4.95454C11.6716 5.02 11.8454 5.03718 12.013 5.00391C12.1806 4.97064 12.3346 4.88841 12.4555 4.76763C12.5764 4.64684 12.6587 4.49293 12.6921 4.32534C12.7255 4.15776 12.7085 3.98403 12.6432 3.82613C12.5778 3.66822 12.4671 3.53324 12.3251 3.43825C12.183 3.34325 12.016 3.29251 11.8451 3.29244H11.8448C11.6157 3.29255 11.396 3.38357 11.234 3.5455C11.072 3.70743 10.9809 3.92704 10.9807 4.1561ZM5.09215 13.8605C4.39015 13.8285 4.0086 13.7116 3.75503 13.6128C3.41886 13.4819 3.17901 13.3261 2.92682 13.0742C2.67464 12.8224 2.51854 12.5828 2.38824 12.2467C2.2894 11.9932 2.17246 11.6116 2.14055 10.9096C2.10565 10.1506 2.09868 9.92266 2.09868 7.99992C2.09868 6.07717 2.10622 5.84983 2.14055 5.09026C2.17252 4.38828 2.29032 4.00738 2.38824 3.75319C2.51912 3.41703 2.67499 3.17719 2.92682 2.92501C3.17866 2.67284 3.41829 2.51675 3.75503 2.38645C4.00848 2.28761 4.39015 2.17068 5.09215 2.13877C5.85112 2.10387 6.07911 2.0969 8.00107 2.0969C9.92303 2.0969 10.1512 2.10433 10.9108 2.13889C11.6128 2.17086 11.9938 2.28865 12.248 2.38657C12.5841 2.51686 12.824 2.6733 13.0762 2.92513C13.3284 3.17696 13.4839 3.41715 13.6148 3.7533C13.7136 4.00674 13.8305 4.3884 13.8624 5.09037C13.8974 5.84994 13.9043 6.07729 13.9043 8.00003C13.9043 9.92278 13.8974 10.1501 13.8624 10.9097C13.8305 11.6117 13.713 11.9932 13.6148 12.2468C13.4839 12.5829 13.328 12.8228 13.0762 13.0744C12.8243 13.326 12.5841 13.4821 12.248 13.6129C11.9945 13.7118 11.6128 13.8287 10.9108 13.8606C10.1519 13.8955 9.92389 13.9025 8.00107 13.9025C6.07825 13.9025 5.85089 13.8955 5.09215 13.8606V13.8605ZM5.03253 0.843408C4.26602 0.878314 3.74224 0.999849 3.28482 1.17783C2.81139 1.36164 2.41007 1.60822 2.00933 2.00831C1.6086 2.4084 1.36263 2.80976 1.17883 3.28375C1.00083 3.74144 0.879293 4.26491 0.844386 5.03139C0.808903 5.79908 0.800781 6.04451 0.800781 7.9998C0.800781 9.95509 0.808903 10.2005 0.844386 10.9682C0.879293 11.7348 1.00083 12.2582 1.17883 12.7159C1.36263 13.1893 1.60865 13.5914 2.00933 13.9913C2.41002 14.3912 2.81081 14.6375 3.28482 14.8218C3.74311 14.9998 4.26602 15.1213 5.03253 15.1562C5.80066 15.1911 6.0457 15.1998 8.00107 15.1998C9.95644 15.1998 10.2019 15.1917 10.9696 15.1562C11.7362 15.1213 12.2596 14.9998 12.7173 14.8218C13.1907 14.6375 13.5921 14.3914 13.9928 13.9913C14.3935 13.5912 14.639 13.1893 14.8233 12.7159C15.0013 12.2582 15.1234 11.7347 15.1578 10.9682C15.1927 10.2 15.2008 9.95509 15.2008 7.9998C15.2008 6.04451 15.1927 5.79908 15.1578 5.03139C15.1228 4.26485 15.0013 3.74115 14.8233 3.28375C14.639 2.81033 14.3929 2.40903 13.9928 2.00831C13.5927 1.60759 13.1907 1.36164 12.7179 1.17783C12.2596 0.999849 11.7361 0.877738 10.9702 0.843408C10.2023 0.80833 9.95701 0.799805 8.00193 0.799805C6.04685 0.799805 5.80095 0.807926 5.03282 0.843408"
                       fill="white"
-                      transform="translate(-0.00390625)"
                     />
-                  </clipPath>
-                </defs>
-              </svg>
-            </a>
-          </li>
-        </ul>
-        <h4 class="mt-2">: {{"contactUs" | translate}}</h4>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_542_3387">
+                      <rect width="16" height="16" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </a>
+            </li>
+            <li >
+              <a
+                target="_blank"
+                href="https://www.linkedin.com/company/tawajood/"
+                aria-label="Follow us on linkedin"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M8.01586 0H7.97944C3.57252 0 0 3.57357 0 7.98178V8.01822C0 12.4264 3.57252 16 7.97944 16H8.01586C12.4228 16 15.9953 12.4264 15.9953 8.01822V7.98178C15.9953 3.57357 12.4228 0 8.01586 0Z"
+                    fill="#4584C5"
+                  />
+                  <path
+                    d="M2.42649 4.37484C2.14165 4.11038 2 3.78302 2 3.39353C2 3.00404 2.14241 2.66229 2.42649 2.39707C2.71132 2.13261 3.07798 2 3.5272 2C3.97643 2 4.32869 2.13261 4.61277 2.39707C4.8976 2.66153 5.03926 2.99419 5.03926 3.39353C5.03926 3.79288 4.89685 4.11038 4.61277 4.37484C4.32793 4.6393 3.96658 4.77191 3.5272 4.77191C3.08783 4.77191 2.71132 4.6393 2.42649 4.37484ZM4.79988 5.89189V14H2.23862V5.89189H4.79988Z"
+                    fill="#FEFFFC"
+                  />
+                  <path
+                    d="M13.3269 6.69252C13.8852 7.29874 14.164 8.13076 14.164 9.19012V13.8565H11.7315V9.519C11.7315 8.98477 11.5929 8.56951 11.3164 8.27399C11.0399 7.97846 10.6672 7.82993 10.2005 7.82993C9.73387 7.82993 9.36115 7.9777 9.08464 8.27399C8.80814 8.56951 8.66951 8.98477 8.66951 9.519V13.8565H6.22266V5.86883H8.66951V6.92819C8.91723 6.57507 9.25132 6.29621 9.671 6.09086C10.0907 5.8855 10.5626 5.7832 11.0876 5.7832C12.0224 5.7832 12.7693 6.08631 13.3269 6.69252Z"
+                    fill="#FEFFFC"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li >
+              <a
+                target="_blank"
+                href="https://www.facebook.com/tawajood?mibextid=LQQJ4d"
+                aria-label="Follow us on facebook"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_542_3395)">
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M7.99609 0C12.4144 0 15.9961 3.58173 15.9961 8C15.9961 12.4183 12.4144 16 7.99609 16C3.57782 16 -0.00390625 12.4183 -0.00390625 8C-0.00390625 3.58173 3.57782 0 7.99609 0Z"
+                      fill="white"
+                    />
+                    <path
+                      d="M9.03631 15.933V9.75237H10.7798L11.0109 7.5771H9.03631L9.03924 6.48827C9.03924 5.92091 9.09317 5.61705 9.90859 5.61705H10.9987V3.44141H9.25479C7.16011 3.44141 6.42295 4.4966 6.42295 6.27136V7.57726H5.11719V9.75274H6.42295V15.8453C6.93164 15.9466 7.45754 16.0001 7.99601 16.0001C8.34386 16.0001 8.69135 15.9777 9.03631 15.933Z"
+                      fill="#4584C5"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_542_3395">
+                      <rect
+                        width="16"
+                        height="16"
+                        fill="white"
+                        transform="translate(-0.00390625)"
+                      />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </a>
+            </li>
+          </ul>
+          <h4 class="mt-2" [attr.aria-label]="'Contact Us' | translate">
+            {{ "contactUs" | translate }}
+          </h4>
+                  </div>
+      </div>
+      <div class="email d-flex align-items-center">
+        <h6 *ngIf="email" class="mt-2">
+          <a 
+            class="text-decoration-none" 
+            [href]="'mailto:' + email"
+            [attr.aria-label]="'Send an email to ' + email"
+          >
+            {{ email }}
+          </a>
+        </h6>
+        
+        <span class="mx-4">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M22 6L12 13L2 6"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </span>
       </div>
     </div>
-    <div class="email d-flex align-items-center">
-      <h6 class="mt-2">
-        <a class="text-decoration-none" href="mailto:info@tawajood.com"
-          >info@tawajood.com</a
-        >
-      </h6>
-      <span class="mx-4">
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z"
-            stroke="white"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M22 6L12 13L2 6"
-            stroke="white"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-      </span>
+  </div>
+  
+  <div class="navbar w-100 d-md-block d-none">
+    <div class="w-75 mx-auto d-flex justify-content-between align-items-center">
+      <div
+        class="navbar-content w-100 d-flex justify-content-between align-items-center"
+      >
+        <div class="start ms-1">
+          <button
+          routerLink="/contact"
+            class="d-flex border-0 justify-content-center align-items-center"
+          >
+            {{"startYourProject" | translate}}
+          </button>
+        </div>
+        <div class="navbar-menu d-flex justify-content-center align-items-center">
+          <ul class="list-unstyled mt-3 d-flex justify-content-between align-items-center">
+            <li>
+              <a
+                routerLink="/home"
+                routerLinkActive="active"
+                class="text-decoration-none"
+                routerLink="/contact"
+              >
+                {{ 'contactUs' | translate }}
+              </a>
+            </li>
+            <li>
+              <a
+                routerLink="/hirring/hirring"
+                routerLinkActive="active"
+                class="text-decoration-none"
+              >
+                {{ 'employment' | translate }}
+              </a>
+            </li>
+            <li>
+              <a
+                routerLink="/ourblog"
+                routerLinkActive="active"
+                class="text-decoration-none"
+              >
+                {{ 'blog' | translate }}
+              </a>
+            </li>
+            <li>
+              <a
+                routerLink="/projects"
+                routerLinkActive="active"
+                class="text-decoration-none"
+              >
+                {{ 'projects' | translate }}
+              </a>
+            </li>
+            <li class="dropdown"
+            (mouseover)="issoloutionsVisible = true"
+            (mouseout)="issoloutionsVisible = false">            <a
+                routerLink="/solutions"
+                routerLinkActive="active"
+                class="text-decoration-none"
+              >
+                {{ 'solutions' | translate }}
+              </a>
+              <ul class="dropdown-menu" [ngStyle]="{ 'display': issoloutionsVisible ? 'block' : 'none' }">
+                <li routerLink="/solutions" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">
+                  <span  class="dropdown-item">{{ 'all' | translate }}</span>
+                </li>
+                <li *ngFor="let item of soloutions" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">
+                  <span role="button" [routerLink]="['/solutionDetails' , item.id]" class="dropdown-item">{{ item.name }}</span>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown"
+      (mouseover)="isDropdownVisible = true"
+      (mouseout)="isDropdownVisible = false">
+    <a routerLink="/allservices" routerLinkActive="active" class="text-decoration-none">
+      {{ 'services' | translate }}
+    </a>
+    <ul class="dropdown-menu" [ngStyle]="{ 'display': isDropdownVisible ? 'block' : 'none' }">
+      <li routerLink="/allservices" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">
+        <span  class="dropdown-item">{{ 'all' | translate }}</span>
+      </li>
+      <li *ngFor="let item of services" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">
+        <span (click)="navigateBasedOnId(item.id)" routerLink="/service1" class="dropdown-item">{{ item.name }}</span>
+      </li>
+    </ul>
+  </li>
+  
+            
+            <li>
+              <a
+                routerLink="/about"
+                routerLinkActive="active"
+                class="text-decoration-none"
+              >
+                {{ 'aboutUs' | translate }}
+              </a>
+            </li>
+            <li>
+              <a
+                routerLink="/home"
+                routerLinkActive="active"
+                class="text-decoration-none"
+              >
+                {{ 'home' | translate }}
+              </a>
+            </li>
+          </ul>
+          
+        </div>
+        <a [routerLink]="'/home'" class="logo d-flex justify-content-center align-items-center">
+          <img src="../../../../assets/images/nav-logo.png" class="w-100" alt="Logo" />
+        </a>
+        
+      </div>
     </div>
   </div>
-</div>
-
-<div class="navbar w-100 d-md-block d-none">
-  <div class="w-75 mx-auto d-flex justify-content-between align-items-center">
-    <div
-      class="navbar-content w-100 d-flex justify-content-between align-items-center"
-    >
-      <div class="start ms-1">
+  <div class="nav-phone d-md-none d-block shadow-lg p-2">
+    <div class="w-100 d-flex justify-content-between align-items-center">
+      <div class="toggler">
         <button
-        routerLink="/contact"
-          class="d-flex border-0 justify-content-center align-items-center"
+          class="navbar-toggler bg-white me-2 d-md-none d-block"
+          type="button"
+          (click)="toggleNav()"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
-          {{"startYourProject" | translate}}
+          <span class="navbar-toggler-icon"></span>
         </button>
       </div>
-      <div class="navbar-menu d-flex justify-content-center align-items-center">
-        <ul class="list-unstyled mt-3 d-flex justify-content-between align-items-center">
-          <li>
-            <a
-              routerLink="/home"
-              routerLinkActive="active"
-              class="text-decoration-none"
-              routerLink="/contact"
-            >
-              {{ 'contactUs' | translate }}
-            </a>
-          </li>
-          <li>
-            <a
-              routerLink="/hirring/hirring"
-              routerLinkActive="active"
-              class="text-decoration-none"
-            >
-              {{ 'employment' | translate }}
-            </a>
-          </li>
-          <li>
-            <a
-              routerLink="/ourblog"
-              routerLinkActive="active"
-              class="text-decoration-none"
-            >
-              {{ 'blog' | translate }}
-            </a>
-          </li>
-          <li>
-            <a
-              routerLink="/projects"
-              routerLinkActive="active"
-              class="text-decoration-none"
-            >
-              {{ 'projects' | translate }}
-            </a>
-          </li>
-          <li class="dropdown"
-          (mouseover)="issoloutionsVisible = true"
-          (mouseout)="issoloutionsVisible = false">            <a
-              routerLink="/solutions"
-              routerLinkActive="active"
-              class="text-decoration-none"
-            >
-              {{ 'solutions' | translate }}
-            </a>
-            <ul class="dropdown-menu" [ngStyle]="{ 'display': issoloutionsVisible ? 'block' : 'none' }">
-              <li routerLink="/solutions" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">
-                <span  class="dropdown-item">{{ 'all' | translate }}</span>
-              </li>
-              <li *ngFor="let item of soloutions" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">
-                <span role="button" [routerLink]="['/solutionDetails' , item.id]" class="dropdown-item">{{ item.name }}</span>
-              </li>
-            </ul>
-          </li>
-          <li class="dropdown"
-    (mouseover)="isDropdownVisible = true"
-    (mouseout)="isDropdownVisible = false">
-  <a routerLink="/allservices" routerLinkActive="active" class="text-decoration-none">
-    {{ 'services' | translate }}
-  </a>
-  <ul class="dropdown-menu" [ngStyle]="{ 'display': isDropdownVisible ? 'block' : 'none' }">
-    <li routerLink="/allservices" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">
-      <span  class="dropdown-item">{{ 'all' | translate }}</span>
-    </li>
-    <li *ngFor="let item of services" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">
-      <span (click)="navigateBasedOnId(item.id)" routerLink="/service1" class="dropdown-item">{{ item.name }}</span>
-    </li>
-  </ul>
-</li>
-
-          
-          <li>
-            <a
-              routerLink="/about"
-              routerLinkActive="active"
-              class="text-decoration-none"
-            >
-              {{ 'aboutUs' | translate }}
-            </a>
-          </li>
-          <li>
-            <a
-              routerLink="/home"
-              routerLinkActive="active"
-              class="text-decoration-none"
-            >
-              {{ 'home' | translate }}
-            </a>
-          </li>
-        </ul>
-        
-      </div>
-      <div routerLink="/home" role="button" class="logo d-flex justify-content-center align-items-center">
-        <img
-          src="../../../../assets/images/nav-logo.png"
-          class="w-100"
-          alt=""
-        />
-      </div>
-    </div>
-  </div>
-</div>
-<div class="nav-phone d-md-none d-block shadow-lg p-2">
-  <div class="w-100 d-flex justify-content-between align-items-center">
-    <div class="toggler">
-      <button
-        class="navbar-toggler bg-white me-2 d-md-none d-block"
-        type="button"
-        (click)="toggleNav()"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
+      <div
+      routerLink="/home"
+        role="button"
+        (click)="closeNav()"
+        class="logo d-flex justify-content-center align-items-center"
       >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <img src="../../../../assets/images/nav-logo.png" class="w-100" alt="" />
+      </div>
     </div>
+  
     <div
-    routerLink="/home"
-      role="button"
-      (click)="closeNav()"
-      class="logo d-flex justify-content-center align-items-center"
+      class="nav-mobile mt-2 shadow-lg"
+      [ngClass]="{ 'nav-mobile-open': isNavOpen }"
     >
-      <img src="../../../../assets/images/nav-logo.png" class="w-100" alt="" />
-    </div>
-  </div>
-
-  <div
-    class="nav-mobile mt-2 shadow-lg"
-    [ngClass]="{ 'nav-mobile-open': isNavOpen }"
-  >
-    <div class="nav-mobile-wrapper">
-      <div class="nav-mobile-menu">
-        <ul class="nav-mobile-links list-unstyled">
-          <li (click)="closeNav()" class="mb-3">
-            <a routerLink="/home" class="text-decoration-none">{{ 'home' | translate }}</a>
-          </li>
-          <li (click)="closeNav()" class="mb-3">
-            <a routerLink="/about" class="text-decoration-none">{{ 'aboutUs' | translate }}</a>
-          </li>
-          <li (click)="closeNav()" class="mb-3">
-            <a routerLink="/allservices" class="text-decoration-none">{{ 'services' | translate }}</a>
-          </li>
-          <li (click)="closeNav()" class="mb-3">
-            <a routerLink="/solutions" class="text-decoration-none">{{ 'solutions' | translate }}</a>
-          </li>
-          <li (click)="closeNav()" class="mb-3">
-            <a routerLink="/projects" class="text-decoration-none">{{ 'projects' | translate }}</a>
-          </li>
-          <li (click)="closeNav()" class="mb-3">
-            <a routerLink="/ourblog" class="text-decoration-none">{{ 'blog' | translate }}</a>
-          </li>
-          <li (click)="closeNav()" class="mb-3">
-            <a routerLink="/hirring/hirring" class="text-decoration-none">{{ 'employment' | translate }}</a>
-          </li>
-          <li (click)="closeNav()" class="mb-3">
-            <a routerLink="/contact" class="text-decoration-none">{{ 'contactUs' | translate }}</a>
-          </li>
-          <li role="button" class="mb-3">
-            <a href="" (click)="toggleLanguage(); closeNav();" class="text-decoration-none">
-              {{ currentLang === 'ar' ? 'English' : 'عربى' }}
-            </a>
-          </li>
-        </ul>
-        
+      <div class="nav-mobile-wrapper">
+        <div class="nav-mobile-menu">
+          <ul class="nav-mobile-links list-unstyled">
+            <li (click)="closeNav()" class="mb-3">
+              <a routerLink="/home" class="text-decoration-none">{{ 'home' | translate }}</a>
+            </li>
+            <li (click)="closeNav()" class="mb-3">
+              <a routerLink="/about" class="text-decoration-none">{{ 'aboutUs' | translate }}</a>
+            </li>
+            <li (click)="closeNav()" class="mb-3">
+              <a routerLink="/allservices" class="text-decoration-none">{{ 'services' | translate }}</a>
+            </li>
+            <li (click)="closeNav()" class="mb-3">
+              <a routerLink="/solutions" class="text-decoration-none">{{ 'solutions' | translate }}</a>
+            </li>
+            <li (click)="closeNav()" class="mb-3">
+              <a routerLink="/projects" class="text-decoration-none">{{ 'projects' | translate }}</a>
+            </li>
+            <li (click)="closeNav()" class="mb-3">
+              <a routerLink="/ourblog" class="text-decoration-none">{{ 'blog' | translate }}</a>
+            </li>
+            <li (click)="closeNav()" class="mb-3">
+              <a routerLink="/hirring/hirring" class="text-decoration-none">{{ 'employment' | translate }}</a>
+            </li>
+            <li (click)="closeNav()" class="mb-3">
+              <a routerLink="/contact" class="text-decoration-none">{{ 'contactUs' | translate }}</a>
+            </li>
+            <li role="button" class="mb-3">
+              <a href="" (click)="toggleLanguage(); closeNav();" class="text-decoration-none">
+                {{ currentLang === 'ar' ? 'English' : 'عربى' }}
+              </a>
+            </li>
+          </ul>
+          
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>

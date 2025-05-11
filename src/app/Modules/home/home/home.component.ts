@@ -5,6 +5,7 @@ import {
   ElementRef,
   ViewChild,
   AfterViewInit,
+  HostListener,
 } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
@@ -83,10 +84,13 @@ export class HomeComponent implements AfterViewInit {
   completedProjects = 0;
   whyUs: any[] = [];
   contactUs: any;
-  currentBackground!: string ;
-  currentIndex: number = 0; 
+  currentBackground!: string;
+  currentIndex: number = 0;
   private intervalId: any;
-
+  isAdd: boolean = true;
+  images: string[] = ['../../../../assets/images/1.png'];
+  currentImageIndex: number = 0;
+  imageInterval: any;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -97,6 +101,7 @@ export class HomeComponent implements AfterViewInit {
     private titleService: Title,
     private translate: TranslateService
   ) {}
+  isMediaLoaded = false;
 
   ngOnInit(): void {
     this.isMobile = window.innerWidth <= 768;
@@ -109,6 +114,7 @@ export class HomeComponent implements AfterViewInit {
       };
       this.cdr.detectChanges();
       this.setMetaTags();
+      this.setCanonicalURL();
     });
 
     this._HomeService.getSlider().subscribe((res: any) => {
@@ -135,18 +141,32 @@ export class HomeComponent implements AfterViewInit {
       this.contactUs = res.data.contact_us;
     });
     this.setMetaTags();
+    this.imageInterval = setInterval(() => {
+      this.currentImageIndex =
+        (this.currentImageIndex + 1) % this.images.length;
+    }, 3000);
   }
+
   startBackgroundRotation(): void {
     let index = 0;
     this.intervalId = setInterval(() => {
       index = (index + 1) % this.headerContent.length; // Loop through backgrounds
+      this.isMediaLoaded = true;
       this.currentBackground = this.headerContent[index].media;
-    }, 5000);
+    }, 3000);
   }
-
+  setCanonicalURL(): void {
+    this.meta.addTag({
+      rel: 'canonical',
+      href: 'https://www.tawajood.com/home',
+    });
+  }
   ngOnDestroy(): void {
     if (this.intervalId) {
       clearInterval(this.intervalId); // Clear interval on component destroy
+    }
+    if (this.imageInterval) {
+      clearInterval(this.imageInterval);
     }
   }
   setMetaTags(): void {
@@ -177,11 +197,8 @@ export class HomeComponent implements AfterViewInit {
                 'yearsExperience',
                 this.contactUs.years_of_experience
               );
-              this.startCounter('happyClients', this.contactUs.happy_customers);
-              this.startCounter(
-                'completedProjects',
-                this.contactUs.project_numbers
-              );
+              this.startCounter('happyClients', 1000);
+              this.startCounter('completedProjects', 500);
               numbersObserver.unobserve(entry.target);
             }
           });
@@ -209,16 +226,15 @@ export class HomeComponent implements AfterViewInit {
                 case 'whySection':
                   if (!this.section3Animated) this.section3Animated = true;
 
-                
                   break;
               }
-              sectionObserver.unobserve(entry.target); 
+              sectionObserver.unobserve(entry.target);
             }, 300);
           }
         });
       },
       {
-        threshold: 0.1, 
+        threshold: 0.1,
       }
     );
 
@@ -309,4 +325,17 @@ export class HomeComponent implements AfterViewInit {
       },
     },
   };
+
+  @HostListener('document:keydown.escape', ['$event'])
+  onKeydownHandler(event: KeyboardEvent) {
+    this.isAdd = false;
+  }
+
+  // Method to close the layer when clicking the close button
+  closeLayer() {
+    this.isAdd = false;
+  }
+  goToWhatsApp() {
+    window.open('https://wa.me/201024848723', '_blank');
+  }
 }

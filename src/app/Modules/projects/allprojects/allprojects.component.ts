@@ -33,9 +33,15 @@ export class AllprojectsComponent {
   selectedFilter: number | null = null; // Tracks the active filter
   mobileProject: Project[] = [];
  @Input() inView!: boolean;
-
+ pageSize: any;
+ current: any;
+ total: any;
+   showPagination: boolean =false;
+ ismobile: boolean = false;
   hasBeenInView: boolean = false; // Tracks if `inView` has ever been true
-
+  currentPage: number = 1;
+  pages: any[] = [];
+  totalPages!: number;
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['inView'] && changes['inView'].currentValue) {
       this.hasBeenInView = true;
@@ -152,7 +158,7 @@ export class AllprojectsComponent {
     this._ProjectsService.getMobileProjects().subscribe({
       next: (projects) => {
         this.mobileApp = projects.data;
-        console.log(this.mobileApp);
+        // console.log(this.mobileApp);
         this.combineAndRandomizeProjects();
       },
       error: (error) => {
@@ -189,17 +195,20 @@ export class AllprojectsComponent {
   }
 
   combineAndRandomizeProjects(): void {
-    // Combine and randomize projects
-    this.allProjects = [...this.mobileApp, ...this.websites].sort(
-      () => Math.random() - 0.5
-    );
+    this.allProjects = [...this.mobileApp, ...this.websites].sort(() => Math.random() - 0.5);
+    // console.log('All Projects:', this.allProjects); // Debugging
     this.displayedProjects = [...this.allProjects];
-    this.mobileProject=this.displayedProjects.slice(0,4)
+    this.mobileProject = this.displayedProjects.slice(0, 4);
+    
+    // Initialize pagination
+    this.totalPages = Math.ceil(this.displayedProjects.length / 12);
+    this.setPagesToDisplay();
+    this.updateDisplayedProjects(2);
   }
 
-  filterProjects(type: number | null): void {
-    this.selectedFilter = type; // Update the active filter
-
+  filterProjects(type: number | null , index:number =2): void {
+    this.selectedFilter = type;
+    
     if (type === null) {
       this.displayedProjects = [...this.allProjects];
     } else {
@@ -207,5 +216,66 @@ export class AllprojectsComponent {
         (project) => project.type === type
       );
     }
+    
+    this.currentPage = 1; // Reset to first page
+    this.totalPages = Math.ceil(this.displayedProjects.length / 12);
+    this.setPagesToDisplay();
+    this.updateDisplayedProjects(index);
   }
+
+  pageChanged(page: any): void {
+    if (page === '...') {
+      return;
+    }
+    console.log('Current Page:', page);
+    this.currentPage = page;
+    this.updateDisplayedProjects(1);
+    console.log('Displayed Projects:', this.displayedProjects);
+  }
+  
+  updateDisplayedProjects(index:number): void {
+    const startIndex = (this.currentPage - 1) * 12;
+    const endIndex = startIndex + 12;
+    // console.log('Start Index:', startIndex, 'End Index:', endIndex);
+    if(index ==1 ){
+      this.displayedProjects = this.allProjects.slice(startIndex, endIndex);
+
+    }
+    else{
+      this.displayedProjects = this.displayedProjects.slice(startIndex, endIndex);
+  }
+
+  }
+
+  setPagesToDisplay(): void {
+    this.pages = [];
+    if (this.totalPages <= 6) {
+      this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+    } else {
+      if (this.currentPage <= 4) {
+        this.pages = [1, 2, 3, 4, 5, '...', this.totalPages];
+      } else if (this.currentPage > 4 && this.currentPage < this.totalPages - 3) {
+        this.pages = [
+          1, '...', this.currentPage - 1, this.currentPage, this.currentPage + 1, '...', this.totalPages
+        ];
+      } else {
+        this.pages = [
+          1, '...', this.totalPages - 4, this.totalPages - 3, this.totalPages - 2, this.totalPages - 1, this.totalPages
+        ];
+      }
+    }
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.pageChanged(this.currentPage + 1);
+    }
+  }
+  
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.pageChanged(this.currentPage - 1);
+    }
+  }
+
 }

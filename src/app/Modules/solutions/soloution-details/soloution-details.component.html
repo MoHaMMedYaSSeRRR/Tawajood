@@ -13,9 +13,9 @@
 </section>
 
 <section *ngIf="soloution" class="details my-md-5 my-3">
-  <div class="w-75 mx-auto">
+  <div class="w-75 mx-auto ">
     <div
-      class="row my-3 justify-content-between align-items-center w-100 mx-auto"
+      class="row g-3 my-3 p-md-0 p-2 justify-content-between align-items-center w-100 mx-auto"
     >
       <div class="col-md-5">
         <div class="item-image">
@@ -27,7 +27,7 @@
           class="content"
           [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
         >
-          <h2 class="mb-4">{{soloution.name}}</h2>
+          <h2 class="mb-md-4 mb-2 ">{{soloution.name}}</h2>
           <p>
            {{soloution.content}}
           </p>
@@ -49,8 +49,8 @@
     </div>
 
     <div  class="my-md-5 my-3">
-        <div class="global-details py-2" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">
-            <h3>
+        <div class="global-details p-md-0 p-2 py-2" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">
+            <h3 class="mx-md-0 mx-3">
                 {{ "app_overview" | translate }}
             </h3>
             <div class="row g-3 mt-4 w-100 mx-auto justify-content-end">
@@ -75,8 +75,8 @@
     </div>
 
     <div class="my-md-5 my-3">
-        <div class="screen-app pt-3" >
-            <h3 class="mb-2" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">
+        <div class="screen-app p-md-0 p-2 pt-3" >
+            <h3 class="mb-4 mx-md-0 mx-3" [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'">
                 {{ "app_screens" | translate }}
             </h3>
             <div class="row position-relative mt-3 w-100 mx-auto">

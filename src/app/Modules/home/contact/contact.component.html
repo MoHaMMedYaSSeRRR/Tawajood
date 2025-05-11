@@ -119,6 +119,7 @@
                   class="arrow position-absolute"
                   [ngClass]="currentLang === 'en' ? 'arrow-en' : ''"
                   role="button"
+                  aria-label="Toggle country dropdown"
                 >
                   <i class="fa fa-chevron-down"></i>
                 </span>
@@ -130,32 +131,32 @@
                   {{ selectedCountry.code }}
                 </span>
 
-                <div
-                  *ngIf="isDropdown && currentLang == 'ar'"
-                  class="country-dropdown text-end"
-                >
-                  <div
-                    *ngFor="let country of countries"
-                    (click)="selectCountry(country)"
-                    class="dropdown-item"
-                    [ngClass]="{ 'text-start': currentLang == 'en' }"
-                  >
-                    {{ country.name_ar }} ({{ country.code }})
-                  </div>
-                </div>
-                <div
-                  *ngIf="isDropdown && currentLang == 'en'"
-                  class="country-dropdown"
-                >
-                  <div
-                    *ngFor="let country of countries"
-                    (click)="selectCountry(country)"
-                    class="dropdown-item"
-                    [ngClass]="{ 'text-start': currentLang == 'en' }"
-                  >
-                    {{ country.name_en }} ({{ country.code }})
-                  </div>
-                </div>
+               <!-- Arabic Dropdown -->
+<div *ngIf="isDropdown && currentLang == 'ar'" class="country-dropdown text-end">
+  <div
+    *ngFor="let country of countries"
+    (click)="selectCountry(country)"
+    class="dropdown-item d-flex align-items-center"
+    [ngClass]="{ 'text-start': currentLang == 'en' }"
+  >
+    <img [src]="country.flag" alt="{{ country.name_ar }}" class="country-flag me-2" />
+    {{ country.name_ar }} ({{ country.code }}) ({{ country.codeNumber }})
+  </div>
+</div>
+
+<!-- English Dropdown -->
+<div *ngIf="isDropdown && currentLang == 'en'" class="country-dropdown">
+  <div
+    *ngFor="let country of countries"
+    (click)="selectCountry(country)"
+    class="dropdown-item d-flex align-items-center"
+    [ngClass]="{ 'text-start': currentLang == 'en' }"
+  >
+    <img [src]="country.flag" alt="{{ country.name_en }}" class="country-flag me-2" />
+    {{ country.name_en }} ({{ country.code }}) ({{ country.codeNumber }})
+  </div>
+</div>
+
               </div>
 
               <div class="col-12 position-relative ">
@@ -192,11 +193,11 @@
             "
             class="d-flex"
           >
-            <div class="content mx-2">
+            <div class="content mx-3">
               <p class="mb-1">
                 {{ "call_us" | translate }}
               </p>
-              <p *ngIf="isIraq" class="mb-0">
+              <!-- <p *ngIf="isIraq" class="mb-0">
                 <a
                   href="https://wa.me/+009647747780006"
                   class="text-decoration-none "
@@ -213,8 +214,8 @@
                 >
                   {{ contactUs.phone }}
                 </a>
-              </p>
-              <p *ngIf="!isIraq" class="mb-0"> 
+              </p> -->
+              <!-- <p  class="mb-0"> 
                 <a
                   href="https://wa.me/+201024848723"
                   class="text-decoration-none "
@@ -222,8 +223,8 @@
                 >
                   01024848723
                 </a>
-              </p>
-              <p class="rtl" *ngIf="!isIraq">
+              </p> -->
+              <p class="rtl" >
                 <a
                   href="tel:+201024848723"
                   class="text-decoration-none "
@@ -380,8 +381,8 @@
     </div>
   </div>
 </section>
-<section *ngIf="isInComponent">
-  <div class="map w-75 mx-auto">
+<section *ngIf="isInComponent" class="p-md-0 p-2">
+  <div class="map w-75 mx-auto ">
     <h3
       class="mb-3"
       [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"

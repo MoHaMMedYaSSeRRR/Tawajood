@@ -34,6 +34,8 @@
     >
       <div *ngFor="let item of services; let i = index" class="col-md-4 py-3">
         <div
+        (click)="navigateBasedOnId(item.id)" 
+        role="button"
           class="item"
           [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
           [@zoomIn]="hasBeenInView ? 'active' : 'inactive'" 
@@ -61,11 +63,13 @@
   
   <div
     *ngIf="isInComponent"
-    class="row gy-5 w-100 mx-auto  justify-content-end"
+    class="row   w-100 mx-auto  justify-content-end"
   >
     <div *ngFor="let item of services; let i = index" class="col-md-4 py-3">
       <div
         class="item"
+        (click)="navigateBasedOnId(item.id)" 
+        role="button"
         [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
       >
         <div class="item-img">
@@ -96,6 +100,8 @@
         <ng-container *ngFor="let item of services; let i = index">
           <ng-template carouselSlide>
             <div
+            (click)="navigateBasedOnId(item.id)" 
+            role="button"
               class="item p-1"
               [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
             >

@@ -16,6 +16,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { CacheInterceptor } from './interceptors/cache.interceptor';
 import { EmploymentRoutingModule } from './Modules/employment/employment-routing.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -24,8 +25,9 @@ import { EmploymentRoutingModule } from './Modules/employment/employment-routing
     HttpClientModule,
     HttpClientModule,
     BrowserModule,
+    NgxPaginationModule,
     ToastrModule.forRoot(),
-    EmploymentRoutingModule ,
+    EmploymentRoutingModule,
     BrowserAnimationsModule,
     TranslateModule.forRoot({
       defaultLanguage: 'ar',
@@ -48,8 +50,8 @@ import { EmploymentRoutingModule } from './Modules/employment/employment-routing
     {
       provide: HTTP_INTERCEPTORS,
       useClass: CacheInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

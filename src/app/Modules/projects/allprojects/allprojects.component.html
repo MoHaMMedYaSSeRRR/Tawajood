@@ -4,9 +4,9 @@
     [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
   >
     <span>
-      <span role="buttonn" routerLink="/home">{{ "home" | translate }}</span>
-      <span class="mx-2"> > </span
-      ><span class="current">{{ "projects" | translate }}</span>
+      <a role="buttonn" routerLink="/home">{{ "home" | translate }}</a>
+      <a class="mx-2"> > </a
+      ><a class="current">{{ "projects" | translate }}</a>
     </span>
   </div>
 </section>
@@ -14,49 +14,54 @@
   <div class="w-75 mx-auto">
     <div
       [ngClass]="{ 'flex-row': !isInComponent }"
-      class="d-flex justify-content-between  align-items-center w-100 px-3"
+      class="d-flex justify-content-between align-items-center w-100 px-3"
     >
       <ul
         *ngIf="isInComponent"
         [ngClass]="{ 'justify-content-between': isMobile }"
-        class="list-unstyled w-100  d-flex justify-content-start align-items-center"
+        class="list-unstyled w-100 d-flex justify-content-start align-items-center"
       >
         <li *ngIf="mobileApp.length > 0">
-          <a
+          <span
             (click)="filterProjects(2)"
             [class.active]="selectedFilter === 2"
             class="text-decoration-none"
+            aria-label="Filter by Mobile Apps"
+
           >
             {{ "mobile_apps" | translate }}
-          </a>
+          </span>
         </li>
         <li *ngIf="websites.length > 0">
-          <a
-            (click)="filterProjects(1)"
+          <span
+            (click)="filterProjects(1 )"
             [class.active]="selectedFilter === 1"
             class="text-decoration-none"
+            aria-label="Filter by Websites"
+
           >
             {{ "websites" | translate }}
-          </a>
+          </span>
         </li>
         <li>
-          <a
+          <span
             (click)="filterProjects(null)"
             [class.active]="selectedFilter === null"
             class="text-decoration-none"
           >
             {{ "all" | translate }}
-          </a>
+          </span>
         </li>
       </ul>
 
-      <span
+      <a
         role="button"
+        aria-label="Show All Projects"
         routerLink="/projects"
         *ngIf="!isInComponent && displayedProjects.length > 3"
       >
         {{ "view_all" | translate }}
-      </span>
+      </a>
       <h2
         [ngClass]="{
           centerMobile: isMobile,
@@ -73,7 +78,7 @@
       <h2
         [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
         class="px-0 related"
-        *ngIf="url !== '/projects' && url !== '/home' && url !== '/' "
+        *ngIf="url !== '/projects' && url !== '/home' && url !== '/'"
       >
         {{ "related_works" | translate }}
       </h2>
@@ -83,32 +88,45 @@
       class="row g-2 gx-4 mt-2 w-100 mx-auto"
     >
       <div
-        [routerLink]="['/mobile', item.id]"
+        
         *ngFor="let item of displayedProjects"
         class="col-md-3"
       >
         <div class="item text-center">
           <div
-            class="item-img w-100  d-flex justify-content-center align-items-center"
+            class="item-img w-100 d-flex justify-content-center align-items-center"
             *ngIf="displayedProjects.length > 0"
             [routerLink]="['/mobile', item.id]"
+            role="button"
           >
-          <div class="position-relative mocub">
-            <img src="../../../../assets/images/flatend.png" class="position-absolute one" alt="">
             <img
-              *ngIf="item.home_screen"
+              *ngIf="item.home_screen && item.type != 2"
               loading="lazy"
               [src]="item.home_screen"
               role="button"
-              class="position-absolute two"
-              alt=""
+              class=""
+              [alt]="item.name"
             />
-          </div>
-           
 
-         
+            <div *ngIf="item.type == 2" class="position-relative mocub">
+              <img
+                src="../../../../assets/images/flatend.png"
+                class="position-absolute one"
+                alt=""
+              />
+              <img
+                *ngIf="item.home_screen"
+                loading="lazy"
+                [src]="item.home_screen"
+                role="button"
+                class="position-absolute two"
+                [alt]="item.name"
+              />
+            </div>
           </div>
-          <h4 [routerLink]="['/mobile', item.id]" class="text-center" role="button">
+          <h4
+            class="text-center"
+          >
             {{ item.name }}
           </h4>
         </div>
@@ -138,110 +156,196 @@
         </div>
       </div> -->
     </div>
-    <div
-      *ngIf="!isMobile && !isInComponent"
-      class="row gx-4 mt-2 w-100 mx-auto"
-    >
-      <div
-        [routerLink]="['/mobile', item.id]"
-        *ngFor="let item of mobileProject"
-        class="col-md-3"
-      >
-        <div class="item text-center">
-          <div
-            class="item-img w-100 d-flex justify-content-center align-items-center"
-          >
-          <div class="position-relative mocub">
-            <img src="../../../../assets/images/flatend.png" class="position-absolute one" alt="">
+    <div *ngIf="!isMobile && !isInComponent" class="row gx-4 mt-2 w-100 mx-auto">
+      <div *ngFor="let item of mobileApp.slice(0,4)" class="col-md-3">
+        
+        <!-- Changed div to <a> for accessibility -->
+        <a 
+          [routerLink]="['/mobile', item.id]" 
+          class="item text-center text-decoration-none d-block p-3"
+          [attr.aria-label]="'View details for ' + item.name"
+        >
+          <div class="item-img w-100 d-flex justify-content-center align-items-center">
             <img
-              *ngIf="item.home_screen"
+              *ngIf="item.home_screen && item.type != 2"
               loading="lazy"
               [src]="item.home_screen"
-              role="button"
-              class="position-absolute two"
-              alt=""
+              class="img-fluid"
+              [attr.alt]="item.name + ' preview image'"
             />
+    
+            <div *ngIf="item.type == 2" class="position-relative mocub">
+              <img
+                src="../../../../assets/images/flatend.png"
+                class="position-absolute one"
+                alt="Flat background design"
+              />
+              <img
+                *ngIf="item.home_screen"
+                loading="lazy"
+                [src]="item.home_screen"
+                class="position-absolute two"
+                [attr.alt]="item.name + ' preview'"
+              />
+            </div>
           </div>
-          </div>
-          <h4 role="button" [routerLink]="['/mobile', item.id]">
+    
+          <h4 class="mt-2">
             {{ item.name }}
-            <!-- {{ "application" | translate }} -->
           </h4>
-        </div>
+        </a>
+    
       </div>
     </div>
+    
     <div *ngIf="isMobile && !isInComponent" class="row gx-4 mt-2 w-100 mx-auto">
       <owl-carousel-o [options]="mobileCustomOptions">
-        <ng-container *ngFor="let item of displayedProjects.slice(0, 5)">
+        <ng-container *ngFor="let item of mobileApp.slice(0, 5)">
           <ng-template carouselSlide>
-            <div class="item text-center">
+            <!-- Changed <div> to <a> for better SEO & accessibility -->
+            <a
+              [routerLink]="['/mobile', item.id]"
+              class="item text-center text-decoration-none d-block p-3"
+              [attr.aria-label]="'View details for ' + item.name"
+            >
               <div
                 class="item-img w-100 d-flex justify-content-center align-items-center"
                 *ngIf="item.home_screen"
               >
                 <img
-                  *ngIf="item.home_screen"
-                  [routerLink]="['/mobile', item.id]"
+                  *ngIf="item.home_screen && item.type != 2"
+                  loading="lazy"
                   [src]="item.home_screen"
-                  alt=""
+                  class="img-fluid"
+                  [attr.alt]="item.name + ' preview image'"
                 />
+    
+                <div *ngIf="item.type == 2" class="position-relative mocub">
+                  <img
+                    src="../../../../assets/images/flatend.png"
+                    class="position-absolute one"
+                    alt="Flat background design"
+                  />
+                  <img
+                    *ngIf="item.home_screen"
+                    loading="lazy"
+                    [src]="item.home_screen"
+                    class="position-absolute two"
+                    [attr.alt]="item.name + ' preview'"
+                  />
+                </div>
               </div>
+    
               <h4 class="mt-2">
                 {{ item.name }}
               </h4>
-            </div>
+            </a>
           </ng-template>
         </ng-container>
-
-        <!-- <ng-template *ngIf="mobileApp[2]" carouselSlide>
-          <div class="item text-center">
-            <div
-              class="item-img w-100 d-flex justify-content-center align-items-center"
-            >
-              <img *ngIf="mobileApp[2].home_screen" [routerLink]="['/mobile', mobileApp[2].id]" [src]="mobileApp[2].home_screen" alt="" />
-            </div>
-            <h4 class="mt-2">
-              {{ mobileApp[2].name }}
-            </h4>
-          </div>
-        </ng-template> -->
-        <!-- <ng-template *ngIf=" mobileApp[0]" carouselSlide>
-          <div class="item text-center">
-            <div
-              class="item-img w-100 d-flex justify-content-center align-items-center"
-            >
-              <img *ngIf="websites[0].home_screen" [routerLink]="['/mobile', mobileApp[0].id]" [src]="websites[0].home_screen" alt="" />
-            </div>
-            <h4 class="mt-2">
-              {{ websites[0].name }}
-            </h4>
-          </div>
-        </ng-template> -->
       </owl-carousel-o>
     </div>
+    
     <div *ngIf="isMobile && isInComponent" class="row gx-4 mt-2 w-100 mx-auto">
       <owl-carousel-o [options]="mobileOptions">
         <ng-container *ngFor="let item of displayedProjects">
           <ng-template carouselSlide>
-            <div class="item mobile_view text-center">
+            <!-- Changed <div> to <a> for better SEO & accessibility -->
+            <a
+              [routerLink]="['/mobile', item.id]"
+              class="item mobile_view text-center text-decoration-none d-block p-3"
+              [attr.aria-label]="'View details for ' + item.name"
+            >
               <div
                 class="item-img w-100 d-flex justify-content-center align-items-center"
                 *ngIf="item.home_screen"
               >
                 <img
-                  *ngIf="item.home_screen"
-                  [routerLink]="['/mobile', item.id]"
+                  *ngIf="item.home_screen && item.type != 2"
+                  loading="lazy"
                   [src]="item.home_screen"
-                  alt=""
+                  class="img-fluid"
+                  [attr.alt]="item.name + ' preview image'"
                 />
+    
+                <div *ngIf="item.type == 2" class="position-relative mocub">
+                  <img
+                    src="../../../../assets/images/flatend.png"
+                    class="position-absolute one"
+                    alt="Flat background design"
+                  />
+                  <img
+                    *ngIf="item.home_screen"
+                    loading="lazy"
+                    [src]="item.home_screen"
+                    class="position-absolute two"
+                    [attr.alt]="item.name + ' preview'"
+                  />
+                </div>
               </div>
+    
               <h4 class="mt-2">
                 {{ item.name }}
               </h4>
-            </div>
+            </a>
           </ng-template>
         </ng-container>
       </owl-carousel-o>
     </div>
+    
   </div>
 </section>
+<div *ngIf="isInComponent" class="my-4  d-flex justify-content-center align-items-center">
+  <div *ngIf="pages.length > 1" class="pagination">
+    <ul [ngClass]="{'flex-row-reverse': currentLang =='ar'}" class="list-unstyled d-flex justify-content-center align-items-center">
+      <!-- Previous Button -->
+      <li
+        class="me-3 border-0"
+        (click)="previousPage()"
+        [class.disabled]="currentPage === 1"
+      >
+      <svg
+      width="21"
+      height="21"
+      viewBox="0 0 21 21"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M7.62492 2.58301L6.33325 3.87467L12.9583 10.4997L6.33325 17.1247L7.62492 18.4163L15.4999 10.4997L7.62492 2.58301Z"
+        fill="#124261"
+      />
+    </svg>
+      </li>
+
+      <!-- Page Numbers -->
+      <li
+        *ngFor="let page of pages"
+        class="mx-2"
+        [ngClass]="{ active: page === currentPage }"
+        (click)="pageChanged(page)"
+      >
+        {{ page }}
+      </li>
+
+      <!-- Next Button -->
+      <li
+        class="ms-3 border-0"
+        (click)="nextPage()"
+        [class.disabled]="currentPage === totalPages"
+      >  <svg
+      width="20"
+      height="21"
+      viewBox="0 0 20 21"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M12.8751 18.417L14.1667 17.1253L7.54175 10.5003L14.1667 3.87533L12.8751 2.58366L5.00008 10.5003L12.8751 18.417Z"
+        fill="#124261"
+      />
+    </svg>
+       
+      </li>
+    </ul>
+  </div>
+</div>

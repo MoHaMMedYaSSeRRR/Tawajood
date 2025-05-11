@@ -19,14 +19,26 @@ export class ApplyjobComponent {
   isDropdownOpen = false;
   selectedCountry = { name: 'Egypt', code: '+20', flag: 'egypt.png' };
 
-  countryCodes = [ 
-    { name: 'Egypt', code: '+20', flag: 'egypt.png' },
-    { name: 'United States', code: '+1', flag: 'us.png' },
-    { name: 'United Kingdom', code: '+44', flag: 'uk.png' },
-    { name: 'India', code: '+91', flag: 'india.png' },
-    { name: 'Saudi Arabia', code: '+966', flag: 'saudi.png' },
-    { name: 'Canada', code: '+1', flag: 'canada.png' },
-    { name: 'Germany', code: '+49', flag: 'germany.png' },
+  countryCodes = [
+    { code: '966', flag: '🇸🇦', name_ar: 'السعودية', name_en: 'Saudi Arabia' },
+    { code: '20', flag: '🇪🇬', name_ar: 'مصر', name_en: 'Egypt' },
+    { code: '212', flag: '🇲🇦', name_ar: 'المغرب', name_en: 'Morocco' },
+    { code: '213', flag: '🇩🇿', name_ar: 'الجزائر', name_en: 'Algeria' },
+    { code: '216', flag: '🇹🇳', name_ar: 'تونس', name_en: 'Tunisia' },
+    { code: '218', flag: '🇱🇾', name_ar: 'ليبيا', name_en: 'Libya' },
+    { code: '249', flag: '🇸🇩', name_ar: 'السودان', name_en: 'Sudan' },
+    { code: '964', flag: '🇮🇶', name_ar: 'العراق', name_en: 'Iraq' },
+    { code: '968', flag: '🇴🇲', name_ar: 'عمان', name_en: 'Oman' },
+    { code: '970', flag: '🇵🇸', name_ar: 'فلسطين', name_en: 'Palestine' },
+    { code: '971', flag: '🇦🇪', name_ar: 'الإمارات', name_en: 'United Arab Emirates' },
+    { code: '973', flag: '🇧🇭', name_ar: 'البحرين', name_en: 'Bahrain' },
+    { code: '974', flag: '🇶🇦', name_ar: 'قطر', name_en: 'Qatar' },
+    { code: '963', flag: '🇸🇾', name_ar: 'سوريا', name_en: 'Syria' },
+    { code: '965', flag: '🇰🇼', name_ar: 'الكويت', name_en: 'Kuwait' },
+    { code: '967', flag: '🇾🇪', name_ar: 'اليمن', name_en: 'Yemen' },
+    { code: '962', flag: '🇯🇴', name_ar: 'الأردن', name_en: 'Jordan' },
+    { code: '252', flag: '🇸🇴', name_ar: 'الصومال', name_en: 'Somalia' },
+    { code: '222', flag: '🇲🇷', name_ar: 'موريتانيا', name_en: 'Mauritania' }
   ];
 
   constructor(

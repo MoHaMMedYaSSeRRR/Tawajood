@@ -15,11 +15,11 @@
   </div>
 </section>
 
-<section *ngIf="project" class="mobile my-md-5 my-3">
+<section *ngIf="project" class="mobile my-md-5 my-3 p-md-0 p-2">
   <div class="w-75 mx-auto">
     <div class="row w-100 mx-auto align-items-center justify-content-between">
       <div class="col-md-6 ">
-        <div class="item-img  mx-auto">
+          <div class="item-img  mx-auto">
           <div class="mx-auto  position-relative mocub">
             <img
             src="../../../../assets/images/flatend.png"
@@ -28,7 +28,7 @@
           />
           <img
             *ngIf="project.home_screen"
-            loading="lazy"
+          loading="lazy"
             [src]="project.home_screen"
             role="button"
             class="position-absolute two"
@@ -50,9 +50,7 @@
           <p>
             {{ project.description }}
           </p>
-          <div
-            class="icon-links d-flex justify-content-center align-items-center gap-3"
-          >
+          <div class="icon-links d-flex justify-content-center align-items-center gap-3">
             <a
               *ngIf="project.link_website"
               [href]="
@@ -63,8 +61,9 @@
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src="../../../../assets/images/ux.png" alt="" />
+              <img src="../../../../assets/images/ux.png" alt="Visit project website" />
             </a>
+          
             <a
               *ngIf="project.link_ios"
               [href]="project.link_ios"
@@ -72,17 +71,19 @@
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src="../../../../assets/images/app-store.png" alt="" />
+              <img src="../../../../assets/images/app-store.png" alt="Download on the App Store" />
             </a>
+          
             <a
               *ngIf="project.link_android"
               [href]="project.link_android"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src="../../../../assets/images/google-play.png" alt="" />
+              <img src="../../../../assets/images/google-play.png" alt="Get it on Google Play" />
             </a>
           </div>
+          
         </div>
       </div>
     </div>
@@ -91,10 +92,10 @@
         class="global-details py-2"
         [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
       >
-        <h3 *ngIf="project.type != 2">
+        <h3 class="mx-md-0 mx-2" *ngIf="project.type != 2">
           {{ "appSpecifications" | translate }}
         </h3>
-        <h3 *ngIf="project.type == 2">
+        <h3 class="mx-md-0 mx-2" *ngIf="project.type == 2">
           {{ "webSpecifications" | translate }}
         </h3>
         <div class="row g-3 mt-4 w-100 mx-auto justify-content-end">
@@ -132,23 +133,32 @@
     <div *ngIf="project.images.length > 0" class="my-md-5 my-3">
       <div class="screen-app pt-3">
         <h3
-          class="mb-2"
+          class="mb-3 mx-md-0 mx-2"
           [ngClass]="currentLang === 'ar' ? 'text-end' : 'text-start'"
         >
           {{ "app_screens" | translate }}
         </h3>
-        <div class="row position-relative mt-3 w-100 mx-auto">
+        <div class="row position-relative mt-3 w-100 mx-auto overflow-visible">
           <owl-carousel-o [options]="customOptions" #owlCarousel>
             <ng-container *ngFor="let item of project?.images">
               <ng-template carouselSlide>
-                <div class="item" (click)="openPreview(item.image)">
-                  <img
-                    role="button"
-                    [src]="item.image"
-                    class="mx-auto"
-                    [alt]="item.project_id"
-                  />
-                </div>
+                <div class="item py-1 text-center" (click)="openPreview(item.image)">
+                <div class="position-relative mocubtwo">
+                      <img
+                      src="../../../../assets/images/flatend.png"
+                      class="position-absolute one"
+                      alt=""
+                    />
+                    <img
+                      *ngIf="item.image"
+                    loading="lazy"
+                      [src]="item.image"
+                      role="button"
+                      class="position-absolute two"
+                      alt=""
+                    />
+                    </div>  
+                  </div>            
               </ng-template>
             </ng-container>
 
@@ -197,7 +207,7 @@
     </div>
   </div>
 </section>
-<div
+<!-- <div
   *ngIf="showLayer"
   class="layer d-flex justify-content-center align-items-center"
 >
@@ -205,8 +215,9 @@
     <i role="button" (click)="closePreview($event)" class="fa fa-close fa-2x">
     </i>
   </span>
-  <div class="w-50 position-relative text-center rounded-2">
-    <img [src]="previewImage" alt="Preview" class="w-100 rounded-2" />
+  <div class="position-relative mocubtwo text-center rounded-2">
+    <img  src="../../../../assets/images/flatend.png" class="position-absolute one" alt="">
+    <img [src]="previewImage" alt="Preview" class="w-100 position-absolute two rounded-2" />
     <div
       class="navigation d-flex justify-content-center align-items-center mt-5"
     >
@@ -218,7 +229,7 @@
       </span>
     </div>
   </div>
-</div>
+</div> -->
 
 <section *ngIf="!isMobile" class="my-md-5 my-3">
   <app-related [relatedWorks]="relatedWorks"></app-related>
